@@ -25,7 +25,12 @@
 @end
 
 @implementation Detailsproject2
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.buttonindex = 0;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

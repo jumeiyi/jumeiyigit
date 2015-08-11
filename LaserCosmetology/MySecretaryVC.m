@@ -107,6 +107,7 @@
     UITextView *textview = [[UITextView alloc] initWithFrame:CGRectMake(15, 110, self.view.bounds.size.width - 10, self.view.bounds.size.height - 110 - 20)];
     textview.backgroundColor = [UIColor clearColor];
     textview.text = mishu.TextInfo;
+    textview.editable = NO;
     [self.view addSubview:textview];
 
 

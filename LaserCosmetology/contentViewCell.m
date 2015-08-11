@@ -31,12 +31,12 @@
         self.backgroudimage.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.backgroudimage];
         
-        self.headimage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
+        self.headimage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 70, 70)];
         self.headimage.layer.cornerRadius = 55;
         self.headimage.layer.masksToBounds = YES;
         [self.backgroudimage addSubview:self.headimage];
         
-        self.peoplename = [[UILabel alloc] initWithFrame:CGRectMake(125, 10, 80, 20)];
+        self.peoplename = [[UILabel alloc] init];
         self.peoplename.font = [UIFont systemFontOfSize:16];
          self.peoplename.textColor = [self colorWithRGB:0x666666 alpha:1];
         [self.backgroudimage addSubview:self.peoplename];

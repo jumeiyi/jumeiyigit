@@ -303,13 +303,14 @@
         }
         meirongzhuanjia *meirong = [_meirongzhuanjia objectAtIndex:indexPath.row];
         
-        contentCell.backgroudimage.frame = CGRectMake(0, 0, self.view.bounds.size.width, 133);
+        contentCell.backgroudimage.frame = CGRectMake(0, 0, self.view.bounds.size.width, 110);
         
         [contentCell.headimage sd_setImageWithURL:[NSURL URLWithString:meirong.PicSrc]];
         contentCell.headimage.layer.masksToBounds = YES;
         contentCell.headimage.layer.cornerRadius = contentCell.headimage.frame.size.width/2;
         
         contentCell.peoplename.text = meirong.TrueName;
+        contentCell.peoplename.frame =CGRectMake(contentCell.headimage.frame.size.width + 25, 10, 80, 20);
         
         contentCell.fuwu.frame = CGRectMake(self.view.bounds.size.width - 80, 10, 60, 20);
         contentCell.servernumber.text = meirong.BookCount;//服务人数
@@ -317,15 +318,15 @@
         
         contentCell.people.frame = CGRectMake(contentCell.servernumber.frame.origin.x + [self NSStringwithsize:13 str:contentCell.servernumber.text], 10,[self NSStringwithsize:13 str:contentCell.people.text] , 20);
 
-        contentCell.postname.frame = CGRectMake(125, 40, [self NSStringwithsize:14 str:meirong.PostName], 20);
+        contentCell.postname.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 35, [self NSStringwithsize:14 str:meirong.PostName], 20);
         contentCell.postname.text = meirong.PostName;
         
 
         
-        contentCell.begoodat.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 100, 40, 20);
+        contentCell.begoodat.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 85, 40, 20);
         
         contentCell.begoodatto1.text = meirong.BestInfo;//擅长
-        contentCell.begoodatto1.frame = CGRectMake(contentCell.headimage.frame.size.width + 25 + 35, 100, [self NSStringwithsize:12 str:meirong.BestInfo], 20);
+        contentCell.begoodatto1.frame = CGRectMake(contentCell.headimage.frame.size.width + 25 + 35, 85, self.view.bounds.size.width - (contentCell.headimage.frame.size.width + 25 + 40), 20);
         
          
 
@@ -341,44 +342,44 @@
         contentCell.judgeimage5.image = [UIImage imageNamed:@""];
 
         if ([meirong.EvaluateCount isEqualToString:@"1"]) {
-           contentCell.judgeimage1.frame = CGRectMake(135 + [self NSStringwithsize:16 str:meirong.TrueName],10, 15, 15);
+           contentCell.judgeimage1.frame = CGRectMake(contentCell.headimage.frame.size.width + 40 + [self NSStringwithsize:16 str:meirong.TrueName],13, 13, 13);
             contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
         }else if ([meirong.EvaluateCount isEqualToString:@"2"]){
-            contentCell.judgeimage1.frame = CGRectMake(135 + [self NSStringwithsize:16 str:meirong.TrueName],10, 15, 15);
+            contentCell.judgeimage1.frame = CGRectMake(contentCell.headimage.frame.size.width + 40 + [self NSStringwithsize:16 str:meirong.TrueName],13, 13, 13);
             contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
-            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 20,10, 15, 15);
+            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 15,13, 13, 13);
             contentCell.judgeimage2.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
         }else if ([meirong.EvaluateCount isEqualToString:@"3"]){
-            contentCell.judgeimage1.frame = CGRectMake(135 + [self NSStringwithsize:16 str:meirong.TrueName],10, 15, 15);
+            contentCell.judgeimage1.frame = CGRectMake(contentCell.headimage.frame.size.width + 40 + [self NSStringwithsize:16 str:meirong.TrueName],12, 13, 13);
             contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
-            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 20,10, 15, 15);
+            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 15,13, 13, 13);
             contentCell.judgeimage2.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
-            contentCell.judgeimage3.frame = CGRectMake(contentCell.judgeimage2.frame.origin.x  + 20,10, 15, 15);
+            contentCell.judgeimage3.frame = CGRectMake(contentCell.judgeimage2.frame.origin.x  + 15,13, 13, 13);
             contentCell.judgeimage3.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
         }else if ([meirong.EvaluateCount isEqualToString:@"4"]){
-            contentCell.judgeimage1.frame = CGRectMake(135 + [self NSStringwithsize:16 str:meirong.TrueName],10, 15, 15);
+            contentCell.judgeimage1.frame = CGRectMake(contentCell.headimage.frame.size.width + 40 + [self NSStringwithsize:16 str:meirong.TrueName],13, 13, 13);
             contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
-            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 20,10, 15, 15);
+            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 15,13, 13, 13);
             contentCell.judgeimage2.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
-            contentCell.judgeimage3.frame = CGRectMake(contentCell.judgeimage2.frame.origin.x  + 20,10, 15, 15);
+            contentCell.judgeimage3.frame = CGRectMake(contentCell.judgeimage2.frame.origin.x  + 15,13, 13, 13);
             contentCell.judgeimage3.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
-            contentCell.judgeimage4.frame = CGRectMake(contentCell.judgeimage3.frame.origin.x  + 20,10, 15, 15);
+            contentCell.judgeimage4.frame = CGRectMake(contentCell.judgeimage3.frame.origin.x  + 15,13, 13, 13);
             contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
         }else{
-            contentCell.judgeimage1.frame = CGRectMake(135 + [self NSStringwithsize:16 str:meirong.TrueName],10, 15, 15);
+            contentCell.judgeimage1.frame = CGRectMake(contentCell.headimage.frame.size.width + 40 + [self NSStringwithsize:16 str:meirong.TrueName],13, 13, 13);
             contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
-            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 20,10, 15, 15);
+            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 15,13, 13, 13);
             contentCell.judgeimage2.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
-            contentCell.judgeimage3.frame = CGRectMake(contentCell.judgeimage2.frame.origin.x  + 20,10, 15, 15);
+            contentCell.judgeimage3.frame = CGRectMake(contentCell.judgeimage2.frame.origin.x  + 15,13, 13, 13);
             contentCell.judgeimage3.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
-            contentCell.judgeimage4.frame = CGRectMake(contentCell.judgeimage3.frame.origin.x  + 20,10, 15, 15);
+            contentCell.judgeimage4.frame = CGRectMake(contentCell.judgeimage3.frame.origin.x  + 15,13, 13, 13);
             contentCell.judgeimage4.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
-           contentCell.judgeimage5.frame = CGRectMake(contentCell.judgeimage4.frame.origin.x  + 20,10, 15, 15);
+           contentCell.judgeimage5.frame = CGRectMake(contentCell.judgeimage4.frame.origin.x  + 15,13, 13, 13);
             contentCell.judgeimage5.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
         }
         
         contentCell.hospitalname.text = meirong.HospitalName;
-        contentCell.hospitalname.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 70, [self NSStringwithsize:15 str:meirong.HospitalName], 20);
+        contentCell.hospitalname.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 60, [self NSStringwithsize:15 str:meirong.HospitalName], 20);
         
         contentCell.backgroundColor = [UIColor clearColor];
         
@@ -451,7 +452,7 @@
 {
 
     if (tableView.tag == 28) {
-        return 135;
+        return 112;
     }else{
         return 40;
         

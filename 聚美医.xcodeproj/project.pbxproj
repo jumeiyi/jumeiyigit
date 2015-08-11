@@ -105,7 +105,6 @@
 		8481B2661B72FE4E00FADA49 /* 素材6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481B25D1B72FE4E00FADA49 /* 素材6.png */; };
 		8481B2671B72FE4E00FADA49 /* 素材7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481B25E1B72FE4E00FADA49 /* 素材7.png */; };
 		8481B2681B72FE4E00FADA49 /* 素材8.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481B25F1B72FE4E00FADA49 /* 素材8.png */; };
-		8481B26A1B73023A00FADA49 /* 素材4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481B2691B73023A00FADA49 /* 素材4.png */; };
 		8481B26C1B73305E00FADA49 /* 个人中心44_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481B26B1B73305E00FADA49 /* 个人中心44_03.png */; };
 		8481B2701B73521300FADA49 /* gaoback.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481B26F1B73521300FADA49 /* gaoback.png */; };
 		8481B2721B73596E00FADA49 /* 医生主页3_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481B2711B73596E00FADA49 /* 医生主页3_02.png */; };
@@ -203,6 +202,7 @@
 		84907E811ADE3DBE009002BC /* CustomerDetailcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84907E7F1ADE3DBE009002BC /* CustomerDetailcell.m */; };
 		84907E821ADE3DBE009002BC /* CustomerDetailcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84907E801ADE3DBE009002BC /* CustomerDetailcell.xib */; };
 		84907E881ADE615E009002BC /* MyCusTomerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 84907E871ADE615E009002BC /* MyCusTomerDetails.m */; };
+		849130721B7A15CC00947EE5 /* 素材4.png in Resources */ = {isa = PBXBuildFile; fileRef = 849130711B7A15CC00947EE5 /* 素材4.png */; };
 		849364151AD9093A0003A892 /* evaluateDoctorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 849364141AD9093A0003A892 /* evaluateDoctorData.m */; };
 		849F68FC1AE63F3E00C6B32F /* zujigerenzhongxinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F68FB1AE63F3E00C6B32F /* zujigerenzhongxinViewController.m */; };
 		849F68FF1AE6424B00C6B32F /* gerenzujiCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F68FE1AE6424B00C6B32F /* gerenzujiCollectionViewCell.m */; };
@@ -629,7 +629,6 @@
 		8481B25D1B72FE4E00FADA49 /* 素材6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "素材6.png"; sourceTree = "<group>"; };
 		8481B25E1B72FE4E00FADA49 /* 素材7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "素材7.png"; sourceTree = "<group>"; };
 		8481B25F1B72FE4E00FADA49 /* 素材8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "素材8.png"; sourceTree = "<group>"; };
-		8481B2691B73023A00FADA49 /* 素材4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "素材4.png"; sourceTree = "<group>"; };
 		8481B26B1B73305E00FADA49 /* 个人中心44_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人中心44_03.png"; sourceTree = "<group>"; };
 		8481B26F1B73521300FADA49 /* gaoback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gaoback.png; sourceTree = "<group>"; };
 		8481B2711B73596E00FADA49 /* 医生主页3_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "医生主页3_02.png"; sourceTree = "<group>"; };
@@ -756,6 +755,7 @@
 		84907E801ADE3DBE009002BC /* CustomerDetailcell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerDetailcell.xib; sourceTree = "<group>"; };
 		84907E861ADE615E009002BC /* MyCusTomerDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCusTomerDetails.h; sourceTree = "<group>"; };
 		84907E871ADE615E009002BC /* MyCusTomerDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCusTomerDetails.m; sourceTree = "<group>"; };
+		849130711B7A15CC00947EE5 /* 素材4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "素材4.png"; sourceTree = "<group>"; };
 		849364131AD9093A0003A892 /* evaluateDoctorData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evaluateDoctorData.h; sourceTree = "<group>"; };
 		849364141AD9093A0003A892 /* evaluateDoctorData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evaluateDoctorData.m; sourceTree = "<group>"; };
 		849F68FA1AE63F3E00C6B32F /* zujigerenzhongxinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zujigerenzhongxinViewController.h; sourceTree = "<group>"; };
@@ -1371,7 +1371,7 @@
 				8481B2581B72FE4E00FADA49 /* 素材2.png */,
 				8481B2591B72FE4E00FADA49 /* 素材3-1.png */,
 				8481B25A1B72FE4E00FADA49 /* 素材3-2.png */,
-				8481B2691B73023A00FADA49 /* 素材4.png */,
+				849130711B7A15CC00947EE5 /* 素材4.png */,
 				8481B25D1B72FE4E00FADA49 /* 素材6.png */,
 				8481B25E1B72FE4E00FADA49 /* 素材7.png */,
 				8481B25F1B72FE4E00FADA49 /* 素材8.png */,
@@ -2550,6 +2550,7 @@
 				8481B2811B74A34600FADA49 /* 医生主页_03guanzhu.png in Resources */,
 				84BFD2211AEA0F9A008620BA /* huisebeijing.png in Resources */,
 				8483D7A41AB6A82E00AF9B9E /* 完善资料_10.png in Resources */,
+				849130721B7A15CC00947EE5 /* 素材4.png in Resources */,
 				84C0FEE61AD6865C0098F453 /* caojuan.png in Resources */,
 				84CABE8A1A8C3F7600306B93 /* henghui.png in Resources */,
 				8467E91B1B2ED30400921558 /* 项目目录_02.png in Resources */,
@@ -2619,7 +2620,6 @@
 				84BFD2201AEA0F9A008620BA /* hengshijianzhou.png in Resources */,
 				84A0A6411B4FA67A002566A6 /* pinglun.png in Resources */,
 				84C2FE421A8A05E200073858 /* 06.png in Resources */,
-				8481B26A1B73023A00FADA49 /* 素材4.png in Resources */,
 				84A83E531B22D4DB007B7352 /* 完善资料_06.png in Resources */,
 				84B4D1F51B3C0987002E8469 /* 0_03.png in Resources */,
 				84C0FEE71AD6865C0098F453 /* gongnengshezhi.png in Resources */,
