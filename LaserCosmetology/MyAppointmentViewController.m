@@ -175,7 +175,7 @@ static NSString * const identifier = @"cell";
         cell.pjbutton.userInteractionEnabled = YES;
     }
     
-    [cell.imageurlstr sd_setImageWithURL:[NSURL URLWithString:cent.PicSrc]];
+    [cell.imageurlstr sd_setImageWithURL:[NSURL URLWithString:cent.DoctorPicSrc]];
     cell.imageurlstr.frame = CGRectMake(5, 10, cell.bounds.size.width/3,cell.bounds.size.width/3 *0.953125);
     
     cell.xingming.text = cent.DoctorName;

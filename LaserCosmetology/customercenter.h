@@ -32,6 +32,7 @@
 @property(nonatomic,copy)NSString *OrderState;
 @property(nonatomic,copy)NSString *ProductSno;
 @property(nonatomic,copy)NSString *ProductorName;
+@property(nonatomic,copy)NSString *DoctorPicSrc;
 
 @property(nonatomic,copy)NSString *commissionTotalAmoumt;
 @property(nonatomic,copy)NSString *couponTotalAmoumt;

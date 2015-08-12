@@ -36,6 +36,7 @@
     customer.OrderState = [diction objectForKey:@"OrderState"];
     customer.ProductSno = [diction objectForKey:@"ProductSno"];
     customer.ProductorName = [diction objectForKey:@"ProductorName"];
+    customer.DoctorPicSrc = [diction objectForKey:@"DoctorPicSrc"];
     
     customer.commissionTotalAmoumt = [diction objectForKey:@"commissionTotalAmoumt"];
     customer.couponTotalAmoumt = [diction objectForKey:@"couponTotalAmoumt"];
