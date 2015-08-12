@@ -16,10 +16,10 @@
     if (self)
     {
         
-        self.imageurlstr1 = [[UIImageView alloc] initWithFrame:CGRectMake(5 , 5,  (self.bounds.size.width - 30)/2, 160)];
+        self.imageurlstr1 = [[UIImageView alloc] initWithFrame:CGRectMake(5 , 5,  (self.bounds.size.width - 15)/2, 160)];
         [self addSubview:self.imageurlstr1];
         
-        self.imageurlstr2 = [[UIImageView alloc] initWithFrame:CGRectMake(18 + (self.bounds.size.width - 30)/2, 5,  (self.bounds.size.width - 15)/2, 160)];
+        self.imageurlstr2 = [[UIImageView alloc] initWithFrame:CGRectMake(10 + (self.bounds.size.width - 15)/2, 5,  (self.bounds.size.width - 15)/2, 160)];
         [self addSubview:self.imageurlstr2];
         
         self.imagefenge = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,  0, 0)];

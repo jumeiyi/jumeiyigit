@@ -312,16 +312,15 @@
         contentCell.peoplename.text = meirong.TrueName;
         contentCell.peoplename.frame =CGRectMake(contentCell.headimage.frame.size.width + 25, 10, 80, 20);
         
-        contentCell.fuwu.frame = CGRectMake(self.view.bounds.size.width - 80, 10, 60, 20);
-        contentCell.servernumber.text = meirong.BookCount;//服务人数
-        contentCell.servernumber.frame = CGRectMake(self.view.bounds.size.width - 50, 10, [self NSStringwithsize:13 str:meirong.BookCount], 20);
-        
-        contentCell.people.frame = CGRectMake(contentCell.servernumber.frame.origin.x + [self NSStringwithsize:13 str:contentCell.servernumber.text], 10,[self NSStringwithsize:13 str:contentCell.people.text] , 20);
+//        contentCell.fuwu.frame = CGRectMake(self.view.bounds.size.width - 80, 10, 60, 20);
+//        contentCell.servernumber.text = meirong.BookCount;//服务人数
+//        contentCell.servernumber.frame = CGRectMake(self.view.bounds.size.width - 50, 10, [self NSStringwithsize:13 str:meirong.BookCount], 20);
+//        
+//        contentCell.people.frame = CGRectMake(contentCell.servernumber.frame.origin.x + [self NSStringwithsize:13 str:contentCell.servernumber.text], 10,[self NSStringwithsize:13 str:contentCell.people.text] , 20);
 
         contentCell.postname.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 35, [self NSStringwithsize:14 str:meirong.PostName], 20);
         contentCell.postname.text = meirong.PostName;
         
-
         
         contentCell.begoodat.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 85, 40, 20);
         

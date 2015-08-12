@@ -25,68 +25,94 @@
     
     if (self) {
         
-        UIImageView *backgroudimage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 2, 375, 119)];
-        backgroudimage.image = [UIImage imageNamed:@"huidi.png"];
-        backgroudimage.userInteractionEnabled = YES;
-        [self addSubview:backgroudimage];
+        self.backgroudimage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 375, 120)];
+        //self.backgroudimage.image = [UIImage imageNamed:@"美容专家_0ss3.png"];
+        self.backgroudimage.userInteractionEnabled = YES;
+        self.backgroudimage.backgroundColor = [UIColor whiteColor];
+        [self addSubview:self.backgroudimage];
         
-        self.headimage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
-        self.headimage.layer.cornerRadius = 50;
+        self.headimage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 70, 70)];
+        self.headimage.layer.cornerRadius = 55;
         self.headimage.layer.masksToBounds = YES;
-        [backgroudimage addSubview:self.headimage];
+        [self.backgroudimage addSubview:self.headimage];
         
-        self.name = [[UILabel alloc] initWithFrame:CGRectMake(125, 15, 80, 20)];
-        self.name.font = [UIFont systemFontOfSize:15];
-        [backgroudimage addSubview:self.name];
+        self.peoplename = [[UILabel alloc] init];
+        self.peoplename.font = [UIFont systemFontOfSize:16];
+        self.peoplename.textColor = [self colorWithRGB:0x666666 alpha:1];
+        [self.backgroudimage addSubview:self.peoplename];
         
-        self.fuwu = [[UILabel alloc] initWithFrame:CGRectMake(190, 15, 60, 20)];
-        self.fuwu .text = @"已服务:";
-        self.fuwu .font = [UIFont systemFontOfSize:15];
-        [backgroudimage addSubview:self.fuwu ];
+        self.postname = [[UILabel alloc] init];
+        self.postname.font = [UIFont systemFontOfSize:14];
+        self.postname.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+        [self.backgroudimage addSubview:self.postname];
         
-        self.fuwurenshu = [[UILabel alloc] initWithFrame:CGRectMake(205, 15, 60, 20)];
-        self.fuwurenshu.font = [UIFont systemFontOfSize:15];
-        [backgroudimage addSubview:self.fuwurenshu];
-        
-        
-        self.fuwuren = [[UILabel alloc] initWithFrame:CGRectMake(255 , 15, 60, 20)];
-        self.fuwuren.text = @"人";
-        self.fuwuren.textColor = [UIColor blackColor];
-        self.fuwuren.font = [UIFont systemFontOfSize:15];
-        [backgroudimage addSubview:self.fuwuren];
-        
-        UILabel *sc = [[UILabel alloc] initWithFrame:CGRectMake(125, 50, 60, 20)];
-        sc.text = @"擅长:";
-        sc.font = [UIFont systemFontOfSize:14];
-        [backgroudimage addSubview:sc];
-        
-        self.shanchang = [[UILabel alloc] initWithFrame:CGRectMake(165, 50, 60, 20)];
-        self.shanchang.font = [UIFont systemFontOfSize:14];
-        [backgroudimage addSubview:self.shanchang];
-        
-
-        
-        UILabel *shoufei = [[UILabel alloc] initWithFrame:CGRectMake(125, 80, 60, 20)];
-        shoufei.text = @"费用:";
-        shoufei.font = [UIFont systemFontOfSize:14];
-        [backgroudimage addSubview:shoufei];
-        
-        self.feiyong = [[UILabel alloc] initWithFrame:CGRectMake(160, 80, 90, 20)];
-        self.feiyong.font = [UIFont systemFontOfSize:14];
-        [backgroudimage addSubview:self.feiyong];
-        
-        self.yuan = [[UILabel alloc] initWithFrame:CGRectMake(215  + 3, 80, 90, 20)];
-        self.yuan.textColor = [UIColor blackColor];
-        self.yuan.text = @"元";
-        self.yuan.font = [UIFont systemFontOfSize:13];
-        [backgroudimage addSubview:self.yuan];
+        self.fuwu = [[UILabel alloc] init];
+        self.fuwu.text = @"服务:";
+        self.fuwu.font = [UIFont systemFontOfSize:13];
+        self.fuwu.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+        [self.backgroudimage addSubview:self.fuwu];
         
         
+        self.servernumber = [[UILabel alloc] init];
+        self.servernumber.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+        self.servernumber.font = [UIFont systemFontOfSize:13];
+        [self.backgroudimage addSubview:self.servernumber];
         
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(self.bounds.size.width - 50, 80, 25, 25)];
-        [button setBackgroundImage:[UIImage imageNamed:@"yuwenjiesao.png"] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(btn:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:button];
+        
+        self.people = [[UILabel alloc] init];
+        self.people.text = @"人";
+        self.people.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+        self.people.font = [UIFont systemFontOfSize:13];
+        [self.backgroudimage addSubview:self.people];
+        
+        
+        self.begoodat = [[UILabel alloc] initWithFrame:CGRectMake(125, 25, 60, 20)];
+        self.begoodat.text = @"擅长:";
+        self.begoodat.font = [UIFont systemFontOfSize:14];
+        self.begoodat.textColor = [self colorWithRGB:0x666666 alpha:1];
+        [self.backgroudimage addSubview:self.begoodat];
+        
+        
+        self.begoodatto1 = [[UILabel alloc] init];
+        self.begoodatto1.textColor = [self colorWithRGB:0x666666 alpha:1];
+        self.begoodatto1.font = [UIFont systemFontOfSize:12];
+        [self.backgroudimage addSubview:self.begoodatto1];
+        //self.begoodatto1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+        
+        self.begoodatto2 = [[UILabel alloc] init];
+        self.begoodatto2.textColor = [self colorWithRGB:0xffffff alpha:1];
+        self.begoodatto2.font = [UIFont systemFontOfSize:12];
+        [self.backgroudimage addSubview:self.begoodatto2];
+        self.begoodatto2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+        
+        self.begoodatto3 = [[UILabel alloc] init];
+        self.begoodatto3.textColor = [self colorWithRGB:0xffffff alpha:1];
+        self.begoodatto3.font = [UIFont systemFontOfSize:12];
+        [self.backgroudimage addSubview:self.begoodatto3];
+        self.begoodatto3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+        
+        
+        self.judgeimage1 = [[UIImageView alloc] initWithFrame:CGRectMake(125 , 85, 12, 12)];
+        [self.backgroudimage addSubview:self.judgeimage1];
+        
+        self.judgeimage2 = [[UIImageView alloc] initWithFrame:CGRectMake(125, 85, 12, 12)];
+        [self.backgroudimage addSubview:self.judgeimage2];
+        
+        self.judgeimage3= [[UIImageView alloc] initWithFrame:CGRectMake(125 , 85, 12, 12)];
+        [self.backgroudimage addSubview:self.judgeimage3];
+        
+        self.judgeimage4 = [[UIImageView alloc] initWithFrame:CGRectMake(125 , 85, 12, 12)];
+        [self.backgroudimage addSubview:self.judgeimage4];
+        
+        self.judgeimage5 = [[UIImageView alloc] initWithFrame:CGRectMake(125 , 85, 12, 12)];
+        [self.backgroudimage addSubview:self.judgeimage5];
+        
+        
+        self.hospitalname = [[UILabel alloc] initWithFrame:CGRectMake(125 , 110, 150, 20)];
+        self.hospitalname.text = @"武汉爱美美容医院";
+        self.hospitalname.textColor = [self colorWithRGB:0x999999 alpha:1];
+        self.hospitalname.font = [UIFont systemFontOfSize:14];
+        [self.backgroudimage addSubview:self.hospitalname];
         
     }
     
@@ -94,7 +120,20 @@
     
 }
 
-//计算字体长度
+-(void)choosebuttonclick:(UIButton *)btn{
+    
+    //    mybutton *button = (mybutton *)[self viewWithTag:10];
+    //    if (btn.isclick == YES) {
+    //        [button setBackgroundImage:[UIImage imageNamed:@"duigouh"] forState:UIControlStateNormal];
+    //        btn.isclick = NO;
+    //    }else{
+    //        [button setBackgroundImage:[UIImage imageNamed:@"duigou"] forState:UIControlStateNormal];
+    //
+    //        btn.isclick = YES;
+    //    }
+    
+}
+
 -(float)NSStringwithsize:(int )a str:(NSString *)string
 {
     
@@ -109,20 +148,25 @@
     return strwidth;
 }
 
+-(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
+    return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
+}
+
+
 - (void)btn:(UIButton *)sender {
     
     
-    UITableViewCell *cell = (UITableViewCell*)[sender superview];
-    NSLog(@"cell -->%@",cell);
-    UITableView *table = (UITableView*)[[[sender superview] superview] superview];
-    
-    NSIndexPath *indexPath = [table indexPathForCell:cell];
+//    UITableViewCell *cell = (UITableViewCell*)[sender superview];
+//    NSLog(@"cell -->%@",cell);
+//    UITableView *table = (UITableView*)[[[sender superview] superview] superview];
+//    
+//    NSIndexPath *indexPath = [table indexPathForCell:cell];
     
 //    if (a % 2 == 0) {
 //        [sender setBackgroundImage:[UIImage imageNamed:@"duigouh"] forState:UIControlStateNormal];
     
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"choosetime" object:[NSString stringWithFormat:@"%ld",indexPath.row]];
-        
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"choosetime" object:[NSString stringWithFormat:@"%ld",indexPath.row]];
+    
 //    }else{
 //        
 //         [sender setBackgroundImage:[UIImage imageNamed:@"duigou"] forState:UIControlStateNormal];

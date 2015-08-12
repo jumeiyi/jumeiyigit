@@ -10,17 +10,25 @@
 #import "mybutton.h"
 
 @interface experlistCell : UITableViewCell
+
+@property(nonatomic,retain)UIImageView *backgroudimage;
 @property (retain, nonatomic)  UIImageView *headimage;
-@property (retain, nonatomic)  UILabel *name;
+@property (retain, nonatomic)  UILabel *peoplename;
 @property (retain, nonatomic)  UILabel *fuwu;
-@property (retain, nonatomic)  UILabel *fuwurenshu;
-@property (retain, nonatomic)  UILabel *renshu;
-@property (retain, nonatomic)  UILabel *fuwuren;
-@property (retain, nonatomic)  UILabel *feiyong;
-@property (retain, nonatomic)  UILabel *shanchang;
-@property (retain, nonatomic)  UILabel *yuan;
+@property (retain, nonatomic)  UILabel *servernumber;
+@property (retain, nonatomic)  UILabel *people;
+@property (retain,nonatomic)   UILabel *postname;
+@property (retain, nonatomic)  UILabel *begoodat;
+@property (retain, nonatomic)  UILabel *begoodatto1;
+@property (retain, nonatomic)  UILabel *begoodatto2;
+@property (retain, nonatomic)  UILabel *begoodatto3;
+@property (retain, nonatomic)  UIImageView *judgeimage1;
+@property (retain, nonatomic)  UIImageView *judgeimage2;
+@property (retain, nonatomic)  UIImageView *judgeimage3;
+@property (retain, nonatomic)  UIImageView *judgeimage4;
+@property (retain, nonatomic)  UIImageView *judgeimage5;
 
-
+@property (retain, nonatomic)  UILabel *hospitalname;
 
 
 

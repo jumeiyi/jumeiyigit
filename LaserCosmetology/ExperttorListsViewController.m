@@ -121,11 +121,7 @@
     NSUserDefaults *usedf = [NSUserDefaults standardUserDefaults];
     self.customerSno = [usedf objectForKey:@"customerSno"];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(choosetimemeth:) name:@"choosetime" object:nil];
-    
     _monaay = [[NSArray alloc] initWithObjects:@"01",@"02", @"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",nil];
-    
-   
     
     [self creatcitytableview];
 }
@@ -258,23 +254,96 @@
 {
     if (tableView.tag == 30) {
       
-        static NSString *identifier = @"cell";
-        experlistCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!cell) {
-            cell = [[experlistCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        static NSString *identifier = @"contentCell";
+        experlistCell *contentCell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!contentCell) {
+            contentCell = [[experlistCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
-        zhuanjialiebiao *zhuanjia = [_retaray objectAtIndex:indexPath.row];
-        [cell.headimage sd_setImageWithURL:[NSURL URLWithString:zhuanjia.PicSrc]];
-        cell.shanchang.text = zhuanjia.BestInfo;
-        cell.name.text = zhuanjia.TrueName;
-        cell.fuwurenshu.text = zhuanjia.BookCount;
-        cell.fuwurenshu.frame = CGRectMake(cell.fuwu.frame.origin.x + [self NSStringwithsize:15 str:cell.fuwu.text], cell.fuwu.frame.origin.y, [self NSStringwithsize:15 str:cell.fuwurenshu.text], 20);
-        cell.feiyong.text = zhuanjia.CostFrom;
-        cell.fuwuren.frame = CGRectMake(cell.fuwurenshu.frame.origin.x + [self NSStringwithsize:15 str:cell.fuwurenshu.text], cell.fuwurenshu.frame.origin.y, [self NSStringwithsize:17 str:@"人"], 20);
         
-        cell.yuan.frame = CGRectMake(cell.feiyong.frame.origin.x + [self NSStringwithsize:14 str:cell.feiyong.text], cell.feiyong.frame.origin.y, [self NSStringwithsize:13 str:cell.yuan.text], 20);
+        zhuanjialiebiao *meirong = [_retaray objectAtIndex:indexPath.row];
         
-        return cell;
+        contentCell.backgroudimage.frame = CGRectMake(0, 0, self.view.bounds.size.width, 110);
+        
+        [contentCell.headimage sd_setImageWithURL:[NSURL URLWithString:meirong.PicSrc]];
+        contentCell.headimage.layer.masksToBounds = YES;
+        contentCell.headimage.layer.cornerRadius = contentCell.headimage.frame.size.width/2;
+        
+        contentCell.peoplename.text = meirong.TrueName;
+        contentCell.peoplename.frame =CGRectMake(contentCell.headimage.frame.size.width + 25, 10, 80, 20);
+        
+//        contentCell.fuwu.frame = CGRectMake(self.view.bounds.size.width - 80, 10, 60, 20);
+//        contentCell.servernumber.text = meirong.BookCount;//服务人数
+//        contentCell.servernumber.frame = CGRectMake(self.view.bounds.size.width - 50, 10, [self NSStringwithsize:13 str:meirong.BookCount], 20);
+//        
+//        contentCell.people.frame = CGRectMake(contentCell.servernumber.frame.origin.x + [self NSStringwithsize:13 str:contentCell.servernumber.text], 10,[self NSStringwithsize:13 str:contentCell.people.text] , 20);
+        
+        contentCell.postname.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 35, [self NSStringwithsize:14 str:meirong.PostName], 20);
+        contentCell.postname.text = meirong.PostName;
+        
+        
+        
+        contentCell.begoodat.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 85, 40, 20);
+        
+        contentCell.begoodatto1.text = meirong.BestInfo;//擅长
+        contentCell.begoodatto1.frame = CGRectMake(contentCell.headimage.frame.size.width + 25 + 35, 85, self.view.bounds.size.width - (contentCell.headimage.frame.size.width + 25 + 40), 20);
+        
+        
+        
+        contentCell.judgeimage1.frame = CGRectMake(0,0, 0, 0);
+        contentCell.judgeimage1.image = [UIImage imageNamed:@""];
+        contentCell.judgeimage2.frame = CGRectMake(0,0, 0, 0);
+        contentCell.judgeimage2.image = [UIImage imageNamed:@""];
+        contentCell.judgeimage3.frame = CGRectMake(0,0, 0, 0);
+        contentCell.judgeimage3.image = [UIImage imageNamed:@""];
+        contentCell.judgeimage4.frame = CGRectMake(0,0, 0, 0);
+        contentCell.judgeimage4.image = [UIImage imageNamed:@""];
+        contentCell.judgeimage5.frame = CGRectMake(0,0, 0, 0);
+        contentCell.judgeimage5.image = [UIImage imageNamed:@""];
+        
+        if ([meirong.EvaluateCount isEqualToString:@"1"]) {
+            contentCell.judgeimage1.frame = CGRectMake(contentCell.headimage.frame.size.width + 40 + [self NSStringwithsize:16 str:meirong.TrueName],13, 13, 13);
+            contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+        }else if ([meirong.EvaluateCount isEqualToString:@"2"]){
+            contentCell.judgeimage1.frame = CGRectMake(contentCell.headimage.frame.size.width + 40 + [self NSStringwithsize:16 str:meirong.TrueName],13, 13, 13);
+            contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 15,13, 13, 13);
+            contentCell.judgeimage2.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+        }else if ([meirong.EvaluateCount isEqualToString:@"3"]){
+            contentCell.judgeimage1.frame = CGRectMake(contentCell.headimage.frame.size.width + 40 + [self NSStringwithsize:16 str:meirong.TrueName],12, 13, 13);
+            contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 15,13, 13, 13);
+            contentCell.judgeimage2.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+            contentCell.judgeimage3.frame = CGRectMake(contentCell.judgeimage2.frame.origin.x  + 15,13, 13, 13);
+            contentCell.judgeimage3.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+        }else if ([meirong.EvaluateCount isEqualToString:@"4"]){
+            contentCell.judgeimage1.frame = CGRectMake(contentCell.headimage.frame.size.width + 40 + [self NSStringwithsize:16 str:meirong.TrueName],13, 13, 13);
+            contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 15,13, 13, 13);
+            contentCell.judgeimage2.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+            contentCell.judgeimage3.frame = CGRectMake(contentCell.judgeimage2.frame.origin.x  + 15,13, 13, 13);
+            contentCell.judgeimage3.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+            contentCell.judgeimage4.frame = CGRectMake(contentCell.judgeimage3.frame.origin.x  + 15,13, 13, 13);
+            contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+        }else{
+            contentCell.judgeimage1.frame = CGRectMake(contentCell.headimage.frame.size.width + 40 + [self NSStringwithsize:16 str:meirong.TrueName],13, 13, 13);
+            contentCell.judgeimage1.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+            contentCell.judgeimage2.frame = CGRectMake(contentCell.judgeimage1.frame.origin.x  + 15,13, 13, 13);
+            contentCell.judgeimage2.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+            contentCell.judgeimage3.frame = CGRectMake(contentCell.judgeimage2.frame.origin.x  + 15,13, 13, 13);
+            contentCell.judgeimage3.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+            contentCell.judgeimage4.frame = CGRectMake(contentCell.judgeimage3.frame.origin.x  + 15,13, 13, 13);
+            contentCell.judgeimage4.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+            contentCell.judgeimage5.frame = CGRectMake(contentCell.judgeimage4.frame.origin.x  + 15,13, 13, 13);
+            contentCell.judgeimage5.image = [UIImage imageNamed:@"meirongzhuanjia_0302"];
+        }
+        
+        contentCell.hospitalname.text = meirong.HospitalName;
+        contentCell.hospitalname.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 60, [self NSStringwithsize:15 str:meirong.HospitalName], 20);
+        
+        contentCell.backgroundColor = [UIColor clearColor];
+        
+        return contentCell;
+
         
     }else{
         
@@ -293,24 +362,11 @@
     }
     
 }
-//计算字体长度
--(float)NSStringwithsize:(int )a str:(NSString *)string
-{
-    
-    UIFont *font = [UIFont systemFontOfSize:a];
-    
-    CGSize size = [string sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
-    // 名字的H
-    //CGFloat nameH = size.height;
-    // 名字的W
-    CGFloat strwidth = size.width;
-    
-    return strwidth;
-}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == 30) {
-        return 120;
+        return 112;
     }else{
     return 30;
     }
@@ -335,32 +391,43 @@
         _citytaarraybackimage.frame = CGRectMake(_citytaarraybleview.frame.origin.x, _citytaarraybleview.frame.origin.y, _citytaarraybleview.frame.size.width,0);
         
         [self soaprequstWithcityName:self.shoosecity CityNo:self.shoosecityno BeautifyProSno:self.beautifySno SortFile:@"" OrderType:@"desc" IsGetRuleData:@"1"];
+    }else if (tableView.tag == 30){
+        
+        zhuanjialiebiao *zhaunjia = [_retaray objectAtIndex:indexPath.row];
+        self.doctorSno = zhaunjia.Sno;
+        self.doctorname = zhaunjia.TrueName;
+        self.hostitalname = zhaunjia.HospitalName;
+        
+        [self soaprequstWithcityCustomerSno:self.customerSno DoctorSno:self.doctorSno YearCount:[NSString stringWithFormat:@"%ld",self.year] MonthCount:[NSString stringWithFormat:@"%ld",self.month] DayCount:[NSString stringWithFormat:@"%ld",self.day]];
+        
+        [self soaprequsetGetBeforeBookDataWithdoctorSno:self.doctorSno proSno:self.beautifySno customerSno:self.customerSno];
+        [self creatpickerviewandbackgruond];
+    
+    }else{
+    
+    
     }
     
 }
 
+//计算字体长度
+-(float)NSStringwithsize:(int )a str:(NSString *)string
+{
+    
+    UIFont *font = [UIFont systemFontOfSize:a];
+    
+    CGSize size = [string sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    // 名字的H
+    //CGFloat nameH = size.height;
+    // 名字的W
+    CGFloat strwidth = size.width;
+    
+    return strwidth;
+}
+
 #pragma mark 按钮点击事件
 
-//选择CELL上的button
--(void)choosetimemeth:(NSNotification *)notifier
-{
 
-    
-    zhuanjialiebiao *zhaunjia = [_retaray objectAtIndex:[[notifier object] integerValue]];
-    self.doctorSno = zhaunjia.Sno;
-    self.doctorname = zhaunjia.TrueName;
-    self.hostitalname = zhaunjia.HospitalName;
-
-
-    
-    NSLog(@"self.customerSno：%@---self.doctorSno:%@---",self.customerSno,self.doctorSno);
-    
-    [self soaprequstWithcityCustomerSno:self.customerSno DoctorSno:self.doctorSno YearCount:[NSString stringWithFormat:@"%ld",self.year] MonthCount:[NSString stringWithFormat:@"%ld",self.month] DayCount:[NSString stringWithFormat:@"%ld",self.day]];
-    
-    [self soaprequsetGetBeforeBookDataWithdoctorSno:self.doctorSno proSno:self.beautifySno customerSno:self.customerSno];
-    
-    [self creatpickerviewandbackgruond];
-}
 -(void)creatpickerviewandbackgruond
 {
 

@@ -24,8 +24,10 @@
     zhuanjia.PicSrc = [diction objectForKey:@"PicSrc"];
     zhuanjia.Sno = [diction objectForKey:@"Sno"];
     zhuanjia.TrueName = [diction objectForKey:@"TrueName"];
+    zhuanjia.PostName = [diction objectForKey:@"PostName"];
 
     return zhuanjia;
 }
 
 @end
+

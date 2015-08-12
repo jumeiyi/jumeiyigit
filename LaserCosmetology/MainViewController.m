@@ -782,6 +782,11 @@ static NSString * const identifier = @"cell";
         maincell.Liulancuonts.frame = CGRectMake(0, 0, 0, 0);
         maincell.Liulancuonts.text = @"";
         
+        maincell.cheke.frame = CGRectMake(0, 0, 0, 0);
+        maincell.cheke.image = [UIImage imageNamed:@""];
+        maincell.chemore.frame = CGRectMake(0, 0, 0, 0);
+        maincell.chemore.text = @"";
+        
         if (indexPath.section == 0) {
             
             maincell.Cellview.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width/2.133333);
@@ -919,13 +924,8 @@ static NSString * const identifier = @"cell";
             maincell.Liulancuonts.text = disc.ClickCount;
             maincell.Liulancuonts.alpha = 0.5;
                 
-            maincell.cheke.frame = CGRectMake(0, 0, 0, 0);
-            maincell.cheke.image = [UIImage imageNamed:@""];
-                
-            maincell.chemore.frame = CGRectMake(0, 0, 0, 0);
-            maincell.chemore.text = @"";
-                
             }else{
+                
                 maincell.cheke.frame = CGRectMake(0, 0, self.view.bounds.size.width, 40);
                 maincell.cheke.image = [UIImage imageNamed:@"fenge"];
                 

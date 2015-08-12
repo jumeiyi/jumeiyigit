@@ -21,6 +21,7 @@
 @property(nonatomic,copy)NSString *PicSrc;
 @property(nonatomic,copy)NSString *Sno;
 @property(nonatomic,copy)NSString *TrueName;
+@property(nonatomic,copy)NSString *PostName;
 
 +(zhuanjialiebiao *)zhuanjialiebiaoWithdiction:(NSDictionary *)diction;
 @end
