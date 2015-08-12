@@ -110,11 +110,12 @@
     bar.image = [UIImage imageNamed:@"hengxian"];
     [self.view addSubview:bar];
     
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64 + 115 - 65, self.view.bounds.size.width, self.view.bounds.size.height - 64 + 115 - 65 - 80)];
+    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64 + 115 - 65, self.view.bounds.size.width, self.view.bounds.size.height - 114)];
     _tableview.delegate = self;
     _tableview.dataSource = self;
     _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableview.tag = 30;
+    _tableview.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_tableview];
     
     
@@ -259,6 +260,7 @@
         if (!contentCell) {
             contentCell = [[experlistCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
+        contentCell.backgroundColor = [UIColor clearColor];
         
         zhuanjialiebiao *meirong = [_retaray objectAtIndex:indexPath.row];
         
