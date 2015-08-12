@@ -186,7 +186,7 @@ static NSString * const identifier = @"cell";
 
     
     cell.shijianshu.text = cent.BookDt;
-    cell.shijianshu.frame = CGRectMake(5, 135,[self NSStringwithsize:17 str:cent.BookDt], 20);
+    cell.shijianshu.frame = CGRectMake(5, cell.bounds.size.width/3 *0.953125 + 15,[self NSStringwithsize:17 str:cent.BookDt], 20);
     cell.shijianshu.textColor = [self colorWithRGB:0x707070 alpha:1];
     
     cell.didianstr.text = cent.HospitalName;
