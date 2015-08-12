@@ -211,7 +211,7 @@
 -(void)btnclickcreattableAMG:(UIButton *)button
 {
     
-
+     float botomerhight = 0.130667 * self.view.bounds.size.width;
     
     if (self.isbtnclick != button.tag) {
         
@@ -222,9 +222,9 @@
             tablevi4.frame = CGRectMake(tablevi4.frame.origin.x, tablevi4.frame.origin.y, tablevi4.frame.size.width,0);
             
         }else if (button.tag == 21){
-            _citytaarraybackimage.frame = CGRectMake(0, beautifyProductType.frame.origin.y, self.view.bounds.size.width,self.view.bounds.size.height - beautifyProductType.frame.origin.y - 49);
+            _citytaarraybackimage.frame = CGRectMake(0, beautifyProductType.frame.origin.y, self.view.bounds.size.width,self.view.bounds.size.height - beautifyProductType.frame.origin.y - botomerhight);
             citytablevi.frame = CGRectMake(citytablevi.frame.origin.x, citytablevi.frame.origin.y, citytablevi.frame.size.width,0);
-            beautifyProductType.frame = CGRectMake(0, beautifyProductType.frame.origin.y, self.view.bounds.size.width,self.view.bounds.size.height - beautifyProductType.frame.origin.y - 49);
+            beautifyProductType.frame = CGRectMake(0, beautifyProductType.frame.origin.y, self.view.bounds.size.width,self.view.bounds.size.height - beautifyProductType.frame.origin.y - botomerhight);
             tablevi4.frame = CGRectMake(tablevi4.frame.origin.x, tablevi4.frame.origin.y, tablevi4.frame.size.width,0);
         }
         else{
