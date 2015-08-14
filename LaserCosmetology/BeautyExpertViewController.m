@@ -72,11 +72,7 @@
     titilelable.textAlignment = NSTextAlignmentCenter;
     [topbar addSubview:titilelable];
     
-
-    
-    
     //------------------------------
-    
     
     NSArray *btntitle = [[NSArray alloc] initWithObjects:@"      城市",@"  全部项目",@"      排序", nil];
     float btnwidth = (self.view.bounds.size.width - 20)/3;
@@ -210,8 +206,7 @@
 //选择的按钮键
 -(void)btnclickcreattableAMG:(UIButton *)button
 {
-    
-
+     float botomerhight = 0.130667 * self.view.bounds.size.width;
     
     if (self.isbtnclick != button.tag) {
         
@@ -222,9 +217,9 @@
             tablevi4.frame = CGRectMake(tablevi4.frame.origin.x, tablevi4.frame.origin.y, tablevi4.frame.size.width,0);
             
         }else if (button.tag == 21){
-            _citytaarraybackimage.frame = CGRectMake(0, beautifyProductType.frame.origin.y, self.view.bounds.size.width,self.view.bounds.size.height - beautifyProductType.frame.origin.y - 49);
+            _citytaarraybackimage.frame = CGRectMake(0, beautifyProductType.frame.origin.y, self.view.bounds.size.width,self.view.bounds.size.height - beautifyProductType.frame.origin.y - botomerhight);
             citytablevi.frame = CGRectMake(citytablevi.frame.origin.x, citytablevi.frame.origin.y, citytablevi.frame.size.width,0);
-            beautifyProductType.frame = CGRectMake(0, beautifyProductType.frame.origin.y, self.view.bounds.size.width,self.view.bounds.size.height - beautifyProductType.frame.origin.y - 49);
+            beautifyProductType.frame = CGRectMake(0, beautifyProductType.frame.origin.y, self.view.bounds.size.width,self.view.bounds.size.height - beautifyProductType.frame.origin.y - botomerhight);
             tablevi4.frame = CGRectMake(tablevi4.frame.origin.x, tablevi4.frame.origin.y, tablevi4.frame.size.width,0);
         }
         else{
@@ -312,11 +307,11 @@
         contentCell.peoplename.text = meirong.TrueName;
         contentCell.peoplename.frame =CGRectMake(contentCell.headimage.frame.size.width + 25, 10, 80, 20);
         
-        contentCell.fuwu.frame = CGRectMake(self.view.bounds.size.width - 80, 10, 60, 20);
-        contentCell.servernumber.text = meirong.BookCount;//服务人数
-        contentCell.servernumber.frame = CGRectMake(self.view.bounds.size.width - 50, 10, [self NSStringwithsize:13 str:meirong.BookCount], 20);
-        
-        contentCell.people.frame = CGRectMake(contentCell.servernumber.frame.origin.x + [self NSStringwithsize:13 str:contentCell.servernumber.text], 10,[self NSStringwithsize:13 str:contentCell.people.text] , 20);
+//        contentCell.fuwu.frame = CGRectMake(self.view.bounds.size.width - 80, 10, 60, 20);
+//        contentCell.servernumber.text = meirong.BookCount;//服务人数
+//        contentCell.servernumber.frame = CGRectMake(self.view.bounds.size.width - 50, 10, [self NSStringwithsize:13 str:meirong.BookCount], 20);
+//        
+//        contentCell.people.frame = CGRectMake(contentCell.servernumber.frame.origin.x + [self NSStringwithsize:13 str:contentCell.servernumber.text], 10,[self NSStringwithsize:13 str:contentCell.people.text] , 20);
 
         contentCell.postname.frame = CGRectMake(contentCell.headimage.frame.size.width + 25, 35, [self NSStringwithsize:14 str:meirong.PostName], 20);
         contentCell.postname.text = meirong.PostName;
