@@ -33,19 +33,29 @@
     TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     [self.view addSubview:topbar];
     
-    UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-    titilelable.text = @"我的客户";
-    titilelable.textColor = [UIColor whiteColor];
-    titilelable.font = [UIFont systemFontOfSize:22];
-    titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
-    titilelable.textAlignment = NSTextAlignmentCenter;
-    [topbar addSubview:titilelable];
+//    UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
+//    titilelable.text = @"我的客户";
+//    titilelable.textColor = [UIColor whiteColor];
+//    titilelable.font = [UIFont systemFontOfSize:22];
+//    titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
+//    titilelable.textAlignment = NSTextAlignmentCenter;
+//    [topbar addSubview:titilelable];
     
     
     UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 27, 40, 30)];
     [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
     [backbtn addTarget:self action:@selector(comeback) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:backbtn];
+    
+    
+    NSMutableArray *groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
+    
+    UIButton *groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[groups objectAtIndex:0]] + 20, 20)];
+    [groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
+    [groupbtn setTitle:[groups objectAtIndex:0] forState:UIControlStateNormal];
+    
+    [topbar addSubview:groupbtn];
+    
     
     NSArray *btntitle = [[NSArray alloc] initWithObjects:@"正在服务",@"预约",@"休眠客户", nil];
     float btnwidth = (self.view.bounds.size.width - 20)/3;
@@ -66,9 +76,9 @@
     
 
     
-    _headnamearray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z", nil];
+    _headnamearray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#", nil];
 
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 125, self.view.bounds.size.width, self.view.bounds.size.height - 125)];
+    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 70, self.view.bounds.size.width, self.view.bounds.size.height - 100)];
     _tableview.delegate = self;
     _tableview.dataSource = self;
     _tableview.rowHeight = 80;
@@ -119,6 +129,48 @@
     });
     
 }
+
+//计算字体长度
+-(float)NSStringwithsize:(int )a str:(NSString *)string
+{
+    
+    UIFont *font = [UIFont systemFontOfSize:a];
+    
+    CGSize size = [string sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    // 名字的H
+    //CGFloat nameH = size.height;
+    // 名字的W
+    CGFloat strwidth = size.width;
+    
+    return strwidth;
+}
+
+-(void)groupsbuttonclick
+{
+    static int a = 0;
+    
+    UIView *btnview;
+    UITableView *grouptableview;
+    
+    if (a % 2 == 0) {
+        btnview = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 75 , 64, 150, 200)];
+        [self.view addSubview:btnview];
+        
+        grouptableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,btnview.bounds.size.width, btnview.bounds.size.height )];
+        grouptableview.tag = 62;
+        [btnview addSubview:grouptableview];
+        
+    }else{
+        [btnview removeFromSuperview];
+        btnview = nil;
+        [grouptableview removeFromSuperview];
+        grouptableview = nil;
+    }
+    NSLog(@"&&&&&&------> %d ",a % 2);
+    
+    a++;
+}
+
 -(void)reloadData
 {
     
