@@ -14,8 +14,8 @@
 
 
 //#define HTTPREQUESTPDOMAIN @"http://10.1.1.103"
-
-#define HTTPREQUESTPDOMAIN @"http://jk.jumeiyiyun.com"
+#define HTTPREQUESTPDOMAIN @"http://cs.jumeiyiyun.com"
+//#define HTTPREQUESTPDOMAIN @"http://jk.jumeiyiyun.com"
 
 #define HTTPREQUESTER  HTTPREQUESTPDOMAIN@"/WebService/DocService.asmx"
 

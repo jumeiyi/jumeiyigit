@@ -441,7 +441,7 @@
 }
 
 //GetAuthCode
-//发送验证码并返回发送内容
+//发送手机号码并返回发送内容
 -(void)soaprequestwithphonenumber
 {
     //封装soap请求消息
@@ -630,7 +630,7 @@
         [_soapResults setString:@""];//把它置空，准备接收新值。
     }
     
-    if ([elementName isEqualToString:@"GetNewsDataBySnoResult"]) {//返回的验证码
+    if ([elementName isEqualToString:@"GetNewsDataBySnoResult"]) {//返回的协议
         
         [_soapResults setString:@""];//把它置空，准备接收新值。
     }
@@ -647,7 +647,6 @@
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     
-    
     if ([elementName isEqualToString:@"CheckLogin3Result"]) {
         
         NSData *jsonData = [_soapResults dataUsingEncoding:NSUTF8StringEncoding];
@@ -661,7 +660,6 @@
           NSString *state = [dic objectForKey:@"state"];
         NSString *loginToken = [dic objectForKey:@"loginToken"];
         
-        
         self.isNew = [NSString stringWithFormat:@"%@",[dic objectForKey:@"isNew"]];
         
         self.customerSno = ret;
@@ -670,11 +668,9 @@
         [userdf setObject:ret forKey:@"customerSno"];
         [userdf synchronize];
         
-        
         NSLog(@"用户登录的客户索引:%@",ret);
         
       //  NSLog(@"登录的请求:ret%@-- msg%@--state%@",ret,msg,state);
-        
         if ([state isEqualToString:@"1"]) {
             [self enter];
         }else if([state isEqualToString:@"0"]){
@@ -685,12 +681,9 @@
         
         }
         
-        if ([ret isEqualToString:@"-1"]) {
-            UIAlertView *alerter = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alerter show];
-            [self dingshiqi];
-        }
     }
+    
+    
             //返回的验证码
     if ([elementName isEqualToString:@"GetAuthCodeResult"]) {
         
@@ -699,10 +692,8 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-        
-
-        
     }
+    
     
     
     if ([elementName isEqualToString:@"GetNewsDataBySnoResult"]) {

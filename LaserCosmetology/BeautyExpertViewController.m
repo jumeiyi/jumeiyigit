@@ -11,8 +11,6 @@
 #import "BeautyExpertViewController.h"
 #import "TopBarView.h"
 #import "BottomBarView.h"
-#import "BeautyExpert.h"
-#import "StarBeauticianViewController.h"
 #import "contentViewCell.h"
 #import "discount.h"
 #import "HuQiJingsharManage.h"
@@ -251,12 +249,7 @@
 
 -(void)expertbtnclick
 {
-//    StarBeauticianViewController *StarBeautician = [[StarBeauticianViewController alloc] init];
-//    StarBeautician.sno = self.zhuanjiaSno;
-//    StarBeautician.doctorname = self.TrueName;
-//    StarBeautician.hospitolname = self.hospitolname;
-//    StarBeautician.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:StarBeautician animated:YES];
+
 
     NewExpertViewController *expert = [[NewExpertViewController alloc] init];
     expert.doctorsno = self.zhuanjiaSno;

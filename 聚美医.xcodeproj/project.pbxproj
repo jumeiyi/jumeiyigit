@@ -324,7 +324,6 @@
 		84BC7E0A1B1D84A9007830E4 /* 个人中心4_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BC7E011B1D84A9007830E4 /* 个人中心4_10.png */; };
 		84BC7E0B1B1D84A9007830E4 /* 个人中心4_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BC7E021B1D84A9007830E4 /* 个人中心4_11.png */; };
 		84BC7E0C1B1D84A9007830E4 /* 个人中心4_12.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BC7E031B1D84A9007830E4 /* 个人中心4_12.png */; };
-		84BD65471A8D8C11003770D3 /* BeautyExpert.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BD65461A8D8C11003770D3 /* BeautyExpert.m */; };
 		84BD65511A8DDC14003770D3 /* quxiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BD654A1A8DDC14003770D3 /* quxiao.png */; };
 		84BD65521A8DDC14003770D3 /* xiangmuxiangqing.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BD654B1A8DDC14003770D3 /* xiangmuxiangqing.png */; };
 		84BD65531A8DDC14003770D3 /* xiangmuxiangqing1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BD654C1A8DDC14003770D3 /* xiangmuxiangqing1.png */; };
@@ -339,7 +338,6 @@
 		84BEC3D91AAD33FA008C6664 /* DoctorMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BEC3D81AAD33FA008C6664 /* DoctorMainViewController.m */; };
 		84BEC3DC1AAD37A4008C6664 /* PersonDoctShooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BEC3DB1AAD37A4008C6664 /* PersonDoctShooseViewController.m */; };
 		84BEC4061AAD82EC008C6664 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BEC4051AAD82EC008C6664 /* ShareViewController.m */; };
-		84BEC4181AAD99BC008C6664 /* TongHang.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BEC4171AAD99BC008C6664 /* TongHang.m */; };
 		84BEE9AD1A8AEE1300B0F9D6 /* dianl.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BEE99D1A8AEE1300B0F9D6 /* dianl.png */; };
 		84BEE9B51A8AEE1300B0F9D6 /* huitiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BEE9A51A8AEE1300B0F9D6 /* huitiao.png */; };
 		84BEE9BC1A8AEE1300B0F9D6 /* xuanzel.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BEE9AC1A8AEE1300B0F9D6 /* xuanzel.png */; };
@@ -917,8 +915,6 @@
 		84BC7E011B1D84A9007830E4 /* 个人中心4_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人中心4_10.png"; sourceTree = "<group>"; };
 		84BC7E021B1D84A9007830E4 /* 个人中心4_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人中心4_11.png"; sourceTree = "<group>"; };
 		84BC7E031B1D84A9007830E4 /* 个人中心4_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人中心4_12.png"; sourceTree = "<group>"; };
-		84BD65451A8D8C11003770D3 /* BeautyExpert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeautyExpert.h; sourceTree = "<group>"; };
-		84BD65461A8D8C11003770D3 /* BeautyExpert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeautyExpert.m; sourceTree = "<group>"; };
 		84BD654A1A8DDC14003770D3 /* quxiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quxiao.png; sourceTree = "<group>"; };
 		84BD654B1A8DDC14003770D3 /* xiangmuxiangqing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiangmuxiangqing.png; sourceTree = "<group>"; };
 		84BD654C1A8DDC14003770D3 /* xiangmuxiangqing1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiangmuxiangqing1.png; sourceTree = "<group>"; };
@@ -941,8 +937,6 @@
 		84BEC3DB1AAD37A4008C6664 /* PersonDoctShooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDoctShooseViewController.m; sourceTree = "<group>"; };
 		84BEC4041AAD82EC008C6664 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		84BEC4051AAD82EC008C6664 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
-		84BEC4161AAD99BC008C6664 /* TongHang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TongHang.h; sourceTree = "<group>"; };
-		84BEC4171AAD99BC008C6664 /* TongHang.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TongHang.m; sourceTree = "<group>"; };
 		84BEE99D1A8AEE1300B0F9D6 /* dianl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dianl.png; sourceTree = "<group>"; };
 		84BEE9A51A8AEE1300B0F9D6 /* huitiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = huitiao.png; sourceTree = "<group>"; };
 		84BEE9AC1A8AEE1300B0F9D6 /* xuanzel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuanzel.png; sourceTree = "<group>"; };
@@ -1762,8 +1756,6 @@
 				84C0FEFB1AD69BEB0098F453 /* mymakerCell.xib */,
 				84BC7DEF1B1D44BF007830E4 /* UPMedicalRecord.h */,
 				84BC7DF01B1D44BF007830E4 /* UPMedicalRecord.m */,
-				84BEC4161AAD99BC008C6664 /* TongHang.h */,
-				84BEC4171AAD99BC008C6664 /* TongHang.m */,
 				8483D74F1AB6A72900AF9B9E /* MyClientViewController.h */,
 				8483D7501AB6A72900AF9B9E /* MyClientViewController.m */,
 				8483D74A1AB6A6F600AF9B9E /* myClientCell.h */,
@@ -1956,8 +1948,6 @@
 				84B4D1E71B3BE04B002E8469 /* MoreGoodAtProjectVC.m */,
 				84B4D1E91B3BE210002E8469 /* MoreGoodTableViewCell.h */,
 				84B4D1EA1B3BE210002E8469 /* MoreGoodTableViewCell.m */,
-				84BD65451A8D8C11003770D3 /* BeautyExpert.h */,
-				84BD65461A8D8C11003770D3 /* BeautyExpert.m */,
 			);
 			name = BeautyExpertViewController;
 			sourceTree = "<group>";
@@ -2662,7 +2652,6 @@
 				845EA0C21B2A8E93004997E5 /* beautymennutViewController.m in Sources */,
 				846566571AFAF550009CAC86 /* QRCameraSwitchButton.m in Sources */,
 				847D3ED91AC42070006EFA13 /* AudioStreamer.m in Sources */,
-				84BEC4181AAD99BC008C6664 /* TongHang.m in Sources */,
 				8467E90F1B2E690C00921558 /* DetailsOfTheProject2.m in Sources */,
 				84B83FB91A884384008EE1CA /* PersonalViewController.m in Sources */,
 				8483D7831AB6A79E00AF9B9E /* pickerimageViewController.m in Sources */,
@@ -2770,7 +2759,6 @@
 				84B83F8E1A8840B8008EE1CA /* AppDelegate.m in Sources */,
 				84BE4D4D1B21534C000E219F /* MyPointsViewLayout.m in Sources */,
 				84C2490E1AA2A90100C2C0FC /* MKAnnotationView+WebCache.m in Sources */,
-				84BD65471A8D8C11003770D3 /* BeautyExpert.m in Sources */,
 				84BF80071AA7F3D30055CFCF /* MakeAppointment.m in Sources */,
 				8483D74D1AB6A6F600AF9B9E /* myClientCell.m in Sources */,
 				84C6BE7D1ACCEA4500B00727 /* MeiRongRiJi.m in Sources */,
@@ -2874,8 +2862,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shenzhen city of Phoenix business Mdt InfoTech Ltd (B2LBK7FF2A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shenzhen city of Phoenix business Mdt InfoTech Ltd (B2LBK7FF2A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2895,7 +2883,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "2b363cba-7bff-4404-84e4-f949d355cbe4";
+				PROVISIONING_PROFILE = "7526e3ac-6138-4b0c-89f9-d7c1ecfa2cad";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2918,8 +2906,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shenzhen city of Phoenix business Mdt InfoTech Ltd (B2LBK7FF2A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shenzhen city of Phoenix business Mdt InfoTech Ltd (B2LBK7FF2A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2932,7 +2920,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "2b363cba-7bff-4404-84e4-f949d355cbe4";
+				PROVISIONING_PROFILE = "7526e3ac-6138-4b0c-89f9-d7c1ecfa2cad";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/[lib ]";
@@ -2945,8 +2933,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shenzhen city of Phoenix business Mdt InfoTech Ltd (B2LBK7FF2A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shenzhen city of Phoenix business Mdt InfoTech Ltd (B2LBK7FF2A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Connection",
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Core",
@@ -2968,7 +2956,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "聚美医";
-				PROVISIONING_PROFILE = "2b363cba-7bff-4404-84e4-f949d355cbe4";
+				PROVISIONING_PROFILE = "7526e3ac-6138-4b0c-89f9-d7c1ecfa2cad";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
@@ -2979,8 +2967,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shenzhen city of Phoenix business Mdt InfoTech Ltd (B2LBK7FF2A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shenzhen city of Phoenix business Mdt InfoTech Ltd (B2LBK7FF2A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Connection",
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Core",
@@ -3003,7 +2991,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "聚美医";
-				PROVISIONING_PROFILE = "2b363cba-7bff-4404-84e4-f949d355cbe4";
+				PROVISIONING_PROFILE = "7526e3ac-6138-4b0c-89f9-d7c1ecfa2cad";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/[lib]";
 				VALIDATE_PRODUCT = YES;

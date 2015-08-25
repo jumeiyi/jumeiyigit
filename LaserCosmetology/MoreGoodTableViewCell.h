@@ -14,11 +14,11 @@
 @property(nonatomic,retain)UIImageView *xiaohengxian4;
 @property(nonatomic,retain)UILabel *BeGoodToprojectName;
 @property(nonatomic,retain)UIButton *morebtn;
-@property(nonatomic,retain)UILabel *yifuwu;
-@property(nonatomic,retain)UILabel *persentsnumber;
-@property(nonatomic,retain)UILabel *persents;
+//@property(nonatomic,retain)UILabel *yifuwu;
+//@property(nonatomic,retain)UILabel *persentsnumber;
+//@property(nonatomic,retain)UILabel *persents;
 @property(nonatomic,retain)UILabel *begoodatcontents;
 @property(nonatomic,retain)UILabel *shanchang;
-@property(nonatomic,retain)UIImageView *chuxian2;
+//@property(nonatomic,retain)UIImageView *chuxian2;
 
 @end

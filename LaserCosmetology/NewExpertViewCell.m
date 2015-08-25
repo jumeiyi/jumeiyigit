@@ -135,16 +135,16 @@
         self.morebtn = [[UIButton alloc] init];
         [self addSubview:self.morebtn];
         
-        self.yifuwu = [[UILabel alloc] init];
-        self.yifuwu.text = @"已服务";
-        [self addSubview:self.yifuwu];
-        
-        self.persentsnumber = [[UILabel alloc] init];
-        [self addSubview:self.persentsnumber];
-        
-        self.persents = [[UILabel alloc] init];
-        self.persents.text = @"人";
-        [self addSubview:self.persents];
+//        self.yifuwu = [[UILabel alloc] init];
+//        self.yifuwu.text = @"已服务";
+//        [self addSubview:self.yifuwu];
+//        
+//        self.persentsnumber = [[UILabel alloc] init];
+//        [self addSubview:self.persentsnumber];
+//        
+//        self.persents = [[UILabel alloc] init];
+//        self.persents.text = @"人";
+//        [self addSubview:self.persents];
         
         self.begoodatcontents = [[UILabel alloc] init];
         [self addSubview:self.begoodatcontents];
@@ -152,8 +152,8 @@
         self.shanchang = [[UILabel alloc] init];
         [self addSubview:self.shanchang];
 
-        self.chuxian2 = [[UIImageView alloc] init];
-        [self addSubview:self.chuxian2];
+//        self.chuxian2 = [[UIImageView alloc] init];
+//        [self addSubview:self.chuxian2];
         
         
         

@@ -155,9 +155,14 @@
     } else if (section == 3){
      
         if (_proDataary.count > 5) {
-            return 5;
+            return 6;
         }else{
-         return _proDataary.count;
+            if (_proDataary.count > 0) {
+                 return _proDataary.count + 1;
+            }else{
+                return 0;
+            }
+        
         }
         
     }else{
@@ -206,11 +211,11 @@
     cell.redingall.frame = CGRectMake(0,0 , 0, 20);
     [cell.redingall setTitle:@"" forState:UIControlStateNormal];
     cell.redingall.titleLabel.font = [UIFont systemFontOfSize:15];
+    cell.gerenjieshao.frame = CGRectMake(0, 0, 0, 0);
+    cell.gerenjieshao.text = @"";
     
     cell.succesgrecolorimage.frame = CGRectMake(0, 0,0,0);
     cell.succesgrecolorimage.image = [UIImage imageNamed:@""];
-
-    
     cell.succesimage1.frame = CGRectMake(0,0 ,0 , 0);
     [cell.succesimage1 sd_setImageWithURL:[NSURL URLWithString:@""]];
     cell.succesimage2.frame = CGRectMake(0, 0,0, 0);
@@ -224,29 +229,29 @@
     cell.BeGoodToprojectName.text = @"";
     cell.morebtn.frame = CGRectMake(0, 0, 0, 0);
     [cell.morebtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-    cell.yifuwu.frame = CGRectMake(0, 0, 0, 0);
-    cell.persentsnumber.frame = CGRectMake(0,0, 0, 0);
-    cell.persentsnumber.text = @"";
-    cell.persents.frame = CGRectMake(0, 0, 0, 0);
+//    cell.yifuwu.frame = CGRectMake(0, 0, 0, 0);
+//    cell.persentsnumber.frame = CGRectMake(0,0, 0, 0);
+//    cell.persentsnumber.text = @"";
+//    cell.persents.frame = CGRectMake(0, 0, 0, 0);
     cell.begoodatcontents.frame = CGRectMake(0, 0, 0, 0);
     cell.begoodatcontents.text = @"";
     cell.BeGoodToBackImage.frame = CGRectMake(0, 0, 0,0);
     cell.BeGoodToBackImage.image = [UIImage imageNamed:@""];
-    cell.chuxian2.frame = CGRectMake(0,0,0, 0);
-    cell.chuxian2.image = [UIImage imageNamed:@""];
+//    cell.chuxian2.frame = CGRectMake(0,0,0, 0);
+//    cell.chuxian2.image = [UIImage imageNamed:@""];
+    cell.shanchang.frame = CGRectMake(0, 0, 0, 0);
+    cell.shanchang.text = @"";
 
     cell.Communicatebtn.frame = CGRectMake(0, 0, 0, 0);
     [cell.Communicatebtn setTitle:@"" forState:UIControlStateNormal];
     [cell.Communicatebtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     
-    cell.gerenjieshao.frame = CGRectMake(0, 0, 0, 0);
-    cell.gerenjieshao.text = @"";
+
     
     cell.chenggonganli.frame = CGRectMake(0, 0, 0, 0);
     cell.chenggonganli.text = @"";
     
-    cell.shanchang.frame = CGRectMake(0, 0, 0, 0);
-    cell.shanchang.text = @"";
+
     
     cell.diheng3.frame = CGRectMake(0, 0, 0, 0);
     cell.diheng3.image = [UIImage imageNamed:@""];
@@ -312,26 +317,28 @@
             doc = [_basicDataary objectAtIndex:indexPath.row];
         }
         
-        cell.grecolorimage.frame = CGRectMake(3, 3, 30, 30);
+        cell.grecolorimage.frame = CGRectMake(15, 10, 30, 30);
         cell.grecolorimage.image = [UIImage imageNamed:@"素材6"];
         
-        cell.gerenjieshao = [[UILabel alloc] initWithFrame:CGRectMake(35, 5, 100, 20)];
+        cell.gerenjieshao = [[UILabel alloc] initWithFrame:CGRectMake(47, 7, 100, 20)];
         cell.gerenjieshao.text = @"个人介绍";
         cell.gerenjieshao.textColor = [self colorWithRGB:0x666666 alpha:1];
         cell.gerenjieshao.font = [UIFont systemFontOfSize:15];
         [cell.grecolorimage addSubview:cell.gerenjieshao];
         
-        cell.xiaohengxian.frame = CGRectMake(3, 36, self.view.bounds.size.width,1.0);
+        cell.xiaohengxian.frame = CGRectMake(15, 50, self.view.bounds.size.width - 15,1.0);
         cell.xiaohengxian.image = [UIImage imageNamed:@"diheng1"];
         
         if (self.isgrup == NO) {
             
             float HIGH;
             if (self.contentshigth < 150) {
-                 HIGH = self.contentshigth ;
-                  cell.btnview.frame = CGRectMake(0, self.contentshigth + 75 - 45, self.view.bounds.size.width, 30);
-                cell.diheng2.frame = CGRectMake(0, self.contentshigth + 75 - 15, self.view.bounds.size.width, 15);
+                
+                 HIGH = self.contentshigth;
+                  cell.btnview.frame = CGRectMake(0, self.contentshigth + 90 - 45, self.view.bounds.size.width, 30);
+                cell.diheng2.frame = CGRectMake(0, self.contentshigth + 90 - 15, self.view.bounds.size.width, 15);
                 cell.diheng2.image = [UIImage imageNamed:@"diheng"];
+                
             }else{
                  HIGH = self.cellhigth - 70;
                   cell.btnview.frame = CGRectMake(0, self.cellhigth - 45, self.view.bounds.size.width, 30);
@@ -339,7 +346,7 @@
                 cell.diheng2.image = [UIImage imageNamed:@"diheng"];
             }
             
-            cell.contents.frame = CGRectMake(10, 40, self.view.bounds.size.width - 20, HIGH);
+            cell.contents.frame = CGRectMake(15, 54, self.view.bounds.size.width - 20, HIGH);
             cell.contents.numberOfLines = 0;
             cell.contents.font = [UIFont systemFontOfSize:13];
             cell.contents.textColor = [self colorWithRGB:0x666666 alpha:1];
@@ -354,13 +361,13 @@
             
         }else{
         
-            cell.contents.frame = CGRectMake(10, 40, self.view.bounds.size.width - 20, self.contentshigth);
+            cell.contents.frame = CGRectMake(15, 54, self.view.bounds.size.width - 20, self.contentshigth + 10);
             cell.contents.numberOfLines = 0;
             cell.contents.font = [UIFont systemFontOfSize:13];
             cell.contents.textColor =  [self colorWithRGB:0x666666 alpha:1];
             cell.contents.text = doc.Contents;
             
-            cell.btnview.frame = CGRectMake(0,  self.contentshigth + 80 - 45, self.view.bounds.size.width, 30);
+            cell.btnview.frame = CGRectMake(0,  self.contentshigth + 100 - 45, self.view.bounds.size.width, 30);
             
             cell.btnimage.frame = CGRectMake(self.view.bounds.size.width/2 - 20, 10, 30, 12);
             cell.btnimage.image = [UIImage imageNamed:@"素材11"];
@@ -369,7 +376,7 @@
             [cell.redingall addTarget:self action:@selector(redingallcontents) forControlEvents:UIControlEventTouchUpInside];
             cell.redingall.titleLabel.font = [UIFont systemFontOfSize:15];
             
-            cell.diheng2.frame = CGRectMake(0, self.contentshigth + 80 - 15, self.view.bounds.size.width, 15);
+            cell.diheng2.frame = CGRectMake(0, self.contentshigth + 100 - 15, self.view.bounds.size.width, 15);
             cell.diheng2.image = [UIImage imageNamed:@"diheng"];
         }
         
@@ -385,13 +392,13 @@
            doct  = [_successCaseDataary objectAtIndex:indexPath.row];
         }
         
-        cell.succesgrecolorimage.frame = CGRectMake(3, 3, 30, 30);
+        cell.succesgrecolorimage.frame = CGRectMake(15, 10, 30, 30);
         cell.succesgrecolorimage.image = [UIImage imageNamed:@"素材10"];
         
-        cell.xiaohengxian2.frame = CGRectMake(3, 36, self.view.bounds.size.width,1.0);
+        cell.xiaohengxian2.frame = CGRectMake(15, 50, self.view.bounds.size.width - 15,1.0);
         cell.xiaohengxian2.image = [UIImage imageNamed:@"diheng1"];
         
-        cell.chenggonganli = [[UILabel alloc] initWithFrame:CGRectMake(35, 5, 100, 20)];
+        cell.chenggonganli = [[UILabel alloc] initWithFrame:CGRectMake(47, 7, 100, 20)];
         cell.chenggonganli.text = @"成功案例";
         cell.chenggonganli.textColor =  [self colorWithRGB:0x666666 alpha:1];
         cell.chenggonganli.font = [UIFont systemFontOfSize:15];
@@ -403,7 +410,7 @@
          cell.succesimage2.frame = CGRectMake(10 + (self.view.bounds.size.width - 15)/2, 45, (self.view.bounds.size.width - 15)/2, (self.view.bounds.size.width - 15)/2);
         [cell.succesimage2 sd_setImageWithURL:[NSURL URLWithString:doct.PicSrc2]];
         
-        cell.xiangmu.frame = CGRectMake(10, 50 +(self.view.bounds.size.width - 15)/2, 40, 20);
+        cell.xiangmu.frame = CGRectMake(15, 50 +(self.view.bounds.size.width - 15)/2, 40, 20);
         cell.xiangmu.textColor =  [self colorWithRGB:0x666666 alpha:1];
         cell.xiangmu.font = [UIFont systemFontOfSize:16];
         cell.xiangmu.text = @"项目:";
@@ -416,7 +423,7 @@
         cell.succeprojectcontents.layer.cornerRadius = 3;
         cell.succeprojectcontents.font = [UIFont systemFontOfSize:16];
         
-        cell.xiaohengxian3.frame = CGRectMake(3, 75 +(self.view.bounds.size.width - 15)/2, self.view.bounds.size.width,1.0);
+        cell.xiaohengxian3.frame = CGRectMake(15, 75 +(self.view.bounds.size.width - 15)/2, self.view.bounds.size.width - 15,1.0);
         cell.xiaohengxian3.image = [UIImage imageNamed:@"diheng1"];
         
         cell.miaoshu.frame = CGRectMake(10, 75 +(self.view.bounds.size.width - 15)/2, self.view.bounds.size.width - 20, 40);
@@ -431,31 +438,31 @@
         cell.backgroundColor = [UIColor whiteColor];
         if (indexPath.row == 0) {
             
-            cell.BeGoodToBackImage.frame = CGRectMake(3, 3, 30, 30);
+            cell.BeGoodToBackImage.frame = CGRectMake(15, 10, 30, 30);
             cell.BeGoodToBackImage.image = [UIImage imageNamed:@"素材7"];
 
-            cell.shanchang = [[UILabel alloc] initWithFrame:CGRectMake(35, 5, 100, 20)];
+            cell.shanchang = [[UILabel alloc] initWithFrame:CGRectMake(47, 7, 100, 20)];
             cell.shanchang.text = @"擅长项目";
             cell.shanchang.textColor =  [self colorWithRGB:0x666666 alpha:1];
             cell.shanchang.font = [UIFont systemFontOfSize:15];
             [cell.BeGoodToBackImage addSubview:cell.shanchang];
             
-            cell.xiaohengxian4.frame = CGRectMake(3, 36, self.view.bounds.size.width,1.0);
-            cell.xiaohengxian4.image = [UIImage imageNamed:@"diheng1"];
+//            cell.xiaohengxian4.frame = CGRectMake(15, 50, self.view.bounds.size.width - 15,1.0);
+//            cell.xiaohengxian4.image = [UIImage imageNamed:@"diheng1"];
             
-            cell.morebtn.frame = CGRectMake(self.view.bounds.size.width - 25, 10, 12, 20);
+            cell.morebtn.frame = CGRectMake(self.view.bounds.size.width - 35, 15, 15, 20);
             [cell.morebtn addTarget:self action:@selector(moerclick) forControlEvents:UIControlEventTouchUpInside];
             [cell.morebtn setBackgroundImage:[UIImage imageNamed:@"素材12"] forState:UIControlStateNormal];
             
-            Doctorpersents *doctor;
-            if (_proDataary.count > 0) {
-               doctor  = [_proDataary objectAtIndex:indexPath.row];
-            }
-            
-            cell.BeGoodToprojectName.frame = CGRectMake(10, 50, 150, 20);
-            cell.BeGoodToprojectName.text = doctor.BeautifyProName;
-            cell.BeGoodToprojectName.textColor =  [self colorWithRGB:0x999999 alpha:1];
-            cell.BeGoodToprojectName.font = [UIFont systemFontOfSize:15];
+//            Doctorpersents *doctor;
+//            if (_proDataary.count > 0) {
+//               doctor  = [_proDataary objectAtIndex:indexPath.row];
+//            }
+//            
+//            cell.BeGoodToprojectName.frame = CGRectMake(15, 62, 150, 20);
+//            cell.BeGoodToprojectName.text = doctor.BeautifyProName;
+//            cell.BeGoodToprojectName.textColor =  [self colorWithRGB:0x999999 alpha:1];
+//            cell.BeGoodToprojectName.font = [UIFont systemFontOfSize:15];
             
 //            cell.chuxian2.frame = CGRectMake(self.view.bounds.size.width/2  - 30, 50,1.50, 25);
 //            cell.chuxian2.image = [UIImage imageNamed:@"素材4"];
@@ -473,23 +480,24 @@
 //            cell.persents.textColor = [self colorWithRGB:0x00c5bb alpha:1];
 //            cell.persents.font = [UIFont systemFontOfSize:15];
             
-            cell.begoodatcontents.frame = CGRectMake(self.view.bounds.size.width - 60, 50, 42, 25);
-            cell.begoodatcontents.text = @"  预约";
-            cell.begoodatcontents.font = [UIFont systemFontOfSize:13];
-            cell.begoodatcontents.textColor = [self colorWithRGB:0xffffff alpha:1];
-            cell.begoodatcontents.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-            cell.begoodatcontents.layer.masksToBounds = YES;
-            cell.begoodatcontents.layer.cornerRadius = 5;
-            
+//            cell.begoodatcontents.frame = CGRectMake(self.view.bounds.size.width - 60, 62, 42, 25);
+//            cell.begoodatcontents.text = @"  预约";
+//            cell.begoodatcontents.font = [UIFont systemFontOfSize:13];
+//            cell.begoodatcontents.textColor = [self colorWithRGB:0xffffff alpha:1];
+//            cell.begoodatcontents.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+//            cell.begoodatcontents.layer.masksToBounds = YES;
+//            cell.begoodatcontents.layer.cornerRadius = 5;
             
         }else{
             
             Doctorpersents *doctor;
-            if (_proDataary.count > 0) {
-                doctor  = [_proDataary objectAtIndex:indexPath.row];
+            if (_proDataary.count > 1) {
+                doctor  = [_proDataary objectAtIndex:indexPath.row - 1];
+            }else{
+            
             }
             
-            cell.BeGoodToprojectName.frame = CGRectMake(10, 15, 150, 20);
+            cell.BeGoodToprojectName.frame = CGRectMake(15, 15, 150, 20);
             cell.BeGoodToprojectName.text = doctor.BeautifyProName;
             cell.BeGoodToprojectName.textColor =  [self colorWithRGB:0x999999 alpha:1];
             cell.BeGoodToprojectName.font = [UIFont systemFontOfSize:15];
@@ -527,6 +535,7 @@
         cell.Communicatebtn.frame = CGRectMake(self.view.bounds.size.width/2 - 60, 30, 120, 30);
         [cell.Communicatebtn setTitle:@"与专家沟通" forState:UIControlStateNormal];
         [cell.Communicatebtn setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
+        
     }
     
     return cell;
@@ -539,20 +548,20 @@
         
         if (self.isgrup == NO) {
             if (self.contentshigth < 150) {
-                return self.contentshigth + 75;
+                return self.contentshigth + 90;
             }else{
              return self.cellhigth;
             }
            
         }else{
-            return self.contentshigth + 70;
+            return self.contentshigth + 100;
         }
         
     }else if (indexPath.section == 2){
         return 130 + (self.view.bounds.size.width - 15)/2;
     }else if (indexPath.section == 3){
         if (indexPath.row == 0) {
-            return 84;
+            return 50;
         }else{
             return 50;
         }
@@ -580,17 +589,22 @@
         [self.navigationController pushViewController:succes animated:YES];
     }else if (indexPath.section == 3){
         
-        Doctorpersents *per = [_proDataary objectAtIndex:indexPath.row];
+        if (indexPath.row == 0) {
+           [self moerclick];
+        }else{
         
-        Detailsproject2 *proj = [[Detailsproject2 alloc] init];
-        proj.sno = per.ProductSno;
-        proj.EnumName = per.BeautifyProName;
-        proj.doctorSno = self.doctorsno;
-        proj.customerSno = self.customersno;
-        proj.hostitalname = self.hospitalName;
-        proj.doctorname = self.doctorname;
-        proj.hosptSno = self.hospitalSno;
-        [self.navigationController pushViewController:proj animated:YES];
+            Doctorpersents *per = [_proDataary objectAtIndex:indexPath.row - 1];
+            
+            Detailsproject2 *proj = [[Detailsproject2 alloc] init];
+            proj.sno = per.ProductSno;
+            proj.EnumName = per.BeautifyProName;
+            proj.doctorSno = self.doctorsno;
+            proj.customerSno = self.customersno;
+            proj.hostitalname = self.hospitalName;
+            proj.doctorname = self.doctorname;
+            proj.hosptSno = self.hospitalSno;
+            [self.navigationController pushViewController:proj animated:YES];
+        }
         
         
     }else{
@@ -614,7 +628,7 @@
 -(CGFloat)contentsWithnsstring:(NSString *)str
 {
     UIFont *font = [UIFont systemFontOfSize:13];
-    CGSize size = CGSizeMake(self.view.bounds.size.width - 25,2000);
+    CGSize size = CGSizeMake(self.view.bounds.size.width - 30,2000);
     CGRect labelRect = [str boundingRectWithSize:size options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)  attributes:[NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName] context:nil];
     CGFloat gaodu = labelRect.size.height;
     return gaodu;

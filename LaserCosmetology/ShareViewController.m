@@ -50,49 +50,90 @@
     [topbar addSubview:backbtn];
    
 
-    UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(10, 86, 60, 20)];
-    number.text = @"专属码:";
-    [self.view addSubview:number];
-    
-    _text = [[UITextField alloc] initWithFrame:CGRectMake(70, 84, self.view.bounds.size.width - 80, 25)];
-    _text.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_text];
-    
-    
-    UILabel *urllabe = [[UILabel alloc] initWithFrame:CGRectMake(10, 122, 60, 20)];
-    urllabe.text = @"网   址:";
-    [self.view addSubview:urllabe];
-    
-    _urllabeft = [[UITextField alloc] initWithFrame:CGRectMake(70, 120, self.view.bounds.size.width - 80, 25)];
-    _urllabeft.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_urllabeft];
+//    UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(10, 86, 60, 20)];
+//    number.text = @"专属码:";
+//    [self.view addSubview:number];
+//    
+//    _text = [[UITextField alloc] initWithFrame:CGRectMake(70, 84, self.view.bounds.size.width - 80, 25)];
+//    _text.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:_text];
+//    
+//    
+//    UILabel *urllabe = [[UILabel alloc] initWithFrame:CGRectMake(10, 122, 60, 20)];
+//    urllabe.text = @"网   址:";
+//    [self.view addSubview:urllabe];
+//    
+//    _urllabeft = [[UITextField alloc] initWithFrame:CGRectMake(70, 120, self.view.bounds.size.width - 80, 25)];
+//    _urllabeft.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:_urllabeft];
    
+    
+    UILabel *lable1 = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, self.view.bounds.size.width - 100, 50)];
+    lable1.text = @"邀请粉丝注册聚美医，成为您的：专属客户，让您终身受益!";
+    lable1.font = [UIFont systemFontOfSize:20];
+    lable1.numberOfLines = 0;
+    lable1.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+    [self.view addSubview:lable1];
+    
+    
+    UILabel *lable2 = [[UILabel alloc] initWithFrame:CGRectMake(50, lable1.frame.origin.y + 80, self.view.bounds.size.width - 100, 50)];
+    lable2.text = @"专属客户未来在平台上的每单预约，您均可以获得奖励。";
+    lable2.font = [UIFont systemFontOfSize:17];
+    lable2.numberOfLines = 0;
+    lable2.textColor = [self colorWithRGB:0xeb6100 alpha:1];
+    [self.view addSubview:lable2];
+    
+    
+    UIButton *sharebutton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 80, self.view.bounds.size.height/2 - 30, 160, 40)];
+    [sharebutton setTitle:@"分享专属下载链接" forState:UIControlStateNormal];
+    [sharebutton setBackgroundColor:[self colorWithRGB:0x00c5bb alpha:1]];
+    sharebutton.layer.masksToBounds = YES;
+    sharebutton.layer.cornerRadius = 4;
+    [sharebutton addTarget:self action:@selector(fenxiang) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:sharebutton];
+    
+    UILabel *lable3 = [[UILabel alloc] initWithFrame:CGRectMake(50, sharebutton.frame.origin.y + 80, self.view.bounds.size.width - 100, 50)];
+    lable3.text = @"粉丝下载注册聚美医后，即可获得";
+    lable3.font = [UIFont systemFontOfSize:20];
+    lable3.numberOfLines = 0;
+    [self.view addSubview:lable3];
+    
+    UILabel *lable4 = [[UILabel alloc] initWithFrame:CGRectMake(50, lable3.frame.origin.y + 35, self.view.bounds.size.width - 100, 50)];
+    lable4.text = @"50元平台红包";
+    lable4.font = [UIFont systemFontOfSize:18];
+    lable4.numberOfLines = 0;
+    lable4.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+    [self.view addSubview:lable4];
+    
+
+    
     [self soaprequstWithdoctorSno:self.userSno];
 }
+
 -(void)repredata
 {
     _text.text = [NSString stringWithFormat:@"  %@",self.codeNo];
     _urllabeft.text = [NSString stringWithFormat:@"  %@",self.appUrl];
 }
 
+
 -(void)fenxiang
 {
     NSLog(@"分享");
-
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK" ofType:@"png"];
-    //NSString *str = @"12342234";
+    
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"AppIcon120x120" ofType:@"png"];
     
     //构造分享内容
-    id<ISSContainer> publishContent = [ShareSDK content:imagePath
-                                         defaultContent:nil
-                                                  image:[ShareSDK imageWithPath:nil]
-                                                  title:@"ShareSDK"
-                                                    url:@"http://www.mob.com"
-                                            description:@"这是一条测试信息"
-                                              mediaType:SSPublishContentMediaTypeText];
+    id<ISSContent> publishContent = [ShareSDK content:@"分享优惠活动！ "
+                                       defaultContent:@"测试一下"
+                                                image:[ShareSDK imageWithPath:imagePath]
+                                                title:@"聚美医"
+                                                  url:[NSString stringWithFormat:@"http://cs.jumeiyiyun.com/html/fx/index.html?s=%@",self.userSno]
+                                          description:@"这是一条分享信息"
+                                            mediaType:SSPublishContentMediaTypeNews];//
     //创建弹出菜单容器
     id<ISSContainer> container = [ShareSDK container];
-    [container setIPadContainerWithView:nil arrowDirect:UIPopoverArrowDirectionUp];
+    //[container setIPadContainerWithView:sender arrowDirect:UIPopoverArrowDirectionUp];
     
     //弹出分享菜单
     [ShareSDK showShareActionSheet:container
@@ -112,6 +153,8 @@
                                     NSLog(NSLocalizedString(@"TEXT_ShARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
                                 }
                             }];
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,6 +169,9 @@
     
 }
 
+-(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
+    return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
+}
 /*
 #pragma mark - Navigation
 

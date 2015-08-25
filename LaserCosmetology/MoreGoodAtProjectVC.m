@@ -76,27 +76,28 @@
     if (self.moerarray.count > 0) {
         doct  = [self.moerarray objectAtIndex:indexPath.row];
     }
-
     
-    cell.BeGoodToprojectName.frame = CGRectMake(10, 15, 150, 20);
+    cell.BeGoodToprojectName.frame = CGRectMake(15, 15, 150, 20);
     cell.BeGoodToprojectName.text = doct.BeautifyProName;
-    cell.BeGoodToprojectName.textColor = [self colorWithRGB:0x666666 alpha:1];
+    cell.BeGoodToprojectName.font = [UIFont systemFontOfSize:15];
+    cell.BeGoodToprojectName.textColor = [self colorWithRGB:0x999999 alpha:1];
     
-    cell.chuxian2.frame = CGRectMake(self.view.bounds.size.width/2 - 30 , 15,1.50, 25);
-    cell.chuxian2.image = [UIImage imageNamed:@"素材4"];
-    
-    cell.yifuwu.frame = CGRectMake(self.view.bounds.size.width/2 - 15, 15,  [self NSStringwithsize:17 str:@"已服务"], 20);
-    cell.yifuwu.textColor = [self colorWithRGB:0x00c5bb alpha:1];
-    cell.persentsnumber.frame = CGRectMake(self.view.bounds.size.width/2 - 15 + [self NSStringwithsize:17 str:@"已服务"],15, [self NSStringwithsize:17 str:doct.ServiceCount], 20);
-    cell.persentsnumber.textColor = [self colorWithRGB:0x00c5bb alpha:1];
-    cell.persentsnumber.text = doct.ServiceCount;
-    
-    cell.persents.frame = CGRectMake(self.view.bounds.size.width/2 - 15 + [self NSStringwithsize:17 str:@"已服务"] + [self NSStringwithsize:17 str:doct.ServiceCount], 15, 40, 20);
-    cell.persents.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+//    cell.chuxian2.frame = CGRectMake(self.view.bounds.size.width/2 - 30 , 15,1.50, 25);
+//    cell.chuxian2.image = [UIImage imageNamed:@"素材4"];
+//    
+//    cell.yifuwu.frame = CGRectMake(self.view.bounds.size.width/2 - 15, 15,  [self NSStringwithsize:17 str:@"已服务"], 20);
+//    cell.yifuwu.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+//    cell.persentsnumber.frame = CGRectMake(self.view.bounds.size.width/2 - 15 + [self NSStringwithsize:17 str:@"已服务"],15, [self NSStringwithsize:17 str:doct.ServiceCount], 20);
+//    cell.persentsnumber.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+//    cell.persentsnumber.text = doct.ServiceCount;
+//    
+//    cell.persents.frame = CGRectMake(self.view.bounds.size.width/2 - 15 + [self NSStringwithsize:17 str:@"已服务"] + [self NSStringwithsize:17 str:doct.ServiceCount], 15, 40, 20);
+//    cell.persents.textColor = [self colorWithRGB:0x00c5bb alpha:1];
     
     cell.begoodatcontents.frame = CGRectMake(self.view.bounds.size.width - 60, 12, 45, 25);
-    cell.begoodatcontents.text = @" 预约";
+    cell.begoodatcontents.text = @"  预约";
     cell.begoodatcontents.textColor = [UIColor whiteColor];
+    cell.begoodatcontents.font = [UIFont systemFontOfSize:13];
     cell.begoodatcontents.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
     cell.begoodatcontents.layer.masksToBounds = YES;
     cell.begoodatcontents.layer.cornerRadius = 3;
