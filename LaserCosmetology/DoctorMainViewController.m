@@ -947,7 +947,7 @@
     [[UIAlertView alloc]
      initWithTitle:@"提示"
      message:@"链接超时或无网络!"
-     delegate:self
+     delegate:nil
      cancelButtonTitle:nil
      otherButtonTitles:@"OK", nil];
     [alert show];

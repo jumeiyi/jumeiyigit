@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RefreshControl.h"
-@interface MyClientViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,NSXMLParserDelegate,RefreshControlDelegate>
+@interface MyClientViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,NSXMLParserDelegate,RefreshControlDelegate,UISearchBarDelegate>
 
 {
 
@@ -24,6 +24,9 @@
     RefreshControl *_refreshControl;
     BOOL _isLoading;
     NSTimer *_timer1;
+    
+     UIView *btnview;
+    UIImageView *_btnimage;
 }
 @property(nonatomic,assign)BOOL istop;
 @property(nonatomic,retain)NSString *doctorsno;
@@ -32,5 +35,7 @@
 @property(nonatomic,retain)NSString *typeInfo;
 @property(nonatomic,retain)NSString *firstWord;
 @property (nonatomic,strong)RefreshControl * refreshControl;
+@property(nonatomic,retain)UISearchBar *searchBar;
+@property(nonatomic,retain)UISearchDisplayController *searchDisplay;
 
 @end

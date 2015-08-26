@@ -69,6 +69,8 @@ static NSString * const identifier = @"cell";
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self starlocation];
+    
+    NSLog(@"-------11111-----%f----------> %f",self.view.bounds.size.height,self.view.bounds.size.width);
 
     TopBarView *topbar= [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     [self.view addSubview:topbar];

@@ -91,6 +91,12 @@
 		8469B3431B1321EC005F17AF /* dsxt_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 8469B3421B1321EC005F17AF /* dsxt_02.png */; };
 		846A6D571AFC610F00B685DE /* fenleiimages.png in Resources */ = {isa = PBXBuildFile; fileRef = 846A6D561AFC610F00B685DE /* fenleiimages.png */; };
 		846A6D5A1AFCDA1F00B685DE /* discuse.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A6D591AFCDA1F00B685DE /* discuse.m */; };
+		8478C0B51B8D5B9000768326 /* 图片2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8478C0B01B8D5B9000768326 /* 图片2.png */; };
+		8478C0B61B8D5B9000768326 /* 图片4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8478C0B11B8D5B9000768326 /* 图片4.png */; };
+		8478C0B71B8D5B9000768326 /* yishengwdkh.png in Resources */ = {isa = PBXBuildFile; fileRef = 8478C0B21B8D5B9000768326 /* yishengwdkh.png */; };
+		8478C0B81B8D5B9000768326 /* yishengwdkhs.png in Resources */ = {isa = PBXBuildFile; fileRef = 8478C0B31B8D5B9000768326 /* yishengwdkhs.png */; };
+		8478C0B91B8D5B9000768326 /* yishengwdkhx.png in Resources */ = {isa = PBXBuildFile; fileRef = 8478C0B41B8D5B9000768326 /* yishengwdkhx.png */; };
+		8478C0BD1B8D6D4A00768326 /* w d khhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 8478C0BC1B8D6D4A00768326 /* w d khhd.png */; };
 		847CACA21B43BCDE0059C8C6 /* libPushSDK-1.8.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 847CACA11B43BCDE0059C8C6 /* libPushSDK-1.8.3.a */; };
 		847CACA41B43BD1A0059C8C6 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 847CACA31B43BD1A0059C8C6 /* PushConfig.plist */; };
 		847D3ECB1AC403A9006EFA13 /* liaotiananniu.png in Resources */ = {isa = PBXBuildFile; fileRef = 847D3EC91AC403A9006EFA13 /* liaotiananniu.png */; };
@@ -609,6 +615,12 @@
 		846A6D581AFCDA1F00B685DE /* discuse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = discuse.h; sourceTree = "<group>"; };
 		846A6D591AFCDA1F00B685DE /* discuse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = discuse.m; sourceTree = "<group>"; };
 		84718EF81B68D43C003310D3 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		8478C0B01B8D5B9000768326 /* 图片2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片2.png"; sourceTree = "<group>"; };
+		8478C0B11B8D5B9000768326 /* 图片4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片4.png"; sourceTree = "<group>"; };
+		8478C0B21B8D5B9000768326 /* yishengwdkh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yishengwdkh.png; sourceTree = "<group>"; };
+		8478C0B31B8D5B9000768326 /* yishengwdkhs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yishengwdkhs.png; sourceTree = "<group>"; };
+		8478C0B41B8D5B9000768326 /* yishengwdkhx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yishengwdkhx.png; sourceTree = "<group>"; };
+		8478C0BC1B8D6D4A00768326 /* w d khhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "w d khhd.png"; sourceTree = "<group>"; };
 		847CACA01B43BCDE0059C8C6 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		847CACA11B43BCDE0059C8C6 /* libPushSDK-1.8.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.3.a"; sourceTree = "<group>"; };
 		847CACA31B43BD1A0059C8C6 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
@@ -1359,6 +1371,12 @@
 		8481B2561B72FE4E00FADA49 /* sucai */ = {
 			isa = PBXGroup;
 			children = (
+				8478C0BC1B8D6D4A00768326 /* w d khhd.png */,
+				8478C0B01B8D5B9000768326 /* 图片2.png */,
+				8478C0B11B8D5B9000768326 /* 图片4.png */,
+				8478C0B21B8D5B9000768326 /* yishengwdkh.png */,
+				8478C0B31B8D5B9000768326 /* yishengwdkhs.png */,
+				8478C0B41B8D5B9000768326 /* yishengwdkhx.png */,
 				8481B2571B72FE4E00FADA49 /* 素材1.png */,
 				8481B2581B72FE4E00FADA49 /* 素材2.png */,
 				8481B2591B72FE4E00FADA49 /* 素材3-1.png */,
@@ -2431,6 +2449,7 @@
 				8483D8A11AB6C2AD00AF9B9E /* WeiboSDK.bundle in Resources */,
 				84AC81451B4110DA009A00E3 /* logo66X66.png in Resources */,
 				84A0A63A1B4F5B9E002566A6 /* chengshi.png in Resources */,
+				8478C0B91B8D5B9000768326 /* yishengwdkhx.png in Resources */,
 				84BFD2261AEA20F0008620BA /* xiaoliebiaohuisedi.png in Resources */,
 				84A0A63B1B4F5B9E002566A6 /* fenge.png in Resources */,
 				8481B2681B72FE4E00FADA49 /* 素材8.png in Resources */,
@@ -2484,6 +2503,7 @@
 				84AC813C1B4110DA009A00E3 /* Icon-Small-50.png in Resources */,
 				84C0FEFD1AD69BEB0098F453 /* mymakerCell.xib in Resources */,
 				847CACA41B43BD1A0059C8C6 /* PushConfig.plist in Resources */,
+				8478C0B51B8D5B9000768326 /* 图片2.png in Resources */,
 				84C232331AA018C40087EA6B /* meirongzhuanjia_0502.png in Resources */,
 				84B55D981AF9ABF8002F7442 /* chat_bottom_voice_nor.png in Resources */,
 				84BEE9AD1A8AEE1300B0F9D6 /* dianl.png in Resources */,
@@ -2546,12 +2566,15 @@
 				84CABE9D1A8CA34000306B93 /* anniu1.png in Resources */,
 				84AC81391B4110DA009A00E3 /* Icon-256@2x.png in Resources */,
 				84C057911B04900F002A067F /* chatto_bg_normalss.png in Resources */,
+				8478C0B81B8D5B9000768326 /* yishengwdkhs.png in Resources */,
 				8481B2601B72FE4E00FADA49 /* 素材1.png in Resources */,
 				84A05FC81B3D249100C1B759 /* 引导页04.jpg in Resources */,
 				84BEE9B51A8AEE1300B0F9D6 /* huitiao.png in Resources */,
 				84C0FEEF1AD6880F0098F453 /* dukeyi1.png in Resources */,
 				84BD65521A8DDC14003770D3 /* xiangmuxiangqing.png in Resources */,
+				8478C0B71B8D5B9000768326 /* yishengwdkh.png in Resources */,
 				84D6DBA61B5E547900837A14 /* 首页1_03ss.png in Resources */,
+				8478C0B61B8D5B9000768326 /* 图片4.png in Resources */,
 				84AC812C1B4110DA009A00E3 /* Icon-40.png in Resources */,
 				84A42D441B2DADA600B6047E /* 引导页01.jpg in Resources */,
 				8483D97A1B1557420069D729 /* 完善资料_05a.png in Resources */,
@@ -2586,6 +2609,7 @@
 				8483D7AA1AB6A82E00AF9B9E /* yisheng_15.png in Resources */,
 				84AC81411B4110DA009A00E3 /* Icon.png in Resources */,
 				84C22A3F1AEF884900CF64B1 /* huifu.png in Resources */,
+				8478C0BD1B8D6D4A00768326 /* w d khhd.png in Resources */,
 				84C501191AD3CE910083A515 /* bantouming.png in Resources */,
 				84C2C3491AD13E4C00CD5139 /* pull_refresh@3x.png in Resources */,
 				843C24261B004DFA00A943C0 /* 大按钮s.png in Resources */,

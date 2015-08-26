@@ -32,15 +32,7 @@
     
     TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     [self.view addSubview:topbar];
-    
-//    UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-//    titilelable.text = @"我的客户";
-//    titilelable.textColor = [UIColor whiteColor];
-//    titilelable.font = [UIFont systemFontOfSize:22];
-//    titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
-//    titilelable.textAlignment = NSTextAlignmentCenter;
-//    [topbar addSubview:titilelable];
-    
+
     
     UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 27, 40, 30)];
     [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
@@ -53,26 +45,12 @@
     UIButton *groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[groups objectAtIndex:0]] + 20, 20)];
     [groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
     [groupbtn setTitle:[groups objectAtIndex:0] forState:UIControlStateNormal];
-    
     [topbar addSubview:groupbtn];
     
     
-    NSArray *btntitle = [[NSArray alloc] initWithObjects:@"正在服务",@"预约",@"休眠客户", nil];
-    float btnwidth = (self.view.bounds.size.width - 20)/3;
-    for (int i = 0; i < 3; i++) {
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake((5 + btnwidth) * i + 5, 75, btnwidth, 30)];
-        btn.backgroundColor = [UIColor whiteColor];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        [btn setTitle:[btntitle objectAtIndex:i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        
-        //[btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-        [btn addTarget:self action:@selector(xuanxaing:) forControlEvents:UIControlEventTouchUpInside];
-        btn.tag = 20 + i;
-        btn.layer.masksToBounds = YES;
-        btn.layer.cornerRadius = 4;
-        [self.view addSubview:btn];
-    }
+    _btnimage = [[UIImageView alloc] initWithFrame:CGRectMake(groupbtn.frame.origin.x + groupbtn.frame.size.width, 32, 15, 10)];
+    _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
+    [topbar addSubview:_btnimage];
     
 
     
@@ -98,7 +76,7 @@
     [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:@"" strPageindex:@"1" strPagesize:@"15"];
     
     
-    UITableView *headnametableview = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 45, 115, 45, self.view.bounds.size.height - 120)];
+    UITableView *headnametableview = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 45, 64 + 44, 45, self.view.bounds.size.height - 108 )];
     headnametableview.delegate = self;
     headnametableview.dataSource = self;
     headnametableview.rowHeight = 20;
@@ -106,7 +84,62 @@
     headnametableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:headnametableview];
     
+    UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, 70, 44)];
+    shoosebtnimageback.image = [UIImage imageNamed:@"w d khhd"];
+    [self.view addSubview:shoosebtnimageback];
+    
+    UIButton *shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 64, 50, 44)];
+    [shoosebtn setTitle:@"姓名:" forState:UIControlStateNormal];
+    [shoosebtn setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
+    [self.view addSubview:shoosebtn];
+    
+    UIImageView *shoosebtnimage = [[UIImageView alloc] initWithFrame:CGRectMake(50, 82, 15, 10)];
+    shoosebtnimage.image = [UIImage imageNamed:@"图片2"];
+    [self.view addSubview:shoosebtnimage];
+    
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(70.0f,64, self.view.frame.size.width - 70 , 44.0f)];
+    self.searchBar.delegate =self;
+    self.searchBar.placeholder = @"搜索项目，医生";
+    self.searchBar.tintColor = [UIColor lightGrayColor];
+//    self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+//    self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.searchBar.keyboardType = UIKeyboardTypeDefault;
+    [self.view addSubview:self.searchBar];
+    
+//    self.searchDisplay = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+//    _searchDisplay.searchResultsDataSource = self;
+//    _searchDisplay.searchResultsDelegate =self;
+    
 }
+
+#pragma mark --UISearchBar
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar setText:@""];
+     self.searchBar.frame = CGRectMake(70.0f,64, self.view.frame.size.width - 100 , 44.0f);
+    return;
+    
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    self.searchBar.frame = CGRectMake(70.0f,64, self.view.frame.size.width - 70 , 44.0f);
+    NSLog(@"%@",searchBar.text);
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    if ([searchBar.text isEqual:nil]) {
+        return;
+    }else if ([searchBar.text isEqual:@""]){
+        return;
+    }else{
+        
+//        [self soaprequstWithGetProTypePageData:searchBar.text];
+        NSLog(@"searchBar.text---> %@",searchBar.text);
+    }
+    
+    self.searchBar.frame = CGRectMake(70.0f,64, self.view.frame.size.width - 70 , 44.0f);
+}
+
 
 - (void)refreshControl:(RefreshControl *)refreshControl didEngageRefreshDirection:(RefreshDirection)direction
 {
@@ -148,23 +181,32 @@
 -(void)groupsbuttonclick
 {
     static int a = 0;
-    
-    UIView *btnview;
+   
     UITableView *grouptableview;
     
     if (a % 2 == 0) {
-        btnview = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 75 , 64, 150, 200)];
+        btnview = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 75 , 50, 150, 200)];
         [self.view addSubview:btnview];
+        
+        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, btnview.bounds.size.width, btnview.bounds.size.height)];
+        image.image = [UIImage imageNamed:@"yishengwdkh"];
+        [btnview addSubview:image];
         
         grouptableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,btnview.bounds.size.width, btnview.bounds.size.height )];
         grouptableview.tag = 62;
+        grouptableview.backgroundColor = [UIColor clearColor];
         [btnview addSubview:grouptableview];
+        
+        
+         _btnimage.image = [UIImage imageNamed:@"yishengwdkhs"];
         
     }else{
         [btnview removeFromSuperview];
         btnview = nil;
         [grouptableview removeFromSuperview];
         grouptableview = nil;
+        
+        _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
     }
     NSLog(@"&&&&&&------> %d ",a % 2);
     
@@ -229,41 +271,41 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)xuanxaing:(UIButton *)button
-{
-    NSLog(@"button.tag-%ld",button.tag);
-    
-    if (button.tag == 20) {
-        self.typeInfo = @"1";
-        UIButton *butn1 = (UIButton *)[self.view viewWithTag:21];
-        UIButton *butn2 = (UIButton *)[self.view viewWithTag:22];
-        [butn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [butn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        
-    }else if (button.tag == 21){
-        
-        UIButton *butn1 = (UIButton *)[self.view viewWithTag:20];
-        UIButton *butn2 = (UIButton *)[self.view viewWithTag:22];
-        [butn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [butn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    
-        self.typeInfo = @"2";
-    }else{
-    self.typeInfo = @"3";
-        
-        UIButton *butn1 = (UIButton *)[self.view viewWithTag:20];
-        UIButton *butn2 = (UIButton *)[self.view viewWithTag:21];
-        [butn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [butn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    }
-    
-    [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:@"" strPageindex:@"1" strPagesize:@"15"];
-
-    
-}
+//-(void)xuanxaing:(UIButton *)button
+//{
+//    NSLog(@"button.tag-%ld",button.tag);
+//    
+//    if (button.tag == 20) {
+//        self.typeInfo = @"1";
+//        UIButton *butn1 = (UIButton *)[self.view viewWithTag:21];
+//        UIButton *butn2 = (UIButton *)[self.view viewWithTag:22];
+//        [butn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [butn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//        
+//    }else if (button.tag == 21){
+//        
+//        UIButton *butn1 = (UIButton *)[self.view viewWithTag:20];
+//        UIButton *butn2 = (UIButton *)[self.view viewWithTag:22];
+//        [butn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [butn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//    
+//        self.typeInfo = @"2";
+//    }else{
+//    self.typeInfo = @"3";
+//        
+//        UIButton *butn1 = (UIButton *)[self.view viewWithTag:20];
+//        UIButton *butn2 = (UIButton *)[self.view viewWithTag:21];
+//        [butn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [butn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//    }
+//    
+//    [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:@"" strPageindex:@"1" strPagesize:@"15"];
+//
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -279,12 +321,26 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
+    return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
+}
 
 #pragma mark tableview
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (tableView.tag == 60) {
+        return _headnamearray.count;
+    }else{
+        return 0;
+    }
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
         return _mycustomerDataarray.count;
+    }else if (tableView.tag == 62){
+        return 4;
     }else{
         return 26;
     }
@@ -322,6 +378,21 @@
         
         return cell;
 
+    }else if (tableView.tag == 62){
+        
+        static NSString *ident = @"cell2";
+        UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:ident];
+        if (!cell2) {
+            cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
+        }
+        cell2.textLabel.text = [_headnamearray objectAtIndex:indexPath.row];
+        cell2.textLabel.font = [UIFont systemFontOfSize:15];
+        cell2.textLabel.textColor = [UIColor redColor];
+        
+        cell2.backgroundColor = [UIColor clearColor];
+        
+        return cell2;
+        
     }else{
     
         static NSString *ident = @"cell1";
@@ -336,6 +407,12 @@
         return cell1;
     }
 }
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [_headnamearray objectAtIndex:section];
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == 60) {
@@ -348,13 +425,13 @@
         getcustomdetail.mycustomersno = self.customersno;
         [self.navigationController pushViewController:getcustomdetail animated:YES];
         
+    }else if (tableView.tag == 62){
+    
+    
     }else{
     
-     self.firstWord = [_headnamearray objectAtIndex:indexPath.row];
-    
-        
+        self.firstWord = [_headnamearray objectAtIndex:indexPath.row];
         [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:self.firstWord strPageindex:@"1" strPagesize:@"40"];
-        
     }
 
     
