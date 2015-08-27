@@ -26,7 +26,12 @@
     NSTimer *_timer1;
     
      UIView *btnview;
+    UIView *shoosebtnview;
     UIImageView *_btnimage;
+    NSMutableArray *_shooesproject;
+    NSMutableArray *_groups;
+    UIButton *_groupbtn;
+    UIButton *_shoosebtn;
 }
 @property(nonatomic,assign)BOOL istop;
 @property(nonatomic,retain)NSString *doctorsno;

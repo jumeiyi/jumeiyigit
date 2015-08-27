@@ -40,15 +40,15 @@
     [topbar addSubview:backbtn];
     
     
-    NSMutableArray *groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
+    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
     
-    UIButton *groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[groups objectAtIndex:0]] + 20, 20)];
-    [groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
-    [groupbtn setTitle:[groups objectAtIndex:0] forState:UIControlStateNormal];
-    [topbar addSubview:groupbtn];
+    _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, 20)];
+    [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
+    [_groupbtn setTitle:[_groups objectAtIndex:0] forState:UIControlStateNormal];
+    [topbar addSubview:_groupbtn];
     
     
-    _btnimage = [[UIImageView alloc] initWithFrame:CGRectMake(groupbtn.frame.origin.x + groupbtn.frame.size.width, 32, 15, 10)];
+    _btnimage = [[UIImageView alloc] initWithFrame:CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10)];
     _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
     [topbar addSubview:_btnimage];
     
@@ -88,10 +88,11 @@
     shoosebtnimageback.image = [UIImage imageNamed:@"w d khhd"];
     [self.view addSubview:shoosebtnimageback];
     
-    UIButton *shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 64, 50, 44)];
-    [shoosebtn setTitle:@"姓名:" forState:UIControlStateNormal];
-    [shoosebtn setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
-    [self.view addSubview:shoosebtn];
+    _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 64, 50, 44)];
+    [_shoosebtn setTitle:@"姓名:" forState:UIControlStateNormal];
+    [_shoosebtn setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
+    [_shoosebtn addTarget:self action:@selector(shoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_shoosebtn];
     
     UIImageView *shoosebtnimage = [[UIImageView alloc] initWithFrame:CGRectMake(50, 82, 15, 10)];
     shoosebtnimage.image = [UIImage imageNamed:@"图片2"];
@@ -109,6 +110,8 @@
 //    self.searchDisplay = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
 //    _searchDisplay.searchResultsDataSource = self;
 //    _searchDisplay.searchResultsDelegate =self;
+    
+    _shooesproject = [[NSMutableArray alloc] initWithObjects:@"项目",@"姓名", nil];
     
 }
 
@@ -192,9 +195,12 @@
         image.image = [UIImage imageNamed:@"yishengwdkh"];
         [btnview addSubview:image];
         
-        grouptableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,btnview.bounds.size.width, btnview.bounds.size.height )];
+        grouptableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 10,btnview.bounds.size.width, btnview.bounds.size.height - 10)];
         grouptableview.tag = 62;
+        grouptableview.delegate = self;
+        grouptableview.dataSource = self;
         grouptableview.backgroundColor = [UIColor clearColor];
+        grouptableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         [btnview addSubview:grouptableview];
         
         
@@ -212,6 +218,39 @@
     
     a++;
 }
+
+-(void)shoosebtnclick
+{
+    static int a = 0;
+    UITableView *projectandname;
+    
+    if (a % 2 == 0) {
+        shoosebtnview = [[UIView alloc] initWithFrame:CGRectMake( 18 , 60 + 40, 80, 70)];
+        [self.view addSubview:shoosebtnview];
+        
+        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, shoosebtnview.bounds.size.width, shoosebtnview.bounds.size.height)];
+        image.image = [UIImage imageNamed:@"yishengwdkh"];
+        [shoosebtnview addSubview:image];
+        
+        projectandname = [[UITableView alloc] initWithFrame:CGRectMake(0, 5,shoosebtnview.bounds.size.width, shoosebtnview.bounds.size.height  - 5)];
+        projectandname.delegate = self;
+        projectandname.dataSource = self;
+        projectandname.tag = 63;
+        projectandname.separatorStyle = UITableViewCellSeparatorStyleNone;
+        projectandname.backgroundColor = [UIColor clearColor];
+        [shoosebtnview addSubview:projectandname];
+        
+        
+    }else{
+        [shoosebtnview removeFromSuperview];
+        shoosebtnview = nil;
+        [projectandname removeFromSuperview];
+        projectandname = nil;
+    }
+    
+    a++;
+}
+
 
 -(void)reloadData
 {
@@ -331,7 +370,7 @@
     if (tableView.tag == 60) {
         return _headnamearray.count;
     }else{
-        return 0;
+        return 1;
     }
 }
 
@@ -340,9 +379,11 @@
     if (tableView.tag == 60) {
         return _mycustomerDataarray.count;
     }else if (tableView.tag == 62){
-        return 4;
+        return _groups.count;
+    }else if (tableView.tag == 63){
+        return 2;
     }else{
-        return 26;
+        return _headnamearray.count;
     }
     
 }
@@ -385,13 +426,27 @@
         if (!cell2) {
             cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         }
-        cell2.textLabel.text = [_headnamearray objectAtIndex:indexPath.row];
+        cell2.textLabel.text = [_groups objectAtIndex:indexPath.row];
         cell2.textLabel.font = [UIFont systemFontOfSize:15];
-        cell2.textLabel.textColor = [UIColor redColor];
-        
+        cell2.textLabel.textColor = [UIColor whiteColor];
         cell2.backgroundColor = [UIColor clearColor];
         
         return cell2;
+        
+    }else if (tableView.tag == 63){
+    
+        static NSString *ident = @"cell3";
+        UITableViewCell *cell3 = [tableView dequeueReusableCellWithIdentifier:ident];
+        if (!cell3) {
+            cell3 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
+        }
+        cell3.textLabel.text = [_shooesproject objectAtIndex:indexPath.row];
+        cell3.textLabel.font = [UIFont systemFontOfSize:15];
+        cell3.textLabel.textColor = [UIColor whiteColor];
+        
+        cell3.backgroundColor = [UIColor clearColor];
+        
+        return cell3;
         
     }else{
     
@@ -401,8 +456,8 @@
             cell1 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         }
         cell1.textLabel.text = [_headnamearray objectAtIndex:indexPath.row];
-        cell1.textLabel.font = [UIFont systemFontOfSize:15];
-        cell1.textLabel.textColor = [UIColor redColor];
+        cell1.textLabel.font = [UIFont systemFontOfSize:12];
+        cell1.textLabel.textColor = [self colorWithRGB:0x00c5bb alpha:1];
     
         return cell1;
     }
@@ -410,7 +465,11 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [_headnamearray objectAtIndex:section];
+    if (tableView.tag == 60) {
+         return [_headnamearray objectAtIndex:section];
+    }else{
+        return nil;
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -427,7 +486,11 @@
         
     }else if (tableView.tag == 62){
     
+        [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
     
+    }else if (tableView.tag == 63){
+        [_shoosebtn setTitle:[_shooesproject objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+        
     }else{
     
         self.firstWord = [_headnamearray objectAtIndex:indexPath.row];
@@ -437,6 +500,17 @@
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView.tag == 62 || tableView.tag == 63) {
+        return 30;
+    }else if (tableView.tag == 60){
+        return 80;
+    }else{
+        return 20;
+    }
+
+}
 
 #pragma mark -- soap请求
 //我的客户
