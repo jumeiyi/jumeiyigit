@@ -14,6 +14,13 @@
 #import "mycustomerdata.h"
 #import "GetCustomerDetailByDoctorSno.h"
 #import "PrefixHeader.pch"
+
+//
+#import "myclientmenbergroupViewController.h"
+#import "myclientdatasViewController.h"
+
+//
+
 @interface MyClientViewController ()
 
 @end
@@ -24,12 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    background.image = [UIImage imageNamed:@"huisebeijing"];
-    background.userInteractionEnabled = YES;
-    [self.view addSubview:background];
-    
+        
     TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     [self.view addSubview:topbar];
 
@@ -56,12 +58,11 @@
     
     _headnamearray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#", nil];
 
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 70, self.view.bounds.size.width, self.view.bounds.size.height - 100)];
+    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64 + 44, self.view.bounds.size.width, self.view.bounds.size.height - (64 + 44))];
     _tableview.delegate = self;
     _tableview.dataSource = self;
-    _tableview.rowHeight = 80;
     _tableview.layer.cornerRadius = 8;
-    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableview.backgroundColor = [UIColor clearColor];
     _tableview.tag = 60;
     [self.view addSubview:_tableview];
@@ -76,11 +77,12 @@
     [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:@"" strPageindex:@"1" strPagesize:@"15"];
     
     
-    UITableView *headnametableview = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 45, 64 + 44, 45, self.view.bounds.size.height - 108 )];
+    UITableView *headnametableview = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40, 64 + 44, 40, self.view.bounds.size.height - 108 )];
     headnametableview.delegate = self;
     headnametableview.dataSource = self;
     headnametableview.rowHeight = 20;
     headnametableview.tag = 61;
+    headnametableview.backgroundColor = [UIColor clearColor];
     headnametableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:headnametableview];
     
@@ -102,8 +104,8 @@
     self.searchBar.delegate =self;
     self.searchBar.placeholder = @"搜索项目，医生";
     self.searchBar.tintColor = [UIColor lightGrayColor];
-//    self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-//    self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
     [self.view addSubview:self.searchBar];
     
@@ -111,7 +113,10 @@
 //    _searchDisplay.searchResultsDataSource = self;
 //    _searchDisplay.searchResultsDelegate =self;
     
-    _shooesproject = [[NSMutableArray alloc] initWithObjects:@"项目",@"姓名", nil];
+    _shooesproject = [[NSMutableArray alloc] initWithObjects:@"姓名",@"项目", nil];
+    
+    self.isgroupes = NO;
+    self.isproject = NO;
     
 }
 
@@ -183,11 +188,17 @@
 
 -(void)groupsbuttonclick
 {
-    static int a = 0;
    
     UITableView *grouptableview;
     
-    if (a % 2 == 0) {
+    if (self.isgroupes == NO) {
+        
+        if (shoosebtnview) {
+            [shoosebtnview removeFromSuperview];
+            shoosebtnview = nil;
+            self.isproject = NO;
+        }
+        
         btnview = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 75 , 50, 150, 200)];
         [self.view addSubview:btnview];
         
@@ -203,29 +214,35 @@
         grouptableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         [btnview addSubview:grouptableview];
         
-        
          _btnimage.image = [UIImage imageNamed:@"yishengwdkhs"];
+        
+        self.isgroupes = YES;
         
     }else{
         [btnview removeFromSuperview];
         btnview = nil;
         [grouptableview removeFromSuperview];
         grouptableview = nil;
-        
+        self.isgroupes = NO;
         _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
     }
-    NSLog(@"&&&&&&------> %d ",a % 2);
-    
-    a++;
+
 }
 
 -(void)shoosebtnclick
 {
-    static int a = 0;
+    
+    _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
     UITableView *projectandname;
     
-    if (a % 2 == 0) {
-        shoosebtnview = [[UIView alloc] initWithFrame:CGRectMake( 18 , 60 + 40, 80, 70)];
+    if (self.isproject == NO) {
+        
+        if (btnview) {
+            [btnview removeFromSuperview];
+            btnview = nil;
+            self.isgroupes = NO;
+        }
+        shoosebtnview = [[UIView alloc] initWithFrame:CGRectMake( 8 , 60 + 40, 60, 70)];
         [self.view addSubview:shoosebtnview];
         
         UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, shoosebtnview.bounds.size.width, shoosebtnview.bounds.size.height)];
@@ -240,15 +257,18 @@
         projectandname.backgroundColor = [UIColor clearColor];
         [shoosebtnview addSubview:projectandname];
         
+        self.isproject = YES;
         
     }else{
         [shoosebtnview removeFromSuperview];
         shoosebtnview = nil;
         [projectandname removeFromSuperview];
         projectandname = nil;
+        
+        self.isproject = NO;
     }
     
-    a++;
+   
 }
 
 
@@ -398,24 +418,41 @@
         myClientCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell) {
             
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"myClientCell" owner:nil options:nil] objectAtIndex:0];
+            cell = [[myClientCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         cell.backgroundColor = [UIColor clearColor];
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 8;
-        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
+//        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
         
-        cell.xiaoview.layer.masksToBounds = YES;
-        cell.xiaoview.layer.cornerRadius = 5;
+        cell.headimage.frame = CGRectMake(20, 13.5, 85, 85);
+        cell.headimage.image = [UIImage imageNamed:@"图片4"];
         
-        cell.customname.text = mycustom.TrueName;
-        cell.customname.font = [UIFont systemFontOfSize:14];
+        cell.name.frame = CGRectMake(120, 20, 100, 20);
+        cell.name.font = [UIFont systemFontOfSize:24];
+        cell.name.text = @" 名称X X";
+        cell.name.textColor = [self colorWithRGB:0x434343 alpha:1];
         
-        cell.customphone.text = mycustom.CellPhone;
-        cell.customphone.font = [UIFont systemFontOfSize:14];
+        cell.project1.frame = CGRectMake(120, 72, [self NSStringwithsize:20 str: @"项目1"] + 20, 25);
+        cell.project1.text = @" 项目1";
+        cell.project1.font = [UIFont systemFontOfSize:20];
+        cell.project1.textColor = [self colorWithRGB:0x707070 alpha:1];
+        cell.project1.backgroundColor = [self colorWithRGB:0xddfffd alpha:1];
         
-        cell.customordproduction.text = mycustom.BuyProductNames;
-        cell.customordproduction.font = [UIFont systemFontOfSize:14];
+        cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:20 str:cell.project1.text] + 20, 72, [self NSStringwithsize:20 str: @"项目2"] + 20, 25);
+        cell.project2.text = @"   项目2";
+        cell.project2.font = [UIFont systemFontOfSize:20];
+        cell.project2.backgroundColor = [self colorWithRGB:0xddfffd alpha:1];
+        cell.project2.textColor = [self colorWithRGB:0x707070 alpha:1];
+        
+        cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:20 str:cell.project2.text] + 20, 72, [self NSStringwithsize:20 str:@"项目3"] + 20, 25);
+        cell.project3.text = @"  项目3";
+        cell.project3.font = [UIFont systemFontOfSize:20];
+        cell.project3.backgroundColor = [self colorWithRGB:0xddfffd alpha:1];
+        cell.project3.textColor = [self colorWithRGB:0x707070 alpha:1];
+        
+        
+        
         
         return cell;
 
@@ -458,6 +495,7 @@
         cell1.textLabel.text = [_headnamearray objectAtIndex:indexPath.row];
         cell1.textLabel.font = [UIFont systemFontOfSize:12];
         cell1.textLabel.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+        cell1.backgroundColor = [UIColor clearColor];
     
         return cell1;
     }
@@ -472,30 +510,67 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
+        view.backgroundColor = [self colorWithRGB:0xeeeeee alpha:1];
+        [tableView addSubview:view];
         
-        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
-        self.customersno = mycustom.Sno;
+        UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 50, 20)];
+        titlelable.text = [_headnamearray objectAtIndex:section];
+        [view addSubview:titlelable];
         
-        GetCustomerDetailByDoctorSno *getcustomdetail = [[GetCustomerDetailByDoctorSno alloc] init];
-        getcustomdetail.mydoctorsno = self.doctorsno;
-        getcustomdetail.mycustomersno = self.customersno;
-        [self.navigationController pushViewController:getcustomdetail animated:YES];
-        
-    }else if (tableView.tag == 62){
-    
-        [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
-    
-    }else if (tableView.tag == 63){
-        [_shoosebtn setTitle:[_shooesproject objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+         return view;
         
     }else{
-    
-        self.firstWord = [_headnamearray objectAtIndex:indexPath.row];
-        [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:self.firstWord strPageindex:@"1" strPagesize:@"40"];
+        
+    return nil;
     }
+
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+//    myclientmenbergroupViewController *myclient = [[myclientmenbergroupViewController alloc] init];
+//    [self.navigationController pushViewController:myclient animated:YES];
+    
+    myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+    [self.navigationController pushViewController:myclient animated:YES];
+    
+//    if (tableView.tag == 60) {
+//        
+//        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
+//        self.customersno = mycustom.Sno;
+//        
+//        GetCustomerDetailByDoctorSno *getcustomdetail = [[GetCustomerDetailByDoctorSno alloc] init];
+//        getcustomdetail.mydoctorsno = self.doctorsno;
+//        getcustomdetail.mycustomersno = self.customersno;
+//        [self.navigationController pushViewController:getcustomdetail animated:YES];
+//        
+//    }else if (tableView.tag == 62){
+//    
+//        _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 5) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, 20);
+//        _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+//        [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
+//        [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+//        [btnview removeFromSuperview];
+//        self.isgroupes = NO;
+//        _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
+//        
+//       
+//    
+//    }else if (tableView.tag == 63){
+//        [_shoosebtn setTitle:[_shooesproject objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+//        [shoosebtnview removeFromSuperview];
+//        self.isproject = NO;
+//    }else{
+//    
+//        self.firstWord = [_headnamearray objectAtIndex:indexPath.row];
+//        [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:self.firstWord strPageindex:@"1" strPagesize:@"40"];
+//    }
 
     
 }
@@ -505,11 +580,22 @@
     if (tableView.tag == 62 || tableView.tag == 63) {
         return 30;
     }else if (tableView.tag == 60){
-        return 80;
+        return 112;
     }else{
         return 20;
     }
 
+}
+
+//设置区头高度
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView.tag == 60) {
+        return 40;
+    }else{
+        return 0;
+    }
+    
 }
 
 #pragma mark -- soap请求

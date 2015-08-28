@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface myClientCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *customname;
-@property (weak, nonatomic) IBOutlet UILabel *customphone;
-@property (weak, nonatomic) IBOutlet UILabel *customordproduction;
-@property (weak, nonatomic) IBOutlet UIView *xiaoview;
+
+@property(nonatomic,retain)UIImageView *headimage;
+@property(nonatomic,retain)UILabel *name;
+@property(nonatomic,retain)UILabel *project1;
+@property(nonatomic,retain)UILabel *project2;
+@property(nonatomic,retain)UILabel *project3;
 
 @end

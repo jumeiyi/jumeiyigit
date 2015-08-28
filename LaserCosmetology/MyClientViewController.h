@@ -42,5 +42,6 @@
 @property (nonatomic,strong)RefreshControl * refreshControl;
 @property(nonatomic,retain)UISearchBar *searchBar;
 @property(nonatomic,retain)UISearchDisplayController *searchDisplay;
-
+@property(nonatomic,assign)BOOL isgroupes;
+@property(nonatomic,assign)BOOL isproject;
 @end

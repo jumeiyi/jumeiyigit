@@ -22,9 +22,9 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
 
-        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0,64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
-        image.image = [UIImage imageNamed:@"huisebeijing"];
-        [self.view addSubview:image];
+    UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0,64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
+    image.image = [UIImage imageNamed:@"huisebeijing"];
+    [self.view addSubview:image];
     
     TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     [self.view addSubview:topbar];
