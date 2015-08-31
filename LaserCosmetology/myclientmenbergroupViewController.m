@@ -39,28 +39,42 @@
     [backbtn addTarget:self action:@selector(comebacksaaa) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:backbtn];
     
+    UIButton *save = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 20, 50, 40)];
+    [save setTitle:@"保存" forState:UIControlStateNormal];
+    save.titleLabel.font = [UIFont systemFontOfSize:16];
+    save.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
+    [topbar addSubview:save];
     
-    UILabel *groupname = [[UILabel alloc] initWithFrame:CGRectMake(20, 80, 120, 25)];
+    UILabel *groupname = [[UILabel alloc] initWithFrame:CGRectMake(20, 64 + 12, 120, 25)];
     groupname.text = @"分组名字";
-    groupname.textColor = [UIColor grayColor];
-    groupname.font = [UIFont systemFontOfSize:20];
+    groupname.textColor = [self colorWithRGB:0x999999 alpha:1];
+    groupname.font = [UIFont systemFontOfSize:15];
     groupname.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:groupname];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 130, self.view.bounds.size.width, 80)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 64 + 45, self.view.bounds.size.width, 45)];
     view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:view];
 
-    UILabel *groupmanber = [[UILabel alloc] initWithFrame:CGRectMake(20, 80 + 160, 120, 25)];
+    UILabel *groupmanber = [[UILabel alloc] initWithFrame:CGRectMake(20, 64 + 90 + 12, 120, 25)];
     groupmanber.text = @"分组成员";
-    groupmanber.textColor = [UIColor grayColor];
-    groupmanber.font = [UIFont systemFontOfSize:20];
+    groupmanber.textColor = [self colorWithRGB:0x999999 alpha:1];
+    groupmanber.font = [UIFont systemFontOfSize:15];
     groupmanber.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:groupmanber];
     
-    UIView *manberview = [[UIView alloc] initWithFrame:CGRectMake(0, 130 + 160, self.view.bounds.size.width, 200)];
+    UIView *manberview = [[UIView alloc] initWithFrame:CGRectMake(0, 64 + 90 + 45, self.view.bounds.size.width, 200)];
     manberview.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:manberview];
+    
+    UIButton *cancelbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 50, self.view.bounds.size.height - 100, 100, 40)];
+    [cancelbtn setTitle:@"删除分组" forState:UIControlStateNormal];
+    cancelbtn.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
+    cancelbtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    cancelbtn.backgroundColor = [self colorWithRGB:0x00c5bb alpha:1];
+    cancelbtn.layer.masksToBounds = YES;
+    cancelbtn.layer.cornerRadius = 3;
+    [self.view addSubview:cancelbtn];
     
     
 }
@@ -68,6 +82,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
+    return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
 }
 
 /*

@@ -16,7 +16,7 @@
 @property(nonatomic,retain)UILabel *age;
 @property(nonatomic,retain)UIImageView *suxian;
 @property(nonatomic,retain)UILabel *city;
-@property(nonatomic,retain)UILabel *payattention;
+@property(nonatomic,retain)UIButton *payattention;
 
 
 @property(nonatomic,retain)UIImageView *titleimage;

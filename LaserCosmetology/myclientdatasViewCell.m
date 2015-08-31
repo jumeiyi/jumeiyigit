@@ -43,7 +43,7 @@
         self.city = [[UILabel alloc] init];
         [self addSubview:self.city];
         
-        self.payattention = [[UILabel alloc] init];
+        self.payattention = [[UIButton alloc] init];
         [self addSubview:self.payattention];
         
         //..............................
@@ -70,6 +70,7 @@
         
         self.date = [[UILabel alloc] init];
         [self addSubview:self.date];
+
         
         self.projectname = [[UILabel alloc] init];
         [self addSubview:self.projectname];

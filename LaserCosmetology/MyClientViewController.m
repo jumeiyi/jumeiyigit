@@ -86,21 +86,22 @@
     headnametableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:headnametableview];
     
-    UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, 70, 44)];
-    shoosebtnimageback.image = [UIImage imageNamed:@"w d khhd"];
+    UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(5, 65, self.view.bounds.size.width - 10, 45)];
+    shoosebtnimageback.image = [UIImage imageNamed:@"sousuobian"];
+    shoosebtnimageback.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:shoosebtnimageback];
     
-    _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 64, 50, 44)];
+    _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 64, 50, 44)];
     [_shoosebtn setTitle:@"姓名:" forState:UIControlStateNormal];
     [_shoosebtn setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
     [_shoosebtn addTarget:self action:@selector(shoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_shoosebtn];
     
-    UIImageView *shoosebtnimage = [[UIImageView alloc] initWithFrame:CGRectMake(50, 82, 15, 10)];
+    UIImageView *shoosebtnimage = [[UIImageView alloc] initWithFrame:CGRectMake(52, 82, 15, 10)];
     shoosebtnimage.image = [UIImage imageNamed:@"图片2"];
     [self.view addSubview:shoosebtnimage];
     
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(70.0f,64, self.view.frame.size.width - 70 , 44.0f)];
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(70.0f,67, self.view.frame.size.width - 80 , 40.0f)];
     self.searchBar.delegate =self;
     self.searchBar.placeholder = @"搜索项目，医生";
     self.searchBar.tintColor = [UIColor lightGrayColor];
@@ -108,6 +109,10 @@
     self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
     [self.view addSubview:self.searchBar];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baisebeijing"]];
+    imageView.backgroundColor = [UIColor clearColor];
+    self.searchBar.backgroundImage = imageView.image;
     
 //    self.searchDisplay = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
 //    _searchDisplay.searchResultsDataSource = self;
@@ -124,13 +129,13 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self.searchBar setText:@""];
-     self.searchBar.frame = CGRectMake(70.0f,64, self.view.frame.size.width - 100 , 44.0f);
+     self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 100 , 40.0f);
     return;
     
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    self.searchBar.frame = CGRectMake(70.0f,64, self.view.frame.size.width - 70 , 44.0f);
+    self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 80 , 40.0f);
     NSLog(@"%@",searchBar.text);
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
@@ -145,7 +150,7 @@
         NSLog(@"searchBar.text---> %@",searchBar.text);
     }
     
-    self.searchBar.frame = CGRectMake(70.0f,64, self.view.frame.size.width - 70 , 44.0f);
+    self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 80 , 40.0f);
 }
 
 
@@ -425,32 +430,37 @@
         cell.layer.cornerRadius = 8;
 //        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
         
-        cell.headimage.frame = CGRectMake(20, 13.5, 85, 85);
+        cell.headimage.frame = CGRectMake(15, 9, 50, 50);
         cell.headimage.image = [UIImage imageNamed:@"图片4"];
         
-        cell.name.frame = CGRectMake(120, 20, 100, 20);
-        cell.name.font = [UIFont systemFontOfSize:24];
+        cell.name.frame = CGRectMake(80, 9, 100, 20);
+        cell.name.font = [UIFont systemFontOfSize:14];
         cell.name.text = @" 名称X X";
-        cell.name.textColor = [self colorWithRGB:0x434343 alpha:1];
+        cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
         
-        cell.project1.frame = CGRectMake(120, 72, [self NSStringwithsize:20 str: @"项目1"] + 20, 25);
-        cell.project1.text = @" 项目1";
-        cell.project1.font = [UIFont systemFontOfSize:20];
-        cell.project1.textColor = [self colorWithRGB:0x707070 alpha:1];
-        cell.project1.backgroundColor = [self colorWithRGB:0xddfffd alpha:1];
+        cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str: @"项目1"] + 20, 21);
+        cell.project1.text = @"   项目1";
+        cell.project1.font = [UIFont systemFontOfSize:11];
+        cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+        cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+        cell.project1.layer.masksToBounds = YES;
+        cell.project1.layer.cornerRadius = 3;
         
-        cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:20 str:cell.project1.text] + 20, 72, [self NSStringwithsize:20 str: @"项目2"] + 20, 25);
+        cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 20, 39, [self NSStringwithsize:11 str: @"项目2"] + 20, 21);
         cell.project2.text = @"   项目2";
-        cell.project2.font = [UIFont systemFontOfSize:20];
-        cell.project2.backgroundColor = [self colorWithRGB:0xddfffd alpha:1];
-        cell.project2.textColor = [self colorWithRGB:0x707070 alpha:1];
+        cell.project2.font = [UIFont systemFontOfSize:11];
+        cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+        cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+        cell.project2.layer.masksToBounds = YES;
+        cell.project2.layer.cornerRadius = 3;
         
-        cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:20 str:cell.project2.text] + 20, 72, [self NSStringwithsize:20 str:@"项目3"] + 20, 25);
+        cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 20, 39, [self NSStringwithsize:11 str:@"项目3"] + 20, 21);
         cell.project3.text = @"  项目3";
-        cell.project3.font = [UIFont systemFontOfSize:20];
-        cell.project3.backgroundColor = [self colorWithRGB:0xddfffd alpha:1];
-        cell.project3.textColor = [self colorWithRGB:0x707070 alpha:1];
-        
+        cell.project3.font = [UIFont systemFontOfSize:11];
+        cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+        cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
+        cell.project3.layer.masksToBounds = YES;
+        cell.project3.layer.cornerRadius = 3;
         
         
         
@@ -513,11 +523,11 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 22)];
         view.backgroundColor = [self colorWithRGB:0xeeeeee alpha:1];
         [tableView addSubview:view];
         
-        UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 50, 20)];
+        UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
         titlelable.text = [_headnamearray objectAtIndex:section];
         [view addSubview:titlelable];
         
@@ -580,7 +590,7 @@
     if (tableView.tag == 62 || tableView.tag == 63) {
         return 30;
     }else if (tableView.tag == 60){
-        return 112;
+        return 68;
     }else{
         return 20;
     }
@@ -591,7 +601,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
-        return 40;
+        return 22;
     }else{
         return 0;
     }
