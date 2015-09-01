@@ -18,6 +18,7 @@
 //
 #import "myclientmenbergroupViewController.h"
 #import "myclientdatasViewController.h"
+#import "myclientobservedisease.h"
 
 //
 
@@ -74,7 +75,7 @@
     _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
     
     self.typeInfo = @"";  self.a = 1;
-    [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:@"" strPageindex:@"1" strPagesize:@"15"];
+   
     
     
     UITableView *headnametableview = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40, 64 + 44, 40, self.view.bounds.size.height - 108 )];
@@ -118,10 +119,14 @@
 //    _searchDisplay.searchResultsDataSource = self;
 //    _searchDisplay.searchResultsDelegate =self;
     
+      _data = [[NSMutableData alloc] init];
+    
     _shooesproject = [[NSMutableArray alloc] initWithObjects:@"姓名",@"项目", nil];
     
     self.isgroupes = NO;
     self.isproject = NO;
+    
+    [self startrequest];
     
 }
 
@@ -161,7 +166,7 @@
         NSLog(@"下拉刷新");
         self.a = 1;
         self.istop = YES;
-         [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:@"" strPageindex:@"1" strPagesize:@"15"];
+        
     }
     else if (direction==RefreshDirectionBottom)
     {
@@ -306,7 +311,7 @@
             self.a++;
             _timer1 = [NSTimer scheduledTimerWithTimeInterval:2.50 target:self selector:@selector(shuaxins) userInfo:nil repeats:NO];
 
-             [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:@"" strPageindex:[NSString stringWithFormat:@"%ld",self.a] strPagesize:@"15"];
+            
             
             NSLog(@"a的值：%ld",self.a);
         }
@@ -326,7 +331,7 @@
     _isLoading = NO;
     [_timer1 invalidate];
     _timer1 = nil;
-    NSLog(@"到底了8899");
+   
 }
 
 
@@ -335,41 +340,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//-(void)xuanxaing:(UIButton *)button
-//{
-//    NSLog(@"button.tag-%ld",button.tag);
-//    
-//    if (button.tag == 20) {
-//        self.typeInfo = @"1";
-//        UIButton *butn1 = (UIButton *)[self.view viewWithTag:21];
-//        UIButton *butn2 = (UIButton *)[self.view viewWithTag:22];
-//        [butn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [butn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//        
-//    }else if (button.tag == 21){
-//        
-//        UIButton *butn1 = (UIButton *)[self.view viewWithTag:20];
-//        UIButton *butn2 = (UIButton *)[self.view viewWithTag:22];
-//        [butn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [butn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//    
-//        self.typeInfo = @"2";
-//    }else{
-//    self.typeInfo = @"3";
-//        
-//        UIButton *butn1 = (UIButton *)[self.view viewWithTag:20];
-//        UIButton *butn2 = (UIButton *)[self.view viewWithTag:21];
-//        [butn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [butn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//    }
-//    
-//    [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:@"" strPageindex:@"1" strPagesize:@"15"];
-//
-//    
-//}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -402,7 +373,8 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
-        return _mycustomerDataarray.count;
+//        return _mycustomerDataarray.count;
+        return 10;
     }else if (tableView.tag == 62){
         return _groups.count;
     }else if (tableView.tag == 63){
@@ -461,7 +433,6 @@
         cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
         cell.project3.layer.masksToBounds = YES;
         cell.project3.layer.cornerRadius = 3;
-        
         
         
         return cell;
@@ -547,7 +518,10 @@
 //    myclientmenbergroupViewController *myclient = [[myclientmenbergroupViewController alloc] init];
 //    [self.navigationController pushViewController:myclient animated:YES];
     
-    myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+//    myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+//    [self.navigationController pushViewController:myclient animated:YES];
+    
+    myclientobservedisease *myclient = [[myclientobservedisease alloc] init];
     [self.navigationController pushViewController:myclient animated:YES];
     
 //    if (tableView.tag == 60) {
@@ -608,179 +582,80 @@
     
 }
 
-#pragma mark -- soap请求
-//我的客户
--(void)soaprequst2WithdoctorSno:(NSString *)doctorSno typeInfo:(NSString *)typeInfo firstWord:(NSString *)firstWord strPageindex:(NSString *)strPageindex strPagesize:(NSString *)strPagesize
+-(void)startrequest
 {
-    //封装soap请求消息
-    NSString *soapMessage = [NSString stringWithFormat:
-                             @"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-                             "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
-                             "<soap:Body>\n"
-                             "<GetCustomerByDoctorSno xmlns=\"Doc\">\n"
-                             "<uid>%@</uid>\n"
-                             "<pwd>%@</pwd>\n"
-                             "<doctorSno>%@</doctorSno>\n"
-                             "<typeInfo>%@</typeInfo>\n"
-                             "<firstWord>%@</firstWord>\n"
-                             "<strPageindex>%@</strPageindex>\n"
-                             "<strPagesize>%@</strPagesize>\n"
-                             "</GetCustomerByDoctorSno>\n"
-                             "</soap:Body>\n"
-                             "</soap:Envelope>\n",UID,PSW,doctorSno,typeInfo,firstWord,strPageindex,strPagesize];
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=serviced&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno];
     
-    //NSLog(@"soapMessage");
-    //请求发送到的路径
-    NSURL *url = [NSURL URLWithString:HTTPREQUESTER];
-    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
-    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
-    
-    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
-    [theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [theRequest addValue: @"Doc/GetCustomerByDoctorSno" forHTTPHeaderField:@"SOAPAction"];
-    
-    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
-    [theRequest setHTTPMethod:@"post"];//这个有时候可以换一下一种请求方式，不然请求方式错了返回的是HTML格式的代码而且得不到返回值
-    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
-    //请求
-    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    
-    //如果连接已经建好，则初始化data
-    if( theConnection )
-    {
-        //webData = [[NSMutableData data] retain];
-        webData = [NSMutableData data];
-    }
-    else
-    {
-        NSLog(@"theConnection is NULL");
-    }
+    [self requstwithurl:string];
 }
 
-#pragma mark SOAP请求方法
+#pragma mark  request
+
+-(void)requstwithurl:(NSString *)str
+{
+    NSURL *urlstr = [NSURL URLWithString:str];
+    
+    NSURLRequest *requst = [NSURLRequest requestWithURL:urlstr];
+    
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:requst delegate:self];
+    
+    [connection start];
+    
+    NSLog(@"url--------%@",urlstr);
+}
+
+#pragma mark  requestdelegate
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"请求失败");
+}
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    [webData setLength: 0];
-    NSHTTPURLResponse *urlresponse = (NSHTTPURLResponse *)response;
-    NSLog(@"状态码----》%ld",(long)[urlresponse statusCode]);
-    NSLog(@"响应头部信息---》%@",[urlresponse allHeaderFields]);
+    NSLog(@"收到响应");
     
+    [_data setData:[NSData data]];
 }
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    [webData appendData:data];
-    //NSLog(@"connection: didReceiveData:2");
+    NSLog(@"请求数据接收");
+    [_data appendData:data];
     
-}
-
-//如果电脑没有连接网络，则出现此信息（不是网络服务器不通）
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"ERROR with theConenction");
-    
-    // NSLog(@"ERROR with theConenction");
-    UIAlertView * alert =
-    [[UIAlertView alloc]
-     initWithTitle:@"提示"
-     message:@"链接超时或无网络!"
-     delegate:self
-     cancelButtonTitle:nil
-     otherButtonTitles:@"OK", nil];
-    [alert show];
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    // NSLog(@"3 DONE. Received Bytes: %ld", [webData length]);
-    NSString *theXML = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-    NSLog(@"我的客户的数据--%@",theXML);
     
-    //        NSString *str = [[NSString alloc] initWithData:webData encoding:NSUTF8StringEncoding];
-    //
-    //
-    //             NSLog(@"请求回来的数据-2--%@",str);
+    // NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
     
-    //重新加載xmlParser
-    //    if( xmlParser )
-    //    {
-    //       // [xmlParser release];
-    //    }
+    //NSLog(@"%@",str);
     
-    xmlParser = [[NSXMLParser alloc] initWithData: webData];
-    [xmlParser setDelegate: self];
-    [xmlParser setShouldResolveExternalEntities: YES];
-    [xmlParser parse];
     
-    // [connection release];
-    //[webData release];
-}
-
-#pragma mark - XML数据接收
--(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *) namespaceURI qualifiedName:(NSString *)qName
-   attributes: (NSDictionary *)attributeDict
-{
+    //JSON解析器
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
     
-    if ([elementName isEqualToString:@"GetCustomerByDoctorSnoResult"]) {
-        
-        [_soapResults setString:@""];//把它置空，准备接收新值。
+    NSLog(@"000000------------%@",dic);
+    
+    NSString *state = [dic objectForKey:@"state"];
+    
+    NSString *msg = [dic objectForKey:@"msg"];
+    
+    if (self.istop == YES) {
+        [_mycustomerDataarray removeAllObjects];
+        self.istop = NO;
     }
     
-
-}
-
-// 找到内容
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    // 如果内容太长,会分多次去读,这里需要拼接(追加)
-    [_soapResults appendString:string];
-}
-
--(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
+    NSMutableArray *customerData = [dic objectForKey:@"customerData"];
+    for (NSDictionary *mycusdiction in customerData) {
+        mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
+        [_mycustomerDataarray addObject:mycustom];
+    }
+    [_tableview reloadData];
     
-    if ([elementName isEqualToString:@"GetCustomerByDoctorSnoResult"]) {
-        
-        
-        
-        NSData *jsonData = [_soapResults dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *err;
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                            options:NSJSONReadingMutableContainers
-                                                              error:&err];
-        NSLog(@"我的客户的数据：dic%@",dic);
-        
-        NSString *state = [dic objectForKey:@"state"];
-        
-        NSString *msg = [dic objectForKey:@"msg"];
-        
-        if (self.istop == YES) {
-            [_mycustomerDataarray removeAllObjects];
-            self.istop = NO;
-        }
-        
-        NSMutableArray *customerData = [dic objectForKey:@"customerData"];
-        for (NSDictionary *mycusdiction in customerData) {
-            mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-            [_mycustomerDataarray addObject:mycustom];
-        }
-        [_tableview reloadData];
-        
-        if ([state isEqualToString:@"0"]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
-        }
+    if ([state isEqualToString:@"0"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
     }
     
-    
 }
 
-- (void)parserDidStartDocument:(NSXMLParser *)parser{
-    NSLog(@"-------------------start--------------");
-    // 创建一个可变字符串
-    _soapResults = [[NSMutableString alloc] initWithCapacity:0];//解析开始了，创建空字符串来存
-    
-}
-- (void)parserDidEndDocument:(NSXMLParser *)parser{
-    NSLog(@"-------------------end--------------");
-}
 
 @end

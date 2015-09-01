@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "RefreshControl.h"
-@interface MyClientViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,NSXMLParserDelegate,RefreshControlDelegate,UISearchBarDelegate>
+@interface MyClientViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,RefreshControlDelegate,UISearchBarDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate,NSXMLParserDelegate>
 
 {
-
     
     NSMutableData *webData;
     NSMutableString *_soapResults;
@@ -32,6 +31,8 @@
     NSMutableArray *_groups;
     UIButton *_groupbtn;
     UIButton *_shoosebtn;
+    
+     NSMutableData *_data;
 }
 @property(nonatomic,assign)BOOL istop;
 @property(nonatomic,retain)NSString *doctorsno;

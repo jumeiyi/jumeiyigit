@@ -11,7 +11,6 @@
 #import "UpLoadingHeadImage.h"
 #import "TopBarView.h"
 #import "mybutton.h"
-#import "pickerimageViewController.h"
 #import "MeiRongRiJi.h"
 #import "PrefixHeader.pch"
 @interface UpLoadingHeadImage ()

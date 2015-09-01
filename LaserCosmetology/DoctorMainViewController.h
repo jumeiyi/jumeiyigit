@@ -46,5 +46,8 @@
 
 @property(nonatomic,retain)UIButton *redbutton;
 @property(nonatomic,retain)UIImageView *redsmlimgae;
+
+@property(nonatomic,assign)BOOL isshonwlertconnection;
+
 @end
 

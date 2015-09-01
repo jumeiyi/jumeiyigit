@@ -223,6 +223,8 @@
     NSString *registID =  [userdf objectForKey:@"registration_id"];
     
     [self soaprequestwithuserSno:self.doctorSno registrationId:registID];
+    
+    self.isshonwlertconnection = NO;
 }
 -(void)isNewLogin
 {
@@ -943,14 +945,20 @@
     NSLog(@"链接失败---ERROR with theConenction");
     
     // NSLog(@"ERROR with theConenction");[error description]
-    UIAlertView * alert =
-    [[UIAlertView alloc]
-     initWithTitle:@"提示"
-     message:@"链接超时或无网络!"
-     delegate:nil
-     cancelButtonTitle:nil
-     otherButtonTitles:@"OK", nil];
-    [alert show];
+    if (self.isshonwlertconnection == NO) {
+        UIAlertView * alert =
+        [[UIAlertView alloc]
+         initWithTitle:@"提示"
+         message:@"链接超时或无网络!"
+         delegate:nil
+         cancelButtonTitle:nil
+         otherButtonTitles:@"OK", nil];
+        [alert show];
+        
+        self.isshonwlertconnection = YES;
+    }
+    
+
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {

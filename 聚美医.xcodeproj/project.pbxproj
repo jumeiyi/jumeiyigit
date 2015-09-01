@@ -498,6 +498,9 @@
 		84CD88901AC3986A00B61664 /* zhuanjiabeijing4.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CD888B1AC3986A00B61664 /* zhuanjiabeijing4.png */; };
 		84CD88931AC39FBE00B61664 /* zhuanjiashuju.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CD88921AC39FBE00B61664 /* zhuanjiashuju.m */; };
 		84CD889D1AC3D6C600B61664 /* shouzhi.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CD889C1AC3D6C600B61664 /* shouzhi.png */; };
+		84D5E0F41B9531AD00C36D23 /* myclientobservedisease.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0F31B9531AD00C36D23 /* myclientobservedisease.m */; };
+		84D5E0F71B95329100C36D23 /* myclientobservediseaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0F61B95329100C36D23 /* myclientobservediseaseCell.m */; };
+		84D5E0FD1B95584400C36D23 /* myclientdiseaseediting.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0FC1B95584400C36D23 /* myclientdiseaseediting.m */; };
 		84D6DBA41B5E547900837A14 /* 首页1_01ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D6DB9F1B5E547900837A14 /* 首页1_01ss.png */; };
 		84D6DBA51B5E547900837A14 /* 首页1_02ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D6DBA01B5E547900837A14 /* 首页1_02ss.png */; };
 		84D6DBA61B5E547900837A14 /* 首页1_03ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D6DBA11B5E547900837A14 /* 首页1_03ss.png */; };
@@ -1190,6 +1193,12 @@
 		84CD88911AC39FBE00B61664 /* zhuanjiashuju.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zhuanjiashuju.h; sourceTree = "<group>"; };
 		84CD88921AC39FBE00B61664 /* zhuanjiashuju.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zhuanjiashuju.m; sourceTree = "<group>"; };
 		84CD889C1AC3D6C600B61664 /* shouzhi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shouzhi.png; sourceTree = "<group>"; };
+		84D5E0F21B9531AD00C36D23 /* myclientobservedisease.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientobservedisease.h; sourceTree = "<group>"; };
+		84D5E0F31B9531AD00C36D23 /* myclientobservedisease.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientobservedisease.m; sourceTree = "<group>"; };
+		84D5E0F51B95329100C36D23 /* myclientobservediseaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientobservediseaseCell.h; sourceTree = "<group>"; };
+		84D5E0F61B95329100C36D23 /* myclientobservediseaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientobservediseaseCell.m; sourceTree = "<group>"; };
+		84D5E0FB1B95584400C36D23 /* myclientdiseaseediting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientdiseaseediting.h; sourceTree = "<group>"; };
+		84D5E0FC1B95584400C36D23 /* myclientdiseaseediting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientdiseaseediting.m; sourceTree = "<group>"; };
 		84D6DB9F1B5E547900837A14 /* 首页1_01ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页1_01ss.png"; sourceTree = "<group>"; };
 		84D6DBA01B5E547900837A14 /* 首页1_02ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页1_02ss.png"; sourceTree = "<group>"; };
 		84D6DBA11B5E547900837A14 /* 首页1_03ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页1_03ss.png"; sourceTree = "<group>"; };
@@ -1865,6 +1874,12 @@
 				846E823F1B902ECB007B2B11 /* myclientdatasViewController.m */,
 				846E82411B903105007B2B11 /* myclientdatasViewCell.h */,
 				846E82421B903105007B2B11 /* myclientdatasViewCell.m */,
+				84D5E0F21B9531AD00C36D23 /* myclientobservedisease.h */,
+				84D5E0F31B9531AD00C36D23 /* myclientobservedisease.m */,
+				84D5E0F51B95329100C36D23 /* myclientobservediseaseCell.h */,
+				84D5E0F61B95329100C36D23 /* myclientobservediseaseCell.m */,
+				84D5E0FB1B95584400C36D23 /* myclientdiseaseediting.h */,
+				84D5E0FC1B95584400C36D23 /* myclientdiseaseediting.m */,
 				84907E781ADE3D44009002BC /* GetCustomerDetailByDoctorSno.h */,
 				84907E791ADE3D44009002BC /* GetCustomerDetailByDoctorSno.m */,
 				84BC7DF21B1D5A1D007830E4 /* checkmedicalredcord.h */,
@@ -2810,6 +2825,7 @@
 				84C2491B1AA2A90100C2C0FC /* UIImageView+HighlightedWebCache.m in Sources */,
 				84BEE9DB1A8B67A500B0F9D6 /* StarBeauticianViewController.m in Sources */,
 				846E82401B902ECB007B2B11 /* myclientdatasViewController.m in Sources */,
+				84D5E0F41B9531AD00C36D23 /* myclientobservedisease.m in Sources */,
 				84C249121AA2A90100C2C0FC /* SDWebImageDecoder.m in Sources */,
 				84E6AC781AFB12C5007BDCB2 /* WEBViewController.m in Sources */,
 				84A83E561B22D779007B7352 /* PerfectDataViewController.m in Sources */,
@@ -2838,6 +2854,7 @@
 				84907E881ADE615E009002BC /* MyCusTomerDetails.m in Sources */,
 				84BF58F81AE236F900CC461D /* BeautyFootprintclvLayout.m in Sources */,
 				84B4D8FF1AF85A84002A92A8 /* CommunicateWithDoctors.m in Sources */,
+				84D5E0F71B95329100C36D23 /* myclientobservediseaseCell.m in Sources */,
 				845EA0CD1B2ACAD8004997E5 /* NewprojectdetailViewController.m in Sources */,
 				84C2C34A1AD13E4C00CD5139 /* RefreshBottomView.m in Sources */,
 				8483D7511AB6A72900AF9B9E /* MyClientViewController.m in Sources */,
@@ -2876,6 +2893,7 @@
 				84C447661AA1ACA900F24402 /* discount.m in Sources */,
 				8483D7491AB6A60C00AF9B9E /* UICollectionViewWaterfallLayout.m in Sources */,
 				84B83F911A8840B8008EE1CA /* ViewController.m in Sources */,
+				84D5E0FD1B95584400C36D23 /* myclientdiseaseediting.m in Sources */,
 				84C249131AA2A90100C2C0FC /* SDWebImageDownloader.m in Sources */,
 				84C249181AA2A90100C2C0FC /* UIImage+GIF.m in Sources */,
 				84C501131AD3C5200083A515 /* moban.m in Sources */,

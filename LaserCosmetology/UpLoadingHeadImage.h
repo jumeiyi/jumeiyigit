@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "pickerimageViewController.h"
-
 @interface UpLoadingHeadImage : UIViewController<NSXMLParserDelegate,UIImagePickerControllerDelegate,sendvaluedelegate,UIAlertViewDelegate>
 
 {
