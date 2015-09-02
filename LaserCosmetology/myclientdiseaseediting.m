@@ -80,7 +80,6 @@
 {
         [_imagearry addObject:imagess];
     
-
         NSData *_data = UIImageJPEGRepresentation(imagess, 0.4f);
         NSString *_encodedImageStr = [_data base64Encoding];
     
@@ -154,12 +153,14 @@
 {
     [self.view endEditing:YES];
 }
+
 -(void)comebacksaaazz
 {
     [self.navigationController popViewControllerAnimated:YES];
     
     
 }
+
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
     
     return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];

@@ -19,6 +19,7 @@
 #import "myclientmenbergroupViewController.h"
 #import "myclientdatasViewController.h"
 #import "myclientobservedisease.h"
+#import "myclientsetgropViewController.h"
 
 //
 
@@ -521,8 +522,11 @@
 //    myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
 //    [self.navigationController pushViewController:myclient animated:YES];
     
-    myclientobservedisease *myclient = [[myclientobservedisease alloc] init];
+    myclientsetgropViewController *myclient = [[myclientsetgropViewController alloc] init];
     [self.navigationController pushViewController:myclient animated:YES];
+    
+//    myclientobservedisease *myclient = [[myclientobservedisease alloc] init];
+//    [self.navigationController pushViewController:myclient animated:YES];
     
 //    if (tableView.tag == 60) {
 //        

@@ -120,7 +120,7 @@
         cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
         
         cell.sex.frame = CGRectMake(150, 26, 15, 15);
-        cell.sex.image = [UIImage imageNamed:@"素材4-2"];
+        cell.sex.image = [UIImage imageNamed:@"sucaisiganger"];
         
         cell.age.frame = CGRectMake(100, 55, 50, 20);
         cell.age.font = [UIFont systemFontOfSize:14];

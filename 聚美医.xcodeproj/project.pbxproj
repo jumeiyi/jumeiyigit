@@ -392,6 +392,10 @@
 		84BFD2261AEA20F0008620BA /* xiaoliebiaohuisedi.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BFD2251AEA20F0008620BA /* xiaoliebiaohuisedi.png */; };
 		84C057901B04900F002A067F /* chatfrom_bg_normalss.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C0578E1B04900F002A067F /* chatfrom_bg_normalss.png */; };
 		84C057911B04900F002A067F /* chatto_bg_normalss.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C0578F1B04900F002A067F /* chatto_bg_normalss.png */; };
+		84C0C3541B968E5D0034C2F6 /* huisegouxuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C0C3521B968E5D0034C2F6 /* huisegouxuan.png */; };
+		84C0C3551B968E5D0034C2F6 /* huisekuang.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C0C3531B968E5D0034C2F6 /* huisekuang.png */; };
+		84C0C3581B968FCA0034C2F6 /* myclientsetgropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0C3571B968FC90034C2F6 /* myclientsetgropViewController.m */; };
+		84C0C35B1B968FF30034C2F6 /* myclientsetgropCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0C35A1B968FF30034C2F6 /* myclientsetgropCell.m */; };
 		84C0C8A41B1BF71E00246393 /* 更多_02e.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C0C8A31B1BF71E00246393 /* 更多_02e.png */; };
 		84C0FEDF1AD67B2B0098F453 /* GongNengSheZhi.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0FEDE1AD67B2B0098F453 /* GongNengSheZhi.m */; };
 		84C0FEE61AD6865C0098F453 /* caojuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C0FEE31AD6865C0098F453 /* caojuan.png */; };
@@ -1037,6 +1041,12 @@
 		84BFD2251AEA20F0008620BA /* xiaoliebiaohuisedi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoliebiaohuisedi.png; sourceTree = "<group>"; };
 		84C0578E1B04900F002A067F /* chatfrom_bg_normalss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatfrom_bg_normalss.png; sourceTree = "<group>"; };
 		84C0578F1B04900F002A067F /* chatto_bg_normalss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatto_bg_normalss.png; sourceTree = "<group>"; };
+		84C0C3521B968E5D0034C2F6 /* huisegouxuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = huisegouxuan.png; sourceTree = "<group>"; };
+		84C0C3531B968E5D0034C2F6 /* huisekuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = huisekuang.png; sourceTree = "<group>"; };
+		84C0C3561B968FC90034C2F6 /* myclientsetgropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientsetgropViewController.h; sourceTree = "<group>"; };
+		84C0C3571B968FC90034C2F6 /* myclientsetgropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientsetgropViewController.m; sourceTree = "<group>"; };
+		84C0C3591B968FF30034C2F6 /* myclientsetgropCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientsetgropCell.h; sourceTree = "<group>"; };
+		84C0C35A1B968FF30034C2F6 /* myclientsetgropCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientsetgropCell.m; sourceTree = "<group>"; };
 		84C0C8A31B1BF71E00246393 /* 更多_02e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "更多_02e.png"; sourceTree = "<group>"; };
 		84C0FEDD1AD67B2B0098F453 /* GongNengSheZhi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GongNengSheZhi.h; sourceTree = "<group>"; };
 		84C0FEDE1AD67B2B0098F453 /* GongNengSheZhi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GongNengSheZhi.m; sourceTree = "<group>"; };
@@ -1414,6 +1424,8 @@
 		846E82441B9054D2007B2B11 /* myclient */ = {
 			isa = PBXGroup;
 			children = (
+				84C0C3521B968E5D0034C2F6 /* huisegouxuan.png */,
+				84C0C3531B968E5D0034C2F6 /* huisekuang.png */,
 				846ECE5D1B943700003823AA /* fengeian.png */,
 				846ECE5E1B943700003823AA /* zhuyefenge.png */,
 				846ECE331B93E36B003823AA /* sousuobian.png */,
@@ -1880,6 +1892,10 @@
 				84D5E0F61B95329100C36D23 /* myclientobservediseaseCell.m */,
 				84D5E0FB1B95584400C36D23 /* myclientdiseaseediting.h */,
 				84D5E0FC1B95584400C36D23 /* myclientdiseaseediting.m */,
+				84C0C3561B968FC90034C2F6 /* myclientsetgropViewController.h */,
+				84C0C3571B968FC90034C2F6 /* myclientsetgropViewController.m */,
+				84C0C3591B968FF30034C2F6 /* myclientsetgropCell.h */,
+				84C0C35A1B968FF30034C2F6 /* myclientsetgropCell.m */,
 				84907E781ADE3D44009002BC /* GetCustomerDetailByDoctorSno.h */,
 				84907E791ADE3D44009002BC /* GetCustomerDetailByDoctorSno.m */,
 				84BC7DF21B1D5A1D007830E4 /* checkmedicalredcord.h */,
@@ -2619,6 +2635,7 @@
 				84BC7E051B1D84A9007830E4 /* 个人中心4_02.png in Resources */,
 				84AC813C1B4110DA009A00E3 /* Icon-Small-50.png in Resources */,
 				84C0FEFD1AD69BEB0098F453 /* mymakerCell.xib in Resources */,
+				84C0C3551B968E5D0034C2F6 /* huisekuang.png in Resources */,
 				847CACA41B43BD1A0059C8C6 /* PushConfig.plist in Resources */,
 				8478C0B51B8D5B9000768326 /* 图片2.png in Resources */,
 				84C232331AA018C40087EA6B /* meirongzhuanjia_0502.png in Resources */,
@@ -2715,6 +2732,7 @@
 				84A83E511B22D4DB007B7352 /* 完善资料_02.png in Resources */,
 				84BC7E0C1B1D84A9007830E4 /* 个人中心4_12.png in Resources */,
 				8481B2671B72FE4E00FADA49 /* 素材7.png in Resources */,
+				84C0C3541B968E5D0034C2F6 /* huisegouxuan.png in Resources */,
 				84AC81341B4110DA009A00E3 /* Icon-76.png in Resources */,
 				84CABE871A8C3F7600306B93 /* duigouh.png in Resources */,
 				84A0A6401B4FA67A002566A6 /* liulan.png in Resources */,
@@ -2886,6 +2904,7 @@
 				84C0FEFC1AD69BEB0098F453 /* mymakerCell.m in Sources */,
 				84C2491D1AA2A90100C2C0FC /* UIView+WebCacheOperation.m in Sources */,
 				846566541AFAF550009CAC86 /* QRCodeReaderViewController.m in Sources */,
+				84C0C35B1B968FF30034C2F6 /* myclientsetgropCell.m in Sources */,
 				844632FA1AF211DA00D0C585 /* MyAppointmentCollectionVC.m in Sources */,
 				84BDFFF41B2BE27F00789CE3 /* ProjectpersentTableViewCell.m in Sources */,
 				841FA6471AF3336A00FBB6CB /* MyAppointmentViewController.m in Sources */,
@@ -2895,6 +2914,7 @@
 				84B83F911A8840B8008EE1CA /* ViewController.m in Sources */,
 				84D5E0FD1B95584400C36D23 /* myclientdiseaseediting.m in Sources */,
 				84C249131AA2A90100C2C0FC /* SDWebImageDownloader.m in Sources */,
+				84C0C3581B968FCA0034C2F6 /* myclientsetgropViewController.m in Sources */,
 				84C249181AA2A90100C2C0FC /* UIImage+GIF.m in Sources */,
 				84C501131AD3C5200083A515 /* moban.m in Sources */,
 				8404B2631B03613800B27353 /* ChatWithTheDoctor.m in Sources */,
