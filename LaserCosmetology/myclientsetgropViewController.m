@@ -53,6 +53,12 @@
     [self.view addSubview:self.mytableview];
     
     _titleary = [[NSMutableArray alloc] initWithObjects:@"今年组 （40） ",@"美女第一组 （30） ",@"帅哥二组 （10）",@"帅哥又美女组 （100）", nil];
+    
+    NSMutableArray *Yary  = [[NSMutableArray alloc] initWithCapacity:0];
+    for (int a = 0; a < _titleary.count; a++) {
+        [Yary addObject:@"y"];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

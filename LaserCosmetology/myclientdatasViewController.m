@@ -219,6 +219,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSLog(@"我点击了");
 }
 
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{

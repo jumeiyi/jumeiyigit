@@ -20,6 +20,7 @@
 #import "myclientdatasViewController.h"
 #import "myclientobservedisease.h"
 #import "myclientsetgropViewController.h"
+#import "myclientTheConditionRecordViewController.h"
 
 //
 
@@ -519,11 +520,14 @@
 //    myclientmenbergroupViewController *myclient = [[myclientmenbergroupViewController alloc] init];
 //    [self.navigationController pushViewController:myclient animated:YES];
     
-//    myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+    myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+    [self.navigationController pushViewController:myclient animated:YES];
+    
+//    myclientsetgropViewController *myclient = [[myclientsetgropViewController alloc] init];
 //    [self.navigationController pushViewController:myclient animated:YES];
     
-    myclientsetgropViewController *myclient = [[myclientsetgropViewController alloc] init];
-    [self.navigationController pushViewController:myclient animated:YES];
+//    myclientTheConditionRecordViewController *myclient = [[myclientTheConditionRecordViewController alloc] init];
+//    [self.navigationController pushViewController:myclient animated:YES];
     
 //    myclientobservedisease *myclient = [[myclientobservedisease alloc] init];
 //    [self.navigationController pushViewController:myclient animated:YES];

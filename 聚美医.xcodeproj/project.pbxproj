@@ -235,6 +235,8 @@
 		84907E881ADE615E009002BC /* MyCusTomerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 84907E871ADE615E009002BC /* MyCusTomerDetails.m */; };
 		849130721B7A15CC00947EE5 /* 素材4.png in Resources */ = {isa = PBXBuildFile; fileRef = 849130711B7A15CC00947EE5 /* 素材4.png */; };
 		849364151AD9093A0003A892 /* evaluateDoctorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 849364141AD9093A0003A892 /* evaluateDoctorData.m */; };
+		849AEC2C1B9D1798008C1C49 /* myclientTheConditionRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849AEC2B1B9D1798008C1C49 /* myclientTheConditionRecordViewController.m */; };
+		849AEC321B9D3383008C1C49 /* myclientTheConditionRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 849AEC311B9D3383008C1C49 /* myclientTheConditionRecord.m */; };
 		849F68FC1AE63F3E00C6B32F /* zujigerenzhongxinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F68FB1AE63F3E00C6B32F /* zujigerenzhongxinViewController.m */; };
 		849F68FF1AE6424B00C6B32F /* gerenzujiCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F68FE1AE6424B00C6B32F /* gerenzujiCollectionViewCell.m */; };
 		849F69021AE6427A00C6B32F /* gerenzujiViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F69011AE6427A00C6B32F /* gerenzujiViewLayout.m */; };
@@ -826,6 +828,10 @@
 		849130711B7A15CC00947EE5 /* 素材4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "素材4.png"; sourceTree = "<group>"; };
 		849364131AD9093A0003A892 /* evaluateDoctorData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evaluateDoctorData.h; sourceTree = "<group>"; };
 		849364141AD9093A0003A892 /* evaluateDoctorData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evaluateDoctorData.m; sourceTree = "<group>"; };
+		849AEC2A1B9D1798008C1C49 /* myclientTheConditionRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientTheConditionRecordViewController.h; sourceTree = "<group>"; };
+		849AEC2B1B9D1798008C1C49 /* myclientTheConditionRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientTheConditionRecordViewController.m; sourceTree = "<group>"; };
+		849AEC301B9D3383008C1C49 /* myclientTheConditionRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientTheConditionRecord.h; sourceTree = "<group>"; };
+		849AEC311B9D3383008C1C49 /* myclientTheConditionRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientTheConditionRecord.m; sourceTree = "<group>"; };
 		849F68FA1AE63F3E00C6B32F /* zujigerenzhongxinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zujigerenzhongxinViewController.h; sourceTree = "<group>"; };
 		849F68FB1AE63F3E00C6B32F /* zujigerenzhongxinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zujigerenzhongxinViewController.m; sourceTree = "<group>"; };
 		849F68FD1AE6424B00C6B32F /* gerenzujiCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gerenzujiCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1896,6 +1902,10 @@
 				84C0C3571B968FC90034C2F6 /* myclientsetgropViewController.m */,
 				84C0C3591B968FF30034C2F6 /* myclientsetgropCell.h */,
 				84C0C35A1B968FF30034C2F6 /* myclientsetgropCell.m */,
+				849AEC2A1B9D1798008C1C49 /* myclientTheConditionRecordViewController.h */,
+				849AEC2B1B9D1798008C1C49 /* myclientTheConditionRecordViewController.m */,
+				849AEC301B9D3383008C1C49 /* myclientTheConditionRecord.h */,
+				849AEC311B9D3383008C1C49 /* myclientTheConditionRecord.m */,
 				84907E781ADE3D44009002BC /* GetCustomerDetailByDoctorSno.h */,
 				84907E791ADE3D44009002BC /* GetCustomerDetailByDoctorSno.m */,
 				84BC7DF21B1D5A1D007830E4 /* checkmedicalredcord.h */,
@@ -2814,6 +2824,7 @@
 				845EA0D41B2ADFE2004997E5 /* NewExpertViewCell.m in Sources */,
 				844563E21B4A603C007D5615 /* MyPoIntWebViewController.m in Sources */,
 				845EA0C21B2A8E93004997E5 /* beautymennutViewController.m in Sources */,
+				849AEC321B9D3383008C1C49 /* myclientTheConditionRecord.m in Sources */,
 				846566571AFAF550009CAC86 /* QRCameraSwitchButton.m in Sources */,
 				847D3ED91AC42070006EFA13 /* AudioStreamer.m in Sources */,
 				8467E90F1B2E690C00921558 /* DetailsOfTheProject2.m in Sources */,
@@ -2825,6 +2836,7 @@
 				84C2491C1AA2A90100C2C0FC /* UIImageView+WebCache.m in Sources */,
 				84C2C34B1AD13E4C00CD5139 /* RefreshTopView.m in Sources */,
 				84B3E0C21B297F9400AA0410 /* DoctorRegistViewController.m in Sources */,
+				849AEC2C1B9D1798008C1C49 /* myclientTheConditionRecordViewController.m in Sources */,
 				84C299431AC7FAB600465DFE /* zhuanjialiebiao.m in Sources */,
 				84BEC3D91AAD33FA008C6664 /* DoctorMainViewController.m in Sources */,
 				84C36B441ACAA556009F8645 /* customercenter.m in Sources */,
