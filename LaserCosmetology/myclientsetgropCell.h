@@ -12,4 +12,5 @@
 
 @property(nonatomic,retain)UILabel *grouplable;
 @property(nonatomic,retain)UIImageView *shooseimage;
+
 @end

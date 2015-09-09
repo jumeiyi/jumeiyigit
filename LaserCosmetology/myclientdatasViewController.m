@@ -11,6 +11,11 @@
 #import "TopBarView.h"
 #import "PrefixHeader.pch"
 
+#import "myclientmenbergroupViewController.h"
+#import "myclientobservedisease.h"
+#import "myclientsetgropViewController.h"
+#import "myclientTheConditionRecordViewController.h"
+
 @interface myclientdatasViewController ()
 
 @end
@@ -29,7 +34,7 @@
     [self.view addSubview:topbar];
     
     UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-    titilelable.text = @"#客户姓名#";
+    titilelable.text = @"客户姓名";
     titilelable.textColor = [UIColor whiteColor];
     titilelable.font = [UIFont systemFontOfSize:22];
     titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
@@ -220,7 +225,27 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSLog(@"我点击了");
+    if (indexPath.section == 1) {
+        
+        if (indexPath.row == 2) {
+                myclientsetgropViewController *myclient = [[myclientsetgropViewController alloc] init];
+                [self.navigationController pushViewController:myclient animated:YES];
+        }
+    }else if (indexPath.section == 2){
+        if (indexPath.row != 0) {
+            myclientobservedisease *myclient = [[myclientobservedisease alloc] init];
+            [self.navigationController pushViewController:myclient animated:YES];
+        }
+
+    }
+    
+    
+
+    
+//
+//    myclientTheConditionRecordViewController *myclient = [[myclientTheConditionRecordViewController alloc] init];
+//    [self.navigationController pushViewController:myclient animated:YES];
+   
 }
 
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{

@@ -227,6 +227,8 @@
 		8488904D1AE4E3D800DFE28F /* yiqiangguang.png in Resources */ = {isa = PBXBuildFile; fileRef = 848890491AE4E3D800DFE28F /* yiqiangguang.png */; };
 		848890501AE4F11100DFE28F /* youhuihuodong.m in Sources */ = {isa = PBXBuildFile; fileRef = 8488904F1AE4F11100DFE28F /* youhuihuodong.m */; };
 		848890521AE5059A00DFE28F /* xiaohengxian.png in Resources */ = {isa = PBXBuildFile; fileRef = 848890511AE5059A00DFE28F /* xiaohengxian.png */; };
+		848ED7B51B9EC33900A813A2 /* myclientmainsetgropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848ED7B41B9EC33900A813A2 /* myclientmainsetgropViewController.m */; };
+		848ED7B81B9EC36600A813A2 /* myclientgroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 848ED7B71B9EC36600A813A2 /* myclientgroupTableViewCell.m */; };
 		84903F0C1B535B4E006C78C5 /* BeautyFootTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84903F0B1B535B4E006C78C5 /* BeautyFootTableViewCell.m */; };
 		84907E771ADE18E1009002BC /* mycustomerdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 84907E761ADE18E1009002BC /* mycustomerdata.m */; };
 		84907E7A1ADE3D44009002BC /* GetCustomerDetailByDoctorSno.m in Sources */ = {isa = PBXBuildFile; fileRef = 84907E791ADE3D44009002BC /* GetCustomerDetailByDoctorSno.m */; };
@@ -814,6 +816,10 @@
 		8488904E1AE4F11100DFE28F /* youhuihuodong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = youhuihuodong.h; sourceTree = "<group>"; };
 		8488904F1AE4F11100DFE28F /* youhuihuodong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = youhuihuodong.m; sourceTree = "<group>"; };
 		848890511AE5059A00DFE28F /* xiaohengxian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaohengxian.png; sourceTree = "<group>"; };
+		848ED7B31B9EC33900A813A2 /* myclientmainsetgropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientmainsetgropViewController.h; sourceTree = "<group>"; };
+		848ED7B41B9EC33900A813A2 /* myclientmainsetgropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientmainsetgropViewController.m; sourceTree = "<group>"; };
+		848ED7B61B9EC36600A813A2 /* myclientgroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientgroupTableViewCell.h; sourceTree = "<group>"; };
+		848ED7B71B9EC36600A813A2 /* myclientgroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientgroupTableViewCell.m; sourceTree = "<group>"; };
 		84903F0A1B535B4E006C78C5 /* BeautyFootTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeautyFootTableViewCell.h; sourceTree = "<group>"; };
 		84903F0B1B535B4E006C78C5 /* BeautyFootTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeautyFootTableViewCell.m; sourceTree = "<group>"; };
 		84907E751ADE18E1009002BC /* mycustomerdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mycustomerdata.h; sourceTree = "<group>"; };
@@ -1886,6 +1892,10 @@
 				8483D7501AB6A72900AF9B9E /* MyClientViewController.m */,
 				8483D74A1AB6A6F600AF9B9E /* myClientCell.h */,
 				8483D74B1AB6A6F600AF9B9E /* myClientCell.m */,
+				848ED7B31B9EC33900A813A2 /* myclientmainsetgropViewController.h */,
+				848ED7B41B9EC33900A813A2 /* myclientmainsetgropViewController.m */,
+				848ED7B61B9EC36600A813A2 /* myclientgroupTableViewCell.h */,
+				848ED7B71B9EC36600A813A2 /* myclientgroupTableViewCell.m */,
 				846E823B1B900794007B2B11 /* myclientmenbergroupViewController.h */,
 				846E823C1B900794007B2B11 /* myclientmenbergroupViewController.m */,
 				846E823E1B902ECB007B2B11 /* myclientdatasViewController.h */,
@@ -2813,6 +2823,7 @@
 				84C1EA761AC4F67600683A0B /* begoogatbeauty.m in Sources */,
 				844632FD1AF2125100D0C585 /* MyAppointmentViewLayout.m in Sources */,
 				84BF195F1AA6D4E100DA1183 /* MySecretaryVC.m in Sources */,
+				848ED7B81B9EC36600A813A2 /* myclientgroupTableViewCell.m in Sources */,
 				84A41D5F1B0C9A42008ECCC2 /* doctorSuccessdetaile.m in Sources */,
 				84C5D54C1ABFA0B900A4A314 /* contentViewCell.m in Sources */,
 				844633351AF2551600D0C585 /* MyExpertViewLayout.m in Sources */,
@@ -2820,6 +2831,7 @@
 				84D7E7481B05EDA800364B16 /* caremuban.m in Sources */,
 				84C249161AA2A90100C2C0FC /* SDWebImagePrefetcher.m in Sources */,
 				84BF58FB1AE2375200CC461D /* BeautyFootclViewCell.m in Sources */,
+				848ED7B51B9EC33900A813A2 /* myclientmainsetgropViewController.m in Sources */,
 				8483D7661AB6A75A00AF9B9E /* CustomerCareViewController.m in Sources */,
 				845EA0D41B2ADFE2004997E5 /* NewExpertViewCell.m in Sources */,
 				844563E21B4A603C007D5615 /* MyPoIntWebViewController.m in Sources */,

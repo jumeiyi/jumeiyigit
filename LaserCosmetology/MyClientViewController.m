@@ -15,14 +15,8 @@
 #import "GetCustomerDetailByDoctorSno.h"
 #import "PrefixHeader.pch"
 
-//
-#import "myclientmenbergroupViewController.h"
 #import "myclientdatasViewController.h"
-#import "myclientobservedisease.h"
-#import "myclientsetgropViewController.h"
-#import "myclientTheConditionRecordViewController.h"
-
-//
+#import "myclientmainsetgropViewController.h"
 
 @interface MyClientViewController ()
 
@@ -366,7 +360,7 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView.tag == 60) {
-        return _headnamearray.count;
+        return _headnamearray.count + 1;
     }else{
         return 1;
     }
@@ -375,8 +369,12 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
-//        return _mycustomerDataarray.count;
-        return 10;
+
+        if (section == 0) {
+            return 1;
+        }else{
+        return 3;
+        }
     }else if (tableView.tag == 62){
         return _groups.count;
     }else if (tableView.tag == 63){
@@ -404,37 +402,66 @@
         cell.layer.cornerRadius = 8;
 //        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
         
-        cell.headimage.frame = CGRectMake(15, 9, 50, 50);
-        cell.headimage.image = [UIImage imageNamed:@"图片4"];
+        cell.headimage.frame = CGRectMake(0, 0, 0, 0);
+        cell.headimage.image = [UIImage imageNamed:@""];
         
-        cell.name.frame = CGRectMake(80, 9, 100, 20);
-        cell.name.font = [UIFont systemFontOfSize:14];
+        cell.name.frame = CGRectMake(0, 0, 0, 0);
         cell.name.text = @" 名称X X";
-        cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
         
-        cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str: @"项目1"] + 20, 21);
-        cell.project1.text = @"   项目1";
-        cell.project1.font = [UIFont systemFontOfSize:11];
-        cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
-        cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-        cell.project1.layer.masksToBounds = YES;
-        cell.project1.layer.cornerRadius = 3;
+        cell.project1.frame = CGRectMake(0, 0, 0, 0);
+        cell.project1.text = @"";
         
-        cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 20, 39, [self NSStringwithsize:11 str: @"项目2"] + 20, 21);
-        cell.project2.text = @"   项目2";
-        cell.project2.font = [UIFont systemFontOfSize:11];
-        cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-        cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
-        cell.project2.layer.masksToBounds = YES;
-        cell.project2.layer.cornerRadius = 3;
+        cell.project2.frame = CGRectMake(0, 0, 0, 0);
+        cell.project2.text = @"";
         
-        cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 20, 39, [self NSStringwithsize:11 str:@"项目3"] + 20, 21);
-        cell.project3.text = @"  项目3";
-        cell.project3.font = [UIFont systemFontOfSize:11];
-        cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-        cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
-        cell.project3.layer.masksToBounds = YES;
-        cell.project3.layer.cornerRadius = 3;
+        cell.project3.frame = CGRectMake(0, 0, 0, 0);
+        cell.project3.text = @"";
+
+        
+        if (indexPath.section == 0) {
+            
+            cell.headimage.frame = CGRectMake(15, 9, 50, 50);
+            cell.headimage.image = [UIImage imageNamed:@"图片4"];
+            
+            cell.name.frame = CGRectMake(80, 25, 100, 20);
+            cell.name.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+            cell.name.text = @"分组";
+            cell.name.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+            
+        }else{
+        
+            cell.headimage.frame = CGRectMake(15, 9, 50, 50);
+            cell.headimage.image = [UIImage imageNamed:@"图片4"];
+            
+            cell.name.frame = CGRectMake(80, 9, 100, 20);
+            cell.name.font = [UIFont systemFontOfSize:14];
+            cell.name.text = @" 名称X X";
+            cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
+            
+            cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str: @"项目1"] + 20, 21);
+            cell.project1.text = @"   项目1";
+            cell.project1.font = [UIFont systemFontOfSize:11];
+            cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+            cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+            cell.project1.layer.masksToBounds = YES;
+            cell.project1.layer.cornerRadius = 3;
+            
+            cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 20, 39, [self NSStringwithsize:11 str: @"项目2"] + 20, 21);
+            cell.project2.text = @"   项目2";
+            cell.project2.font = [UIFont systemFontOfSize:11];
+            cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+            cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+            cell.project2.layer.masksToBounds = YES;
+            cell.project2.layer.cornerRadius = 3;
+            
+            cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 20, 39, [self NSStringwithsize:11 str:@"项目3"] + 20, 21);
+            cell.project3.text = @"  项目3";
+            cell.project3.font = [UIFont systemFontOfSize:11];
+            cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+            cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
+            cell.project3.layer.masksToBounds = YES;
+            cell.project3.layer.cornerRadius = 3;
+        }
         
         
         return cell;
@@ -484,14 +511,14 @@
     }
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (tableView.tag == 60) {
-         return [_headnamearray objectAtIndex:section];
-    }else{
-        return nil;
-    }
-}
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    if (tableView.tag == 60) {
+//         return [_headnamearray objectAtIndex:section] ;
+//    }else{
+//        return nil;
+//    }
+//}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -500,9 +527,14 @@
         view.backgroundColor = [self colorWithRGB:0xeeeeee alpha:1];
         [tableView addSubview:view];
         
-        UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
-        titlelable.text = [_headnamearray objectAtIndex:section];
-        [view addSubview:titlelable];
+        if (section == 0) {
+            return nil;
+        }else{
+            UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
+            titlelable.text = [_headnamearray objectAtIndex:section - 1];
+            [view addSubview:titlelable];
+        }
+
         
          return view;
         
@@ -517,20 +549,16 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-//    myclientmenbergroupViewController *myclient = [[myclientmenbergroupViewController alloc] init];
-//    [self.navigationController pushViewController:myclient animated:YES];
+    if (indexPath.section != 0) {
+        myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+        [self.navigationController pushViewController:myclient animated:YES];
+    }
     
-    myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
-    [self.navigationController pushViewController:myclient animated:YES];
-    
-//    myclientsetgropViewController *myclient = [[myclientsetgropViewController alloc] init];
-//    [self.navigationController pushViewController:myclient animated:YES];
-    
-//    myclientTheConditionRecordViewController *myclient = [[myclientTheConditionRecordViewController alloc] init];
-//    [self.navigationController pushViewController:myclient animated:YES];
-    
-//    myclientobservedisease *myclient = [[myclientobservedisease alloc] init];
-//    [self.navigationController pushViewController:myclient animated:YES];
+    if (indexPath.section == 0) {
+        myclientmainsetgropViewController *myclient = [[myclientmainsetgropViewController alloc] init];
+        [self.navigationController pushViewController:myclient animated:YES];
+    }
+
     
 //    if (tableView.tag == 60) {
 //        
@@ -635,7 +663,6 @@
     // NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
     
     //NSLog(@"%@",str);
-    
     
     //JSON解析器
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];

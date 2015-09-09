@@ -27,7 +27,6 @@
     
     NSMutableArray *_yuyueRetary;
     
-     
     
 }
 @property(nonatomic,retain)UIPickerView *pickerview;

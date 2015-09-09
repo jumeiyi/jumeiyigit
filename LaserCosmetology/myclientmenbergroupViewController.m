@@ -67,6 +67,16 @@
     manberview.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:manberview];
     
+    
+    UIButton *addbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 17, 50, 50)];
+    [addbtn setBackgroundImage:[UIImage imageNamed:@"yuanxingjia"] forState:UIControlStateNormal];
+    [manberview addSubview:addbtn];
+    
+    UIButton *addbtn2 = [[UIButton alloc] initWithFrame:CGRectMake(90, 17, 50, 50)];
+    [addbtn2 setBackgroundImage:[UIImage imageNamed:@"yuanxingjian"] forState:UIControlStateNormal];
+    [manberview addSubview:addbtn2];
+    
+    
     UIButton *cancelbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 50, self.view.bounds.size.height - 100, 100, 40)];
     [cancelbtn setTitle:@"删除分组" forState:UIControlStateNormal];
     cancelbtn.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
