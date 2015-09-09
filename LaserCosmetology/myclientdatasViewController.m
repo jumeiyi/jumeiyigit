@@ -193,6 +193,7 @@
             [cell.inspect setTitle:@"查看病历" forState:UIControlStateNormal];
             [cell.inspect setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
             [cell.inspect setBackgroundImage:[UIImage imageNamed:@"guanzhudi"] forState:UIControlStateNormal];
+            cell.inspect.userInteractionEnabled = NO;
             cell.inspect.titleLabel.font = [UIFont systemFontOfSize:14];
         }
 

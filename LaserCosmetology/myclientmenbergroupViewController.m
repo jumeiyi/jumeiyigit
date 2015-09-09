@@ -8,6 +8,9 @@
 
 #import "myclientmenbergroupViewController.h"
 #import "TopBarView.h"
+#import "mycustomerdata.h"
+#import "PrefixHeader.pch"
+#import "myclientMenberGroupArrayViewController.h"
 
 @interface myclientmenbergroupViewController ()
 
@@ -70,6 +73,7 @@
     
     UIButton *addbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 17, 50, 50)];
     [addbtn setBackgroundImage:[UIImage imageNamed:@"yuanxingjia"] forState:UIControlStateNormal];
+    [addbtn addTarget:self action:@selector(addGroupmanberbtn) forControlEvents:UIControlEventTouchUpInside];
     [manberview addSubview:addbtn];
     
     UIButton *addbtn2 = [[UIButton alloc] initWithFrame:CGRectMake(90, 17, 50, 50)];
@@ -86,6 +90,11 @@
     cancelbtn.layer.cornerRadius = 3;
     [self.view addSubview:cancelbtn];
     
+    
+    _data = [[NSMutableData alloc] init];
+    _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    [self startrequest];
     
 }
 
@@ -107,9 +116,88 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)addGroupmanberbtn
+{
+    myclientMenberGroupArrayViewController *addmanber = [[myclientMenberGroupArrayViewController alloc] init];
+    [self.navigationController pushViewController:addmanber animated:YES];
+}
+
 -(void)comebacksaaa
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark request
+
+-(void)startrequest
+{
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=serviced&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno];
+    
+    [self requstwithurl:string];
+}
+
+#pragma mark  request
+
+-(void)requstwithurl:(NSString *)str
+{
+    NSURL *urlstr = [NSURL URLWithString:str];
+    
+    NSURLRequest *requst = [NSURLRequest requestWithURL:urlstr];
+    
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:requst delegate:self];
+    
+    [connection start];
+    
+    NSLog(@"url--------%@",urlstr);
+}
+
+#pragma mark  requestdelegate
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"请求失败");
+}
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"收到响应");
+    
+    [_data setData:[NSData data]];
+}
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSLog(@"请求数据接收");
+    [_data appendData:data];
+    
+}
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    
+    // NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
+    
+    //NSLog(@"%@",str);
+    
+    //JSON解析器
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
+    
+    NSLog(@"000000------------%@",dic);
+    
+    NSString *state = [dic objectForKey:@"state"];
+    
+    NSString *msg = [dic objectForKey:@"msg"];
+    
+    
+    NSMutableArray *customerData = [dic objectForKey:@"customerData"];
+    for (NSDictionary *mycusdiction in customerData) {
+        mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
+        [_mycustomerDataarray addObject:mycustom];
+    }
+    
+    
+    if ([state isEqualToString:@"0"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
+    
 }
 
 

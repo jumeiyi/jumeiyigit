@@ -95,7 +95,9 @@ self.noticeDt = @"";
 self.orderDetailSno = @"";
 
 
-_custommesarray = [[NSMutableArray alloc] initWithCapacity:0];
+    _custommesarray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+  
 
 
 _messetimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(referenceViewmesse) userInfo:nil repeats:YES];
@@ -169,10 +171,7 @@ _messetimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:
         self.textInfo = _text.text;
         self.fileTypeName = @"";
         
-
-        
         _text.text = @"";
-        
         
     }
     
@@ -317,7 +316,6 @@ _messetimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:
             chatview.tag = 3;
             [vi addSubview:chatview];
             
-            
             //视频
         }else{
             
@@ -333,8 +331,6 @@ _messetimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:
     CGSize size = rect.size;
     CGFloat width = size.width;
     CGFloat height = size.height;
-    
-    
     
     
     NSLog(@"获取屏幕尺寸 width%f = height%f",width,height);
@@ -535,5 +531,6 @@ _messetimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:
     
     return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
 }
+
 
 @end

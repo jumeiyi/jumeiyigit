@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface myclientmenbergroupViewController : UIViewController
+@interface myclientmenbergroupViewController : UIViewController<NSURLConnectionDataDelegate,NSURLConnectionDelegate>
+
+{
+     NSMutableArray *_mycustomerDataarray;
+    NSMutableData *_data;
+}
+
+@property(nonatomic,retain)NSString *doctorsno;
 
 @end

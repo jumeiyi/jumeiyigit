@@ -308,6 +308,7 @@
 		84AC814E1B414EA8009A00E3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC814B1B414EA8009A00E3 /* Default-568h@2x.png */; };
 		84AC814F1B414EA8009A00E3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC814C1B414EA8009A00E3 /* Default.png */; };
 		84AC81501B414EA8009A00E3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC814D1B414EA8009A00E3 /* Default@2x.png */; };
+		84B1FF261BA014A000DB058C /* myclientMenberGroupArrayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1FF251BA014A000DB058C /* myclientMenberGroupArrayViewController.m */; };
 		84B23CF11ACE910B0037A3F9 /* mishutixing.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B23CF01ACE910B0037A3F9 /* mishutixing.m */; };
 		84B363681B5507F000716575 /* 足迹详情_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B363661B5507F000716575 /* 足迹详情_03.png */; };
 		84B363691B5507F000716575 /* 足迹详情_07.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B363671B5507F000716575 /* 足迹详情_07.png */; };
@@ -922,6 +923,8 @@
 		84AC814B1B414EA8009A00E3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		84AC814C1B414EA8009A00E3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		84AC814D1B414EA8009A00E3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		84B1FF241BA014A000DB058C /* myclientMenberGroupArrayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientMenberGroupArrayViewController.h; sourceTree = "<group>"; };
+		84B1FF251BA014A000DB058C /* myclientMenberGroupArrayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientMenberGroupArrayViewController.m; sourceTree = "<group>"; };
 		84B23CEF1ACE910B0037A3F9 /* mishutixing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mishutixing.h; sourceTree = "<group>"; };
 		84B23CF01ACE910B0037A3F9 /* mishutixing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mishutixing.m; sourceTree = "<group>"; };
 		84B363661B5507F000716575 /* 足迹详情_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "足迹详情_03.png"; sourceTree = "<group>"; };
@@ -1898,6 +1901,8 @@
 				848ED7B71B9EC36600A813A2 /* myclientgroupTableViewCell.m */,
 				846E823B1B900794007B2B11 /* myclientmenbergroupViewController.h */,
 				846E823C1B900794007B2B11 /* myclientmenbergroupViewController.m */,
+				84B1FF241BA014A000DB058C /* myclientMenberGroupArrayViewController.h */,
+				84B1FF251BA014A000DB058C /* myclientMenberGroupArrayViewController.m */,
 				846E823E1B902ECB007B2B11 /* myclientdatasViewController.h */,
 				846E823F1B902ECB007B2B11 /* myclientdatasViewController.m */,
 				846E82411B903105007B2B11 /* myclientdatasViewCell.h */,
@@ -2871,6 +2876,7 @@
 				84C249121AA2A90100C2C0FC /* SDWebImageDecoder.m in Sources */,
 				84E6AC781AFB12C5007BDCB2 /* WEBViewController.m in Sources */,
 				84A83E561B22D779007B7352 /* PerfectDataViewController.m in Sources */,
+				84B1FF261BA014A000DB058C /* myclientMenberGroupArrayViewController.m in Sources */,
 				84BDFFF71B2BE2A500789CE3 /* ProjectbeautyTableViewCell.m in Sources */,
 				844633321AF254DD00D0C585 /* MyExpertCLViewCell.m in Sources */,
 				84C0FEDF1AD67B2B0098F453 /* GongNengSheZhi.m in Sources */,

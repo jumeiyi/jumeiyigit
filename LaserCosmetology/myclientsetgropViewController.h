@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface myclientsetgropViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface myclientsetgropViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate>
 
 {
     NSMutableArray *_titleary;
+    NSMutableArray *_mycustomerDataarray;
+    NSMutableData *_data;
 }
 @property(nonatomic,retain)UITableView *mytableview;
+
+@property(nonatomic,retain)NSString *doctorsno;
 
 @end

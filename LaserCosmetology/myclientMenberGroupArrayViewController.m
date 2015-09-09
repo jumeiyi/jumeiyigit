@@ -1,14 +1,13 @@
 //
-//  MyClientViewController.m
-//  LaserCosmetology
+//  myclientMenberGroupArrayViewController.m
+//  聚美医
 //
-//  Created by fenghuang on 15/3/9.
+//  Created by fenghuang on 15/9/9.
 //  Copyright (c) 2015年 huqijing. All rights reserved.
 //
-#define UID @"wdc001"
-#define PSW @"dcg658"
 
-#import "MyClientViewController.h"
+#import "myclientMenberGroupArrayViewController.h"
+
 #import "TopBarView.h"
 #import "myClientCell.h"
 #import "mycustomerdata.h"
@@ -18,29 +17,28 @@
 #import "myclientdatasViewController.h"
 #import "myclientmainsetgropViewController.h"
 
-@interface MyClientViewController ()
+@interface myclientMenberGroupArrayViewController ()
 
 @end
 
-@implementation MyClientViewController
+@implementation myclientMenberGroupArrayViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-        
+    
     TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     [self.view addSubview:topbar];
-
+    
     
     UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 27, 40, 30)];
     [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
-    [backbtn addTarget:self action:@selector(comeback) forControlEvents:UIControlEventTouchUpInside];
+    [backbtn addTarget:self action:@selector(comebackk) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:backbtn];
     
     
     _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
-    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focused",@"Exclusive",@"sleep",nil];
     
     _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, 20)];
     [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
@@ -52,15 +50,15 @@
     _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
     [topbar addSubview:_btnimage];
     
-
+    
     
     _headnamearray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#", nil];
-
+    
     _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64 + 44, self.view.bounds.size.width, self.view.bounds.size.height - (64 + 44))];
     _tableview.delegate = self;
     _tableview.dataSource = self;
     _tableview.layer.cornerRadius = 8;
-//    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableview.backgroundColor = [UIColor clearColor];
     _tableview.tag = 60;
     [self.view addSubview:_tableview];
@@ -72,7 +70,7 @@
     _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
     
     self.typeInfo = @"";  self.a = 1;
-   
+    
     
     
     UITableView *headnametableview = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40, 64 + 44, 40, self.view.bounds.size.height - 108 )];
@@ -112,11 +110,11 @@
     imageView.backgroundColor = [UIColor clearColor];
     self.searchBar.backgroundImage = imageView.image;
     
-//    self.searchDisplay = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-//    _searchDisplay.searchResultsDataSource = self;
-//    _searchDisplay.searchResultsDelegate =self;
+    //    self.searchDisplay = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    //    _searchDisplay.searchResultsDataSource = self;
+    //    _searchDisplay.searchResultsDelegate =self;
     
-      _data = [[NSMutableData alloc] init];
+    _data = [[NSMutableData alloc] init];
     
     _shooesproject = [[NSMutableArray alloc] initWithObjects:@"姓名",@"项目", nil];
     
@@ -131,7 +129,7 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self.searchBar setText:@""];
-     self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 100 , 40.0f);
+    self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 100 , 40.0f);
     return;
     
 }
@@ -148,7 +146,7 @@
         return;
     }else{
         
-//        [self soaprequstWithGetProTypePageData:searchBar.text];
+        //        [self soaprequstWithGetProTypePageData:searchBar.text];
         NSLog(@"searchBar.text---> %@",searchBar.text);
     }
     
@@ -195,7 +193,7 @@
 
 -(void)groupsbuttonclick
 {
-   
+    
     UITableView *grouptableview;
     
     if (self.isgroupes == NO) {
@@ -221,7 +219,7 @@
         grouptableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         [btnview addSubview:grouptableview];
         
-         _btnimage.image = [UIImage imageNamed:@"yishengwdkhs"];
+        _btnimage.image = [UIImage imageNamed:@"yishengwdkhs"];
         
         self.isgroupes = YES;
         
@@ -233,7 +231,7 @@
         self.isgroupes = NO;
         _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
     }
-
+    
 }
 
 -(void)shoosebtnclick
@@ -275,7 +273,7 @@
         self.isproject = NO;
     }
     
-   
+    
 }
 
 
@@ -307,7 +305,6 @@
             _isLoading = YES;
             self.a++;
             _timer1 = [NSTimer scheduledTimerWithTimeInterval:2.50 target:self selector:@selector(shuaxins) userInfo:nil repeats:NO];
-
             
             
             NSLog(@"a的值：%ld",self.a);
@@ -328,11 +325,11 @@
     _isLoading = NO;
     [_timer1 invalidate];
     _timer1 = nil;
-   
+    
 }
 
 
--(void)comeback
+-(void)comebackk
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -345,14 +342,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
     return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
 }
@@ -370,11 +367,11 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
-
+        
         if (section == 0) {
             return 1;
         }else{
-        return 3;
+            return 3;
         }
     }else if (tableView.tag == 62){
         return _groups.count;
@@ -401,7 +398,7 @@
         cell.backgroundColor = [UIColor clearColor];
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 8;
-//        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
+        //        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
         
         cell.headimage.frame = CGRectMake(0, 0, 0, 0);
         cell.headimage.image = [UIImage imageNamed:@""];
@@ -417,7 +414,7 @@
         
         cell.project3.frame = CGRectMake(0, 0, 0, 0);
         cell.project3.text = @"";
-
+        
         
         if (indexPath.section == 0) {
             
@@ -430,7 +427,7 @@
             cell.name.textColor = [self colorWithRGB:0x00c5bb alpha:1];
             
         }else{
-        
+            
             cell.headimage.frame = CGRectMake(15, 9, 50, 50);
             cell.headimage.image = [UIImage imageNamed:@"图片4"];
             
@@ -466,7 +463,7 @@
         
         
         return cell;
-
+        
     }else if (tableView.tag == 62){
         
         static NSString *ident = @"cell2";
@@ -482,7 +479,7 @@
         return cell2;
         
     }else if (tableView.tag == 63){
-    
+        
         static NSString *ident = @"cell3";
         UITableViewCell *cell3 = [tableView dequeueReusableCellWithIdentifier:ident];
         if (!cell3) {
@@ -497,7 +494,7 @@
         return cell3;
         
     }else{
-    
+        
         static NSString *ident = @"cell1";
         UITableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:ident];
         if (!cell1) {
@@ -507,7 +504,7 @@
         cell1.textLabel.font = [UIFont systemFontOfSize:12];
         cell1.textLabel.textColor = [self colorWithRGB:0x00c5bb alpha:1];
         cell1.backgroundColor = [UIColor clearColor];
-    
+        
         return cell1;
     }
 }
@@ -535,37 +532,65 @@
             titlelable.text = [_headnamearray objectAtIndex:section - 1];
             [view addSubview:titlelable];
         }
-
         
-         return view;
+        
+        return view;
         
     }else{
         
-    return nil;
+        return nil;
     }
-
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (tableView.tag == 60) {
-        if (indexPath.section != 0) {
-            myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
-            [self.navigationController pushViewController:myclient animated:YES];
-        }
-        
-        if (indexPath.section == 0) {
-            myclientmainsetgropViewController *myclient = [[myclientmainsetgropViewController alloc] init];
-            [self.navigationController pushViewController:myclient animated:YES];
-        }
-    }else if (tableView.tag == 62){
-        self.group = [_groupIDarray objectAtIndex:indexPath.row];
-        
-        NSLog(@"self.group---%@",self.group);
+    if (indexPath.section != 0) {
+        myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+        [self.navigationController pushViewController:myclient animated:YES];
     }
-
+    
+    if (indexPath.section == 0) {
+        myclientmainsetgropViewController *myclient = [[myclientmainsetgropViewController alloc] init];
+        [self.navigationController pushViewController:myclient animated:YES];
+    }
+    
+    
+    //    if (tableView.tag == 60) {
+    //
+    //        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
+    //        self.customersno = mycustom.Sno;
+    //
+    //        GetCustomerDetailByDoctorSno *getcustomdetail = [[GetCustomerDetailByDoctorSno alloc] init];
+    //        getcustomdetail.mydoctorsno = self.doctorsno;
+    //        getcustomdetail.mycustomersno = self.customersno;
+    //        [self.navigationController pushViewController:getcustomdetail animated:YES];
+    //
+    //    }else if (tableView.tag == 62){
+    //
+    //        _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 5) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, 20);
+    //        _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+    //        [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
+    //        [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+    //        [btnview removeFromSuperview];
+    //        self.isgroupes = NO;
+    //        _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
+    //
+    //
+    //
+    //    }else if (tableView.tag == 63){
+    //        [_shoosebtn setTitle:[_shooesproject objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+    //        [shoosebtnview removeFromSuperview];
+    //        self.isproject = NO;
+    //    }else{
+    //
+    //        self.firstWord = [_headnamearray objectAtIndex:indexPath.row];
+    //        [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:self.firstWord strPageindex:@"1" strPagesize:@"40"];
+    //    }
+    
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -577,7 +602,7 @@
     }else{
         return 20;
     }
-
+    
 }
 
 //设置区头高度
