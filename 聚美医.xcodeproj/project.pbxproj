@@ -455,6 +455,7 @@
 		84C2C3511AD13E8100CD5139 /* pull_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C2C34D1AD13E8100CD5139 /* pull_loading@2x.png */; };
 		84C2C3521AD13E8100CD5139 /* pull_loading@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C2C34E1AD13E8100CD5139 /* pull_loading@3x.png */; };
 		84C2C3531AD13E8100CD5139 /* RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C2C3501AD13E8100CD5139 /* RefreshView.m */; };
+		84C2E21E1BA1D4EF00FFAE2C /* myclientManGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C2E21D1BA1D4EF00FFAE2C /* myclientManGroupCell.m */; };
 		84C2FE411A8A05E200073858 /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C2FE3F1A8A05E200073858 /* 05.png */; };
 		84C2FE421A8A05E200073858 /* 06.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C2FE401A8A05E200073858 /* 06.png */; };
 		84C2FE491A8A234F00073858 /* mybutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C2FE481A8A234F00073858 /* mybutton.m */; };
@@ -463,6 +464,7 @@
 		84C36B3F1ACA4C49009F8645 /* yuyuexiandeqingqiu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C36B3E1ACA4C49009F8645 /* yuyuexiandeqingqiu.m */; };
 		84C36B441ACAA556009F8645 /* customercenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C36B431ACAA556009F8645 /* customercenter.m */; };
 		84C3C8C61AD23C4D005584A8 /* CLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C3C8C51AD23C4D005584A8 /* CLCollectionViewCell.m */; };
+		84C40FE51BA17C6000FF7E04 /* txtx.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C40FE41BA17C6000FF7E04 /* txtx.png */; };
 		84C444481AE5E46B00098481 /* CashCouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C444471AE5E46B00098481 /* CashCouponVC.m */; };
 		84C4444B1AE5E6BB00098481 /* CashCouponVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C4444A1AE5E6BB00098481 /* CashCouponVCCell.m */; };
 		84C444501AE5F14400098481 /* youhuiquanheise.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C4444D1AE5F14400098481 /* youhuiquanheise.png */; };
@@ -1148,6 +1150,8 @@
 		84C2C34E1AD13E8100CD5139 /* pull_loading@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pull_loading@3x.png"; sourceTree = "<group>"; };
 		84C2C34F1AD13E8100CD5139 /* RefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshView.h; sourceTree = "<group>"; };
 		84C2C3501AD13E8100CD5139 /* RefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshView.m; sourceTree = "<group>"; };
+		84C2E21C1BA1D4EF00FFAE2C /* myclientManGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientManGroupCell.h; sourceTree = "<group>"; };
+		84C2E21D1BA1D4EF00FFAE2C /* myclientManGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientManGroupCell.m; sourceTree = "<group>"; };
 		84C2FE3F1A8A05E200073858 /* 05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 05.png; sourceTree = "<group>"; };
 		84C2FE401A8A05E200073858 /* 06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 06.png; sourceTree = "<group>"; };
 		84C2FE471A8A234F00073858 /* mybutton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mybutton.h; sourceTree = "<group>"; };
@@ -1161,6 +1165,7 @@
 		84C36B431ACAA556009F8645 /* customercenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customercenter.m; sourceTree = "<group>"; };
 		84C3C8C41AD23C4D005584A8 /* CLCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCollectionViewCell.h; sourceTree = "<group>"; };
 		84C3C8C51AD23C4D005584A8 /* CLCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLCollectionViewCell.m; sourceTree = "<group>"; };
+		84C40FE41BA17C6000FF7E04 /* txtx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = txtx.png; sourceTree = "<group>"; };
 		84C444461AE5E46B00098481 /* CashCouponVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashCouponVC.h; sourceTree = "<group>"; };
 		84C444471AE5E46B00098481 /* CashCouponVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashCouponVC.m; sourceTree = "<group>"; };
 		84C444491AE5E6BB00098481 /* CashCouponVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashCouponVCCell.h; sourceTree = "<group>"; };
@@ -1439,6 +1444,7 @@
 		846E82441B9054D2007B2B11 /* myclient */ = {
 			isa = PBXGroup;
 			children = (
+				84C40FE41BA17C6000FF7E04 /* txtx.png */,
 				84C0C3521B968E5D0034C2F6 /* huisegouxuan.png */,
 				84C0C3531B968E5D0034C2F6 /* huisekuang.png */,
 				846ECE5D1B943700003823AA /* fengeian.png */,
@@ -1903,6 +1909,8 @@
 				846E823C1B900794007B2B11 /* myclientmenbergroupViewController.m */,
 				84B1FF241BA014A000DB058C /* myclientMenberGroupArrayViewController.h */,
 				84B1FF251BA014A000DB058C /* myclientMenberGroupArrayViewController.m */,
+				84C2E21C1BA1D4EF00FFAE2C /* myclientManGroupCell.h */,
+				84C2E21D1BA1D4EF00FFAE2C /* myclientManGroupCell.m */,
 				846E823E1B902ECB007B2B11 /* myclientdatasViewController.h */,
 				846E823F1B902ECB007B2B11 /* myclientdatasViewController.m */,
 				846E82411B903105007B2B11 /* myclientdatasViewCell.h */,
@@ -2615,6 +2623,7 @@
 				846ECE4A1B93FFE9003823AA /* fangxingjia.png in Resources */,
 				8488904D1AE4E3D800DFE28F /* yiqiangguang.png in Resources */,
 				84CABE9F1A8CA34000306B93 /* anniu3.png in Resources */,
+				84C40FE51BA17C6000FF7E04 /* txtx.png in Resources */,
 				846ECE511B93FFE9003823AA /* sucaijiu.png in Resources */,
 				84CD888C1AC3986A00B61664 /* zhuanjiabeijing.png in Resources */,
 				84C0FEEC1AD687970098F453 /* laokehu.png in Resources */,
@@ -2935,6 +2944,7 @@
 				84C2491D1AA2A90100C2C0FC /* UIView+WebCacheOperation.m in Sources */,
 				846566541AFAF550009CAC86 /* QRCodeReaderViewController.m in Sources */,
 				84C0C35B1B968FF30034C2F6 /* myclientsetgropCell.m in Sources */,
+				84C2E21E1BA1D4EF00FFAE2C /* myclientManGroupCell.m in Sources */,
 				844632FA1AF211DA00D0C585 /* MyAppointmentCollectionVC.m in Sources */,
 				84BDFFF41B2BE27F00789CE3 /* ProjectpersentTableViewCell.m in Sources */,
 				841FA6471AF3336A00FBB6CB /* MyAppointmentViewController.m in Sources */,

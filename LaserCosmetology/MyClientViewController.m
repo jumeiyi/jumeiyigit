@@ -54,36 +54,6 @@
     
 
     
-    _headnamearray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#", nil];
-
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64 + 44, self.view.bounds.size.width, self.view.bounds.size.height - (64 + 44))];
-    _tableview.delegate = self;
-    _tableview.dataSource = self;
-    _tableview.layer.cornerRadius = 8;
-//    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableview.backgroundColor = [UIColor clearColor];
-    _tableview.tag = 60;
-    [self.view addSubview:_tableview];
-    
-    _refreshControl=[[RefreshControl alloc] initWithScrollView:_tableview delegate:self];
-    _refreshControl.topEnabled=YES;
-    //_refreshControl.bottomEnabled=YES;//会崩
-    
-    _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
-    
-    self.typeInfo = @"";  self.a = 1;
-   
-    
-    
-    UITableView *headnametableview = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40, 64 + 44, 40, self.view.bounds.size.height - 108 )];
-    headnametableview.delegate = self;
-    headnametableview.dataSource = self;
-    headnametableview.rowHeight = 20;
-    headnametableview.tag = 61;
-    headnametableview.backgroundColor = [UIColor clearColor];
-    headnametableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:headnametableview];
-    
     UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(5, 65, self.view.bounds.size.width - 10, 45)];
     shoosebtnimageback.image = [UIImage imageNamed:@"sousuobian"];
     shoosebtnimageback.backgroundColor = [UIColor whiteColor];
@@ -116,12 +86,44 @@
 //    _searchDisplay.searchResultsDataSource = self;
 //    _searchDisplay.searchResultsDelegate =self;
     
+    
+    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 67 + 44, self.view.bounds.size.width, self.view.bounds.size.height - (67 + 44))];
+    _tableview.delegate = self;
+    _tableview.dataSource = self;
+    _tableview.layer.cornerRadius = 8;
+//    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableview.backgroundColor = [UIColor clearColor];
+    _tableview.tag = 60;
+    [self.view addSubview:_tableview];
+    
+    _refreshControl=[[RefreshControl alloc] initWithScrollView:_tableview delegate:self];
+    _refreshControl.topEnabled=YES;
+    //_refreshControl.bottomEnabled=YES;//会崩
+    
+    
+    _headnamearray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#", nil];
+    
+    UITableView *headnametableview = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40, 64 + 44, 40, self.view.bounds.size.height - 108 )];
+    headnametableview.delegate = self;
+    headnametableview.dataSource = self;
+    headnametableview.rowHeight = 20;
+    headnametableview.tag = 61;
+    headnametableview.backgroundColor = [UIColor clearColor];
+    headnametableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:headnametableview];
+    
+    
+    _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    self.typeInfo = @"";  self.a = 1;
+    
       _data = [[NSMutableData alloc] init];
     
     _shooesproject = [[NSMutableArray alloc] initWithObjects:@"姓名",@"项目", nil];
     
     self.isgroupes = NO;
     self.isproject = NO;
+    self.IsServiced = YES;
     
     [self startrequest];
     
@@ -360,11 +362,20 @@
 #pragma mark tableview
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+     
+    
     if (tableView.tag == 60) {
-        return _headnamearray.count + 1;
+        if (self.IsServiced == YES) {
+            return _headnamearray.count + 1;
+        }else{
+        return _headnamearray.count;
+        }
+        
     }else{
         return 1;
     }
+    
+  
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -372,7 +383,12 @@
     if (tableView.tag == 60) {
 
         if (section == 0) {
-            return 1;
+            if (self.IsServiced == YES) {
+                return 1;
+            }else{
+                return 3;
+            }
+            
         }else{
         return 3;
         }
@@ -398,7 +414,7 @@
             
             cell = [[myClientCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor whiteColor];
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 8;
 //        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
@@ -418,51 +434,88 @@
         cell.project3.frame = CGRectMake(0, 0, 0, 0);
         cell.project3.text = @"";
 
-        
-        if (indexPath.section == 0) {
-            
-            cell.headimage.frame = CGRectMake(15, 9, 50, 50);
-            cell.headimage.image = [UIImage imageNamed:@"图片4"];
-            
-            cell.name.frame = CGRectMake(80, 25, 100, 20);
-            cell.name.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
-            cell.name.text = @"分组";
-            cell.name.textColor = [self colorWithRGB:0x00c5bb alpha:1];
-            
+        if (self.IsServiced == YES) {
+            if (indexPath.section == 0) {
+                
+                cell.headimage.frame = CGRectMake(15, 9, 50, 50);
+                cell.headimage.image = [UIImage imageNamed:@"图片4"];
+                
+                cell.name.frame = CGRectMake(80, 25, 100, 20);
+                cell.name.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+                cell.name.text = @"分组";
+                cell.name.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+                
+            }else{
+                
+                cell.headimage.frame = CGRectMake(15, 9, 50, 50);
+                cell.headimage.image = [UIImage imageNamed:@"图片4"];
+                
+                cell.name.frame = CGRectMake(80, 9, 100, 20);
+                cell.name.font = [UIFont systemFontOfSize:14];
+                cell.name.text = @" 名称X X";
+                cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
+                
+                cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str: @"项目1"] + 20, 21);
+                cell.project1.text = @"   项目1";
+                cell.project1.font = [UIFont systemFontOfSize:11];
+                cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project1.layer.masksToBounds = YES;
+                cell.project1.layer.cornerRadius = 3;
+                
+                cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 20, 39, [self NSStringwithsize:11 str: @"项目2"] + 20, 21);
+                cell.project2.text = @"   项目2";
+                cell.project2.font = [UIFont systemFontOfSize:11];
+                cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project2.layer.masksToBounds = YES;
+                cell.project2.layer.cornerRadius = 3;
+                
+                cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 20, 39, [self NSStringwithsize:11 str:@"项目3"] + 20, 21);
+                cell.project3.text = @"  项目3";
+                cell.project3.font = [UIFont systemFontOfSize:11];
+                cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project3.layer.masksToBounds = YES;
+                cell.project3.layer.cornerRadius = 3;
+            }
+ 
         }else{
-        
-            cell.headimage.frame = CGRectMake(15, 9, 50, 50);
-            cell.headimage.image = [UIImage imageNamed:@"图片4"];
             
-            cell.name.frame = CGRectMake(80, 9, 100, 20);
-            cell.name.font = [UIFont systemFontOfSize:14];
-            cell.name.text = @" 名称X X";
-            cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
+                cell.headimage.frame = CGRectMake(15, 9, 50, 50);
+                cell.headimage.image = [UIImage imageNamed:@"图片4"];
+                
+                cell.name.frame = CGRectMake(80, 9, 100, 20);
+                cell.name.font = [UIFont systemFontOfSize:14];
+                cell.name.text = @" 名称X X";
+                cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
+                
+                cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str: @"项目1"] + 20, 21);
+                cell.project1.text = @"   项目1";
+                cell.project1.font = [UIFont systemFontOfSize:11];
+                cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project1.layer.masksToBounds = YES;
+                cell.project1.layer.cornerRadius = 3;
+                
+                cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 20, 39, [self NSStringwithsize:11 str: @"项目2"] + 20, 21);
+                cell.project2.text = @"   项目2";
+                cell.project2.font = [UIFont systemFontOfSize:11];
+                cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project2.layer.masksToBounds = YES;
+                cell.project2.layer.cornerRadius = 3;
+                
+                cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 20, 39, [self NSStringwithsize:11 str:@"项目3"] + 20, 21);
+                cell.project3.text = @"  项目3";
+                cell.project3.font = [UIFont systemFontOfSize:11];
+                cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project3.layer.masksToBounds = YES;
+                cell.project3.layer.cornerRadius = 3;
             
-            cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str: @"项目1"] + 20, 21);
-            cell.project1.text = @"   项目1";
-            cell.project1.font = [UIFont systemFontOfSize:11];
-            cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
-            cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-            cell.project1.layer.masksToBounds = YES;
-            cell.project1.layer.cornerRadius = 3;
-            
-            cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 20, 39, [self NSStringwithsize:11 str: @"项目2"] + 20, 21);
-            cell.project2.text = @"   项目2";
-            cell.project2.font = [UIFont systemFontOfSize:11];
-            cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-            cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
-            cell.project2.layer.masksToBounds = YES;
-            cell.project2.layer.cornerRadius = 3;
-            
-            cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 20, 39, [self NSStringwithsize:11 str:@"项目3"] + 20, 21);
-            cell.project3.text = @"  项目3";
-            cell.project3.font = [UIFont systemFontOfSize:11];
-            cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-            cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
-            cell.project3.layer.masksToBounds = YES;
-            cell.project3.layer.cornerRadius = 3;
         }
+        
         
         
         return cell;
@@ -528,19 +581,23 @@
         view.backgroundColor = [self colorWithRGB:0xeeeeee alpha:1];
         [tableView addSubview:view];
         
-        if (section == 0) {
-            return nil;
+        if (self.IsServiced == YES) {
+            if (section == 0) {
+                return nil;
+            }else{
+                UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
+                titlelable.text = [_headnamearray objectAtIndex:section - 1];
+                [view addSubview:titlelable];
+            }
         }else{
             UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
-            titlelable.text = [_headnamearray objectAtIndex:section - 1];
+            titlelable.text = [_headnamearray objectAtIndex:section];
             [view addSubview:titlelable];
         }
 
-        
          return view;
         
     }else{
-        
     return nil;
     }
 
@@ -561,9 +618,26 @@
             [self.navigationController pushViewController:myclient animated:YES];
         }
     }else if (tableView.tag == 62){
+        if (indexPath.row != 0) {
+            self.IsServiced = NO;
+            [_tableview reloadData];
+             NSLog(@"self.group--- != 0");
+            _tableview.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
+            
+        }else{
+         NSLog(@"self.group--- == 0");
+            self.IsServiced = YES;
+            [_tableview reloadData];
+             _tableview.frame = CGRectMake(0, 67 + 44, self.view.bounds.size.width, self.view.bounds.size.height - (67 + 44));
+        }
         self.group = [_groupIDarray objectAtIndex:indexPath.row];
         
         NSLog(@"self.group---%@",self.group);
+    }else if (tableView.tag == 63){
+    
+       
+    }else{
+    
     }
 
 }

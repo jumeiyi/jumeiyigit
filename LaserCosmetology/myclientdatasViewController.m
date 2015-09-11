@@ -231,7 +231,12 @@
         if (indexPath.row == 2) {
                 myclientsetgropViewController *myclient = [[myclientsetgropViewController alloc] init];
                 [self.navigationController pushViewController:myclient animated:YES];
+        }else if (indexPath.row == 1){
+            [self callphone];
+        }else{
+        
         }
+        
     }else if (indexPath.section == 2){
         if (indexPath.row != 0) {
             myclientobservedisease *myclient = [[myclientobservedisease alloc] init];
@@ -239,9 +244,6 @@
         }
 
     }
-    
-    
-
     
 //
 //    myclientTheConditionRecordViewController *myclient = [[myclientTheConditionRecordViewController alloc] init];
@@ -251,6 +253,14 @@
 
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
     return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
+}
+
+-(void)callphone
+{
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"13687573025"];
+    UIWebView * callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [self.view addSubview:callWebview];
 }
 
 #pragma mark  request
@@ -290,20 +300,14 @@
 {
     
     // NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-    
     //NSLog(@"%@",str);
-    
     
     //JSON解析器
      NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
     
      NSLog(@"000000------------%@",dic);
     
-    
-    
 }
-
-
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

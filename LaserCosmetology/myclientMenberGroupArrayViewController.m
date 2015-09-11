@@ -9,11 +9,10 @@
 #import "myclientMenberGroupArrayViewController.h"
 
 #import "TopBarView.h"
-#import "myClientCell.h"
 #import "mycustomerdata.h"
 #import "GetCustomerDetailByDoctorSno.h"
 #import "PrefixHeader.pch"
-
+#import "myclientManGroupCell.h"
 #import "myclientdatasViewController.h"
 #import "myclientmainsetgropViewController.h"
 
@@ -390,10 +389,10 @@
         
         static NSString *identifier = @"cell";
         
-        myClientCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        myclientManGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell) {
             
-            cell = [[myClientCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell = [[myclientManGroupCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         cell.backgroundColor = [UIColor clearColor];
         cell.layer.masksToBounds = YES;
@@ -547,48 +546,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section != 0) {
-        myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
-        [self.navigationController pushViewController:myclient animated:YES];
-    }
-    
-    if (indexPath.section == 0) {
-        myclientmainsetgropViewController *myclient = [[myclientmainsetgropViewController alloc] init];
-        [self.navigationController pushViewController:myclient animated:YES];
-    }
+
     
     
-    //    if (tableView.tag == 60) {
-    //
-    //        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
-    //        self.customersno = mycustom.Sno;
-    //
-    //        GetCustomerDetailByDoctorSno *getcustomdetail = [[GetCustomerDetailByDoctorSno alloc] init];
-    //        getcustomdetail.mydoctorsno = self.doctorsno;
-    //        getcustomdetail.mycustomersno = self.customersno;
-    //        [self.navigationController pushViewController:getcustomdetail animated:YES];
-    //
-    //    }else if (tableView.tag == 62){
-    //
-    //        _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 5) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, 20);
-    //        _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
-    //        [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
-    //        [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
-    //        [btnview removeFromSuperview];
-    //        self.isgroupes = NO;
-    //        _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
-    //
-    //
-    //
-    //    }else if (tableView.tag == 63){
-    //        [_shoosebtn setTitle:[_shooesproject objectAtIndex:indexPath.row] forState:UIControlStateNormal];
-    //        [shoosebtnview removeFromSuperview];
-    //        self.isproject = NO;
-    //    }else{
-    //
-    //        self.firstWord = [_headnamearray objectAtIndex:indexPath.row];
-    //        [self soaprequst2WithdoctorSno:self.doctorsno typeInfo:self.typeInfo firstWord:self.firstWord strPageindex:@"1" strPagesize:@"40"];
-    //    }
     
     
 }
@@ -615,7 +575,22 @@
     }
     
 }
+// UITableViewDataSource协议中的方法，该方法的返回值决定指定分区的页眉
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection
+                      :(NSInteger)section
+{
+    return [_headnamearray objectAtIndex:section];
+}
 
+// UITableViewDataSource协议中的方法，该方法的返回值决定指定分区的页脚
+- (NSString*) tableView:(UITableView *)tableView titleForFooterInSection
+                       :(NSInteger)section
+{
+//    NSString* story = [_headnamearray objectAtIndex:section];
+//    return [NSString stringWithFormat:@"一共有%d个人物"
+//            , [[_headnamearray objectForKey:story] count]];
+    return nil;
+}
 -(void)startrequest
 {
     NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=serviced&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno];

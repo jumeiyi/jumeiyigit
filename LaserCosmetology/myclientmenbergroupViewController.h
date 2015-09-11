@@ -13,8 +13,14 @@
 {
      NSMutableArray *_mycustomerDataarray;
     NSMutableData *_data;
+    
+    UIView *_manberview;
+    UIButton *_addbtn;
+    UIButton *_subtraction;
 }
 
 @property(nonatomic,retain)NSString *doctorsno;
+@property(nonatomic,retain)NSString *groupstr;
+@property(nonatomic,retain)NSMutableArray *manberarray;
 
 @end

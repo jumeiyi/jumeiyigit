@@ -122,6 +122,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     myclientmenbergroupViewController *myclient = [[myclientmenbergroupViewController alloc] init];
+    myclient.groupstr = [_titleary objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:myclient animated:YES];
 }
 

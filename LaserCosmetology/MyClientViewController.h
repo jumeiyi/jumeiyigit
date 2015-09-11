@@ -43,7 +43,7 @@
 @property(nonatomic,retain)UISearchDisplayController *searchDisplay;
 @property(nonatomic,assign)BOOL isgroupes;
 @property(nonatomic,assign)BOOL isproject;
-
+@property(nonatomic,assign)BOOL IsServiced;
 @property(nonatomic,retain)NSString *group;
 
 @end

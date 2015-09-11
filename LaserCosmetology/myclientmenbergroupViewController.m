@@ -58,6 +58,17 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 64 + 45, self.view.bounds.size.width, 45)];
     view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:view];
+    
+    UILabel *grouptitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, self.view.bounds.size.width - 30, 20)];
+    grouptitle.text = self.groupstr;
+    grouptitle.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
+    grouptitle.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+    [view addSubview:grouptitle];
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40, 10, 20, 20)];
+    [btn setBackgroundImage:[UIImage imageNamed:@"huidianshnchu"] forState:UIControlStateNormal];
+    [view addSubview:btn];
+    
 
     UILabel *groupmanber = [[UILabel alloc] initWithFrame:CGRectMake(20, 64 + 90 + 12, 120, 25)];
     groupmanber.text = @"分组成员";
@@ -66,19 +77,19 @@
     groupmanber.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:groupmanber];
     
-    UIView *manberview = [[UIView alloc] initWithFrame:CGRectMake(0, 64 + 90 + 45, self.view.bounds.size.width, 200)];
-    manberview.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:manberview];
+    _manberview = [[UIView alloc] initWithFrame:CGRectMake(0, 64 + 90 + 45, self.view.bounds.size.width, 200)];
+    _manberview.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_manberview];
     
     
-    UIButton *addbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 17, 50, 50)];
-    [addbtn setBackgroundImage:[UIImage imageNamed:@"yuanxingjia"] forState:UIControlStateNormal];
-    [addbtn addTarget:self action:@selector(addGroupmanberbtn) forControlEvents:UIControlEventTouchUpInside];
-    [manberview addSubview:addbtn];
+    _addbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 17, 50, 50)];
+    [_addbtn setBackgroundImage:[UIImage imageNamed:@"yuanxingjia"] forState:UIControlStateNormal];
+    [_addbtn addTarget:self action:@selector(addGroupmanberbtn) forControlEvents:UIControlEventTouchUpInside];
+    [_manberview addSubview:_addbtn];
     
-    UIButton *addbtn2 = [[UIButton alloc] initWithFrame:CGRectMake(90, 17, 50, 50)];
-    [addbtn2 setBackgroundImage:[UIImage imageNamed:@"yuanxingjian"] forState:UIControlStateNormal];
-    [manberview addSubview:addbtn2];
+    _subtraction = [[UIButton alloc] initWithFrame:CGRectMake(90, 17, 50, 50)];
+    [_subtraction setBackgroundImage:[UIImage imageNamed:@"yuanxingjian"] forState:UIControlStateNormal];
+    [_manberview addSubview:_subtraction];
     
     
     UIButton *cancelbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 50, self.view.bounds.size.height - 100, 100, 40)];
@@ -94,8 +105,78 @@
     _data = [[NSMutableData alloc] init];
     _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
     
+    self.manberarray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    [self addmanbers];
     [self startrequest];
     
+    
+    
+}
+
+-(void)addmanbers
+{
+#pragma mark  AAAA
+    
+    for (int c = 0; c < 7; c++) {
+        
+        [self.manberarray addObject:[NSString stringWithFormat:@"%D",c]];
+    }
+    
+
+    for (int c = 0; c < self.manberarray.count; c++) {
+        UIButton *btn = (UIButton *)[_manberview viewWithTag:10 + c];
+        [btn removeFromSuperview];
+    }
+    
+    //float width = (self.view.bounds.size.width - (12 * 4))/3;
+    float width = 50;
+    float heiht = width;
+    
+    for (int j = 0; j < [self.manberarray count]; j ++) {
+        
+        NSInteger xn = j % 5;
+        NSInteger yn = j / 5;
+        
+        int x = (20 + width) * xn + 20;
+        int y = (20 + heiht) * yn + 17;
+        
+        NSLog(@"x=%d",x);
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, heiht)];
+        button.backgroundColor = [UIColor redColor];
+        [button setBackgroundImage:[UIImage imageNamed:@"txtx"] forState:UIControlStateNormal];
+        button.tag = 10 + j;
+        [button addTarget:self action:@selector(cancelimageclick:) forControlEvents:UIControlEventTouchUpInside];
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 25;
+        [_manberview addSubview:button];
+        
+    }
+    
+    NSInteger a1 = [self.manberarray count];
+    NSInteger xn1 = a1 % 5;
+    NSInteger yn1 = a1 / 5;
+    
+    int x1 = (20 + width) * xn1 + 20;
+    int y1 = (20 + heiht) * yn1 + 17;
+    
+   
+    _addbtn.frame = CGRectMake(x1, y1, width , heiht);
+
+    NSInteger a2 = [self.manberarray count] + 1;
+    NSInteger xn2 = a2 % 5;
+    NSInteger yn2 = a2 / 5;
+    
+    int x2 = (20 + width) * xn2 + 20;
+    int y2 = (20 + heiht) * yn2 + 17;
+
+    _subtraction.frame = CGRectMake(x2, y2, width , heiht);
+
+}
+
+-(void)cancelimageclick:(UIButton *)btn
+{
+
 }
 
 - (void)didReceiveMemoryWarning {
