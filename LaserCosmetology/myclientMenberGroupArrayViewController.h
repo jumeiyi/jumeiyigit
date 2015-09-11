@@ -45,4 +45,6 @@
 @property(nonatomic,assign)BOOL isgroupes;
 @property(nonatomic,assign)BOOL isproject;
 
+@property(nonatomic,retain)NSMutableArray *yemei;
+@property(nonatomic,retain)NSMutableArray *grouparray;
 @end

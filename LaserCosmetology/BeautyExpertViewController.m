@@ -19,6 +19,7 @@
 #import "MainViewController.h"
 #import "NewExpertViewController.h"
 #import "PrefixHeader.pch"
+
 @interface BeautyExpertViewController ()
 
 
@@ -69,8 +70,6 @@
     titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
     titilelable.textAlignment = NSTextAlignmentCenter;
     [topbar addSubview:titilelable];
-    
-
     
     
     //------------------------------

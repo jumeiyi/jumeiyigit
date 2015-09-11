@@ -25,6 +25,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        self.shooseimage = [[UIImageView alloc] init];
+        [self addSubview:self.shooseimage];
+        
         self.headimage = [[UIImageView alloc] init];
         [self addSubview:self.headimage];
         

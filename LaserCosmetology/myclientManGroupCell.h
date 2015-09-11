@@ -10,6 +10,7 @@
 
 @interface myclientManGroupCell : UITableViewCell
 
+@property(nonatomic,retain)UIImageView *shooseimage;
 @property(nonatomic,retain)UIImageView *headimage;
 @property(nonatomic,retain)UILabel *name;
 @property(nonatomic,retain)UILabel *project1;

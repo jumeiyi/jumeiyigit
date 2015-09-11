@@ -212,7 +212,7 @@
 -(void)shoosesexbtn:(UISegmentedControl *)segmen
 {
     
-    self.SexType = [NSString stringWithFormat:@"%ld",segmen.selectedSegmentIndex];
+    self.SexType = [NSString stringWithFormat:@"%ld",(long)segmen.selectedSegmentIndex];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

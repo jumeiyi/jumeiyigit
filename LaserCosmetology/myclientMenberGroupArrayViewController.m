@@ -53,7 +53,21 @@
     
     _headnamearray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#", nil];
     
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64 + 44, self.view.bounds.size.width, self.view.bounds.size.height - (64 + 44))];
+    
+    NSMutableArray *array1 = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", @"9",@"10",@"11",nil];
+    
+    NSMutableArray *array2 = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", @"9",@"10",@"11",nil];
+    
+    NSMutableArray *array3 = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", @"9",@"10",@"11",nil];
+    
+    NSMutableArray *array4 = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", @"9",@"10",@"11",nil];
+    
+    self.yemei = [[NSMutableArray alloc]initWithObjects: @"孙悟空" , @"猪八戒", @"牛魔王"
+                  , @"蜘蛛精", nil];
+    self.grouparray = [[NSMutableArray alloc] initWithObjects:array1,array2,array3,array4, nil];
+    
+    
+    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64 + 44 + 90, self.view.bounds.size.width, self.view.bounds.size.height - (64 + 44 + 90))];
     _tableview.delegate = self;
     _tableview.dataSource = self;
     _tableview.layer.cornerRadius = 8;
@@ -70,16 +84,7 @@
     
     self.typeInfo = @"";  self.a = 1;
     
-    
-    
-    UITableView *headnametableview = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40, 64 + 44, 40, self.view.bounds.size.height - 108 )];
-    headnametableview.delegate = self;
-    headnametableview.dataSource = self;
-    headnametableview.rowHeight = 20;
-    headnametableview.tag = 61;
-    headnametableview.backgroundColor = [UIColor clearColor];
-    headnametableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:headnametableview];
+
     
     UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(5, 65, self.view.bounds.size.width - 10, 45)];
     shoosebtnimageback.image = [UIImage imageNamed:@"sousuobian"];
@@ -374,10 +379,8 @@
         }
     }else if (tableView.tag == 62){
         return _groups.count;
-    }else if (tableView.tag == 63){
-        return 2;
     }else{
-        return _headnamearray.count;
+        return 2;
     }
     
 }
@@ -386,6 +389,12 @@
 {
     
     if (tableView.tag == 60) {
+        
+//        // 获取分区号
+//        NSUInteger sectionNo = indexPath.section;
+//        // 获取表格行的行号
+//        NSUInteger rowNo = indexPath.row;
+//        NSString* story = [_headnamearray objectAtIndex:sectionNo];
         
         static NSString *identifier = @"cell";
         
@@ -397,10 +406,13 @@
         cell.backgroundColor = [UIColor clearColor];
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 8;
-        //        mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
+        //mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
         
         cell.headimage.frame = CGRectMake(0, 0, 0, 0);
         cell.headimage.image = [UIImage imageNamed:@""];
+        
+        cell.shooseimage.frame = CGRectMake(0, 0, 0, 0);
+        cell.shooseimage.image = [UIImage imageNamed:@""];
         
         cell.name.frame = CGRectMake(0, 0, 0, 0);
         cell.name.text = @" 名称X X";
@@ -415,18 +427,18 @@
         cell.project3.text = @"";
         
         
-        if (indexPath.section == 0) {
-            
-            cell.headimage.frame = CGRectMake(15, 9, 50, 50);
-            cell.headimage.image = [UIImage imageNamed:@"图片4"];
-            
-            cell.name.frame = CGRectMake(80, 25, 100, 20);
-            cell.name.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
-            cell.name.text = @"分组";
-            cell.name.textColor = [self colorWithRGB:0x00c5bb alpha:1];
-            
-        }else{
-            
+//        if (indexPath.section == 0) {
+//            
+//            cell.headimage.frame = CGRectMake(15, 9, 50, 50);
+//            cell.headimage.image = [UIImage imageNamed:@"图片4"];
+//            
+//            cell.name.frame = CGRectMake(80, 25, 100, 20);
+//            cell.name.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+//            cell.name.text = @"分组";
+//            cell.name.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+//            
+//        }else{
+        
             cell.headimage.frame = CGRectMake(15, 9, 50, 50);
             cell.headimage.image = [UIImage imageNamed:@"图片4"];
             
@@ -458,7 +470,11 @@
             cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
             cell.project3.layer.masksToBounds = YES;
             cell.project3.layer.cornerRadius = 3;
-        }
+        
+        
+        cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 22, 25, 25);
+        cell.shooseimage.image = [UIImage imageNamed:@"sucaibaganger"];
+//        }
         
         
         return cell;
@@ -477,7 +493,7 @@
         
         return cell2;
         
-    }else if (tableView.tag == 63){
+    }else{
         
         static NSString *ident = @"cell3";
         UITableViewCell *cell3 = [tableView dequeueReusableCellWithIdentifier:ident];
@@ -492,19 +508,6 @@
         
         return cell3;
         
-    }else{
-        
-        static NSString *ident = @"cell1";
-        UITableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:ident];
-        if (!cell1) {
-            cell1 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
-        }
-        cell1.textLabel.text = [_headnamearray objectAtIndex:indexPath.row];
-        cell1.textLabel.font = [UIFont systemFontOfSize:12];
-        cell1.textLabel.textColor = [self colorWithRGB:0x00c5bb alpha:1];
-        cell1.backgroundColor = [UIColor clearColor];
-        
-        return cell1;
     }
 }
 
@@ -546,23 +549,15 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-
-    
-    
-    
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == 62 || tableView.tag == 63) {
         return 30;
-    }else if (tableView.tag == 60){
-        return 68;
     }else{
-        return 20;
+        return 68;
     }
-    
 }
 
 //设置区头高度
@@ -575,6 +570,14 @@
     }
     
 }
+
+// UITableViewDataSource协议中的方法，该方法的返回值用于在表格右边建立一列浮动的索引。
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+     _tableview.sectionIndexColor = [self colorWithRGB:0x666666 alpha:1];
+    return _headnamearray;
+}
+
 // UITableViewDataSource协议中的方法，该方法的返回值决定指定分区的页眉
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection
                       :(NSInteger)section

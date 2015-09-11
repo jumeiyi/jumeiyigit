@@ -103,15 +103,7 @@
     
     _headnamearray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#", nil];
     
-    UITableView *headnametableview = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40, 64 + 44, 40, self.view.bounds.size.height - 108 )];
-    headnametableview.delegate = self;
-    headnametableview.dataSource = self;
-    headnametableview.rowHeight = 20;
-    headnametableview.tag = 61;
-    headnametableview.backgroundColor = [UIColor clearColor];
-    headnametableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:headnametableview];
-    
+
     
     _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
     
@@ -366,7 +358,7 @@
     
     if (tableView.tag == 60) {
         if (self.IsServiced == YES) {
-            return _headnamearray.count + 1;
+            return _headnamearray.count ;
         }else{
         return _headnamearray.count;
         }
@@ -394,10 +386,8 @@
         }
     }else if (tableView.tag == 62){
         return _groups.count;
-    }else if (tableView.tag == 63){
+    }else {
         return 2;
-    }else{
-        return _headnamearray.count;
     }
     
 }
@@ -534,7 +524,7 @@
         
         return cell2;
         
-    }else if (tableView.tag == 63){
+    }else {
     
         static NSString *ident = @"cell3";
         UITableViewCell *cell3 = [tableView dequeueReusableCellWithIdentifier:ident];
@@ -549,20 +539,8 @@
         
         return cell3;
         
-    }else{
-    
-        static NSString *ident = @"cell1";
-        UITableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:ident];
-        if (!cell1) {
-            cell1 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
-        }
-        cell1.textLabel.text = [_headnamearray objectAtIndex:indexPath.row];
-        cell1.textLabel.font = [UIFont systemFontOfSize:12];
-        cell1.textLabel.textColor = [self colorWithRGB:0x00c5bb alpha:1];
-        cell1.backgroundColor = [UIColor clearColor];
-    
-        return cell1;
     }
+    
 }
 
 //-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -586,7 +564,7 @@
                 return nil;
             }else{
                 UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
-                titlelable.text = [_headnamearray objectAtIndex:section - 1];
+                titlelable.text = [_headnamearray objectAtIndex:section ];
                 [view addSubview:titlelable];
             }
         }else{
@@ -633,11 +611,9 @@
         self.group = [_groupIDarray objectAtIndex:indexPath.row];
         
         NSLog(@"self.group---%@",self.group);
-    }else if (tableView.tag == 63){
+    }else {
     
        
-    }else{
-    
     }
 
 }
@@ -646,12 +622,9 @@
 {
     if (tableView.tag == 62 || tableView.tag == 63) {
         return 30;
-    }else if (tableView.tag == 60){
+    }else {
         return 68;
-    }else{
-        return 20;
     }
-
 }
 
 //设置区头高度
@@ -663,6 +636,21 @@
         return 0;
     }
     
+}
+
+// UITableViewDataSource协议中的方法，该方法的返回值用于在表格右边建立一列浮动的索引。
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    //self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];设置索引背景颜色
+    _tableview.sectionIndexColor = [self colorWithRGB:0x666666 alpha:1];
+    return _headnamearray;
+}
+
+// UITableViewDataSource协议中的方法，该方法的返回值决定指定分区的页眉
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection
+                      :(NSInteger)section
+{
+    return [_headnamearray objectAtIndex:section];
 }
 
 -(void)startrequest
