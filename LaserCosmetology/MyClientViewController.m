@@ -358,7 +358,7 @@
     
     if (tableView.tag == 60) {
         if (self.IsServiced == YES) {
-            return _headnamearray.count ;
+            return _headnamearray.count + 1;
         }else{
         return _headnamearray.count;
         }
@@ -534,7 +534,6 @@
         cell3.textLabel.text = [_shooesproject objectAtIndex:indexPath.row];
         cell3.textLabel.font = [UIFont systemFontOfSize:15];
         cell3.textLabel.textColor = [UIColor whiteColor];
-        
         cell3.backgroundColor = [UIColor clearColor];
         
         return cell3;
@@ -564,12 +563,16 @@
                 return nil;
             }else{
                 UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
-                titlelable.text = [_headnamearray objectAtIndex:section ];
+                titlelable.text = [_headnamearray objectAtIndex:section  - 1];
+                titlelable.font = [UIFont systemFontOfSize:13];
+                titlelable.textColor = [self colorWithRGB:0x666666 alpha:1];
                 [view addSubview:titlelable];
             }
         }else{
             UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
             titlelable.text = [_headnamearray objectAtIndex:section];
+            titlelable.font = [UIFont systemFontOfSize:13];
+            titlelable.textColor = [self colorWithRGB:0x666666 alpha:1];
             [view addSubview:titlelable];
         }
 
@@ -641,16 +644,30 @@
 // UITableViewDataSource协议中的方法，该方法的返回值用于在表格右边建立一列浮动的索引。
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    //self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];设置索引背景颜色
-    _tableview.sectionIndexColor = [self colorWithRGB:0x666666 alpha:1];
-    return _headnamearray;
+    if (tableView.tag == 60) {
+        //self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];设置索引背景颜色
+        _tableview.sectionIndexColor = [self colorWithRGB:0x666666 alpha:1];
+        return _headnamearray;
+    }else{
+        return nil;
+    }
+
 }
 
 // UITableViewDataSource协议中的方法，该方法的返回值决定指定分区的页眉
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection
                       :(NSInteger)section
 {
-    return [_headnamearray objectAtIndex:section];
+    if (self.IsServiced == YES) {
+        if (section == 0) {
+            return nil;
+        }else{
+            return [_headnamearray objectAtIndex:section - 1];
+        }
+    }else{
+        return [_headnamearray objectAtIndex:section];
+    }
+    
 }
 
 -(void)startrequest

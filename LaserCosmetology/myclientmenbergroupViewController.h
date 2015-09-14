@@ -17,6 +17,8 @@
     UIView *_manberview;
     UIButton *_addbtn;
     UIButton *_subtraction;
+    
+    UITextField *_grouptitle;
 }
 
 @property(nonatomic,retain)NSString *doctorsno;

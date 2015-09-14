@@ -481,7 +481,6 @@
 
         }
         
-
     }
     
     
@@ -642,7 +641,6 @@
     {
         NSLog(@"theConnection is NULL");
     }
-    
     
 }
 

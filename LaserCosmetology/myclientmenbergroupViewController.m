@@ -59,14 +59,15 @@
     view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:view];
     
-    UILabel *grouptitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, self.view.bounds.size.width - 30, 20)];
-    grouptitle.text = self.groupstr;
-    grouptitle.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
-    grouptitle.textColor = [self colorWithRGB:0x00c5bb alpha:1];
-    [view addSubview:grouptitle];
+    _grouptitle = [[UITextField alloc] initWithFrame:CGRectMake(15, 10, self.view.bounds.size.width - 30, 20)];
+    _grouptitle.text = self.groupstr;
+    _grouptitle.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
+    _grouptitle.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+    [view addSubview:_grouptitle];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40, 10, 20, 20)];
     [btn setBackgroundImage:[UIImage imageNamed:@"huidianshnchu"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(canceltext) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:btn];
     
 
@@ -89,6 +90,7 @@
     
     _subtraction = [[UIButton alloc] initWithFrame:CGRectMake(90, 17, 50, 50)];
     [_subtraction setBackgroundImage:[UIImage imageNamed:@"yuanxingjian"] forState:UIControlStateNormal];
+    [_subtraction addTarget:self action:@selector(cancelbtnclick) forControlEvents:UIControlEventTouchUpInside];
     [_manberview addSubview:_subtraction];
     
     
@@ -107,29 +109,33 @@
     
     self.manberarray = [[NSMutableArray alloc] initWithCapacity:0];
     
+    for (int c = 0; c < 7; c++) {
+        [self.manberarray addObject:[NSString stringWithFormat:@"%D",c]];
+    }
+    
     [self addmanbers];
     [self startrequest];
     
-    
-    
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
+-(void)canceltext
+{
+     _grouptitle.text = @"";
 }
 
 -(void)addmanbers
 {
-#pragma mark  AAAA
-    
-    for (int c = 0; c < 7; c++) {
-        
-        [self.manberarray addObject:[NSString stringWithFormat:@"%D",c]];
-    }
-    
 
     for (int c = 0; c < self.manberarray.count; c++) {
         UIButton *btn = (UIButton *)[_manberview viewWithTag:10 + c];
         [btn removeFromSuperview];
     }
     
-    //float width = (self.view.bounds.size.width - (12 * 4))/3;
     float width = 50;
     float heiht = width;
     
@@ -141,16 +147,15 @@
         int x = (20 + width) * xn + 20;
         int y = (20 + heiht) * yn + 17;
         
-        NSLog(@"x=%d",x);
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, heiht)];
         button.backgroundColor = [UIColor redColor];
         [button setBackgroundImage:[UIImage imageNamed:@"txtx"] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(cancelbuttonclickl:) forControlEvents:UIControlEventTouchUpInside];
+        button.userInteractionEnabled = NO;
         button.tag = 10 + j;
-        [button addTarget:self action:@selector(cancelimageclick:) forControlEvents:UIControlEventTouchUpInside];
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = 25;
         [_manberview addSubview:button];
-        
     }
     
     NSInteger a1 = [self.manberarray count];
@@ -159,7 +164,6 @@
     
     int x1 = (20 + width) * xn1 + 20;
     int y1 = (20 + heiht) * yn1 + 17;
-    
    
     _addbtn.frame = CGRectMake(x1, y1, width , heiht);
 
@@ -174,10 +178,61 @@
 
 }
 
--(void)cancelimageclick:(UIButton *)btn
+-(void)cancelbtnclick
 {
+    static NSInteger a = 0;
+    
+    float width = 50;
+    float heiht = width;
+    
+    if (a % 2 == 0) {
+        
+        for (int j = 0; j < [self.manberarray count]; j ++) {
+            
+            NSInteger xn = j % 5;
+            NSInteger yn = j / 5;
+            
+            int x = (20 + width) * xn + 20;
+            int y = (20 + heiht) * yn + 17;
+            
+            UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(x - 5, y - 5, 20, 20)];
+            imagev.image = [UIImage imageNamed:@"hongdianshanchu"];
+            imagev.tag = 100 + j;
+            [_manberview addSubview:imagev];
+            
+            UIButton *btn = (UIButton *)[_manberview viewWithTag:10 + j];
+            btn.userInteractionEnabled = YES;
+        }
+        
+    }else{
+        
+        for (int j = 0; j < [self.manberarray count]; j ++) {
+            
+            UIImageView *imagev = (UIImageView *)[_manberview viewWithTag:100 + j];
+            [imagev removeFromSuperview];
+            
+            UIButton *btn = (UIButton *)[_manberview viewWithTag:10 + j];
+            btn.userInteractionEnabled = NO;
+        }
+    
+    }
+    
+    a++;
+}
+
+-(void)cancelbuttonclickl:(UIButton *)btn
+{
+    NSLog(@"12345");
+    
+    [self.manberarray removeObjectAtIndex:btn.tag - 10];
+    [btn removeFromSuperview];
+    
+    NSLog(@"--self.manberarray.count:%ld",self.manberarray.count);
+    
+    [self addmanbers];
 
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -185,6 +240,7 @@
 }
 
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
+    
     return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
 }
 
@@ -260,10 +316,7 @@
     //JSON解析器
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
     
-    NSLog(@"000000------------%@",dic);
-    
     NSString *state = [dic objectForKey:@"state"];
-    
     NSString *msg = [dic objectForKey:@"msg"];
     
     

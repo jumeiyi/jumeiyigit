@@ -319,11 +319,11 @@
 
 -(void)doctersbuttonclick:(UIButton *)button
 {
-//    if ([self.checkState isEqualToString:@"0"]) {
-//        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您好！您的资料我们在审核中，通过后便可以使用会员所有功能！谢谢您的使用！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-//        [alertview show];
-//        return;
-//    }
+    if ([self.checkState isEqualToString:@"0"]) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您好！您的资料我们在审核中，通过后便可以使用会员所有功能！谢谢您的使用！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alertview show];
+        return;
+    }
     switch (button.tag) {
         case 10:
         {

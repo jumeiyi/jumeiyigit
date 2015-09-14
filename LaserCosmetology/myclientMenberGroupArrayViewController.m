@@ -62,9 +62,27 @@
     
     NSMutableArray *array4 = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", @"9",@"10",@"11",nil];
     
-    self.yemei = [[NSMutableArray alloc]initWithObjects: @"孙悟空" , @"猪八戒", @"牛魔王"
-                  , @"蜘蛛精", nil];
+    self.yemei = [[NSMutableArray alloc] initWithObjects: @"孙悟空" , @"猪八戒", @"牛魔王", @"蜘蛛精", nil];
     self.grouparray = [[NSMutableArray alloc] initWithObjects:array1,array2,array3,array4, nil];
+    
+    for (int i = 0; i < self.grouparray.count; i++) {
+        
+      NSArray *ary = [self.grouparray objectAtIndex:i];
+        NSMutableArray *lengthary = [[NSMutableArray alloc] init];
+        [lengthary addObject:@"y"];
+        
+    }
+    
+    
+    UIImageView *gradimage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64 + 44, self.view.bounds.size.width, 22)];
+    gradimage.backgroundColor = [self colorWithRGB:0xEEEEEE alpha:1];
+    [self.view addSubview:gradimage];
+    
+    self.myscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64 + 44 + 22, self.view.bounds.size.width, 68)];
+    self.myscrollview.backgroundColor = [UIColor whiteColor];
+    self.myscrollview.contentSize = CGSizeMake(self.view.bounds.size.width * 2, 68);
+    [self.view addSubview:self.myscrollview];
+    
     
     
     _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64 + 44 + 90, self.view.bounds.size.width, self.view.bounds.size.height - (64 + 44 + 90))];
@@ -150,7 +168,7 @@
         return;
     }else{
         
-        //        [self soaprequstWithGetProTypePageData:searchBar.text];
+        //[self soaprequstWithGetProTypePageData:searchBar.text];
         NSLog(@"searchBar.text---> %@",searchBar.text);
     }
     
@@ -362,7 +380,7 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView.tag == 60) {
-        return _headnamearray.count + 1;
+        return _headnamearray.count;
     }else{
         return 1;
     }
@@ -372,11 +390,8 @@
 {
     if (tableView.tag == 60) {
         
-        if (section == 0) {
-            return 1;
-        }else{
-            return 3;
-        }
+        return 3;
+        
     }else if (tableView.tag == 62){
         return _groups.count;
     }else{
@@ -527,14 +542,11 @@
         view.backgroundColor = [self colorWithRGB:0xeeeeee alpha:1];
         [tableView addSubview:view];
         
-        if (section == 0) {
-            return nil;
-        }else{
-            UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
-            titlelable.text = [_headnamearray objectAtIndex:section - 1];
-            [view addSubview:titlelable];
-        }
-        
+        UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
+        titlelable.text = [_headnamearray objectAtIndex:section];
+        titlelable.font = [UIFont systemFontOfSize:13];
+        titlelable.textColor = [self colorWithRGB:0x666666 alpha:1];
+        [view addSubview:titlelable];
         
         return view;
         
@@ -548,6 +560,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSLog(@"我点击了%ld区，%ld行",indexPath.section,indexPath.row);
     
 }
 
@@ -669,6 +683,5 @@
     }
     
 }
-
 
 @end

@@ -47,4 +47,5 @@
 
 @property(nonatomic,retain)NSMutableArray *yemei;
 @property(nonatomic,retain)NSMutableArray *grouparray;
+@property(nonatomic,retain)UIScrollView *myscrollview;
 @end
