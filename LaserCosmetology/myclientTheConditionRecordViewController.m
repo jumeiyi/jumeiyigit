@@ -48,21 +48,20 @@
     save.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
     [topbar addSubview:save];
     
-    
 
-_tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64 - 60)];
-_tableview.delegate = self;
-_tableview.dataSource = self;
-_tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-_tableview.backgroundColor = [UIColor whiteColor];
-[self.view addSubview:_tableview];
+    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64 - 60)];
+    _tableview.delegate = self;
+    _tableview.dataSource = self;
+    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableview.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_tableview];
 
 
-_images = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 60, self.view.bounds.size.width, 60)];
-_images.image = [UIImage imageNamed:@"dhk_02"];
-_images.userInteractionEnabled = YES;
-_images.backgroundColor = [UIColor blackColor];
-[self.view addSubview:_images];
+    _images = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 60, self.view.bounds.size.width, 60)];
+    _images.image = [UIImage imageNamed:@"dhk_02"];
+    _images.userInteractionEnabled = YES;
+    _images.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:_images];
 
 //    UIButton *Sound = [[UIButton alloc] initWithFrame:CGRectMake(5, 12, 20, 30)];
 //    [Sound setBackgroundImage:[UIImage imageNamed:@"liaotiananniu"] forState:UIControlStateNormal];
@@ -75,32 +74,28 @@ _images.backgroundColor = [UIColor blackColor];
 //    [addimage addTarget:self action:@selector(doctoraddimageSendAMessage) forControlEvents:UIControlEventTouchUpInside];
 //    [_images addSubview:addimage];
 
-_text = [[UITextField alloc] initWithFrame:CGRectMake(20, 10,self.view.bounds.size.width - 120, 35)];
-_text.backgroundColor = [UIColor whiteColor];
-_text.layer.masksToBounds = YES;
-_text.layer.cornerRadius = 3;
-[_images addSubview:_text];
+    _text = [[UITextField alloc] initWithFrame:CGRectMake(20, 10,self.view.bounds.size.width - 120, 35)];
+    _text.backgroundColor = [UIColor whiteColor];
+    _text.layer.masksToBounds = YES;
+    _text.layer.cornerRadius = 3;
+    [_images addSubview:_text];
 
-UIButton *sendmasses = [[UIButton alloc] initWithFrame:CGRectMake(_text.frame.size.width + _text.frame.origin.x + 15, 10, 60, 35)];
-[sendmasses setBackgroundImage:[UIImage imageNamed:@"xiaoxifasong"] forState:UIControlStateNormal];
-[sendmasses addTarget:self action:@selector(doctorSendAMessage) forControlEvents:UIControlEventTouchUpInside];
-[_images addSubview:sendmasses];
+    UIButton *sendmasses = [[UIButton alloc] initWithFrame:CGRectMake(_text.frame.size.width + _text.frame.origin.x + 15, 10, 60, 35)];
+    [sendmasses setBackgroundImage:[UIImage imageNamed:@"xiaoxifasong"] forState:UIControlStateNormal];
+    [sendmasses addTarget:self action:@selector(doctorSendAMessage) forControlEvents:UIControlEventTouchUpInside];
+    [_images addSubview:sendmasses];
 
 
-self.fromType = @"";
-self.data = @"";
-self.fileTypeName = @"";
-self.lastInfoSno = @"";
-self.noticeDt = @"";
-self.orderDetailSno = @"";
-
+    self.fromType = @"";
+    self.data = @"";
+    self.fileTypeName = @"";
+    self.lastInfoSno = @"";
+    self.noticeDt = @"";
+    self.orderDetailSno = @"";
 
     _custommesarray = [[NSMutableArray alloc] initWithCapacity:0];
-    
   
-
-
-_messetimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(referenceViewmesse) userInfo:nil repeats:YES];
+    _messetimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(referenceViewmesse) userInfo:nil repeats:YES];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -400,7 +395,6 @@ _messetimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:
             // 调用下拉刷新方法
             NSLog(@"到顶了");
             _timer = [NSTimer scheduledTimerWithTimeInterval:1.50 target:self selector:@selector(shuaxin) userInfo:nil repeats:NO];
-            
    
             self.isRefreshLoading = NO;
         }

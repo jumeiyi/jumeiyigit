@@ -74,18 +74,18 @@
     }
     
     
-    UIImageView *gradimage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64 + 44, self.view.bounds.size.width, 22)];
+    UIImageView *gradimage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 67 + 62, self.view.bounds.size.width, 22)];
     gradimage.backgroundColor = [self colorWithRGB:0xEEEEEE alpha:1];
     [self.view addSubview:gradimage];
     
-    self.myscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64 + 44 + 22, self.view.bounds.size.width, 68)];
+    self.myscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 67 + 62 + 22, self.view.bounds.size.width, 68)];
     self.myscrollview.backgroundColor = [UIColor whiteColor];
     self.myscrollview.contentSize = CGSizeMake(self.view.bounds.size.width * 2, 68);
     [self.view addSubview:self.myscrollview];
     
     
     
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64 + 44 + 90, self.view.bounds.size.width, self.view.bounds.size.height - (64 + 44 + 90))];
+    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0,  67 + 62 + 22 + 68, self.view.bounds.size.width, self.view.bounds.size.height - ( 67 + 62 + 22 + 68))];
     _tableview.delegate = self;
     _tableview.dataSource = self;
     _tableview.layer.cornerRadius = 8;
@@ -104,22 +104,22 @@
     
 
     
-    UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(5, 65, self.view.bounds.size.width - 10, 45)];
+    UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(5, 75, self.view.bounds.size.width - 10, 42)];
     shoosebtnimageback.image = [UIImage imageNamed:@"sousuobian"];
     shoosebtnimageback.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:shoosebtnimageback];
     
-    _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 64, 50, 44)];
+    _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 75, 50, 37)];
     [_shoosebtn setTitle:@"姓名:" forState:UIControlStateNormal];
     [_shoosebtn setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
     [_shoosebtn addTarget:self action:@selector(shoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_shoosebtn];
     
-    UIImageView *shoosebtnimage = [[UIImageView alloc] initWithFrame:CGRectMake(52, 82, 15, 10)];
+    UIImageView *shoosebtnimage = [[UIImageView alloc] initWithFrame:CGRectMake(52, 92, 15, 10)];
     shoosebtnimage.image = [UIImage imageNamed:@"图片2"];
     [self.view addSubview:shoosebtnimage];
     
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(70.0f,67, self.view.frame.size.width - 80 , 40.0f)];
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(70.0f,77, self.view.frame.size.width - 80 , 37.0f)];
     self.searchBar.delegate =self;
     self.searchBar.placeholder = @"搜索项目，医生";
     self.searchBar.tintColor = [UIColor lightGrayColor];
@@ -144,6 +144,9 @@
     self.isproject = NO;
     
     [self startrequest];
+    
+    
+
     
 }
 

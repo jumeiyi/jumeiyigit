@@ -16,7 +16,7 @@
     UITableView *_tableview;
     NSMutableArray *_mycustomerDataarray;
     
-    NSArray *_headnamearray;
+    NSMutableArray *_headnamearray;
     RefreshControl *_refreshControl;
     BOOL _isLoading;
     NSTimer *_timer1;

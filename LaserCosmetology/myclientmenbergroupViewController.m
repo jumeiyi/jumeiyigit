@@ -48,7 +48,7 @@
     save.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
     [topbar addSubview:save];
     
-    UILabel *groupname = [[UILabel alloc] initWithFrame:CGRectMake(20, 64 + 12, 120, 25)];
+    UILabel *groupname = [[UILabel alloc] initWithFrame:CGRectMake(15, 64 + 12, [self NSStringwithsize:15 str:@"分组名字"], 25)];
     groupname.text = @"分组名字";
     groupname.textColor = [self colorWithRGB:0x999999 alpha:1];
     groupname.font = [UIFont systemFontOfSize:15];
@@ -71,7 +71,7 @@
     [view addSubview:btn];
     
 
-    UILabel *groupmanber = [[UILabel alloc] initWithFrame:CGRectMake(20, 64 + 90 + 12, 120, 25)];
+    UILabel *groupmanber = [[UILabel alloc] initWithFrame:CGRectMake(15, 64 + 90 + 12, [self NSStringwithsize:15 str:@"分组名字"], 25)];
     groupmanber.text = @"分组成员";
     groupmanber.textColor = [self colorWithRGB:0x999999 alpha:1];
     groupmanber.font = [UIFont systemFontOfSize:15];
@@ -131,13 +131,15 @@
 -(void)addmanbers
 {
 
-    for (int c = 0; c < self.manberarray.count; c++) {
+    for (int c = 0; c < self.manberarray.count + 1; c++) {
         UIButton *btn = (UIButton *)[_manberview viewWithTag:10 + c];
         [btn removeFromSuperview];
     }
     
     float width = 50;
     float heiht = width;
+    
+    NSLog(@"self.manberarray.count-:%ld",self.manberarray.count);
     
     for (int j = 0; j < [self.manberarray count]; j ++) {
         
@@ -180,12 +182,12 @@
 
 -(void)cancelbtnclick
 {
-    static NSInteger a = 0;
+    
     
     float width = 50;
     float heiht = width;
     
-    if (a % 2 == 0) {
+    if (self.iscancel == NO) {
         
         for (int j = 0; j < [self.manberarray count]; j ++) {
             
@@ -202,6 +204,8 @@
             
             UIButton *btn = (UIButton *)[_manberview viewWithTag:10 + j];
             btn.userInteractionEnabled = YES;
+            
+            self.iscancel = YES;
         }
         
     }else{
@@ -213,11 +217,12 @@
             
             UIButton *btn = (UIButton *)[_manberview viewWithTag:10 + j];
             btn.userInteractionEnabled = NO;
+            
+            self.iscancel = NO;
         }
-    
     }
     
-    a++;
+    
 }
 
 -(void)cancelbuttonclickl:(UIButton *)btn
@@ -230,6 +235,17 @@
     NSLog(@"--self.manberarray.count:%ld",self.manberarray.count);
     
     [self addmanbers];
+    
+    for (int j = 0; j < [self.manberarray count] + 1; j ++) {
+        
+        UIImageView *imagev = (UIImageView *)[_manberview viewWithTag:100 + j];
+        [imagev removeFromSuperview];
+        
+        UIButton *btn = (UIButton *)[_manberview viewWithTag:10 + j];
+        btn.userInteractionEnabled = NO;
+        
+        self.iscancel = NO;
+    }
 
 }
 
@@ -242,6 +258,21 @@
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
     
     return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
+}
+
+//计算字体长度
+-(float)NSStringwithsize:(int )a str:(NSString *)string
+{
+    
+    UIFont *font = [UIFont systemFontOfSize:a];
+    
+    CGSize size = [string sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    // 名字的H
+    //CGFloat nameH = size.height;
+    // 名字的W
+    CGFloat strwidth = size.width;
+    
+    return strwidth;
 }
 
 /*

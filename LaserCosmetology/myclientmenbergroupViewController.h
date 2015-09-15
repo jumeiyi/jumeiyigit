@@ -24,5 +24,5 @@
 @property(nonatomic,retain)NSString *doctorsno;
 @property(nonatomic,retain)NSString *groupstr;
 @property(nonatomic,retain)NSMutableArray *manberarray;
-
+@property(nonatomic,assign)BOOL iscancel;
 @end

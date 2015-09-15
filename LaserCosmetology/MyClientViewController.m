@@ -54,22 +54,22 @@
     
 
     
-    UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(5, 65, self.view.bounds.size.width - 10, 45)];
+    UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(5, 75, self.view.bounds.size.width - 10, 42)];
     shoosebtnimageback.image = [UIImage imageNamed:@"sousuobian"];
     shoosebtnimageback.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:shoosebtnimageback];
     
-    _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 64, 50, 44)];
+    _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 75, 50, 37)];
     [_shoosebtn setTitle:@"姓名:" forState:UIControlStateNormal];
     [_shoosebtn setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
     [_shoosebtn addTarget:self action:@selector(shoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_shoosebtn];
     
-    UIImageView *shoosebtnimage = [[UIImageView alloc] initWithFrame:CGRectMake(52, 82, 15, 10)];
+    UIImageView *shoosebtnimage = [[UIImageView alloc] initWithFrame:CGRectMake(52, 92, 15, 10)];
     shoosebtnimage.image = [UIImage imageNamed:@"图片2"];
     [self.view addSubview:shoosebtnimage];
     
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(70.0f,67, self.view.frame.size.width - 80 , 40.0f)];
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(70.0f,77, self.view.frame.size.width - 80 , 37.0f)];
     self.searchBar.delegate =self;
     self.searchBar.placeholder = @"搜索项目，医生";
     self.searchBar.tintColor = [UIColor lightGrayColor];
@@ -87,7 +87,7 @@
 //    _searchDisplay.searchResultsDelegate =self;
     
     
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 67 + 44, self.view.bounds.size.width, self.view.bounds.size.height - (67 + 44))];
+    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 67 + 62, self.view.bounds.size.width, self.view.bounds.size.height - (67 + 62))];
     _tableview.delegate = self;
     _tableview.dataSource = self;
     _tableview.layer.cornerRadius = 8;
@@ -100,10 +100,6 @@
     _refreshControl.topEnabled=YES;
     //_refreshControl.bottomEnabled=YES;//会崩
     
-    
-    _headnamearray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#", nil];
-    
-
     
     _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
     
@@ -125,13 +121,13 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self.searchBar setText:@""];
-     self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 100 , 40.0f);
+     self.searchBar.frame = CGRectMake(70.0f,77, self.view.frame.size.width - 100 , 37.0f);
     return;
     
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 80 , 40.0f);
+    self.searchBar.frame = CGRectMake(70.0f,77, self.view.frame.size.width - 80 , 37.0f);
     NSLog(@"%@",searchBar.text);
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
@@ -146,9 +142,20 @@
         NSLog(@"searchBar.text---> %@",searchBar.text);
     }
     
-    self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 80 , 40.0f);
+    self.searchBar.frame = CGRectMake(70.0f,77, self.view.frame.size.width - 80 , 37.0f);
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [_tableview endEditing:YES];
+}
+
+//表格滑动时候调用UIScrollView的方法
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    
+    [self.view endEditing:YES];
+}
 
 - (void)refreshControl:(RefreshControl *)refreshControl didEngageRefreshDirection:(RefreshDirection)direction
 {
@@ -243,7 +250,7 @@
             btnview = nil;
             self.isgroupes = NO;
         }
-        shoosebtnview = [[UIView alloc] initWithFrame:CGRectMake( 8 , 60 + 40, 60, 70)];
+        shoosebtnview = [[UIView alloc] initWithFrame:CGRectMake( 8 , 110, 60, 70)];
         [self.view addSubview:shoosebtnview];
         
         UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, shoosebtnview.bounds.size.width, shoosebtnview.bounds.size.height)];
@@ -645,7 +652,8 @@
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if (tableView.tag == 60) {
-        //self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];设置索引背景颜色
+        _tableview.sectionIndexBackgroundColor = [UIColor clearColor];//设置索引背景颜色
+       
         _tableview.sectionIndexColor = [self colorWithRGB:0x666666 alpha:1];
         return _headnamearray;
     }else{
@@ -672,7 +680,7 @@
 
 -(void)startrequest
 {
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=serviced&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno];
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=Exclusive&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno];
     
     [self requstwithurl:string];
 }
@@ -712,9 +720,9 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     
-    // NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
+     NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
     
-    //NSLog(@"%@",str);
+    NSLog(@"str------》%@",str);
     
     //JSON解析器
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
@@ -730,12 +738,27 @@
         self.istop = NO;
     }
     
-    NSMutableArray *customerData = [dic objectForKey:@"data"];
-    for (NSDictionary *mycusdiction in customerData) {
+    NSDictionary *customerData = [dic objectForKey:@"Content"];
+    NSMutableArray *dataary = [customerData objectForKey:@"data"];
+    
+    _headnamearray = [[NSMutableArray alloc] init];
+    
+    NSMutableArray *firstsearchwordary = [[NSMutableArray alloc] initWithCapacity:0];
+     NSMutableArray *allfirs = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    for (NSDictionary *mycusdiction in dataary) {
         mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-        [_mycustomerDataarray addObject:mycustom];
+        [allfirs addObject:mycustom.firstsearchword];
+        
+        for (NSString *str in allfirs) {
+            if (![str isEqualToString:mycustom.firstsearchword]) {
+                [firstsearchwordary addObject:mycustom.firstsearchword];
+            }
+            
+        }
+        
     }
-    [_tableview reloadData];
+    
     
     NSLog(@"customerData--%@",customerData);
     

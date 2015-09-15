@@ -221,8 +221,8 @@ static NSString *identifier = @"cell";
         [cell.binglibtn setBackgroundImage:[UIImage imageNamed:@"我的预约20150402_06"] forState:UIControlStateNormal];
     }else{
         
-    
     }
+    
     NSLog(@"时间轴--------------> %@",doctor.NowState);
     
     return cell;
