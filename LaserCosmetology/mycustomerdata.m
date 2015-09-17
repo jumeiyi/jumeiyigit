@@ -68,9 +68,15 @@
     mycustom.sextype = [diction objectForKey:@"sextype"];
     mycustom.sno = [diction objectForKey:@"sno"];
     mycustom.truename = [diction objectForKey:@"truename"];
+    
+    mycustom.issysreverse =[NSString stringWithFormat:@"%@",[diction objectForKey:@"issysreverse"]];
+    mycustom.groupid = [diction objectForKey:@"groupid"];
+    mycustom.groupname = [diction objectForKey:@"groupname"];
+    mycustom.isuse = [NSString stringWithFormat:@"%@",[diction objectForKey:@"isuse"]];
 
     return mycustom;
 }
+
 
 @end
 

@@ -18,6 +18,8 @@
 #import "myclientdatasViewController.h"
 #import "myclientmainsetgropViewController.h"
 
+
+
 @interface MyClientViewController ()
 
 @end
@@ -107,6 +109,8 @@
     self.IsServiced = YES;
     
     [self startrequest];
+    
+
     
 }
 

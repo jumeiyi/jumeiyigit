@@ -7,16 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFHTTPRequestOpeartionManagerOfme.h"
 
-@interface myclientmainsetgropViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate>
+@interface myclientmainsetgropViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 {
     NSMutableArray *_titleary;
     NSMutableArray *_mycustomerDataarray;
-    NSMutableData *_data;
+    
+    NSMutableArray *_groupname;
+    NSMutableArray *_groupman;
+    
 }
 
 @property(nonatomic,retain)UITableView *mytableview;
 @property(nonatomic,retain)NSString *doctorsno;
+
+@property(nonatomic,retain)AFHTTPRequestOpeartionManagerOfme *requsetmanager;
 
 @end

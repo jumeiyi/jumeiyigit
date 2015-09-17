@@ -56,17 +56,52 @@
     self.mytableview.dataSource = self;
     [self.view addSubview:self.mytableview];
     
-    _titleary = [[NSMutableArray alloc] initWithObjects:@"今年组 （40） ",@"美女第一组 （30） ",@"帅哥二组 （10）",@"帅哥又美女组 （100）", nil];
+
     
     NSMutableArray *Yary  = [[NSMutableArray alloc] initWithCapacity:0];
     for (int a = 0; a < _titleary.count; a++) {
         [Yary addObject:@"y"];
     }
     
-    _data = [[NSMutableData alloc] init];
     _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+        NSString *string = [NSString stringWithFormat:@"%@/doctor.getgrouplist.go?doctorsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
 
-    [self startrequest];
+    [AFHTTPRequestOpeartionManagerOfme postSetgroups:string withBlock:^(NSMutableArray *array1, NSMutableArray *array2) {
+        _mycustomerDataarray = array1;
+        
+        NSLog(@"array1:%@----array2:%@",array1,array2);
+    }];
+    
+    
+}
+
+-(void)setgroupwithary:(NSMutableArray *)ary
+{
+//    _groupname = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
+//    NSString *stra;
+//    for (NSDictionary *mycusdiction in dataary) {
+//        mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
+//        if (![stra isEqualToString:mycustom.firstsearchword]) {
+//            [_groupname addObject:mycustom.firstsearchword];
+//        }
+//        stra = mycustom.firstsearchword;
+//        [_mycustomerDataarray addObject:mycustom];
+//    }
+//    
+//    
+//    
+//    _groupname = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
+//    for (NSString *str in _headnamearray) {
+//        NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
+//        for (mycustomerdata *mydata in _mycustomerDataarray) {
+//            if ([mydata.firstsearchword isEqualToString:str]) {
+//                [indexary addObject:mydata];
+//            }
+//        }
+//        [_allgroup addObject:indexary];
+//    }
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,7 +129,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _titleary.count;
+    return _mycustomerDataarray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,6 +140,8 @@
     if (!cell) {
         cell = [[myclientgroupTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    
+    mycustomerdata *data = [_mycustomerDataarray objectAtIndex:indexPath.row];
     
     cell.grouplable.frame = CGRectMake(15, 15, self.view.bounds.size.width - 35, 20);
     cell.grouplable.textColor = [self colorWithRGB:0x00c5bb alpha:1];
@@ -131,77 +168,6 @@
     [self.navigationController pushViewController:myclient animated:YES];
 }
 
-#pragma mark request
-
--(void)startrequest
-{
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.getgrouplist.go?docsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
-    
-    [self requstwithurl:string];
-}
-
-#pragma mark  request
-
--(void)requstwithurl:(NSString *)str
-{
-    NSURL *urlstr = [NSURL URLWithString:str];
-    
-    NSURLRequest *requst = [NSURLRequest requestWithURL:urlstr];
-    
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:requst delegate:self];
-    
-    [connection start];
-    
-    NSLog(@"url--------%@",urlstr);
-}
-
-#pragma mark  requestdelegate
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"请求失败");
-}
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSLog(@"收到响应");
-    
-    [_data setData:[NSData data]];
-}
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSLog(@"请求数据接收");
-    [_data appendData:data];
-    
-}
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    
-    // NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-    
-    //NSLog(@"%@",str);
-    
-    //JSON解析器
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
-    
-    NSLog(@"获取分组------------%@",dic);
-    
-    NSString *state = [dic objectForKey:@"state"];
-    
-    NSString *msg = [dic objectForKey:@"msg"];
-
-    
-    NSMutableArray *customerData = [dic objectForKey:@"customerData"];
-    for (NSDictionary *mycusdiction in customerData) {
-        mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-        [_mycustomerDataarray addObject:mycustom];
-    }
-   
-    
-    if ([state isEqualToString:@"0"]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
-    }
-    
-}
 
 
 @end
