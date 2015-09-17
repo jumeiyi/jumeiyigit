@@ -31,6 +31,7 @@
     UIButton *_shoosebtn;
     
      NSMutableData *_data;
+    NSMutableArray *_allgroup;
 }
 @property(nonatomic,assign)BOOL istop;
 @property(nonatomic,retain)NSString *doctorsno;

@@ -127,14 +127,15 @@
 }
 
 -(void)creatnewagroup{
-    
+    myclientmenbergroupViewController *myclient = [[myclientmenbergroupViewController alloc] init];
+    [self.navigationController pushViewController:myclient animated:YES];
 }
 
 #pragma mark request
 
 -(void)startrequest
 {
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=serviced&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno];
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.getgrouplist.go?docsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
     
     [self requstwithurl:string];
 }
@@ -181,7 +182,7 @@
     //JSON解析器
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
     
-    NSLog(@"000000------------%@",dic);
+    NSLog(@"获取分组------------%@",dic);
     
     NSString *state = [dic objectForKey:@"state"];
     

@@ -480,7 +480,6 @@ NSLog(@"取消发送照片");
     NSString *_encodedImageStr = [_datas base64Encoding];
     self.data = _encodedImageStr;
     
-
  
 }
 
@@ -718,7 +717,6 @@ NSLog(@"取消发送照片");
             alert.tag = 70;
             [alert show];
         }
-
     }
 
 }

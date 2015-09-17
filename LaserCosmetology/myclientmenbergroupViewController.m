@@ -46,6 +46,7 @@
     [save setTitle:@"保存" forState:UIControlStateNormal];
     save.titleLabel.font = [UIFont systemFontOfSize:16];
     save.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
+    [save addTarget:self action:@selector(savebtnclick) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:save];
     
     UILabel *groupname = [[UILabel alloc] initWithFrame:CGRectMake(15, 64 + 12, [self NSStringwithsize:15 str:@"分组名字"], 25)];
@@ -99,6 +100,7 @@
     cancelbtn.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
     cancelbtn.titleLabel.font = [UIFont systemFontOfSize:16];
     cancelbtn.backgroundColor = [self colorWithRGB:0x00c5bb alpha:1];
+    [cancelbtn addTarget:self action:@selector(cancelgroupbtnclick) forControlEvents:UIControlEventTouchUpInside];
     cancelbtn.layer.masksToBounds = YES;
     cancelbtn.layer.cornerRadius = 3;
     [self.view addSubview:cancelbtn];
@@ -248,7 +250,16 @@
     }
 
 }
+-(void)savebtnclick
+{
+    UIAlertView *alertv = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请求失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    [alertv show];
+}
 
+-(void)cancelgroupbtnclick
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -364,6 +375,7 @@
     }
     
 }
+
 
 
 @end
