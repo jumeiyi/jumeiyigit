@@ -56,20 +56,22 @@
     self.mytableview.dataSource = self;
     [self.view addSubview:self.mytableview];
     
-
+    _groupname = [[NSMutableArray alloc] initWithCapacity:0];
+    _groupman = [[NSMutableArray alloc] initWithCapacity:0];
     
     NSMutableArray *Yary  = [[NSMutableArray alloc] initWithCapacity:0];
-    for (int a = 0; a < _titleary.count; a++) {
+    for (int a = 0; a < _groupname.count; a++) {
         [Yary addObject:@"y"];
     }
     
-    _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
     
         NSString *string = [NSString stringWithFormat:@"%@/doctor.getgrouplist.go?doctorsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
 
-    [AFHTTPRequestOpeartionManagerOfme postSetgroups:string withBlock:^(NSMutableArray *array1, NSMutableArray *array2) {
-        _mycustomerDataarray = array1;
+    [AFHTTPRequestOpeartionManagerOfme postSetgroups:string withBlock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
+        _groupname = array1;
+        _groupman = array2;
+        [self.mytableview reloadData];
         NSLog(@"array1:%@----array2:%@",array1,array2);
     }];
     
@@ -129,7 +131,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _mycustomerDataarray.count;
+    return _groupname.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,12 +143,14 @@
         cell = [[myclientgroupTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    mycustomerdata *data = [_mycustomerDataarray objectAtIndex:indexPath.row];
+    NSString *str1 = [_groupname objectAtIndex:indexPath.row];
+    NSArray *str2 = [_groupman objectAtIndex:indexPath.row];
+    NSString *str3 = [NSString stringWithFormat:@"%@      (%ld)",str1,str2.count];
     
     cell.grouplable.frame = CGRectMake(15, 15, self.view.bounds.size.width - 35, 20);
     cell.grouplable.textColor = [self colorWithRGB:0x00c5bb alpha:1];
     cell.grouplable.font = [UIFont systemFontOfSize:15];
-    cell.grouplable.text = [_titleary objectAtIndex:indexPath.row];
+    cell.grouplable.text = str3;
     
     
     return cell;
@@ -158,8 +162,14 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     myclientmenbergroupViewController *myclient = [[myclientmenbergroupViewController alloc] init];
-    myclient.groupstr = [_titleary objectAtIndex:indexPath.row];
+    myclient.groupstr = [_groupname objectAtIndex:indexPath.row];
+    myclient.manberarray = [_groupman objectAtIndex:indexPath.row];
+    myclient.doctorsno = self.doctorsno;
+    
+    NSLog(@"设置分组 11---:%@-",myclient.manberarray);
     [self.navigationController pushViewController:myclient animated:YES];
 }
 

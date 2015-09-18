@@ -42,7 +42,7 @@
     
     
     _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
-    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focused",@"Exclusive",@"sleep",nil];
+    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
     
     _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, 20)];
     [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
@@ -396,17 +396,19 @@
     
     if (tableView.tag == 60) {
 
-        if (section == 0) {
-            if (self.IsServiced == YES) {
+        if (self.IsServiced == YES) {
+            if (section == 0) {
                 return 1;
             }else{
-            NSMutableArray *ary1 = [_allgroup objectAtIndex:section];
-               return ary1.count;
+                 NSMutableArray *ary1 = [_allgroup objectAtIndex:section - 1];
+                return ary1.count;
             }
         }else{
-             NSMutableArray *ary1 = [_allgroup objectAtIndex:section - 1];
+              NSMutableArray *ary1 = [_allgroup objectAtIndex:section];
             return ary1.count;
         }
+        
+
     }else if (tableView.tag == 62){
         return _groups.count;
     }else {
@@ -466,7 +468,7 @@
                 cell.headimage.frame = CGRectMake(15, 9, 50, 50);
                 cell.headimage.image = [UIImage imageNamed:@"图片4"];
                 
-                cell.name.frame = CGRectMake(80, 9, 100, 20);
+                cell.name.frame = CGRectMake(80, 9, self.view.bounds.size.width - 100, 20);
                 cell.name.font = [UIFont systemFontOfSize:14];
                 cell.name.text = [NSString stringWithFormat:@" %@",customer.nickname];
                 cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
@@ -500,12 +502,14 @@
             
             NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
             NSLog(@"indexPath.row:%ld---indexPath.section : %ld",indexPath.row,indexPath.section);
+            
+            
             mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
             
                 cell.headimage.frame = CGRectMake(15, 9, 50, 50);
                 cell.headimage.image = [UIImage imageNamed:@"图片4"];
                 
-                cell.name.frame = CGRectMake(80, 9, 100, 20);
+                cell.name.frame = CGRectMake(80, 9, self.view.bounds.size.width - 100, 20);
                 cell.name.font = [UIFont systemFontOfSize:14];
                 cell.name.text = [NSString stringWithFormat:@" %@",customer.nickname];
                 cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
@@ -619,17 +623,22 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (tableView.tag == 60) {
-        if (indexPath.section != 0) {
+        
+        if (self.IsServiced == YES) {
+            if (indexPath.section == 0) {
+                myclientmainsetgropViewController *myclient = [[myclientmainsetgropViewController alloc] init];
+                myclient.doctorsno = self.doctorsno;
+                [self.navigationController pushViewController:myclient animated:YES];
+            }else{
+                myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+                [self.navigationController pushViewController:myclient animated:YES];
+              }
+        }else{
             myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
             [self.navigationController pushViewController:myclient animated:YES];
         }
-        
-        if (indexPath.section == 0) {
-            myclientmainsetgropViewController *myclient = [[myclientmainsetgropViewController alloc] init];
-            myclient.doctorsno = self.doctorsno;
-            [self.navigationController pushViewController:myclient animated:YES];
-        }
-    }else if (tableView.tag == 62){
+
+        }else if (tableView.tag == 62){
         if (indexPath.row != 0) {
             self.IsServiced = NO;
             [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
@@ -695,7 +704,6 @@
 {
     if (tableView.tag == 60) {
         _tableview.sectionIndexBackgroundColor = [UIColor clearColor];//设置索引背景颜色
-       
         _tableview.sectionIndexColor = [self colorWithRGB:0x666666 alpha:1];
         return _headnamearray;
     }else{
@@ -712,10 +720,10 @@
         if (section == 0) {
             return nil;
         }else{
-            return [_headnamearray objectAtIndex:section - 1];
+            return [_headnamearray objectAtIndex:section];
         }
     }else{
-        return [_headnamearray objectAtIndex:section];
+        return [_headnamearray objectAtIndex:section - 1];
     }
     
 }
@@ -723,7 +731,8 @@
 -(void)startrequest
 {
     NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.group];
-    
+   
+    NSLog(@"客户数据---%@",string);
     [self requstwithurl:string];
 }
 
@@ -796,7 +805,7 @@
         }
     
     
-    
+    [_allgroup removeAllObjects];
     _allgroup = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
         for (NSString *str in _headnamearray) {
              NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
@@ -809,7 +818,6 @@
         }
     
 
-    
     NSLog(@"dataaryt----: %@",dataary);
     
     if ([state isEqualToString:@"0"]) {

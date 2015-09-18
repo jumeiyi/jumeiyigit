@@ -12,8 +12,6 @@
 @interface myclientmainsetgropViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 {
-    NSMutableArray *_titleary;
-    NSMutableArray *_mycustomerDataarray;
     
     NSMutableArray *_groupname;
     NSMutableArray *_groupman;

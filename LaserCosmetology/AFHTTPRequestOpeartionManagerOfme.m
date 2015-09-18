@@ -36,7 +36,7 @@
         
         if ([string isEqualToString:@"操作成功"]) {
             
-            block(array,nil);
+            block(nil,nil,nil);
         }
         
         
@@ -50,6 +50,7 @@
     }];
 }
 
+//医生的客户分组
 + (void)postSetgroups:(NSString *)url withBlock:(dataBlcok)block{
     
     NSLog(@"responseObject-url-%@",url);
@@ -72,20 +73,20 @@
 //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
 //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
         
-        for (NSDictionary *diction in dataary) {
-             mycustomerdata *mydata = [mycustomerdata mycustomerdataWithdiction:diction];
-            [array addObject:mydata];
-        }
+//        for (NSDictionary *diction in dataary) {
+//             mycustomerdata *mydata = [mycustomerdata mycustomerdataWithdiction:diction];
+//            [array addObject:mydata];
+//        }
        
         
       NSMutableArray *groupname = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
         NSString *stra;
         for (NSDictionary *mycusdiction in dataary) {
             mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-            if (![stra isEqualToString:mycustom.firstsearchword]) {
-                [groupname addObject:mycustom.firstsearchword];
+            if (![stra isEqualToString:mycustom.groupname]) {
+                [groupname addObject:mycustom.groupname];
             }
-            stra = mycustom.firstsearchword;
+            stra = mycustom.groupname;
             [array addObject:mycustom];
         }
         
@@ -94,7 +95,7 @@
         for (NSString *str in groupname) {
             NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
             for (mycustomerdata *mydata in array) {
-                if ([mydata.firstsearchword isEqualToString:str]) {
+                if ([mydata.groupname isEqualToString:str]) {
                     [indexary addObject:mydata];
                 }
             }
@@ -104,7 +105,7 @@
         
         if ([dctArray isEqualToString:@"操作成功"]) {
             
-            block(array,array);
+            block(groupname,allgroup,nil);
         }
         
         
@@ -119,6 +120,152 @@
 
 
 
+}
+
+//删除分组
++ (void)postdeletegroup:(NSString *)url withblock:(dataBlcok)block{
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",url] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+                NSLog(@"AFHTTPRequestOpeartionManager-删除分组--%@---- %@--",data ,error);
+        
+
+        
+                NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+//        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+//                NSString *string = [NSString stringWithFormat:@"%@",dictArray];
+//                NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
+        
+        block(nil,nil,dctArray);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    }];
+
+}
+//获取客户列表数据
++ (void)postmanberplistandurl:(NSString *)url withblock:(dataBlcok)block
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",url] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        //        NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
+        
+       
+        //        NSString *str = [data objectForKey:@"ErrorMessage"];
+        
+        //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+//        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
+        //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
+        
+         NSLog(@"分组：data--%@",data);
+        
+        NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+        
+        NSMutableArray *headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
+        NSString *stra;
+        for (NSDictionary *mycusdiction in dataary) {
+            mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
+            if (![stra isEqualToString:mycustom.firstsearchword]) {
+                [headnamearray addObject:mycustom.firstsearchword];
+            }
+            stra = mycustom.firstsearchword;
+            [mycustomerDataarray addObject:mycustom];
+        }
+        
+        
+        
+        NSMutableArray *allgroup = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
+        for (NSString *str in headnamearray) {
+            NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
+            for (mycustomerdata *mydata in mycustomerDataarray) {
+                if ([mydata.firstsearchword isEqualToString:str]) {
+                    [indexary addObject:mydata];
+                }
+            }
+            [allgroup addObject:indexary];
+        }
+        
+        NSLog(@"分组列表的客户列表：headnamearray%@",headnamearray);
+        
+        block(headnamearray,allgroup,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    }];
+    
+
+
+}
+
+//保存分组
++(void)postsavegroupplist:(NSString *)url withblock:(dataBlcok)block{
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",url] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        //        NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
+        
+        
+        //        NSString *str = [data objectForKey:@"ErrorMessage"];
+        
+        //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        //        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
+        //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
+        
+        NSLog(@"分组：data--%@",data);
+        
+        NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+        
+        NSMutableArray *headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
+        NSString *stra;
+        for (NSDictionary *mycusdiction in dataary) {
+            mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
+            if (![stra isEqualToString:mycustom.firstsearchword]) {
+                [headnamearray addObject:mycustom.firstsearchword];
+            }
+            stra = mycustom.firstsearchword;
+            [mycustomerDataarray addObject:mycustom];
+        }
+        
+        
+        
+        NSMutableArray *allgroup = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
+        for (NSString *str in headnamearray) {
+            NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
+            for (mycustomerdata *mydata in mycustomerDataarray) {
+                if ([mydata.firstsearchword isEqualToString:str]) {
+                    [indexary addObject:mydata];
+                }
+            }
+            [allgroup addObject:indexary];
+        }
+        
+        NSLog(@"分组列表的客户列表：headnamearray%@",headnamearray);
+        
+        block(headnamearray,allgroup,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 + (void)checkNetWorkStatus{

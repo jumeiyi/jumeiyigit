@@ -11,6 +11,7 @@
 #import "mycustomerdata.h"
 #import "PrefixHeader.pch"
 #import "myclientMenberGroupArrayViewController.h"
+#import "AFHTTPRequestOpeartionManagerOfme.h"
 
 @interface myclientmenbergroupViewController ()
 
@@ -105,18 +106,12 @@
     cancelbtn.layer.cornerRadius = 3;
     [self.view addSubview:cancelbtn];
     
-    
-    _data = [[NSMutableData alloc] init];
-    _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
-    
-    self.manberarray = [[NSMutableArray alloc] initWithCapacity:0];
-    
-    for (int c = 0; c < 7; c++) {
-        [self.manberarray addObject:[NSString stringWithFormat:@"%D",c]];
+    if (self.manberarray.count > 0) {
+        mycustomerdata *data = [self.manberarray objectAtIndex:0];
+        self.groupid = data.groupid;
     }
     
     [self addmanbers];
-    [self startrequest];
     
 }
 
@@ -258,7 +253,25 @@
 
 -(void)cancelgroupbtnclick
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    //医生删除群组
+//    /doctor.deletegroup.go
+//    groupid=group的sno
+//    doctorsno=医生sno
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.deletegroup.go?groupid=%@&doctorsno=%@",HTTPREQUESTPDOMAIN,self.groupid,self.doctorsno];
+    
+    NSLog(@"删除群组的URL %@",string);
+    
+    [AFHTTPRequestOpeartionManagerOfme postdeletegroup:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        NSLog(@"string--->%@",string);
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+        
+    }];
+    
+    
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -298,7 +311,11 @@
 
 -(void)addGroupmanberbtn
 {
+    
     myclientMenberGroupArrayViewController *addmanber = [[myclientMenberGroupArrayViewController alloc] init];
+    addmanber.doctorsno = self.doctorsno;
+    addmanber.groupname = _grouptitle.text;
+    addmanber.groupid = self.groupid;
     [self.navigationController pushViewController:addmanber animated:YES];
 }
 
@@ -306,76 +323,5 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-#pragma mark request
-
--(void)startrequest
-{
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=serviced&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno];
-    
-    [self requstwithurl:string];
-}
-
-#pragma mark  request
-
--(void)requstwithurl:(NSString *)str
-{
-    NSURL *urlstr = [NSURL URLWithString:str];
-    
-    NSURLRequest *requst = [NSURLRequest requestWithURL:urlstr];
-    
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:requst delegate:self];
-    
-    [connection start];
-    
-    NSLog(@"url--------%@",urlstr);
-}
-
-#pragma mark  requestdelegate
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"请求失败");
-}
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSLog(@"收到响应");
-    
-    [_data setData:[NSData data]];
-}
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSLog(@"请求数据接收");
-    [_data appendData:data];
-    
-}
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    
-    // NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-    
-    //NSLog(@"%@",str);
-    
-    //JSON解析器
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
-    
-    NSString *state = [dic objectForKey:@"state"];
-    NSString *msg = [dic objectForKey:@"msg"];
-    
-    
-    NSMutableArray *customerData = [dic objectForKey:@"customerData"];
-    for (NSDictionary *mycusdiction in customerData) {
-        mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-        [_mycustomerDataarray addObject:mycustom];
-    }
-    
-    
-    if ([state isEqualToString:@"0"]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
-    }
-    
-}
-
-
 
 @end

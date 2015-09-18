@@ -15,6 +15,7 @@
 #import "myclientManGroupCell.h"
 #import "myclientdatasViewController.h"
 #import "myclientmainsetgropViewController.h"
+#import "AFHTTPRequestOpeartionManagerOfme.h"
 
 @interface myclientMenberGroupArrayViewController ()
 
@@ -36,12 +37,19 @@
     [backbtn addTarget:self action:@selector(comebackk) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:backbtn];
     
+    UIButton *save = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 20, 50, 40)];
+    [save setTitle:@"保存" forState:UIControlStateNormal];
+    save.titleLabel.font = [UIFont systemFontOfSize:16];
+    save.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
+    [save addTarget:self action:@selector(startrequestaaa) forControlEvents:UIControlEventTouchUpInside];
+    [topbar addSubview:save];
     
-    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
+    _groupsname = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
+    _groupstr = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
     
-    _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, 20)];
+    _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groupsname objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groupsname objectAtIndex:0]] + 20, 20)];
     [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
-    [_groupbtn setTitle:[_groups objectAtIndex:0] forState:UIControlStateNormal];
+    [_groupbtn setTitle:[_groupsname objectAtIndex:0] forState:UIControlStateNormal];
     [topbar addSubview:_groupbtn];
     
     
@@ -51,45 +59,16 @@
     
     
     
-    _headnamearray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#", nil];
-    
-    
-    NSMutableArray *array1 = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", @"9",@"10",@"11",nil];
-    
-    NSMutableArray *array2 = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", @"9",@"10",@"11",nil];
-    
-    NSMutableArray *array3 = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", @"9",@"10",@"11",nil];
-    
-    NSMutableArray *array4 = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", @"9",@"10",@"11",nil];
-    
-    self.yemei = [[NSMutableArray alloc] initWithObjects: @"孙悟空" , @"猪八戒", @"牛魔王", @"蜘蛛精", nil];
-    self.grouparray = [[NSMutableArray alloc] initWithObjects:array1,array2,array3,array4, nil];
-    
-    for (int i = 0; i < self.grouparray.count; i++) {
-        
-      NSArray *ary = [self.grouparray objectAtIndex:i];
-        NSMutableArray *lengthary = [[NSMutableArray alloc] init];
-        [lengthary addObject:@"y"];
-        
-    }
-    
-    
     UIImageView *gradimage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 67 + 62, self.view.bounds.size.width, 22)];
     gradimage.backgroundColor = [self colorWithRGB:0xEEEEEE alpha:1];
     [self.view addSubview:gradimage];
-    
-    self.myscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 67 + 62 + 22, self.view.bounds.size.width, 68)];
-    self.myscrollview.backgroundColor = [UIColor whiteColor];
-    self.myscrollview.contentSize = CGSizeMake(self.view.bounds.size.width * 2, 68);
-    [self.view addSubview:self.myscrollview];
-    
     
     
     _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0,  67 + 62 + 22 + 68, self.view.bounds.size.width, self.view.bounds.size.height - ( 67 + 62 + 22 + 68))];
     _tableview.delegate = self;
     _tableview.dataSource = self;
     _tableview.layer.cornerRadius = 8;
-    //    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableview.backgroundColor = [UIColor clearColor];
     _tableview.tag = 60;
     [self.view addSubview:_tableview];
@@ -98,7 +77,6 @@
     _refreshControl.topEnabled=YES;
     //_refreshControl.bottomEnabled=YES;//会崩
     
-    _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
     
     self.typeInfo = @"";  self.a = 1;
     
@@ -110,7 +88,7 @@
     [self.view addSubview:shoosebtnimageback];
     
     _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 75, 50, 37)];
-    [_shoosebtn setTitle:@"姓名:" forState:UIControlStateNormal];
+    [_shoosebtn setTitle:@"姓名 " forState:UIControlStateNormal];
     [_shoosebtn setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
     [_shoosebtn addTarget:self action:@selector(shoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_shoosebtn];
@@ -119,7 +97,7 @@
     shoosebtnimage.image = [UIImage imageNamed:@"图片2"];
     [self.view addSubview:shoosebtnimage];
     
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(70.0f,77, self.view.frame.size.width - 80 , 37.0f)];
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f)];
     self.searchBar.delegate =self;
     self.searchBar.placeholder = @"搜索项目，医生";
     self.searchBar.tintColor = [UIColor lightGrayColor];
@@ -142,25 +120,109 @@
     
     self.isgroupes = NO;
     self.isproject = NO;
+    self.group = [_groupstr objectAtIndex:0];
     
-    [self startrequest];
+    _sectionindex = [[NSMutableArray alloc] initWithCapacity:0];
+    _insectionofrow = [[NSMutableArray alloc] initWithCapacity:0];
+    _getmanberary = [[NSMutableArray alloc] initWithCapacity:0];
     
+    NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
+    self.doctorsno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
     
 
+    [self startrequest];
     
+}
+
+-(void)savebtnclickg
+{
+    NSString *strinf;
+    for (mycustomerdata *mydata in _getmanberary) {
+      NSString *str = [NSString stringWithFormat:@"%@",mydata.sno];
+        NSLog(@"mydata.nickname--str:%@",str);
+        strinf = [NSString stringWithFormat:@"%@,%@",strinf,str];
+        
+    }
+    self.customersIDs = strinf;
+    
+    NSLog(@"mydata.nickname--strself.doctorsno:%@---self.groupid:%@-----self.groupname:%@",self.doctorsno,self.groupid,self.groupname);
+    self.groupid = @"";
+    
+    NSString *string = [NSString stringWithFormat:@"%@//doctor.savegroup.go?groupid=%@&groupname=%@&doctorsno=%@&customers=%@",HTTPREQUESTPDOMAIN,self.groupid,self.groupname,self.doctorsno,self.customersIDs];
+    
+    NSLog(@"string-保存URL-%@",string);
+    
+    [AFHTTPRequestOpeartionManagerOfme postsavegroupplist:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+       
+    }];
+//
+//    
+//    /doctor.savegroup.go
+//    {groupid:'',groupname:'',doctorsno:'',customers:''} （分组，新增，保存）
+}
+
+-(void)addmanberToscrollview
+{
+    
+        [self.myscrollview removeFromSuperview];
+        self.myscrollview = nil;
+    
+        self.myscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 67 + 62 + 22, self.view.bounds.size.width, 68)];
+        self.myscrollview.backgroundColor = [UIColor whiteColor];
+        self.myscrollview.contentSize = CGSizeMake(self.view.bounds.size.width * 2, 68);
+        [self.view addSubview:self.myscrollview];
+
+    for (int i = 0; i < _getmanberary.count; i++) {
+        float x = (20 + 50) * i + 20;
+        UIImageView *manberimage = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, 50, 50)];
+        manberimage.image = [UIImage imageNamed:@"图片4"];
+        manberimage.tag = i;
+        [self.myscrollview addSubview:manberimage];
+    }
+
+
+}
+
+-(void)startrequest
+{
+
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.group];
+    
+    NSLog(@"url---string-:%@",string);
+    
+    [AFHTTPRequestOpeartionManagerOfme postmanberplistandurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+        _sectionindex = array1;
+        _insectionofrow = array2;
+        
+       
+         _sectionary = [[NSMutableArray alloc] initWithCapacity:0];
+        for (int i = 0; i < _insectionofrow.count; i++) {
+            
+            NSMutableArray *rowary = [[NSMutableArray alloc] initWithCapacity:0];
+            NSMutableArray *romnumber = [_insectionofrow objectAtIndex:i];
+            for (int j = 0; j <  romnumber.count;j++) {
+                [rowary addObject:@"y"];
+            }
+            [_sectionary addObject:rowary];
+        }
+        
+         [_tableview reloadData];
+    }];
+
 }
 
 #pragma mark --UISearchBar
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self.searchBar setText:@""];
-    self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 100 , 40.0f);
+    self.searchBar.frame = CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f);
     return;
     
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 80 , 40.0f);
+    self.searchBar.frame = CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f);
     NSLog(@"%@",searchBar.text);
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
@@ -175,7 +237,7 @@
         NSLog(@"searchBar.text---> %@",searchBar.text);
     }
     
-    self.searchBar.frame = CGRectMake(70.0f,67, self.view.frame.size.width - 80 , 40.0f);
+    self.searchBar.frame = CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f);
 }
 
 
@@ -360,7 +422,6 @@
 }
 
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -383,7 +444,7 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView.tag == 60) {
-        return _headnamearray.count;
+        return _sectionindex.count;
     }else{
         return 1;
     }
@@ -392,11 +453,11 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
-        
-        return 3;
+        NSMutableArray *rownumber = [_insectionofrow objectAtIndex:section];
+        return  rownumber.count;
         
     }else if (tableView.tag == 62){
-        return _groups.count;
+        return _groupsname.count;
     }else{
         return 2;
     }
@@ -408,11 +469,7 @@
     
     if (tableView.tag == 60) {
         
-//        // 获取分区号
-//        NSUInteger sectionNo = indexPath.section;
-//        // 获取表格行的行号
-//        NSUInteger rowNo = indexPath.row;
-//        NSString* story = [_headnamearray objectAtIndex:sectionNo];
+
         
         static NSString *identifier = @"cell";
         
@@ -424,7 +481,9 @@
         cell.backgroundColor = [UIColor clearColor];
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 8;
-        //mycustomerdata *mycustom = [_mycustomerDataarray objectAtIndex:indexPath.row];
+        
+        NSMutableArray *mycustomary = [_insectionofrow objectAtIndex:indexPath.section];
+        mycustomerdata *mycustom = [mycustomary objectAtIndex:indexPath.row];
         
         cell.headimage.frame = CGRectMake(0, 0, 0, 0);
         cell.headimage.image = [UIImage imageNamed:@""];
@@ -433,7 +492,7 @@
         cell.shooseimage.image = [UIImage imageNamed:@""];
         
         cell.name.frame = CGRectMake(0, 0, 0, 0);
-        cell.name.text = @" 名称X X";
+        cell.name.text = @"";
         
         cell.project1.frame = CGRectMake(0, 0, 0, 0);
         cell.project1.text = @"";
@@ -444,25 +503,14 @@
         cell.project3.frame = CGRectMake(0, 0, 0, 0);
         cell.project3.text = @"";
         
-        
-//        if (indexPath.section == 0) {
-//            
-//            cell.headimage.frame = CGRectMake(15, 9, 50, 50);
-//            cell.headimage.image = [UIImage imageNamed:@"图片4"];
-//            
-//            cell.name.frame = CGRectMake(80, 25, 100, 20);
-//            cell.name.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
-//            cell.name.text = @"分组";
-//            cell.name.textColor = [self colorWithRGB:0x00c5bb alpha:1];
-//            
-//        }else{
+
         
             cell.headimage.frame = CGRectMake(15, 9, 50, 50);
             cell.headimage.image = [UIImage imageNamed:@"图片4"];
             
-            cell.name.frame = CGRectMake(80, 9, 100, 20);
+            cell.name.frame = CGRectMake(80, 9, self.view.bounds.size.width - 100, 20);
             cell.name.font = [UIFont systemFontOfSize:14];
-            cell.name.text = @" 名称X X";
+            cell.name.text = [NSString stringWithFormat:@" %@",mycustom.nickname];
             cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
             
             cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str: @"项目1"] + 20, 21);
@@ -490,10 +538,18 @@
             cell.project3.layer.cornerRadius = 3;
         
         
-        cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 22, 25, 25);
-        cell.shooseimage.image = [UIImage imageNamed:@"sucaibaganger"];
-//        }
+        NSMutableArray *rowary = [_sectionary objectAtIndex:indexPath.section];
+        NSString *strary = [rowary objectAtIndex:indexPath.row];
         
+        if ([strary isEqualToString:@"y"]) {
+            cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 22, 25, 25);
+            cell.shooseimage.image = [UIImage imageNamed:@"sucaibaganger"];
+        }else{
+            cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 22, 25, 25);
+            cell.shooseimage.image = [UIImage imageNamed:@"sucaiba"];
+        }
+
+
         
         return cell;
         
@@ -504,7 +560,7 @@
         if (!cell2) {
             cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         }
-        cell2.textLabel.text = [_groups objectAtIndex:indexPath.row];
+        cell2.textLabel.text = [_groupsname objectAtIndex:indexPath.row];
         cell2.textLabel.font = [UIFont systemFontOfSize:15];
         cell2.textLabel.textColor = [UIColor whiteColor];
         cell2.backgroundColor = [UIColor clearColor];
@@ -541,20 +597,20 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
+        
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 22)];
         view.backgroundColor = [self colorWithRGB:0xeeeeee alpha:1];
         [tableView addSubview:view];
         
-        UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
-        titlelable.text = [_headnamearray objectAtIndex:section];
-        titlelable.font = [UIFont systemFontOfSize:13];
-        titlelable.textColor = [self colorWithRGB:0x666666 alpha:1];
-        [view addSubview:titlelable];
+            UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
+            titlelable.text = [_sectionindex objectAtIndex:section];
+            titlelable.font = [UIFont systemFontOfSize:13];
+            titlelable.textColor = [self colorWithRGB:0x666666 alpha:1];
+            [view addSubview:titlelable];
         
         return view;
         
     }else{
-        
         return nil;
     }
     
@@ -563,6 +619,50 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (tableView.tag == 62) {
+        self.group = [_groupstr objectAtIndex:indexPath.row];
+        
+        [self startrequest];
+        [self groupsbuttonclick];
+        
+    }else if (tableView.tag == 63){
+        [self shoosebtnclick];
+    }else{
+        
+        
+        NSMutableArray *rowary = [_sectionary objectAtIndex:indexPath.section];
+        NSString *str = [rowary objectAtIndex:indexPath.row];
+        if ([str isEqualToString:@"y"]) {
+            [rowary replaceObjectAtIndex:indexPath.row withObject:@"x"];
+            
+        }else{
+            [rowary replaceObjectAtIndex:indexPath.row withObject:@"y"];
+        }
+        
+        NSIndexPath *indexPath_1=[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
+        NSArray *indexArray=[NSArray arrayWithObject:indexPath_1];
+        [_tableview reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        [_getmanberary removeAllObjects];
+        
+        for (int a = 0; a < _insectionofrow.count; a ++) {
+            NSMutableArray *sectionary = [_insectionofrow objectAtIndex:a];
+            NSMutableArray *rowary = [_sectionary objectAtIndex:a];
+            
+            for (int j = 0; j < sectionary.count; j++) {
+                 NSString *str = [rowary objectAtIndex:j];
+                mycustomerdata *mydt = [sectionary objectAtIndex:j];
+                if ([str isEqualToString:@"x"]) {
+                    [_getmanberary addObject:mydt];
+                }
+            }
+        }
+        
+        [self addmanberToscrollview];
+        NSLog(@"_getmanberary.count-: %ld",_getmanberary.count);
+        
+    }
     
     NSLog(@"我点击了%ld区，%ld行",indexPath.section,indexPath.row);
     
@@ -591,15 +691,25 @@
 // UITableViewDataSource协议中的方法，该方法的返回值用于在表格右边建立一列浮动的索引。
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-     _tableview.sectionIndexColor = [self colorWithRGB:0x666666 alpha:1];
-    return _headnamearray;
+    if (tableView.tag == 60) {
+        _tableview.sectionIndexColor = [self colorWithRGB:0x666666 alpha:1];
+        return _sectionindex;
+    }else{
+        return nil;
+    }
+
 }
 
 // UITableViewDataSource协议中的方法，该方法的返回值决定指定分区的页眉
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection
                       :(NSInteger)section
 {
-    return [_headnamearray objectAtIndex:section];
+    if (tableView.tag == 60) {
+         return [_sectionindex objectAtIndex:section];
+    }else{
+        return nil;
+    }
+   
 }
 
 // UITableViewDataSource协议中的方法，该方法的返回值决定指定分区的页脚
@@ -611,9 +721,25 @@
 //            , [[_headnamearray objectForKey:story] count]];
     return nil;
 }
--(void)startrequest
+
+-(void)startrequestaaa
 {
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=serviced&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno];
+    NSString *strinf = @"";
+    for (mycustomerdata *mydata in _getmanberary) {
+        NSString *str = [NSString stringWithFormat:@"%@",mydata.sno];
+        if ([strinf isEqualToString:@""]) {
+            strinf = [NSString stringWithFormat:@"%@",str];
+        }else{
+        strinf = [NSString stringWithFormat:@"%@,%@",strinf,str];
+        }
+        
+    }
+    
+    self.customersIDs = strinf;
+    
+    NSString *string = [NSString stringWithFormat:@"%@//doctor.savegroup.go?groupid=%@&groupname=%@&doctorsno=%@&customers=%@",HTTPREQUESTPDOMAIN,self.groupid,self.groupname,self.doctorsno,self.customersIDs];
+    
+    NSLog(@"string-保存URL-%@",string);
     
     [self requstwithurl:string];
 }
@@ -622,7 +748,13 @@
 
 -(void)requstwithurl:(NSString *)str
 {
-    NSURL *urlstr = [NSURL URLWithString:str];
+    
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                   (CFStringRef)str,
+                                                                                   NULL,
+                                                                                   NULL,
+                                                                                   kCFStringEncodingUTF8));
+    NSURL *urlstr = [NSURL URLWithString:encodedString];
     
     NSURLRequest *requst = [NSURLRequest requestWithURL:urlstr];
     
@@ -630,13 +762,13 @@
     
     [connection start];
     
-    NSLog(@"url--------%@",urlstr);
+    NSLog(@"url--------%@",str);
 }
 
 #pragma mark  requestdelegate
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"请求失败");
+    NSLog(@"请求失败  _ %@",error);
 }
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -653,9 +785,9 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     
-    // NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-    
-    //NSLog(@"%@",str);
+    //     NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
+    //
+    //    NSLog(@"str------》%@",str);
     
     //JSON解析器
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
@@ -666,25 +798,15 @@
     
     NSString *msg = [dic objectForKey:@"msg"];
     
-    if (self.istop == YES) {
-        [_mycustomerDataarray removeAllObjects];
-        self.istop = NO;
-    }
+ 
     
-    NSMutableArray *customerData = [dic objectForKey:@"data"];
-    for (NSDictionary *mycusdiction in customerData) {
-        mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-        [_mycustomerDataarray addObject:mycustom];
-    }
-    [_tableview reloadData];
+    NSDictionary *customerData = [dic objectForKey:@"Content"];
+    NSMutableArray *dataary = [customerData objectForKey:@"data"];
     
-    NSLog(@"customerData--%@",customerData);
     
-    if ([state isEqualToString:@"0"]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
-    }
     
 }
+
+
 
 @end

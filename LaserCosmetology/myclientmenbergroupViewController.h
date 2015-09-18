@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface myclientmenbergroupViewController : UIViewController<NSURLConnectionDataDelegate,NSURLConnectionDelegate>
+@interface myclientmenbergroupViewController : UIViewController
 
 {
-     NSMutableArray *_mycustomerDataarray;
+    
     NSMutableData *_data;
     
     UIView *_manberview;
@@ -20,9 +20,9 @@
     
     UITextField *_grouptitle;
 }
-
 @property(nonatomic,retain)NSString *doctorsno;
 @property(nonatomic,retain)NSString *groupstr;
+@property(nonatomic,retain)NSString *groupid;
 @property(nonatomic,retain)NSMutableArray *manberarray;
 @property(nonatomic,assign)BOOL iscancel;
 @end

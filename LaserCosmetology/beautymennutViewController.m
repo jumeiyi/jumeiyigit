@@ -129,6 +129,17 @@
     [self.navigationController pushViewController:search animated:YES];
 }
 
+//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+//{
+//    [self filterContentForSearchText:_searchBar.text scope:_searchBar.scopeButtonTitles[searchOption]];
+//    return YES;
+//}
+//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+//{
+//    [self filterContentForSearchText:[NSString stringWithFormat:@"searchString"] scope:[_searchBar scopeButtonTitles][_searchBar.selectedScopeButtonIndex]];
+//    return YES;
+//}
+
 - (void)refreshControl:(RefreshControl *)refreshControl didEngageRefreshDirection:(RefreshDirection)direction
 {
     if (direction==RefreshDirectionTop)
