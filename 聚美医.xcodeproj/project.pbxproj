@@ -69,6 +69,7 @@
 		845267611B25812A0048AA96 /* 我的预约20150402_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 8452675F1B25812A0048AA96 /* 我的预约20150402_06.png */; };
 		84528A581B935D9100EECD8C /* w d khhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 84528A571B935D9100EECD8C /* w d khhd.png */; };
 		845564611AC18BE100FA4D9E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 845564601AC18BE100FA4D9E /* libz.dylib */; };
+		845593531BAF119A00F07CD3 /* newcreatgroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845593521BAF119A00F07CD3 /* newcreatgroupViewController.m */; settings = {ASSET_TAGS = (); }; };
 		84578A001B71ECB5000F451A /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 845789FF1B71ECB5000F451A /* cancel.png */; };
 		845EA0C21B2A8E93004997E5 /* beautymennutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845EA0C11B2A8E93004997E5 /* beautymennutViewController.m */; };
 		845EA0C51B2AA727004997E5 /* NewBeautyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845EA0C41B2AA727004997E5 /* NewBeautyTableViewCell.m */; };
@@ -626,6 +627,8 @@
 		8452675F1B25812A0048AA96 /* 我的预约20150402_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的预约20150402_06.png"; sourceTree = "<group>"; };
 		84528A571B935D9100EECD8C /* w d khhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "w d khhd.png"; sourceTree = "<group>"; };
 		845564601AC18BE100FA4D9E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		845593511BAF119A00F07CD3 /* newcreatgroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newcreatgroupViewController.h; sourceTree = "<group>"; };
+		845593521BAF119A00F07CD3 /* newcreatgroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newcreatgroupViewController.m; sourceTree = "<group>"; };
 		845789FF1B71ECB5000F451A /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		845EA0C01B2A8E93004997E5 /* beautymennutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = beautymennutViewController.h; sourceTree = "<group>"; };
 		845EA0C11B2A8E93004997E5 /* beautymennutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = beautymennutViewController.m; sourceTree = "<group>"; };
@@ -1975,6 +1978,8 @@
 				8483D74B1AB6A6F600AF9B9E /* myClientCell.m */,
 				848ED7B31B9EC33900A813A2 /* myclientmainsetgropViewController.h */,
 				848ED7B41B9EC33900A813A2 /* myclientmainsetgropViewController.m */,
+				845593511BAF119A00F07CD3 /* newcreatgroupViewController.h */,
+				845593521BAF119A00F07CD3 /* newcreatgroupViewController.m */,
 				848ED7B61B9EC36600A813A2 /* myclientgroupTableViewCell.h */,
 				848ED7B71B9EC36600A813A2 /* myclientgroupTableViewCell.m */,
 				846E823B1B900794007B2B11 /* myclientmenbergroupViewController.h */,
@@ -3079,6 +3084,7 @@
 				84C1EA801AC545EE00683A0B /* experlistCell.m in Sources */,
 				84B4D1E81B3BE04B002E8469 /* MoreGoodAtProjectVC.m in Sources */,
 				84C36B3F1ACA4C49009F8645 /* yuyuexiandeqingqiu.m in Sources */,
+				845593531BAF119A00F07CD3 /* newcreatgroupViewController.m in Sources */,
 				84BC7DF41B1D5A1D007830E4 /* checkmedicalredcord.m in Sources */,
 				84C0FEF31AD699F50098F453 /* mymakeController.m in Sources */,
 				84FD36E71AF35F9D000F41E2 /* MeiRongZuJiCollectionviewcell.m in Sources */,
@@ -3177,7 +3183,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b07a0df6-369c-45cc-a8ee-5c5e5b3d85c9";
+				PROVISIONING_PROFILE = "61f813ff-386f-44c2-ba25-34433c0ffe0e";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3214,7 +3220,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "b07a0df6-369c-45cc-a8ee-5c5e5b3d85c9";
+				PROVISIONING_PROFILE = "61f813ff-386f-44c2-ba25-34433c0ffe0e";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/[lib ]";
@@ -3227,8 +3233,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Connection",
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Core",
@@ -3250,7 +3257,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "聚美医";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "61f813ff-386f-44c2-ba25-34433c0ffe0e";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
@@ -3261,8 +3268,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xianyong wang (C9TANQ2H5N)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Connection",
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Core",
@@ -3285,7 +3293,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "聚美医";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "61f813ff-386f-44c2-ba25-34433c0ffe0e";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/[lib]";
 				VALIDATE_PRODUCT = YES;

@@ -44,12 +44,12 @@
     [save addTarget:self action:@selector(startrequestaaa) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:save];
     
-    _groupsname = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
-    _groupstr = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
+    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
+    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
     
-    _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groupsname objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groupsname objectAtIndex:0]] + 20, 20)];
+    _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, 20)];
     [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
-    [_groupbtn setTitle:[_groupsname objectAtIndex:0] forState:UIControlStateNormal];
+    [_groupbtn setTitle:[_groups objectAtIndex:0] forState:UIControlStateNormal];
     [topbar addSubview:_groupbtn];
     
     
@@ -120,7 +120,7 @@
     
     self.isgroupes = NO;
     self.isproject = NO;
-    self.group = [_groupstr objectAtIndex:0];
+    self.group = [_groupIDarray objectAtIndex:0];
     
     _sectionindex = [[NSMutableArray alloc] initWithCapacity:0];
     _insectionofrow = [[NSMutableArray alloc] initWithCapacity:0];
@@ -133,6 +133,44 @@
     [self startrequest];
     
 }
+
+-(void)viewWillAppear:(BOOL)animated
+
+{
+    
+    [super viewWillAppear:animated];
+    [_groups removeAllObjects];
+    _groups = nil;
+    [_groupIDarray removeAllObjects];
+    _groupIDarray = nil;
+    
+    self.group = @"serviced";
+    
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.getgrouplist.go?doctorsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
+    
+    [AFHTTPRequestOpeartionManagerOfme postSetgroups:string withBlock:^(NSMutableArray *array1, NSMutableArray *array2, NSMutableArray *array3) {
+        
+        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
+        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
+        
+        for (int i = 0; i < array1.count; i++) {
+            [_groups addObject:[array1 objectAtIndex:i]];
+        }
+        [_groupbtn setTitle:[_groups objectAtIndex:0] forState:UIControlStateNormal];
+        _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, _groupbtn.frame.size.height);
+        _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+        
+        for (int i = 0; i < array3.count; i++) {
+            [_groupIDarray addObject:[array3 objectAtIndex:i]];
+        }
+        
+        
+        NSLog(@"array1:%@---EEEE-_groupIDarray:%@",array1,_groupIDarray);
+    }];
+    
+}
+
 
 -(void)savebtnclickg
 {
@@ -457,7 +495,7 @@
         return  rownumber.count;
         
     }else if (tableView.tag == 62){
-        return _groupsname.count;
+        return _groups.count;
     }else{
         return 2;
     }
@@ -560,7 +598,7 @@
         if (!cell2) {
             cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         }
-        cell2.textLabel.text = [_groupsname objectAtIndex:indexPath.row];
+        cell2.textLabel.text = [_groups objectAtIndex:indexPath.row];
         cell2.textLabel.font = [UIFont systemFontOfSize:15];
         cell2.textLabel.textColor = [UIColor whiteColor];
         cell2.backgroundColor = [UIColor clearColor];
@@ -621,11 +659,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (tableView.tag == 62) {
-        self.group = [_groupstr objectAtIndex:indexPath.row];
+        self.group = [_groupIDarray objectAtIndex:indexPath.row];
         
         [self startrequest];
         [self groupsbuttonclick];
         
+            [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+            _groupbtn.frame = CGRectMake(_groupbtn.frame.origin.x, _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
+            self.group = [_groupIDarray objectAtIndex:indexPath.row];
+            
+            _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+       
     }else if (tableView.tag == 63){
         [self shoosebtnclick];
     }else{
@@ -786,7 +830,6 @@
 {
     
     //     NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-    //
     //    NSLog(@"str------》%@",str);
     
     //JSON解析器
@@ -794,15 +837,27 @@
     
     NSLog(@"000000------------%@",dic);
     
-    NSString *state = [dic objectForKey:@"state"];
-    
-    NSString *msg = [dic objectForKey:@"msg"];
-    
- 
     
     NSDictionary *customerData = [dic objectForKey:@"Content"];
     NSMutableArray *dataary = [customerData objectForKey:@"data"];
+    NSString *state = [NSString stringWithFormat:@"%@",[dic objectForKey:@"state"]];
     
+    NSString *masdiction = [NSString stringWithFormat:@"%@",[customerData objectForKey:@"state"]];
+    
+ 
+    if ([masdiction isEqualToString:@"1"]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"编辑分组成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+    
+        NSString *string =[NSString stringWithFormat:@"分组失败！%@",[dic objectForKey:@"ErrorMessage"]];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
+
     
     
 }

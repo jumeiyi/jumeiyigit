@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface myclientdatasViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate,NSXMLParserDelegate>
+@interface myclientdatasViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate>
 
 {
     NSMutableArray *_imageofhead;
     NSMutableArray *_titleary;
     
-     NSMutableData *_data;
+    UITableView *_myclienttableview;
+     NSMutableArray *_data;
 }
-@property(nonatomic,retain)NSString *doctorSno;
+@property(nonatomic,retain)NSString *customerSno;
 
 @end

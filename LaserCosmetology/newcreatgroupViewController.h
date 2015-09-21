@@ -1,14 +1,14 @@
 //
-//  myclientmenbergroupViewController.h
+//  newcreatgroupViewController.h
 //  聚美医
 //
-//  Created by fenghuang on 15/8/28.
-//  Copyright (c) 2015年 huqijing. All rights reserved.
+//  Created by fenghuang on 15/9/21.
+//  Copyright © 2015年 huqijing. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface myclientmenbergroupViewController : UIViewController
+@interface newcreatgroupViewController : UIViewController
 
 {
     
@@ -26,6 +26,6 @@
 @property(nonatomic,retain)NSString *groupname;
 @property(nonatomic,retain)NSString *customersIDs;
 @property(nonatomic,retain)NSMutableArray *manberarray;
-@property(nonatomic,retain)NSMutableArray *manberarrays;
 @property(nonatomic,assign)BOOL iscancel;
+
 @end

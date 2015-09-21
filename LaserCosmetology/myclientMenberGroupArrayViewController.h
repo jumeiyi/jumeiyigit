@@ -29,8 +29,8 @@
     
     NSMutableData *_data;
     
-    NSMutableArray *_groupsname;
-    NSMutableArray *_groupstr;
+    NSMutableArray *_groups;
+    NSMutableArray *_groupIDarray;
     NSMutableArray *_sectionindex;
     NSMutableArray *_insectionofrow;
     

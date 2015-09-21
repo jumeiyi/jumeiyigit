@@ -18,13 +18,49 @@
 #import "myclientdatasViewController.h"
 #import "myclientmainsetgropViewController.h"
 
-
-
 @interface MyClientViewController ()
 
 @end
 
 @implementation MyClientViewController
+
+-(void)viewWillAppear:(BOOL)animated
+
+{
+    
+    [super viewWillAppear:animated];
+    [_groups removeAllObjects];
+    _groups = nil;
+    [_groupIDarray removeAllObjects];
+    _groupIDarray = nil;
+    
+    self.group = @"serviced";
+    
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.getgrouplist.go?doctorsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
+    
+    [AFHTTPRequestOpeartionManagerOfme postSetgroups:string withBlock:^(NSMutableArray *array1, NSMutableArray *array2, NSMutableArray *array3) {
+        
+        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
+        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
+        
+        for (int i = 0; i < array1.count; i++) {
+            [_groups addObject:[array1 objectAtIndex:i]];
+        }
+        [_groupbtn setTitle:[_groups objectAtIndex:0] forState:UIControlStateNormal];
+        _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, _groupbtn.frame.size.height);
+        _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+        
+        for (int i = 0; i < array3.count; i++) {
+            [_groupIDarray addObject:[array3 objectAtIndex:i]];
+        }
+        
+        
+        NSLog(@"array1:%@---EEEE-_groupIDarray:%@",array1,_groupIDarray);
+    }];
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,12 +77,9 @@
     [topbar addSubview:backbtn];
     
     
-    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
-    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
-    
-    _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, 20)];
+    _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:@"已服务"]/2 + 10) , 27, [self NSStringwithsize:17 str:@"已服务"] + 20, 20)];
     [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
-    [_groupbtn setTitle:[_groups objectAtIndex:0] forState:UIControlStateNormal];
+    [_groupbtn setTitle:@"已服务" forState:UIControlStateNormal];
     [topbar addSubview:_groupbtn];
     
     
@@ -73,7 +106,7 @@
     
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f)];
     self.searchBar.delegate =self;
-    self.searchBar.placeholder = @"搜索项目，医生";
+    self.searchBar.placeholder = @"搜索项目，客户";
     self.searchBar.tintColor = [UIColor lightGrayColor];
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -103,7 +136,7 @@
     
     _shooesproject = [[NSMutableArray alloc] initWithObjects:@"姓名",@"项目", nil];
     
-    self.group = @"serviced";
+    
     self.isgroupes = NO;
     self.isproject = NO;
     self.IsServiced = YES;
@@ -113,6 +146,7 @@
 
     
 }
+
 
 -(void)creattableview
 {
@@ -624,17 +658,27 @@
     
     if (tableView.tag == 60) {
         
+
+        
         if (self.IsServiced == YES) {
             if (indexPath.section == 0) {
                 myclientmainsetgropViewController *myclient = [[myclientmainsetgropViewController alloc] init];
                 myclient.doctorsno = self.doctorsno;
                 [self.navigationController pushViewController:myclient animated:YES];
             }else{
+                NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
+                mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
+                
                 myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+                myclient.customerSno = customer.sno;
                 [self.navigationController pushViewController:myclient animated:YES];
               }
         }else{
+            NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
+            mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
+            
             myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+            myclient.customerSno = customer.sno;
             [self.navigationController pushViewController:myclient animated:YES];
         }
 
@@ -642,9 +686,9 @@
         if (indexPath.row != 0) {
             self.IsServiced = NO;
             [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
-            _groupbtn.frame = CGRectMake(_groupbtn.frame.origin.x, _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
+            _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
             self.group = [_groupIDarray objectAtIndex:indexPath.row];
-            
+            NSLog(@"self.group1---%@",self.group);
             _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
             
             [self groupsbuttonclick];
@@ -653,23 +697,24 @@
             _tableview.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
             
         }else{
+           self.IsServiced = YES;
             
             [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
-            _groupbtn.frame = CGRectMake(_groupbtn.frame.origin.x, _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
+            _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
             self.group = [_groupIDarray objectAtIndex:indexPath.row];
             
             _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
             
             [self groupsbuttonclick];
          
-            self.IsServiced = YES;
+            
             [_tableview reloadData];
              _tableview.frame = CGRectMake(0,67 + 62, self.view.bounds.size.width, self.view.bounds.size.height - (67 + 62));
             [self startrequest];
         }
         self.group = [_groupIDarray objectAtIndex:indexPath.row];
         
-        NSLog(@"self.group---%@",self.group);
+        NSLog(@"self.group2---%@",self.group);
     }else {
     
         [self shoosebtnclick];
@@ -730,9 +775,12 @@
 
 -(void)startrequest
 {
+    NSLog(@"self.group3--%@",self.group);
+    
     NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.group];
+    
    
-    NSLog(@"客户数据---%@",string);
+    NSLog(@"客户数据-aA--%@",string);
     [self requstwithurl:string];
 }
 
@@ -784,10 +832,10 @@
     
     NSString *msg = [dic objectForKey:@"msg"];
     
-    if (self.istop == YES) {
+    
         [_mycustomerDataarray removeAllObjects];
-        self.istop = NO;
-    }
+    
+    
     
     NSDictionary *customerData = [dic objectForKey:@"Content"];
     NSMutableArray *dataary = [customerData objectForKey:@"data"];
@@ -813,12 +861,11 @@
                 if ([mydata.firstsearchword isEqualToString:str]) {
                     [indexary addObject:mydata];
                 }
+                
             }
            [_allgroup addObject:indexary];
         }
     
-
-    NSLog(@"dataaryt----: %@",dataary);
     
     if ([state isEqualToString:@"0"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];

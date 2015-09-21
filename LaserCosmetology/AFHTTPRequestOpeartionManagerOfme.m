@@ -51,7 +51,7 @@
 }
 
 //医生的客户分组
-+ (void)postSetgroups:(NSString *)url withBlock:(dataBlcok)block{
++ (void)postSetgroups:(NSString *)url withBlock:(dataBlcok2)block{
     
     NSLog(@"responseObject-url-%@",url);
     
@@ -61,10 +61,9 @@
     [manager POST: [NSString stringWithFormat:@"%@",url] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *error = nil;
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
-//        NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
+        NSLog(@"AFHTTPRequestOpeartionManager医生的客户分组-%@---- %@",data ,error);
         
-        NSMutableArray *array = [[NSMutableArray alloc]init];
-        NSLog(@"分组：data--%@",data);
+        
 //        NSString *str = [data objectForKey:@"ErrorMessage"];
         
 //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
@@ -77,14 +76,17 @@
 //             mycustomerdata *mydata = [mycustomerdata mycustomerdataWithdiction:diction];
 //            [array addObject:mydata];
 //        }
-       
+       NSMutableArray *array = [[NSMutableArray alloc]init];
         
       NSMutableArray *groupname = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
+        NSMutableArray *groupid = [[NSMutableArray alloc] initWithCapacity:0];
+        
         NSString *stra;
         for (NSDictionary *mycusdiction in dataary) {
             mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
             if (![stra isEqualToString:mycustom.groupname]) {
                 [groupname addObject:mycustom.groupname];
+                [groupid addObject:mycustom.groupid];
             }
             stra = mycustom.groupname;
             [array addObject:mycustom];
@@ -98,14 +100,19 @@
                 if ([mydata.groupname isEqualToString:str]) {
                     [indexary addObject:mydata];
                 }
+                NSLog(@"mydata.groupname:%@",mydata.groupname);
             }
             [allgroup addObject:indexary];
+        }
+        
+        for (NSMutableArray *sry in allgroup) {
+            NSLog(@"sry.count-:%ld",sry.count);
         }
         
         
         if ([dctArray isEqualToString:@"操作成功"]) {
             
-            block(groupname,allgroup,nil);
+            block(groupname,allgroup,groupid);
         }
         
         
@@ -212,10 +219,17 @@
 //保存分组
 +(void)postsavegroupplist:(NSString *)url withblock:(dataBlcok)block{
 
+    
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager POST: [NSString stringWithFormat:@"%@",url] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *error = nil;
         
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
@@ -225,11 +239,13 @@
         
         //        NSString *str = [data objectForKey:@"ErrorMessage"];
         
-        //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
-        //        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
         NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
         //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
         //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
+        
+         NSLog(@"保存分组：state--%@--msg--%@",dictArray,dctArray);
         
         NSLog(@"分组：data--%@",data);
         
@@ -266,6 +282,169 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
+}
+//获取客户资料
++(void)postsGetcustomerdata:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        //        NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
+        
+        
+        //        NSString *str = [data objectForKey:@"ErrorMessage"];
+        
+//        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+////        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+//        NSDictionary *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+//        //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
+//        //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
+//        
+////        NSLog(@"保存分组：state--%@--msg--%@",dictArray,dctArray);
+////        
+//        NSLog(@"分组---dataary-%@-",dataary);
+//        
+//        NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+//        
+//        
+//            mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:dataary];
+//            [mycustomerDataarray addObject:mycustom];
+//             NSLog(@"分组：mycustom.nickname--%@",mycustom.nickname);
+//        
+//
+//        block(mycustomerDataarray,nil,nil);
+//        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+
+}
+
+//病历记录页面
++(void)postsGetgetmedicalhistorylis:(NSString *)url withblock:(dataBlcok)block{
+
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        //        NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
+        
+        
+        //        NSString *str = [data objectForKey:@"ErrorMessage"];
+        
+        //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        //        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        //        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
+        //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
+        
+        //        NSLog(@"保存分组：state--%@--msg--%@",dictArray,dctArray);
+        
+        NSLog(@"分组：data--%@",data);
+        
+        NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+        
+        NSMutableArray *headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
+        NSString *stra;
+        //        for (NSDictionary *mycusdiction in dataary) {
+        //            mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
+        //            if (![stra isEqualToString:mycustom.firstsearchword]) {
+        //                [headnamearray addObject:mycustom.firstsearchword];
+        //            }
+        //            stra = mycustom.firstsearchword;
+        //            [mycustomerDataarray addObject:mycustom];
+        //        }
+        
+        
+        
+        NSMutableArray *allgroup = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
+        for (NSString *str in headnamearray) {
+            NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
+            for (mycustomerdata *mydata in mycustomerDataarray) {
+                if ([mydata.firstsearchword isEqualToString:str]) {
+                    [indexary addObject:mydata];
+                }
+            }
+            [allgroup addObject:indexary];
+        }
+        
+        NSLog(@"分组列表的客户列表：headnamearray%@",headnamearray);
+        
+        block(headnamearray,allgroup,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+
+}
+
+//获取医生的客户分组列表成员信息
++(void)postsallcustomerAndurl:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+                NSLog(@"AFHTTPRequestOpeartionManager-客户分组成员-%@---- %@",data ,error);
+        
+        
+                NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+                NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+                NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+
+        
+                NSLog(@"保存分组：state--%@--msg--%@",dictArray,dctArray);
+        
+        
+        NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+        
+        for (NSDictionary *mydiction in dataary) {
+            mycustomerdata *mydata = [mycustomerdata mycustomerdataWithdiction:mydiction];
+            [mycustomerDataarray addObject:mydata];
+        }
+
+        
+        block(mycustomerDataarray,nil,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+
 }
 
 + (void)checkNetWorkStatus{

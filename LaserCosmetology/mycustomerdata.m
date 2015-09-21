@@ -46,9 +46,9 @@
 //    mycustom.rownumber = [diction objectForKey:@"rownumber"];
 
     
-    mycustom.address = [diction objectForKey:@"address"];
-    mycustom.agecount = [diction objectForKey:@"agecount"];
-    mycustom.agetype = [diction objectForKey:@"agetype"];
+    mycustom.address = [NSString stringWithFormat:@"%@",[diction objectForKey:@"address"]];
+    mycustom.agecount = [NSString stringWithFormat:@"%@",[diction objectForKey:@"agecount"]];
+    mycustom.agetype = [NSString stringWithFormat:@"%@",[diction objectForKey:@"agetype"]];
     mycustom.birthday = [diction objectForKey:@"birthday"];
     mycustom.buyproductnames = [diction objectForKey:@"buyproductnames"];
     mycustom.cellphone = [diction objectForKey:@"cellphone"];
@@ -73,6 +73,18 @@
     mycustom.groupid = [diction objectForKey:@"groupid"];
     mycustom.groupname = [diction objectForKey:@"groupname"];
     mycustom.isuse = [NSString stringWithFormat:@"%@",[diction objectForKey:@"isuse"]];
+    
+    mycustom.customerid =[NSString stringWithFormat:@"%@",[diction objectForKey:@"customerid"]];
+    mycustom.customerremark = [diction objectForKey:@"customerremark"];
+    mycustom.customersno = [diction objectForKey:@"customersno"];
+    mycustom.frommansno = [NSString stringWithFormat:@"%@",[diction objectForKey:@"frommansno"]];
+    mycustom.frontuserid =[NSString stringWithFormat:@"%@",[diction objectForKey:@"frontuserid"]];
+    mycustom.frontusersno = [diction objectForKey:@"frontusersno"];
+    mycustom.logincellphone = [diction objectForKey:@"logincellphone"];
+    mycustom.loginemailno = [NSString stringWithFormat:@"%@",[diction objectForKey:@"loginemailno"]];
+    mycustom.loginno =[NSString stringWithFormat:@"%@",[diction objectForKey:@"loginno"]];
+    mycustom.loginpassword = [diction objectForKey:@"loginpassword"];
+    mycustom.weixinopenid = [diction objectForKey:@"weixinopenid"];
 
     return mycustom;
 }

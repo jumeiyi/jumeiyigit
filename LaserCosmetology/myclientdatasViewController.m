@@ -15,6 +15,8 @@
 #import "myclientobservedisease.h"
 #import "myclientsetgropViewController.h"
 #import "myclientTheConditionRecordViewController.h"
+#import "AFHTTPRequestOpeartionManagerOfme.h"
+#import "mycustomerdata.h"
 
 @interface myclientdatasViewController ()
 
@@ -46,19 +48,17 @@
     [backbtn addTarget:self action:@selector(comebacksaaas) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:backbtn];
     
-    UITableView *myclienttableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
-    myclienttableview.dataSource = self;
-    myclienttableview.delegate = self;
-    myclienttableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    [self.view addSubview:myclienttableview];
+    _myclienttableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
+    _myclienttableview.dataSource = self;
+    _myclienttableview.delegate = self;
+    _myclienttableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    [self.view addSubview:_myclienttableview];
     
     _imageofhead = [[NSMutableArray alloc] initWithObjects:@"sucaiwu",@"sucailiu",@"sucaiyi", nil];
     _titleary = [[NSMutableArray alloc] initWithObjects:@"消息",@"电话",@"分组", nil];
     
-    NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
-    self.doctorSno =  [userdf objectForKey:@"customerSno"];
     
-    _data = [[NSMutableData alloc] init];
+    _data = [[NSMutableArray alloc] init];
 
     [self startrequest];
     
@@ -66,9 +66,17 @@
 
 -(void)startrequest
 {
-        NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=serviced&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorSno];
+        NSString *string = [NSString stringWithFormat:@"%@/doctor.getcustomer.go?customersno=%@",HTTPREQUESTPDOMAIN,self.customerSno];
     
-    [self requstwithurl:string];
+    NSLog(@"获取客户资料---%@",string);
+    
+    [AFHTTPRequestOpeartionManagerOfme postsGetcustomerdata:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+       
+        _data = array1;
+        [_myclienttableview reloadData];
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,19 +121,30 @@
     if (!cell) {
         cell = [[myclientdatasViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    mycustomerdata *data;
+    if (_data.count > 0) {
+        data = [_data objectAtIndex:0];
+    }
     
     if (indexPath.section == 0) {
         
         cell.headimage.frame = CGRectMake(30, 25, 50, 50);
         cell.headimage.image = [UIImage imageNamed:@"图片4"];
         
-        cell.name.frame = CGRectMake(100, 25, 50, 20);
-        cell.name.text = @"蒙蒙";
+        cell.name.frame = CGRectMake(100, 25,60 , 20);
+        cell.name.text = data.nickname;
         cell.name.font = [UIFont systemFontOfSize:16];
         cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
+        NSLog(@"cell里面的-%@",data.nickname);
         
-        cell.sex.frame = CGRectMake(150, 26, 15, 15);
-        cell.sex.image = [UIImage imageNamed:@"sucaisiganger"];
+        if (data.sextype == 0) {
+            cell.sex.frame = CGRectMake(150, 26, 15, 15);
+            cell.sex.image = [UIImage imageNamed:@"sucaisi"];
+        }else{
+            cell.sex.frame = CGRectMake(150, 26, 15, 15);
+            cell.sex.image = [UIImage imageNamed:@"sucaisiganger"];
+        }
+
         
         cell.age.frame = CGRectMake(100, 55, 50, 20);
         cell.age.font = [UIFont systemFontOfSize:14];
@@ -263,56 +282,7 @@
     [self.view addSubview:callWebview];
 }
 
-#pragma mark  request
 
--(void)requstwithurl:(NSString *)str
-{
-    NSURL *urlstr = [NSURL URLWithString:str];
-    
-    NSURLRequest *requst = [NSURLRequest requestWithURL:urlstr];
-    
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:requst delegate:self];
-    
-    [connection start];
-    
-    NSLog(@"url--------%@",urlstr);
-    
-}
 
-#pragma mark  requestdelegate
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"请求失败");
-}
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSLog(@"收到响应");
-    
-    [_data setData:[NSData data]];
-}
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSLog(@"请求数据接收");
-    [_data appendData:data];
-    
-}
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    
-    // NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-    //NSLog(@"%@",str);
-    
-    //JSON解析器
-     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
-    
-     NSLog(@"000000------------%@",dic);
-    
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-    
-}
 
 @end

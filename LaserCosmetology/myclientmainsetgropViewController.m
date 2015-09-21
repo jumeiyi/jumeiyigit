@@ -12,6 +12,7 @@
 #import "myclientmenbergroupViewController.h"
 #import "mycustomerdata.h"
 #import "PrefixHeader.pch"
+#import "newcreatgroupViewController.h"
 
 @interface myclientmainsetgropViewController ()
 
@@ -47,7 +48,7 @@
     [save setTitle:@"新建" forState:UIControlStateNormal];
     save.titleLabel.font = [UIFont systemFontOfSize:16];
     save.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
-    [save addTarget:self action:@selector(creatnewagroup) forControlEvents:UIControlEventTouchUpInside];
+    [save addTarget:self action:@selector(creatnewagroupww) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:save];
     
     
@@ -65,17 +66,24 @@
     }
     
     
-        NSString *string = [NSString stringWithFormat:@"%@/doctor.getgrouplist.go?doctorsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
 
-    [AFHTTPRequestOpeartionManagerOfme postSetgroups:string withBlock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.getgrouplist.go?doctorsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
+    
+    [AFHTTPRequestOpeartionManagerOfme postSetgroups:string withBlock:^(NSMutableArray *array1, NSMutableArray *array2, NSMutableArray *array3) {
         
         _groupname = array1;
         _groupman = array2;
         [self.mytableview reloadData];
         NSLog(@"array1:%@----array2:%@",array1,array2);
     }];
-    
-    
+
 }
 
 -(void)setgroupwithary:(NSMutableArray *)ary
@@ -173,8 +181,9 @@
     [self.navigationController pushViewController:myclient animated:YES];
 }
 
--(void)creatnewagroup{
-    myclientmenbergroupViewController *myclient = [[myclientmenbergroupViewController alloc] init];
+-(void)creatnewagroupww{
+    newcreatgroupViewController *myclient = [[newcreatgroupViewController alloc] init];
+    myclient.doctorsno = self.doctorsno;
     [self.navigationController pushViewController:myclient animated:YES];
 }
 

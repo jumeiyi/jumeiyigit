@@ -69,6 +69,19 @@
 @property(nonatomic,copy)NSString *groupname;
 @property(nonatomic,copy)NSString *isuse;
 
+@property(nonatomic,copy)NSString *customerid;
+@property(nonatomic,copy)NSString *customerremark;
+@property(nonatomic,copy)NSString *customersno;
+@property(nonatomic,copy)NSString *frommansno;
+@property(nonatomic,copy)NSString *frontuserid;
+@property(nonatomic,copy)NSString *frontusersno;
+@property(nonatomic,copy)NSString *logincellphone;
+@property(nonatomic,copy)NSString *loginemailno;
+@property(nonatomic,copy)NSString *loginno;
+@property(nonatomic,copy)NSString *loginpassword;
+@property(nonatomic,copy)NSString *weixinopenid;
+
+
 +(mycustomerdata *)mycustomerdataWithdiction:(NSDictionary *)diction;
 
 @end
