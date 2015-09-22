@@ -15,5 +15,5 @@
 
 }
 @property(nonatomic,retain)UITableView *mytableview;
-
+@property(nonatomic,retain)NSString *beautifydetailsno;
 @end

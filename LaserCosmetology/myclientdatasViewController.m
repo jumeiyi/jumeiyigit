@@ -57,7 +57,6 @@
     _imageofhead = [[NSMutableArray alloc] initWithObjects:@"sucaiwu",@"sucailiu",@"sucaiyi", nil];
     _titleary = [[NSMutableArray alloc] initWithObjects:@"消息",@"电话",@"分组", nil];
     
-    
     _data = [[NSMutableArray alloc] init];
 
     [self startrequest];
@@ -73,10 +72,19 @@
     [AFHTTPRequestOpeartionManagerOfme postsGetcustomerdata:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
        
         _data = array1;
+        
         [_myclienttableview reloadData];
         
     }];
     
+    
+    NSString *string2 = [NSString stringWithFormat:@"%@/doctor.hasfocused.go?customersno=%@&doctorsno=%@",HTTPREQUESTPDOMAIN,self.customerSno,self.doctorsno];
+    
+    [AFHTTPRequestOpeartionManagerOfme postsattentionTOMe:string2 withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+        self.payattention = string;
+        [_myclienttableview reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -110,7 +118,12 @@
     }else if (section == 1){
         return 3;
     }else{
-        return 5;
+        mycustomerdata *data;
+        if (_data.count > 0) {
+            data = [_data objectAtIndex:0];
+        }
+       
+        return data.beautitylist.count + 1;
     }
 }
 
@@ -125,23 +138,27 @@
     if (_data.count > 0) {
         data = [_data objectAtIndex:0];
     }
+   
+    
+    self.customerphone = data.logincellphone;
+    
+
     
     if (indexPath.section == 0) {
         
         cell.headimage.frame = CGRectMake(30, 25, 50, 50);
         cell.headimage.image = [UIImage imageNamed:@"图片4"];
         
-        cell.name.frame = CGRectMake(100, 25,60 , 20);
-        cell.name.text = data.nickname;
+        cell.name.frame = CGRectMake(100, 25,[self NSStringwithsize:16 str:data.truename] , 20);
+        cell.name.text = data.truename;
         cell.name.font = [UIFont systemFontOfSize:16];
         cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
-        NSLog(@"cell里面的-%@",data.nickname);
         
         if (data.sextype == 0) {
-            cell.sex.frame = CGRectMake(150, 26, 15, 15);
+            cell.sex.frame = CGRectMake(100 + [self NSStringwithsize:16 str:data.truename] + 10, 26, 15, 15);
             cell.sex.image = [UIImage imageNamed:@"sucaisi"];
         }else{
-            cell.sex.frame = CGRectMake(150, 26, 15, 15);
+            cell.sex.frame = CGRectMake(100 + [self NSStringwithsize:16 str:data.truename] + 10, 26, 15, 15);
             cell.sex.image = [UIImage imageNamed:@"sucaisiganger"];
         }
 
@@ -157,13 +174,15 @@
         cell.city.frame = CGRectMake(cell.age.frame.origin.x + cell.age.frame.size.width + 20, 55, 70, 20);
         cell.city.font = [UIFont systemFontOfSize:14];
         cell.city.textColor = [self colorWithRGB:0x868686 alpha:1];
-        cell.city.text = @"城市:武汉";
+        cell.city.text =[NSString stringWithFormat:@"城市:%@",data.address] ;
+        
+       
         
         cell.payattention.frame = CGRectMake(self.view.bounds.size.width - 60, 25, 50, 20);
         [cell.payattention setBackgroundImage:[UIImage imageNamed:@"guanzhudi"] forState:UIControlStateNormal];
         [cell.payattention setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
         cell.payattention.titleLabel.font = [UIFont systemFontOfSize:11];
-        [cell.payattention setTitle:@"已关注我" forState:UIControlStateNormal];
+        [cell.payattention setTitle:self.payattention forState:UIControlStateNormal];
         
     }else if (indexPath.section == 1){
         
@@ -175,10 +194,20 @@
         cell.titles.font = [UIFont systemFontOfSize:14];
         cell.titles.textColor = [self colorWithRGB:0x666666 alpha:1];
         
-        cell.contents.frame = CGRectMake(self.view.bounds.size.width - 100, 12, 70, 20);
-        cell.contents.text = @"123456";
-        cell.contents.font = [UIFont systemFontOfSize:14];
-        cell.contents.textColor = [self colorWithRGB:0x666666 alpha:1];
+        if (indexPath.row == 0) {
+
+        }else if (indexPath.row == 1){
+            cell.contents.frame = CGRectMake(self.view.bounds.size.width - 30 - [self NSStringwithsize:14 str:data.logincellphone], 12, [self NSStringwithsize:14 str:data.logincellphone], 20);
+            cell.contents.text = data.logincellphone;
+            cell.contents.font = [UIFont systemFontOfSize:14];
+            cell.contents.textColor = [self colorWithRGB:0x666666 alpha:1];
+        }else{
+            cell.contents.frame = CGRectMake(self.view.bounds.size.width - 30 - [self NSStringwithsize:14 str:data.groupname], 12, [self NSStringwithsize:14 str:data.groupname], 20);
+            cell.contents.text = data.groupname;
+            cell.contents.font = [UIFont systemFontOfSize:14];
+            cell.contents.textColor = [self colorWithRGB:0x666666 alpha:1];
+        }
+
         
         cell.right.frame = CGRectMake(self.view.bounds.size.width - 20, 12, 10, 20);
         cell.right.image = [UIImage imageNamed:@"素材12"];
@@ -197,6 +226,9 @@
             cell.jilutext.textColor = [self colorWithRGB:0x666666 alpha:1];
             
         }else{
+            
+            NSDictionary *prodctoer = [data.beautitylist objectAtIndex:indexPath.row - 1];
+
             cell.date.frame = CGRectMake(15, 12, 140, 20);
             cell.date.text = @"2015-09-01 16:40 ";
             cell.date.font = [UIFont systemFontOfSize:12];
@@ -204,7 +236,7 @@
 
             
             cell.projectname.frame = CGRectMake(140, 12, 120, 20);
-            cell.projectname.text = @"项目AB";
+            cell.projectname.text = [prodctoer objectForKey:@"productname"];
             cell.projectname.font = [UIFont systemFontOfSize:14];
             cell.projectname.textColor = [self colorWithRGB:0x00c5bb alpha:1];
             
@@ -249,6 +281,8 @@
         
         if (indexPath.row == 2) {
                 myclientsetgropViewController *myclient = [[myclientsetgropViewController alloc] init];
+            myclient.doctorsno = self.doctorsno;
+            myclient.customersno = self.customerSno;
                 [self.navigationController pushViewController:myclient animated:YES];
         }else if (indexPath.row == 1){
             [self callphone];
@@ -257,13 +291,19 @@
         }
         
     }else if (indexPath.section == 2){
+        mycustomerdata *data;
+        if (_data.count > 0) {
+            data = [_data objectAtIndex:0];
+        }
+        
         if (indexPath.row != 0) {
+          NSDictionary *mydict = [data.beautitylist objectAtIndex:indexPath.row - 1];
             myclientobservedisease *myclient = [[myclientobservedisease alloc] init];
+            myclient.beautifydetailsno = [mydict objectForKey:@"beautifydetailsno"];
             [self.navigationController pushViewController:myclient animated:YES];
         }
 
     }
-    
 //
 //    myclientTheConditionRecordViewController *myclient = [[myclientTheConditionRecordViewController alloc] init];
 //    [self.navigationController pushViewController:myclient animated:YES];
@@ -276,13 +316,26 @@
 
 -(void)callphone
 {
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"13687573025"];
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.customerphone];
     UIWebView * callWebview = [[UIWebView alloc] init];
     [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
     [self.view addSubview:callWebview];
 }
 
-
+//计算字体长度
+-(float)NSStringwithsize:(int )a str:(NSString *)string
+{
+    
+    UIFont *font = [UIFont systemFontOfSize:a];
+    
+    CGSize size = [string sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    // 名字的H
+    //CGFloat nameH = size.height;
+    // 名字的W
+    CGFloat strwidth = size.width;
+    
+    return strwidth;
+}
 
 
 @end

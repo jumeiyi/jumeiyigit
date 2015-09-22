@@ -17,6 +17,9 @@
     UITableView *_myclienttableview;
      NSMutableArray *_data;
 }
+@property(nonatomic,retain)NSString *customerphone;
 @property(nonatomic,retain)NSString *customerSno;
-
+@property(nonatomic,retain)NSString *doctorsno;
+@property(nonatomic,retain)NSString *beautitydetailsno;
+@property(nonatomic,retain)NSString *payattention;
 @end

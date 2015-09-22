@@ -73,6 +73,7 @@
     mycustom.groupid = [diction objectForKey:@"groupid"];
     mycustom.groupname = [diction objectForKey:@"groupname"];
     mycustom.isuse = [NSString stringWithFormat:@"%@",[diction objectForKey:@"isuse"]];
+    mycustom.groupnum = [NSString stringWithFormat:@"%@",[diction objectForKey:@"groupnum"]];
     
     mycustom.customerid =[NSString stringWithFormat:@"%@",[diction objectForKey:@"customerid"]];
     mycustom.customerremark = [diction objectForKey:@"customerremark"];
@@ -85,6 +86,7 @@
     mycustom.loginno =[NSString stringWithFormat:@"%@",[diction objectForKey:@"loginno"]];
     mycustom.loginpassword = [diction objectForKey:@"loginpassword"];
     mycustom.weixinopenid = [diction objectForKey:@"weixinopenid"];
+    mycustom.beautitylist = [diction objectForKey:@"beautitylist"];
 
     return mycustom;
 }

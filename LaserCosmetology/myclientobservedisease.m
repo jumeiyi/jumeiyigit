@@ -11,6 +11,9 @@
 #import "myclientobservediseaseCell.h"
 #import "UIImageView+WebCache.h"
 #import "myclientdiseaseediting.h"
+#import "PrefixHeader.pch"
+#import "AFHTTPRequestOpeartionManagerOfme.h"
+
 @interface myclientobservedisease ()
 
 @end
@@ -54,6 +57,20 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingbtnnot:) name:@"diseaseeditingbtnclick" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancellnot:) name:@"diseasequpingjia" object:nil];
+    
+    [self Getgetmedicalhistorylis];
+}
+
+-(void)Getgetmedicalhistorylis
+{
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.getmedicalhistorylist.go?beautitydetailsno=%@",HTTPREQUESTPDOMAIN,self.beautifydetailsno];
+    
+    NSLog(@"string-病历订单-URL：%@",string);
+    [AFHTTPRequestOpeartionManagerOfme postsGetgetmedicalhistorylis:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+    }];
+    
+    
 }
 -(void)editingbtnnot:(NSNotification *)noti
 {

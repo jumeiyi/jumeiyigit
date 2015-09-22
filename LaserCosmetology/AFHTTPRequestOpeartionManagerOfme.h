@@ -28,8 +28,16 @@ typedef void(^dataBlcok2)(NSMutableArray *array1,NSMutableArray *array2,NSMutabl
 +(void)postsavegroupplist:(NSString *)url withblock:(dataBlcok)block;
 //获取客户资料
 +(void)postsGetcustomerdata:(NSString *)url withblock:(dataBlcok)block;
-//病历记录页面
+//多个病历记录页面
 +(void)postsGetgetmedicalhistorylis:(NSString *)url withblock:(dataBlcok)block;
 //获取医生的客户分组列表成员信息
 +(void)postsallcustomerAndurl:(NSString *)url withblock:(dataBlcok)block;
+//保存选择的分组
++(void)postSaveTheShooseGroup:(NSString *)url withblock:(dataBlcok)block;
+//单个病历列表
++(void)posetgetmedicalhistorylis:(NSString *)url withblock:(dataBlcok)block;
+//编辑病历
++(void)postsEditingmedical:(NSString *)url withblock:(dataBlcok)block;
+//已关注我，或未关注我
++(void)postsattentionTOMe:(NSString *)url withblock:(dataBlcok)block;
 @end

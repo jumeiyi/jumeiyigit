@@ -15,6 +15,7 @@
     
     
     UITableView *_tableview;
+    UITableView *_grouptableview;
     
     RefreshControl *_refreshControl;
     BOOL _isLoading;

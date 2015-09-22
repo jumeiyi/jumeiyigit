@@ -118,6 +118,7 @@
 
 }
 
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
@@ -333,6 +334,7 @@
     addmanber.doctorsno = self.doctorsno;
     addmanber.groupname = _grouptitle.text;
     addmanber.groupid = self.groupid;
+    NSLog(@"self.doctorsno,_grouptitle.text,self.groupid-%@-%@-%@",self.doctorsno,_grouptitle.text,self.groupid);
     [self.navigationController pushViewController:addmanber animated:YES];
 }
 

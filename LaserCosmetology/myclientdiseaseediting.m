@@ -9,6 +9,9 @@
 #import "myclientdiseaseediting.h"
 #import "TopBarView.h"
 #import "pickerimageViewController.h"
+#import "AFHTTPRequestOpeartionManagerOfme.h"
+#import "PrefixHeader.pch"
+
 @interface myclientdiseaseediting ()
 
 @end
@@ -70,6 +73,19 @@
     _imagearry = [[NSMutableArray alloc] initWithCapacity:0];
 
 }
+
+//保存编辑
+-(void)saverediting
+{
+//            //端口待定
+//            NSString *string = [NSString stringWithFormat:@"%@/doctor.getcustomer.go?customersno=%@",HTTPREQUESTPDOMAIN,self.customerSno];
+    
+//    [AFHTTPRequestOpeartionManagerOfme postsEditingmedical:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+//        
+//    }];
+
+}
+
 -(void)shooseimages{
     
     pickerimageViewController *picker = [[pickerimageViewController alloc] init];

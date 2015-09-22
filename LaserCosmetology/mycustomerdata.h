@@ -68,6 +68,7 @@
 @property(nonatomic,copy)NSString *groupid;
 @property(nonatomic,copy)NSString *groupname;
 @property(nonatomic,copy)NSString *isuse;
+@property(nonatomic,copy)NSString *groupnum;
 
 @property(nonatomic,copy)NSString *customerid;
 @property(nonatomic,copy)NSString *customerremark;
@@ -80,7 +81,7 @@
 @property(nonatomic,copy)NSString *loginno;
 @property(nonatomic,copy)NSString *loginpassword;
 @property(nonatomic,copy)NSString *weixinopenid;
-
+@property(nonatomic,copy)NSArray *beautitylist;
 
 +(mycustomerdata *)mycustomerdataWithdiction:(NSDictionary *)diction;
 

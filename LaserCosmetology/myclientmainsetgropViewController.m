@@ -66,9 +66,6 @@
     }
     
     
-
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -81,38 +78,11 @@
         _groupname = array1;
         _groupman = array2;
         [self.mytableview reloadData];
-        NSLog(@"array1:%@----array2:%@",array1,array2);
+        
     }];
 
 }
 
--(void)setgroupwithary:(NSMutableArray *)ary
-{
-//    _groupname = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
-//    NSString *stra;
-//    for (NSDictionary *mycusdiction in dataary) {
-//        mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-//        if (![stra isEqualToString:mycustom.firstsearchword]) {
-//            [_groupname addObject:mycustom.firstsearchword];
-//        }
-//        stra = mycustom.firstsearchword;
-//        [_mycustomerDataarray addObject:mycustom];
-//    }
-//    
-//    
-//    
-//    _groupname = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
-//    for (NSString *str in _headnamearray) {
-//        NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
-//        for (mycustomerdata *mydata in _mycustomerDataarray) {
-//            if ([mydata.firstsearchword isEqualToString:str]) {
-//                [indexary addObject:mydata];
-//            }
-//        }
-//        [_allgroup addObject:indexary];
-//    }
-
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -151,9 +121,8 @@
         cell = [[myclientgroupTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    NSString *str1 = [_groupname objectAtIndex:indexPath.row];
-    NSArray *str2 = [_groupman objectAtIndex:indexPath.row];
-    NSString *str3 = [NSString stringWithFormat:@"%@      (%ld)",str1,str2.count];
+    mycustomerdata *mydata = [_groupman objectAtIndex:indexPath.row];
+    NSString *str3 = [NSString stringWithFormat:@"%@      (%@)",mydata.groupname,mydata.groupnum];
     
     cell.grouplable.frame = CGRectMake(15, 15, self.view.bounds.size.width - 35, 20);
     cell.grouplable.textColor = [self colorWithRGB:0x00c5bb alpha:1];
@@ -171,13 +140,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    mycustomerdata *mydata = [_groupman objectAtIndex:indexPath.row];
     
     myclientmenbergroupViewController *myclient = [[myclientmenbergroupViewController alloc] init];
-    myclient.groupstr = [_groupname objectAtIndex:indexPath.row];
-    myclient.manberarray = [_groupman objectAtIndex:indexPath.row];
+    myclient.groupstr = mydata.groupname;
+    myclient.groupid = mydata.groupid;
     myclient.doctorsno = self.doctorsno;
-    
-    NSLog(@"设置分组 11---:%@-",myclient.manberarray);
+    NSLog(@"mydata.groupname,mydata.groupid,self.doctorsno1{%@%@%@",mydata.groupname,mydata.groupid,self.doctorsno);
     [self.navigationController pushViewController:myclient animated:YES];
 }
 

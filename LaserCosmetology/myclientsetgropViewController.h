@@ -17,10 +17,13 @@
     
     NSMutableArray *_groupname;
      NSMutableArray *_groupman;
+     NSMutableArray *_groupids;
     NSMutableArray *_shooseindexs;
 }
 @property(nonatomic,retain)UITableView *mytableview;
 
 @property(nonatomic,retain)NSString *doctorsno;
+@property(nonatomic,retain)NSString *customersno;
+@property(nonatomic,retain)NSString *groupid;
 
 @end

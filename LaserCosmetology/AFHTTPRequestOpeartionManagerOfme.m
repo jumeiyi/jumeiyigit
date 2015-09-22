@@ -94,35 +94,17 @@
         
         
         NSMutableArray *allgroup = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
-        for (NSString *str in groupname) {
-            NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
-            for (mycustomerdata *mydata in array) {
-                if ([mydata.groupname isEqualToString:str]) {
-                    [indexary addObject:mydata];
-                }
-                NSLog(@"mydata.groupname:%@",mydata.groupname);
-            }
-            [allgroup addObject:indexary];
+        for (NSDictionary *data in dataary) {
+               mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:data];
+            [allgroup addObject:mycustom];
         }
         
-        for (NSMutableArray *sry in allgroup) {
-            NSLog(@"sry.count-:%ld",sry.count);
-        }
-        
-        
-        if ([dctArray isEqualToString:@"操作成功"]) {
-            
             block(groupname,allgroup,groupid);
-        }
+        
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //        completion(nil,[NSString stringWithFormat:@"%@",error]);
-        //        NSLog(@"Error: %@", error);
-        //        if (error)
-        //        {
-        //            [self checkNetWorkStatus];
-        //        }
+
     }];
 
 
@@ -300,31 +282,29 @@
         
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
         
-        //        NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
+                NSLog(@"AFHTTPRequestOpeartionManager-个人信息数据-%@---- %@",data ,error);
         
-        
-        //        NSString *str = [data objectForKey:@"ErrorMessage"];
-        
+//                NSString *str = [data objectForKey:@"ErrorMessage"];
+//        
 //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
-////        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
-//        NSDictionary *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
-//        //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
-//        //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
+//        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSDictionary *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        
+//                NSString *string = [[data objectForKey:@"Content"] objectForKey:@"state"];
+//                NSString *resultMessage = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        
+//        NSLog(@"保存分组：state--%@--msg--%@",dictArray,dctArray);
 //        
-////        NSLog(@"保存分组：state--%@--msg--%@",dictArray,dctArray);
-////        
-//        NSLog(@"分组---dataary-%@-",dataary);
-//        
-//        NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
-//        
-//        
-//            mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:dataary];
-//            [mycustomerDataarray addObject:mycustom];
-//             NSLog(@"分组：mycustom.nickname--%@",mycustom.nickname);
-//        
-//
-//        block(mycustomerDataarray,nil,nil);
-//        
+        
+        NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+        
+        
+            mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:dataary];
+            [mycustomerDataarray addObject:mycustom];
+        
+
+        block(mycustomerDataarray,nil,nil);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
@@ -350,7 +330,7 @@
         
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
         
-        //        NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
+                NSLog(@"AFHTTPRequestOpeartionManager获取订单的病例列表-%@---- %@",data ,error);
         
         
         //        NSString *str = [data objectForKey:@"ErrorMessage"];
@@ -363,7 +343,7 @@
         
         //        NSLog(@"保存分组：state--%@--msg--%@",dictArray,dctArray);
         
-        NSLog(@"分组：data--%@",data);
+       
         
         NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
         
@@ -394,6 +374,44 @@
         NSLog(@"分组列表的客户列表：headnamearray%@",headnamearray);
         
         block(headnamearray,allgroup,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+
+}
+
+//保存选择的分组
++(void)postSaveTheShooseGroup:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager-保存选择的分组-%@---- %@",data ,error);
+        
+        
+        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        
+        
+        NSLog(@"保存分组：state--%@--msg--%@",dictArray,dctArray);
+
+        
+        
+        block(nil,nil,dctArray);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -444,6 +462,139 @@
         
     }];
 
+
+}
+
+//单个病历列表
++(void)posetgetmedicalhistorylis:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager-客户分组成员-%@---- %@",data ,error);
+        
+        
+        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        
+        
+        NSLog(@"保存分组：state--%@--msg--%@",dictArray,dctArray);
+        
+        
+        NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+        
+        for (NSDictionary *mydiction in dataary) {
+            mycustomerdata *mydata = [mycustomerdata mycustomerdataWithdiction:mydiction];
+            [mycustomerDataarray addObject:mydata];
+        }
+        
+        
+        block(mycustomerDataarray,nil,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+}
+
+//编辑病历
++(void)postsEditingmedical:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager-客户分组成员-%@---- %@",data ,error);
+        
+        
+        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        
+        
+        NSLog(@"保存分组：state--%@--msg--%@",dictArray,dctArray);
+        
+        
+        NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+        
+        for (NSDictionary *mydiction in dataary) {
+            mycustomerdata *mydata = [mycustomerdata mycustomerdataWithdiction:mydiction];
+            [mycustomerDataarray addObject:mydata];
+        }
+        
+        
+        block(mycustomerDataarray,nil,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+
+}
+
+//已关注我，或未关注我
++(void)postsattentionTOMe:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager-已关注我，或未关注我-%@---- %@",data ,error);
+        
+        
+        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        
+        
+        NSLog(@"关注信息：state--%@--msg--%@",dictArray,dctArray);
+        
+        
+        NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+        
+        for (NSDictionary *mydiction in dataary) {
+            mycustomerdata *mydata = [mycustomerdata mycustomerdataWithdiction:mydiction];
+            [mycustomerDataarray addObject:mydata];
+        }
+        
+        
+        block(mycustomerDataarray,nil,dctArray);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 
 }
 

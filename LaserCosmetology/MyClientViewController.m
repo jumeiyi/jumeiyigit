@@ -140,6 +140,7 @@
     self.isgroupes = NO;
     self.isproject = NO;
     self.IsServiced = YES;
+    self.group = @"serviced";
     
     [self startrequest];
     
@@ -498,79 +499,200 @@
                 
                 NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
                 mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
+                NSArray *proudctorary = [customer.buyproductnames componentsSeparatedByString:@","];
+               
                 
                 cell.headimage.frame = CGRectMake(15, 9, 50, 50);
                 cell.headimage.image = [UIImage imageNamed:@"图片4"];
                 
                 cell.name.frame = CGRectMake(80, 9, self.view.bounds.size.width - 100, 20);
                 cell.name.font = [UIFont systemFontOfSize:14];
-                cell.name.text = [NSString stringWithFormat:@" %@",customer.nickname];
+                cell.name.text = [NSString stringWithFormat:@" %@",customer.truename];
                 cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
                 
-                cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str: @"项目1"] + 20, 21);
-                cell.project1.text = @"   项目1";
+                if (proudctorary.count == 1) {
+                    cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+                    
+                    cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
+                    cell.project1.font = [UIFont systemFontOfSize:11];
+                    cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+                    cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                    cell.project1.layer.masksToBounds = YES;
+                    cell.project1.layer.cornerRadius = 3;
+                    
+                }else if (proudctorary.count == 2){
+                    cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+                    cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
+                    
+                    cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
+                    cell.project1.font = [UIFont systemFontOfSize:11];
+                    cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+                    cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                    cell.project1.layer.masksToBounds = YES;
+                    cell.project1.layer.cornerRadius = 3;
+                    
+                    cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 15, 39, [self NSStringwithsize:11 str:cell.project2.text] + 10, 21);
+                    cell.project2.font = [UIFont systemFontOfSize:11];
+                    cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                    cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+                    cell.project2.layer.masksToBounds = YES;
+                    cell.project2.layer.cornerRadius = 3;
+                    
+                }else if (proudctorary.count == 3){
+                    cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+                    cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
+                    cell.project3.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:2]];
+                    
+                    cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
+                    cell.project1.font = [UIFont systemFontOfSize:11];
+                    cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+                    cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                    cell.project1.layer.masksToBounds = YES;
+                    cell.project1.layer.cornerRadius = 3;
+                    
+                    cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 15, 39, [self NSStringwithsize:11 str:cell.project2.text] + 10, 21);
+                    cell.project2.font = [UIFont systemFontOfSize:11];
+                    cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                    cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+                    cell.project2.layer.masksToBounds = YES;
+                    cell.project2.layer.cornerRadius = 3;
+                    
+                    cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 15, 39, [self NSStringwithsize:11 str:cell.project3.text] + 10, 21);
+                    cell.project3.font = [UIFont systemFontOfSize:11];
+                    cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                    cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
+                    cell.project3.layer.masksToBounds = YES;
+                    cell.project3.layer.cornerRadius = 3;
+                    
+                }else if (proudctorary.count > 3){
+                    cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+                    cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
+                    cell.project3.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:2]];
+                    
+                    cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
+                    cell.project1.font = [UIFont systemFontOfSize:11];
+                    cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+                    cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                    cell.project1.layer.masksToBounds = YES;
+                    cell.project1.layer.cornerRadius = 3;
+                    
+                    cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 15, 39, [self NSStringwithsize:11 str:cell.project2.text] + 10, 21);
+                    cell.project2.font = [UIFont systemFontOfSize:11];
+                    cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                    cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+                    cell.project2.layer.masksToBounds = YES;
+                    cell.project2.layer.cornerRadius = 3;
+                    
+                    cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 15, 39, [self NSStringwithsize:11 str:cell.project3.text] + 10, 21);
+                    cell.project3.font = [UIFont systemFontOfSize:11];
+                    cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                    cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
+                    cell.project3.layer.masksToBounds = YES;
+                    cell.project3.layer.cornerRadius = 3;
+                }
+
+            }
+ 
+        }else{
+            
+            NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
+            mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
+            
+            NSArray *proudctorary = [customer.buyproductnames componentsSeparatedByString:@","];
+            
+                cell.headimage.frame = CGRectMake(15, 9, 50, 50);
+                cell.headimage.image = [UIImage imageNamed:@"图片4"];
+                
+                cell.name.frame = CGRectMake(80, 9, self.view.bounds.size.width - 100, 20);
+                cell.name.font = [UIFont systemFontOfSize:14];
+                cell.name.text = [NSString stringWithFormat:@" %@",customer.truename];
+                cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
+                
+            if (proudctorary.count == 1) {
+                cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+                
+                cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
                 cell.project1.font = [UIFont systemFontOfSize:11];
                 cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
                 cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
                 cell.project1.layer.masksToBounds = YES;
                 cell.project1.layer.cornerRadius = 3;
                 
-                cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 20, 39, [self NSStringwithsize:11 str: @"项目2"] + 20, 21);
-                cell.project2.text = @"   项目2";
+            }else if (proudctorary.count == 2){
+                cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+                cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
+                
+                cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
+                cell.project1.font = [UIFont systemFontOfSize:11];
+                cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project1.layer.masksToBounds = YES;
+                cell.project1.layer.cornerRadius = 3;
+                
+                cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 15, 39, [self NSStringwithsize:11 str:cell.project2.text] + 10, 21);
                 cell.project2.font = [UIFont systemFontOfSize:11];
                 cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
                 cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
                 cell.project2.layer.masksToBounds = YES;
                 cell.project2.layer.cornerRadius = 3;
                 
-                cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 20, 39, [self NSStringwithsize:11 str:@"项目3"] + 20, 21);
-                cell.project3.text = @"  项目3";
+            }else if (proudctorary.count == 3){
+                cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+                cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
+                cell.project3.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:2]];
+                
+                cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
+                cell.project1.font = [UIFont systemFontOfSize:11];
+                cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project1.layer.masksToBounds = YES;
+                cell.project1.layer.cornerRadius = 3;
+                
+                cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 15, 39, [self NSStringwithsize:11 str:cell.project2.text] + 10, 21);
+                cell.project2.font = [UIFont systemFontOfSize:11];
+                cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project2.layer.masksToBounds = YES;
+                cell.project2.layer.cornerRadius = 3;
+                
+                cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 15, 39, [self NSStringwithsize:11 str:cell.project3.text] + 10, 21);
+                cell.project3.font = [UIFont systemFontOfSize:11];
+                cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project3.layer.masksToBounds = YES;
+                cell.project3.layer.cornerRadius = 3;
+                
+            }else if (proudctorary.count > 3){
+                cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+                cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
+                cell.project3.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:2]];
+                
+                cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
+                cell.project1.font = [UIFont systemFontOfSize:11];
+                cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project1.layer.masksToBounds = YES;
+                cell.project1.layer.cornerRadius = 3;
+                
+                cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 15, 39, [self NSStringwithsize:11 str:cell.project2.text] + 10, 21);
+                cell.project2.font = [UIFont systemFontOfSize:11];
+                cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+                cell.project2.layer.masksToBounds = YES;
+                cell.project2.layer.cornerRadius = 3;
+                
+                cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 15, 39, [self NSStringwithsize:11 str:cell.project3.text] + 10, 21);
                 cell.project3.font = [UIFont systemFontOfSize:11];
                 cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
                 cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
                 cell.project3.layer.masksToBounds = YES;
                 cell.project3.layer.cornerRadius = 3;
             }
- 
-        }else{
             
-            NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
-            NSLog(@"indexPath.row:%ld---indexPath.section : %ld",indexPath.row,indexPath.section);
+
+
             
-            
-            mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
-            
-                cell.headimage.frame = CGRectMake(15, 9, 50, 50);
-                cell.headimage.image = [UIImage imageNamed:@"图片4"];
-                
-                cell.name.frame = CGRectMake(80, 9, self.view.bounds.size.width - 100, 20);
-                cell.name.font = [UIFont systemFontOfSize:14];
-                cell.name.text = [NSString stringWithFormat:@" %@",customer.nickname];
-                cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
-                
-                cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str: @"项目1"] + 20, 21);
-                cell.project1.text = @"   项目1";
-                cell.project1.font = [UIFont systemFontOfSize:11];
-                cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
-                cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-                cell.project1.layer.masksToBounds = YES;
-                cell.project1.layer.cornerRadius = 3;
-                
-                cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 20, 39, [self NSStringwithsize:11 str: @"项目2"] + 20, 21);
-                cell.project2.text = @"   项目2";
-                cell.project2.font = [UIFont systemFontOfSize:11];
-                cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-                cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
-                cell.project2.layer.masksToBounds = YES;
-                cell.project2.layer.cornerRadius = 3;
-                
-                cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 20, 39, [self NSStringwithsize:11 str:@"项目3"] + 20, 21);
-                cell.project3.text = @"  项目3";
-                cell.project3.font = [UIFont systemFontOfSize:11];
-                cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-                cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
-                cell.project3.layer.masksToBounds = YES;
-                cell.project3.layer.cornerRadius = 3;
+
             
         }
         
@@ -658,19 +780,18 @@
     
     if (tableView.tag == 60) {
         
-
-        
         if (self.IsServiced == YES) {
             if (indexPath.section == 0) {
                 myclientmainsetgropViewController *myclient = [[myclientmainsetgropViewController alloc] init];
                 myclient.doctorsno = self.doctorsno;
                 [self.navigationController pushViewController:myclient animated:YES];
             }else{
-                NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
+                NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
                 mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
                 
                 myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
                 myclient.customerSno = customer.sno;
+                myclient.doctorsno = self.doctorsno;
                 [self.navigationController pushViewController:myclient animated:YES];
               }
         }else{
@@ -679,6 +800,7 @@
             
             myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
             myclient.customerSno = customer.sno;
+            myclient.doctorsno = self.doctorsno;
             [self.navigationController pushViewController:myclient animated:YES];
         }
 

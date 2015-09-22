@@ -165,7 +165,7 @@
             [_groupIDarray addObject:[array3 objectAtIndex:i]];
         }
         
-        
+        [_grouptableview reloadData];
         NSLog(@"array1:%@---EEEE-_groupIDarray:%@",array1,_groupIDarray);
     }];
     
@@ -319,7 +319,7 @@
 -(void)groupsbuttonclick
 {
     
-    UITableView *grouptableview;
+    
     
     if (self.isgroupes == NO) {
         
@@ -336,13 +336,13 @@
         image.image = [UIImage imageNamed:@"yishengwdkh"];
         [btnview addSubview:image];
         
-        grouptableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 10,btnview.bounds.size.width, btnview.bounds.size.height - 10)];
-        grouptableview.tag = 62;
-        grouptableview.delegate = self;
-        grouptableview.dataSource = self;
-        grouptableview.backgroundColor = [UIColor clearColor];
-        grouptableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [btnview addSubview:grouptableview];
+        _grouptableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 10,btnview.bounds.size.width, btnview.bounds.size.height - 10)];
+        _grouptableview.tag = 62;
+        _grouptableview.delegate = self;
+        _grouptableview.dataSource = self;
+        _grouptableview.backgroundColor = [UIColor clearColor];
+        _grouptableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [btnview addSubview:_grouptableview];
         
         _btnimage.image = [UIImage imageNamed:@"yishengwdkhs"];
         
@@ -351,8 +351,8 @@
     }else{
         [btnview removeFromSuperview];
         btnview = nil;
-        [grouptableview removeFromSuperview];
-        grouptableview = nil;
+        [_grouptableview removeFromSuperview];
+        _grouptableview = nil;
         self.isgroupes = NO;
         _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
     }
@@ -839,22 +839,21 @@
     
     
     NSDictionary *customerData = [dic objectForKey:@"Content"];
-    NSMutableArray *dataary = [customerData objectForKey:@"data"];
-    NSString *state = [NSString stringWithFormat:@"%@",[dic objectForKey:@"state"]];
-    
+
     NSString *masdiction = [NSString stringWithFormat:@"%@",[customerData objectForKey:@"state"]];
+     NSString *msgdictions = [NSString stringWithFormat:@"%@",[customerData objectForKey:@"msg"]];
     
+    NSLog(@"masdiction:%@--msgdictions:%@",masdiction,msgdictions);
  
-    if ([masdiction isEqualToString:@"1"]) {
+    if ([msgdictions isEqualToString:@"操作成功！"]) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"编辑分组成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msgdictions delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [alert show];
         
         [self.navigationController popViewControllerAnimated:YES];
     }else{
     
-        NSString *string =[NSString stringWithFormat:@"分组失败！%@",[dic objectForKey:@"ErrorMessage"]];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msgdictions delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [alert show];
     }
 

@@ -13,6 +13,7 @@
 #import "PrefixHeader.pch"
 #import "AFHTTPRequestOpeartionManagerOfme.h"
 #import "newcreatgroupViewController.h"
+
 @interface myclientsetgropViewController ()
 
 @end
@@ -44,20 +45,21 @@
     [topbar addSubview:backbtn];
     
     UIButton *save = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 20, 50, 40)];
-    [save setTitle:@"保存" forState:UIControlStateNormal];
+    [save setTitle:@"新建" forState:UIControlStateNormal];
     save.titleLabel.font = [UIFont systemFontOfSize:16];
     save.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
     [save addTarget:self action:@selector(creatnewagroupww) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:save];
     
     
-    self.mytableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
+    self.mytableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64 - 100)];
     self.mytableview.delegate = self;
     self.mytableview.dataSource = self;
     [self.view addSubview:self.mytableview];
     
     _groupname = [[NSMutableArray alloc] initWithCapacity:0];
     _groupman = [[NSMutableArray alloc] initWithCapacity:0];
+    _groupids = [[NSMutableArray alloc] initWithCapacity:0];
     
     NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
     self.doctorsno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
@@ -67,6 +69,15 @@
         [Yary addObject:@"y"];
     }
     
+    UIButton *savebutton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - (117/2), self.view.bounds.size.height - 80, 117, 40)];
+    savebutton.backgroundColor = [self colorWithRGB:0x00c5bb alpha:1];
+    [savebutton setTitle:@"保存" forState:UIControlStateNormal];
+    savebutton.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
+    savebutton.titleLabel.font = [UIFont systemFontOfSize:16];
+    savebutton.layer.masksToBounds = YES;
+    savebutton.layer.cornerRadius = 4;
+    [savebutton addTarget:self action:@selector(savegroup) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:savebutton];
    
 }
 
@@ -80,6 +91,7 @@
         
         _groupname = array1;
         _groupman = array2;
+        _groupids = array3;
         [self.mytableview reloadData];
         NSLog(@"array1:%@----array2:%@",array1,array2);
         
@@ -91,31 +103,17 @@
     
 }
 
--(void)setgroupwithary:(NSMutableArray *)ary
+-(void)savegroup
 {
-    //    _groupname = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
-    //    NSString *stra;
-    //    for (NSDictionary *mycusdiction in dataary) {
-    //        mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-    //        if (![stra isEqualToString:mycustom.firstsearchword]) {
-    //            [_groupname addObject:mycustom.firstsearchword];
-    //        }
-    //        stra = mycustom.firstsearchword;
-    //        [_mycustomerDataarray addObject:mycustom];
-    //    }
-    //
-    //
-    //
-    //    _groupname = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
-    //    for (NSString *str in _headnamearray) {
-    //        NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
-    //        for (mycustomerdata *mydata in _mycustomerDataarray) {
-    //            if ([mydata.firstsearchword isEqualToString:str]) {
-    //                [indexary addObject:mydata];
-    //            }
-    //        }
-    //        [_allgroup addObject:indexary];
-    //    }
+        NSString *string = [NSString stringWithFormat:@"%@/doctor.savecustomergroup.go?doctorsno=%@&customersno=%@&groupid=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.customersno,self.groupid];
+    NSLog(@"string-保存客户分组url:%@",string);
+    
+    [AFHTTPRequestOpeartionManagerOfme postSaveTheShooseGroup:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+        NSLog(@"string-:%@",string);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+    }];
     
 }
 
@@ -156,9 +154,10 @@
         cell = [[myclientsetgropCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    NSString *str1 = [_groupname objectAtIndex:indexPath.row];
-    NSArray *str2 = [_groupman objectAtIndex:indexPath.row];
-    NSString *str3 = [NSString stringWithFormat:@"%@      (%ld)",str1,str2.count];
+    mycustomerdata *datastr1 = [_groupman objectAtIndex:indexPath.row];
+    NSLog(@"datastr1.groupnum:%@",datastr1.groupnum);
+    
+    NSString *str3 = [NSString stringWithFormat:@"%@      (%@)",datastr1.groupname,datastr1.groupnum];
     
     cell.grouplable.frame = CGRectMake(15, 15, self.view.bounds.size.width - 35, 20);
     cell.grouplable.textColor = [self colorWithRGB:0x00c5bb alpha:1];
@@ -189,23 +188,27 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString *object = [_shooseindexs objectAtIndex:indexPath.row];
-    if ([object isEqualToString:@"y"]) {
-        [_shooseindexs replaceObjectAtIndex:indexPath.row withObject:@"x"];
-    }else{
-    [_shooseindexs replaceObjectAtIndex:indexPath.row withObject:@"y"];
+    
+    [_shooseindexs removeAllObjects];
+    for (int i = 0; i < _groupname.count; i++) {
+        [_shooseindexs addObject:@"y"];
     }
+        [_shooseindexs replaceObjectAtIndex:indexPath.row withObject:@"x"];
+    
+    mycustomerdata *datastr1 = [_groupman objectAtIndex:indexPath.row];
+    self.groupid = datastr1.groupid;
     
     [self.mytableview reloadData];
     
 }
 
 -(void)creatnewagroupww{
-
-    NSLog(@"保存URL");
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"保存" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-    [alert show];
+    newcreatgroupViewController *newcreat = [[newcreatgroupViewController alloc] init];
+    newcreat.doctorsno = self.doctorsno;
+    [self.navigationController pushViewController:newcreat animated:YES];
+
+
 }
 
 

@@ -106,17 +106,6 @@
     cancelbtn.layer.cornerRadius = 3;
     [self.view addSubview:cancelbtn];
     
-    if (self.manberarray.count > 0) {
-        mycustomerdata *data = [self.manberarray objectAtIndex:0];
-        self.groupid = data.groupid;
-    }
-    
-    
-    
-
-    
-    
-   
     
 }
 
@@ -270,19 +259,26 @@
 -(void)savebtnclick
 {
     self.groupname = _grouptitle.text;
-     
+    
+    self.customersIDs = @"";
+    for (mycustomerdata *data in self.manberarrays) {
+        if ([self.customersIDs isEqualToString:@""]) {
+           self.customersIDs = [NSString stringWithFormat:@"%@",data.sno];
+        }else{
+        self.customersIDs = [NSString stringWithFormat:@"%@,%@",self.customersIDs,data.sno];
+        }
+        
+    }
     
         NSString *string = [NSString stringWithFormat:@"%@//doctor.savegroup.go?groupid=%@&groupname=%@&doctorsno=%@&customers=%@",HTTPREQUESTPDOMAIN,self.groupid,self.groupname,self.doctorsno,self.customersIDs];
     
-    NSLog(@"string-:%@",string);
+    NSLog(@"string-2:%@",string);
     
     [AFHTTPRequestOpeartionManagerOfme postsavegroupplist:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
         [self.navigationController popViewControllerAnimated:YES];
     }];
-    
-//    UIAlertView *alertv = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请求失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-//    [alertv show];
+
     
 }
 
@@ -302,6 +298,8 @@
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [alert show];
+        
+        [self.navigationController popViewControllerAnimated:YES];
         
     }];
     
@@ -351,6 +349,8 @@
     addmanber.doctorsno = self.doctorsno;
     addmanber.groupname = _grouptitle.text;
     addmanber.groupid = self.groupid;
+    NSLog(@"self.doctorsno,_grouptitle.text,self.groupid-%@-%@-%@",self.doctorsno,_grouptitle.text,self.groupid);
+
     [self.navigationController pushViewController:addmanber animated:YES];
 }
 

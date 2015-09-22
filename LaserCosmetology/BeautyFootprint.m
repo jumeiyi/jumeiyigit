@@ -370,7 +370,7 @@ static NSString * const identifier = @"cell";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        return 30 + (self.view.bounds.size.width - 15)/2 + 100;
+    return 30 + (self.view.bounds.size.width - 15)/2 + 100;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
