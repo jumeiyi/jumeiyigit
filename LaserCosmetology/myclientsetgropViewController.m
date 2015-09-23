@@ -93,7 +93,7 @@
         _groupman = array2;
         _groupids = array3;
         [self.mytableview reloadData];
-        NSLog(@"array1:%@----array2:%@",array1,array2);
+        
         
         for (int i = 0; i < _groupname.count; i++) {
             [_shooseindexs addObject:@"y"];
@@ -109,10 +109,8 @@
     NSLog(@"string-保存客户分组url:%@",string);
     
     [AFHTTPRequestOpeartionManagerOfme postSaveTheShooseGroup:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-        
-        NSLog(@"string-:%@",string);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
+                
+        [self.navigationController popViewControllerAnimated:YES];
     }];
     
 }
@@ -159,7 +157,7 @@
     
     NSString *str3 = [NSString stringWithFormat:@"%@      (%@)",datastr1.groupname,datastr1.groupnum];
     
-    cell.grouplable.frame = CGRectMake(15, 15, self.view.bounds.size.width - 35, 20);
+    cell.grouplable.frame = CGRectMake(19, 15, self.view.bounds.size.width - 35, 20);
     cell.grouplable.textColor = [self colorWithRGB:0x00c5bb alpha:1];
     cell.grouplable.font = [UIFont systemFontOfSize:15];
     cell.grouplable.text = str3;

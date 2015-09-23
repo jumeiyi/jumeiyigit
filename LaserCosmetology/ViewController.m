@@ -86,7 +86,7 @@
     
     BeautyExpertViewController *beautyexpert = [[BeautyExpertViewController alloc] init];
     vc = [[UINavigationController alloc] initWithRootViewController:beautyexpert];
-    vc.tabBarItem.title = @"美容专家";
+    vc.tabBarItem.title = @"医美专家";
     //vc.tabBarItem.image = [UIImage imageNamed:@"zhuanjian"];
     vc.navigationBarHidden = YES;
     beautyexpert.hidesBottomBarWhenPushed = YES;

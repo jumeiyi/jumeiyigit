@@ -30,7 +30,7 @@
     [self.view addSubview:topbar];
     
     UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-    titilelable.text = @"病历记录";
+    titilelable.text = @"病历编辑";
     titilelable.textColor = [UIColor whiteColor];
     titilelable.font = [UIFont systemFontOfSize:22];
     titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
@@ -77,12 +77,12 @@
 //保存编辑
 -(void)saverediting
 {
-//            //端口待定
-//            NSString *string = [NSString stringWithFormat:@"%@/doctor.getcustomer.go?customersno=%@",HTTPREQUESTPDOMAIN,self.customerSno];
     
-//    [AFHTTPRequestOpeartionManagerOfme postsEditingmedical:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-//        
-//    }];
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&medicalhistorysno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.medicalhistorysno,self.content];
+    
+    [AFHTTPRequestOpeartionManagerOfme postsEditingmedical:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+    }];
 
 }
 

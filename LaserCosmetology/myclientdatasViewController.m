@@ -163,10 +163,10 @@
         }
 
         
-        cell.age.frame = CGRectMake(100, 55, 50, 20);
+        cell.age.frame = CGRectMake(100, 55, 60, 20);
         cell.age.font = [UIFont systemFontOfSize:14];
         cell.age.textColor = [self colorWithRGB:0x868686 alpha:1];
-        cell.age.text = @"年龄:25";
+        cell.age.text = @"年龄: 25";
         
         cell.suxian.frame = CGRectMake(cell.age.frame.origin.x + cell.age.frame.size.width + 5, 55, 3, 20);
         cell.suxian.image = [UIImage imageNamed:@"zhuyefenge"];
@@ -178,7 +178,7 @@
         
        
         
-        cell.payattention.frame = CGRectMake(self.view.bounds.size.width - 60, 25, 50, 20);
+        cell.payattention.frame = CGRectMake(self.view.bounds.size.width - 68, 25, 50, 20);
         [cell.payattention setBackgroundImage:[UIImage imageNamed:@"guanzhudi"] forState:UIControlStateNormal];
         [cell.payattention setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
         cell.payattention.titleLabel.font = [UIFont systemFontOfSize:11];
@@ -186,10 +186,10 @@
         
     }else if (indexPath.section == 1){
         
-        cell.titleimage.frame = CGRectMake(15, 10, 25, 25);
+        cell.titleimage.frame = CGRectMake(18, 12, 25, 25);
         cell.titleimage.image = [UIImage imageNamed:[_imageofhead objectAtIndex:indexPath.row]];
         
-        cell.titles.frame = CGRectMake(50, 12, 40, 20);
+        cell.titles.frame = CGRectMake(50, 14, 40, 20);
         cell.titles.text = [_titleary objectAtIndex:indexPath.row];
         cell.titles.font = [UIFont systemFontOfSize:14];
         cell.titles.textColor = [self colorWithRGB:0x666666 alpha:1];
@@ -197,19 +197,19 @@
         if (indexPath.row == 0) {
 
         }else if (indexPath.row == 1){
-            cell.contents.frame = CGRectMake(self.view.bounds.size.width - 30 - [self NSStringwithsize:14 str:data.logincellphone], 12, [self NSStringwithsize:14 str:data.logincellphone], 20);
+            cell.contents.frame = CGRectMake(self.view.bounds.size.width - 35 - [self NSStringwithsize:14 str:data.logincellphone], 14, [self NSStringwithsize:14 str:data.logincellphone], 20);
             cell.contents.text = data.logincellphone;
             cell.contents.font = [UIFont systemFontOfSize:14];
             cell.contents.textColor = [self colorWithRGB:0x666666 alpha:1];
         }else{
-            cell.contents.frame = CGRectMake(self.view.bounds.size.width - 30 - [self NSStringwithsize:14 str:data.groupname], 12, [self NSStringwithsize:14 str:data.groupname], 20);
+            cell.contents.frame = CGRectMake(self.view.bounds.size.width - 35 - [self NSStringwithsize:14 str:data.groupname], 14, [self NSStringwithsize:14 str:data.groupname], 20);
             cell.contents.text = data.groupname;
             cell.contents.font = [UIFont systemFontOfSize:14];
             cell.contents.textColor = [self colorWithRGB:0x666666 alpha:1];
         }
 
         
-        cell.right.frame = CGRectMake(self.view.bounds.size.width - 20, 12, 10, 20);
+        cell.right.frame = CGRectMake(self.view.bounds.size.width - 25, 14, 10, 20);
         cell.right.image = [UIImage imageNamed:@"素材12"];
         
     
@@ -217,7 +217,7 @@
         
         if (indexPath.row == 0) {
          
-            cell.riliimage.frame = CGRectMake(15, 10, 25, 25);
+            cell.riliimage.frame = CGRectMake(18, 10, 25, 25);
             cell.riliimage.image = [UIImage imageNamed:@"sucaiqi"];
             
             cell.jilutext.frame = CGRectMake(50, 12, 60, 20);
@@ -229,18 +229,18 @@
             
             NSDictionary *prodctoer = [data.beautitylist objectAtIndex:indexPath.row - 1];
 
-            cell.date.frame = CGRectMake(15, 12, 140, 20);
+            cell.date.frame = CGRectMake(19, 15, 140, 20);
             cell.date.text = @"2015-09-01 16:40 ";
             cell.date.font = [UIFont systemFontOfSize:12];
             cell.date.textColor = [self colorWithRGB:0x999999 alpha:1];
 
             
-            cell.projectname.frame = CGRectMake(140, 12, 120, 20);
+            cell.projectname.frame = CGRectMake(140, 15, 120, 20);
             cell.projectname.text = [prodctoer objectForKey:@"productname"];
             cell.projectname.font = [UIFont systemFontOfSize:14];
             cell.projectname.textColor = [self colorWithRGB:0x00c5bb alpha:1];
             
-            cell.inspect.frame = CGRectMake(self.view.bounds.size.width - 80, 10, 60, 23);
+            cell.inspect.frame = CGRectMake(self.view.bounds.size.width - 78, 13, 60, 23);
             [cell.inspect setTitle:@"查看病历" forState:UIControlStateNormal];
             [cell.inspect setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
             [cell.inspect setBackgroundImage:[UIImage imageNamed:@"guanzhudi"] forState:UIControlStateNormal];
@@ -248,10 +248,8 @@
             cell.inspect.titleLabel.font = [UIFont systemFontOfSize:14];
         }
 
-    
     }
     
-   
     return cell;
 }
 

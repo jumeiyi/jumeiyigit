@@ -31,6 +31,9 @@
 @property(nonatomic,retain)NSString *doctorsno;
 @property(nonatomic,retain)NSString *customersno;
 @property(nonatomic,retain)NSString *orderDetailSno;
+@property(nonatomic,retain)NSString *medicalhistorysno;
+@property(nonatomic,retain)NSString *datatype;
+@property(nonatomic,retain)NSData *imagedat;
 
 @property(nonatomic,assign)BOOL isfenlei;
 @property(nonatomic,retain)UITableView *Righttableview;

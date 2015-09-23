@@ -40,4 +40,9 @@ typedef void(^dataBlcok2)(NSMutableArray *array1,NSMutableArray *array2,NSMutabl
 +(void)postsEditingmedical:(NSString *)url withblock:(dataBlcok)block;
 //已关注我，或未关注我
 +(void)postsattentionTOMe:(NSString *)url withblock:(dataBlcok)block;
+//删除病历
++(void)postscancellThemedicalhistory:(NSString *)url withblock:(dataBlcok)block;
+//上传图片
+//上传病历图片
++ (void)postModifyTheUserHeadRequestWitHUser:(NSString *)url medicalhistorysno:(NSString *)canshu1 doctorsno:(NSString *)canshu2 and:(NSData *)imagedata Completion:(dataBlcok)completion;
 @end

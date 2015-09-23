@@ -118,6 +118,7 @@
 		846ECE5A1B93FFE9003823AA /* yuanxingjian.png in Resources */ = {isa = PBXBuildFile; fileRef = 846ECE491B93FFE9003823AA /* yuanxingjian.png */; };
 		846ECE5F1B943700003823AA /* fengeian.png in Resources */ = {isa = PBXBuildFile; fileRef = 846ECE5D1B943700003823AA /* fengeian.png */; };
 		846ECE601B943700003823AA /* zhuyefenge.png in Resources */ = {isa = PBXBuildFile; fileRef = 846ECE5E1B943700003823AA /* zhuyefenge.png */; };
+		847422061BB2DB0300B20AC4 /* UpdataiWithimage.m in Sources */ = {isa = PBXBuildFile; fileRef = 847422051BB2DB0300B20AC4 /* UpdataiWithimage.m */; settings = {ASSET_TAGS = (); }; };
 		84750E261BAA64E6008A7A6E /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84750E141BAA64E6008A7A6E /* AFHTTPRequestOperation.m */; };
 		84750E271BAA64E6008A7A6E /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84750E161BAA64E6008A7A6E /* AFHTTPRequestOperationManager.m */; };
 		84750E281BAA64E6008A7A6E /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84750E181BAA64E6008A7A6E /* AFHTTPSessionManager.m */; };
@@ -696,6 +697,8 @@
 		846ECE5D1B943700003823AA /* fengeian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fengeian.png; sourceTree = "<group>"; };
 		846ECE5E1B943700003823AA /* zhuyefenge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhuyefenge.png; sourceTree = "<group>"; };
 		84718EF81B68D43C003310D3 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		847422041BB2DB0300B20AC4 /* UpdataiWithimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdataiWithimage.h; sourceTree = "<group>"; };
+		847422051BB2DB0300B20AC4 /* UpdataiWithimage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataiWithimage.m; sourceTree = "<group>"; };
 		84750E131BAA64E6008A7A6E /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		84750E141BAA64E6008A7A6E /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		84750E151BAA64E6008A7A6E /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -1541,6 +1544,8 @@
 			children = (
 				84750E351BAA97C3008A7A6E /* AFHTTPRequestOpeartionManagerOfme.h */,
 				84750E361BAA97C3008A7A6E /* AFHTTPRequestOpeartionManagerOfme.m */,
+				847422041BB2DB0300B20AC4 /* UpdataiWithimage.h */,
+				847422051BB2DB0300B20AC4 /* UpdataiWithimage.m */,
 			);
 			name = AFN;
 			sourceTree = "<group>";
@@ -3014,6 +3019,7 @@
 				849364151AD9093A0003A892 /* evaluateDoctorData.m in Sources */,
 				849FF2B01B01D6D400C18F21 /* DetailsOfTheProject.m in Sources */,
 				84750E261BAA64E6008A7A6E /* AFHTTPRequestOperation.m in Sources */,
+				847422061BB2DB0300B20AC4 /* UpdataiWithimage.m in Sources */,
 				84C249151AA2A90100C2C0FC /* SDWebImageManager.m in Sources */,
 				84903F0C1B535B4E006C78C5 /* BeautyFootTableViewCell.m in Sources */,
 				84C3C8C61AD23C4D005584A8 /* CLCollectionViewCell.m in Sources */,

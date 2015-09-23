@@ -80,9 +80,18 @@
     [self.navigationController pushViewController:edting animated:YES];
     
 }
+
 -(void)cancellnot:(NSNotification *)noti
 {
     NSLog(@"删除 %@",[noti object]);
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.deletemedicalhistory.go?medicalhistorysno=%@",HTTPREQUESTPDOMAIN,self.beautifydetailsno];
+    NSLog(@"删除病历---%@",string);
+    
+    [AFHTTPRequestOpeartionManagerOfme postscancellThemedicalhistory:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+    }];
+    
 }
 
 -(NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

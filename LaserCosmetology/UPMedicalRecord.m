@@ -14,6 +14,8 @@
 #import "persens.h"
 #import "UIButton+WebCache.h"
 #import "PrefixHeader.pch"
+#import "AFHTTPRequestOpeartionManagerOfme.h"
+
 @interface UPMedicalRecord ()
 
 @end
@@ -127,7 +129,7 @@
     [_queding setTitle:@"提交" forState:UIControlStateNormal];
     _queding.backgroundColor = [UIColor whiteColor];
     [_queding setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_queding addTarget:self action:@selector(queding) forControlEvents:UIControlEventTouchUpInside];
+    [_queding addTarget:self action:@selector(updateWithmedicaldetailTwo) forControlEvents:UIControlEventTouchUpInside];
     [_queding setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
     [_bigscrollview addSubview:_queding];
 
@@ -137,8 +139,8 @@
     self.selectorary = [[NSMutableArray alloc] initWithCapacity:0];
     self.resut = [[NSMutableArray alloc] initWithCapacity:0];
     
-    [self soaprequst2WithdoctorSno:self.doctorsno orderDetailSno:self.orderDetailSno];
-    
+   
+     [self updateWithmedicaldetail];
 }
 -(void)relodimage
 {
@@ -444,19 +446,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)queding
-{
-   NSString *fileTypeName = @"png";
-    if (self.data == nil) {
-        self.data = @"";
-        fileTypeName = @"";
-    }
-    
-    self.productorsno = self.proSnos;
-    NSLog(@"self.doctorsno :%@----self.orderDetailSno-%@---self.productorsno--%@-----self.date-%@---self.productorsno: %@",self.doctorsno,self.orderDetailSno,self.productorsno,self.data,self.productorsno);
-    
-       [self soaprequst2WithdoctorSno:self.doctorsno orderDetailSno:self.orderDetailSno data:self.data fileTypeName:fileTypeName proSnos:self.productorsno];
-}
+
 -(void)quxiao{
     
 NSLog(@"取消发送照片");
@@ -479,10 +469,50 @@ NSLog(@"取消发送照片");
     NSData *_datas = UIImageJPEGRepresentation(imagess, 0.4f);
     NSString *_encodedImageStr = [_datas base64Encoding];
     self.data = _encodedImageStr;
-    
+    self.imagedat = _datas;
  
+    NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.savemedicalhistoryimage.go",HTTPREQUESTPDOMAIN];
+    
+    NSLog(@"上传病历请求----%@",urlstr);
+    
+
+    
 }
 
+//上传病历
+-(void)updateWithmedicaldetail
+{
+NSString *contentstr = @"病历";
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&customersno=%@&orderdetailsno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.customersno,self.orderDetailSno,contentstr];
+    NSLog(@"上传病历前请求----%@",string);
+    
+    [AFHTTPRequestOpeartionManagerOfme postsEditingmedical:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        NSLog(@"返回来的-medicalhistorysnostring= %@",string);
+        self.medicalhistorysno = string;
+    }];
+}
+-(void)updateWithmedicaldetailTwo
+{
+    self.datatype = @"png";
+    
+    if (self.data == nil) {
+        self.data = @"";
+    }
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistoryimage.go?medicalhistorysno=%@&doctorsno=%@&data=%@&datatype=%@",HTTPREQUESTPDOMAIN,self.medicalhistorysno,self.doctorsno,self.data,self.datatype];
+    
+   
+     NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.savemedicalhistoryimage.go",HTTPREQUESTPDOMAIN];
+    
+     NSLog(@"上传病历请求----%@",urlstr);
+
+    
+    [AFHTTPRequestOpeartionManagerOfme postModifyTheUserHeadRequestWitHUser:urlstr medicalhistorysno:self.medicalhistorysno doctorsno:self.doctorsno and:self.imagedat Completion:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+    }];
+    
+}
 #pragma mark -- soap请求
 //病历上传界面数据
 -(void)soaprequst2WithdoctorSno:(NSString *)doctorSno orderDetailSno:(NSString *)orderDetailSno
@@ -530,7 +560,7 @@ NSLog(@"取消发送照片");
 }
 
 //提交订单详情病历资料数据
--(void)soaprequst2WithdoctorSno:(NSString *)doctorSno orderDetailSno:(NSString *)orderDetailSno data:(NSString *)data fileTypeName:(NSString *)fileTypeName proSnos:(NSString *)proSnos
+-(void)soaprequst2WithDoctorSno:(NSString *)doctorSno orderDetailSno:(NSString *)orderDetailSno data:(NSString *)data fileTypeName:(NSString *)fileTypeName proSnos:(NSString *)proSnos
 {
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:

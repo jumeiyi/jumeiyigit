@@ -64,7 +64,7 @@
     [self.view addSubview:topbar];
     
     UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-    titilelable.text = @"美容专家";
+    titilelable.text = @"医美专家";
     titilelable.textColor = [UIColor whiteColor];
     titilelable.font = [UIFont systemFontOfSize:22];
     titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);

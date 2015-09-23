@@ -124,7 +124,7 @@
     mycustomerdata *mydata = [_groupman objectAtIndex:indexPath.row];
     NSString *str3 = [NSString stringWithFormat:@"%@      (%@)",mydata.groupname,mydata.groupnum];
     
-    cell.grouplable.frame = CGRectMake(15, 15, self.view.bounds.size.width - 35, 20);
+    cell.grouplable.frame = CGRectMake(19, 15, self.view.bounds.size.width - 35, 20);
     cell.grouplable.textColor = [self colorWithRGB:0x00c5bb alpha:1];
     cell.grouplable.font = [UIFont systemFontOfSize:15];
     cell.grouplable.text = str3;

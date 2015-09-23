@@ -166,7 +166,7 @@
         }
         
         [_grouptableview reloadData];
-        NSLog(@"array1:%@---EEEE-_groupIDarray:%@",array1,_groupIDarray);
+        
     }];
     
 }

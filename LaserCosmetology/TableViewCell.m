@@ -67,7 +67,7 @@
         [whiteColorview addSubview:self.fuwushijiantext];
         
         UILabel *doctor = [[UILabel alloc] initWithFrame:CGRectMake(140, 55, 100, 20)];
-        doctor.text = @"美容专家:";
+        doctor.text = @"医美专家:";
         doctor.font = [UIFont systemFontOfSize:14];
         [whiteColorview addSubview:doctor];
         

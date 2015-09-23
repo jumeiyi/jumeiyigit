@@ -56,7 +56,7 @@
         }
         
         
-        NSLog(@"array1:%@---EEEE-_groupIDarray:%@",array1,_groupIDarray);
+       
     }];
     
 }
@@ -300,7 +300,7 @@
             btnview = nil;
             self.isgroupes = NO;
         }
-        shoosebtnview = [[UIView alloc] initWithFrame:CGRectMake( 8 , 110, 60, 91)];
+        shoosebtnview = [[UIView alloc] initWithFrame:CGRectMake( 8 , 110, 70, 91)];
         [self.view addSubview:shoosebtnview];
         
         UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, shoosebtnview.bounds.size.width, shoosebtnview.bounds.size.height)];

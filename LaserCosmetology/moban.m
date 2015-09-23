@@ -382,8 +382,8 @@
         
         UIImageView *imagev = (UIImageView *)[_imagescroler viewWithTag:50 + a];
         UIImage *image1 = imagev.image;
-        NSData *_data = UIImageJPEGRepresentation(image1, 0.4f);
-        NSString *_encodedImageStr = [_data base64Encoding];
+        NSData *data = UIImageJPEGRepresentation(image1, 0.4f);
+        NSString *_encodedImageStr = [data base64Encoding];
         self.data = _encodedImageStr;
         
         self.images = image1;

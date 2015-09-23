@@ -16,4 +16,8 @@
     UIButton *_addimagebtn;
     UITextView *_mytextview;
 }
+@property(nonatomic,retain)NSString *doctorsno;
+@property(nonatomic,retain)NSString *medicalhistorysno;
+@property(nonatomic,retain)NSString *content;
+
 @end
