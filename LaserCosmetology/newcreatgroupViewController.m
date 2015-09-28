@@ -12,7 +12,7 @@
 #import "AFHTTPRequestOpeartionManagerOfme.h"
 #import "mycustomerdata.h"
 #import "PrefixHeader.pch"
-
+#import "UIButton+WebCache.h"
 @interface newcreatgroupViewController ()
 
 @end
@@ -106,6 +106,9 @@
     cancelbtn.layer.cornerRadius = 3;
     [self.view addSubview:cancelbtn];
     
+    self.gentmanberarrays = [[NSMutableArray alloc] initWithCapacity:0];
+    self.manberarray = [[NSMutableArray alloc] initWithCapacity:0];
+    
     if (self.manberarray.count > 0) {
         mycustomerdata *data = [self.manberarray objectAtIndex:0];
         self.groupid = data.groupid;
@@ -118,6 +121,26 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    for (mycustomerdata *mydata in self.gentmanberarrays) {
+        NSLog(@"把选择到的客户ID添加%@",mydata.sno);
+        [self.manberarray addObject:mydata];
+        
+    }
+    
+    [self addmanbers];
+}
+
+-(void)getManberarrayWithary:(NSArray *)ary{
+    
+    for (mycustomerdata *myda in ary) {
+        [self.gentmanberarrays addObject:myda];
+    }
+    
+    NSLog(@"new返回来之后的self.gentmanberarrays== %ld",self.gentmanberarrays.count);
+}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -131,6 +154,7 @@
 
 -(void)addmanbers
 {
+    NSLog(@"将要新建 self.manberarray.count:%ld",self.manberarray.count);
     
     for (int c = 0; c < self.manberarray.count + 1; c++) {
         UIButton *btn = (UIButton *)[_manberview viewWithTag:10 + c];
@@ -143,6 +167,7 @@
     NSLog(@"self.manberarray.count-:%ld",self.manberarray.count);
     
     for (int j = 0; j < [self.manberarray count]; j ++) {
+        mycustomerdata *mydata = [self.manberarray objectAtIndex:j];
         
         NSInteger xn = j % 5;
         NSInteger yn = j / 5;
@@ -152,7 +177,7 @@
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, heiht)];
         button.backgroundColor = [UIColor redColor];
-        [button setBackgroundImage:[UIImage imageNamed:@"txtx"] forState:UIControlStateNormal];
+        [button sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HTTPREQUESTPDOMAIN,mydata.picsrc]]  forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"图片4"]];
         [button addTarget:self action:@selector(cancelbuttonclickl:) forControlEvents:UIControlEventTouchUpInside];
         button.userInteractionEnabled = NO;
         button.tag = 10 + j;
@@ -254,17 +279,33 @@
     
      self.groupname = _grouptitle.text;
     
+    self.customersIDs = @"";
+    for (mycustomerdata *data in self.manberarray) {
+        if ([self.customersIDs isEqualToString:@""]) {
+            self.customersIDs = [NSString stringWithFormat:@"%@",data.sno];
+        }else{
+            self.customersIDs = [NSString stringWithFormat:@"%@,%@",self.customersIDs,data.sno];
+        }
+        
+    }
+
+    
     NSString *string = [NSString stringWithFormat:@"%@//doctor.savegroup.go?groupid=%@&groupname=%@&doctorsno=%@&customers=%@",HTTPREQUESTPDOMAIN,self.groupid,self.groupname,self.doctorsno,self.customersIDs];
     
     NSLog(@"string-:%@",string);
     
     [AFHTTPRequestOpeartionManagerOfme postsavegroupplist:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
-         [self.navigationController popViewControllerAnimated:YES];
+        NSLog(@"完成请求---%@",string);
+        if ([string isEqualToString:@"请输入组名称"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }else{
+        [self.navigationController popViewControllerAnimated:YES];
+        }
+        
     }];
-    
-    //    UIAlertView *alertv = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请求失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-    //    [alertv show];
+
     
    
 }
@@ -334,6 +375,8 @@
     addmanber.doctorsno = self.doctorsno;
     addmanber.groupname = _grouptitle.text;
     addmanber.groupid = self.groupid;
+    
+    addmanber.newmanberary = self;
     NSLog(@"self.doctorsno,_grouptitle.text,self.groupid-%@-%@-%@",self.doctorsno,_grouptitle.text,self.groupid);
     [self.navigationController pushViewController:addmanber animated:YES];
 }

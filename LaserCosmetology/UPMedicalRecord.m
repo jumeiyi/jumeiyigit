@@ -471,9 +471,7 @@ NSLog(@"取消发送照片");
     self.data = _encodedImageStr;
     self.imagedat = _datas;
  
-    NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.savemedicalhistoryimage.go",HTTPREQUESTPDOMAIN];
-    
-    NSLog(@"上传病历请求----%@",urlstr);
+
     
 
     
@@ -500,13 +498,7 @@ NSString *contentstr = @"病历";
         self.data = @"";
     }
     
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistoryimage.go?medicalhistorysno=%@&doctorsno=%@&data=%@&datatype=%@",HTTPREQUESTPDOMAIN,self.medicalhistorysno,self.doctorsno,self.data,self.datatype];
-    
-   
      NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.savemedicalhistoryimage.go",HTTPREQUESTPDOMAIN];
-    
-     NSLog(@"上传病历请求----%@",urlstr);
-
     
     [AFHTTPRequestOpeartionManagerOfme postModifyTheUserHeadRequestWitHUser:urlstr medicalhistorysno:self.medicalhistorysno doctorsno:self.doctorsno and:self.imagedat Completion:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         

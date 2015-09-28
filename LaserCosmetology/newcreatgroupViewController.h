@@ -26,6 +26,8 @@
 @property(nonatomic,retain)NSString *groupname;
 @property(nonatomic,retain)NSString *customersIDs;
 @property(nonatomic,retain)NSMutableArray *manberarray;
+@property(nonatomic,retain)NSMutableArray *gentmanberarrays;
 @property(nonatomic,assign)BOOL iscancel;
 
+-(void)getManberarrayWithary:(NSArray *)ary;
 @end

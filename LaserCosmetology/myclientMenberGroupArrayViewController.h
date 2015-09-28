@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "RefreshControl.h"
+#import "myclientmenbergroupViewController.h"
+#import "newcreatgroupViewController.h"
 
-@interface myclientMenberGroupArrayViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,RefreshControlDelegate,UISearchBarDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate>
+@interface myclientMenberGroupArrayViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,RefreshControlDelegate,UISearchBarDelegate>
 
 {
     
@@ -57,4 +59,6 @@
 @property(nonatomic,retain)NSString *customersIDs;//以逗号分隔
 @property(nonatomic,retain)UIScrollView *myscrollview;
 
+@property(nonatomic,retain)myclientmenbergroupViewController *manberary;
+@property(nonatomic,retain)newcreatgroupViewController *newmanberary;
 @end

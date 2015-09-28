@@ -57,7 +57,8 @@
     _imageofhead = [[NSMutableArray alloc] initWithObjects:@"sucaiwu",@"sucailiu",@"sucaiyi", nil];
     _titleary = [[NSMutableArray alloc] initWithObjects:@"消息",@"电话",@"分组", nil];
     
-    _data = [[NSMutableArray alloc] init];
+    _data = [[NSMutableArray alloc] initWithCapacity:0];
+    self.beautitylistdataary = [[NSMutableArray alloc] initWithCapacity:0];
 
     [self startrequest];
     
@@ -72,6 +73,11 @@
     [AFHTTPRequestOpeartionManagerOfme postsGetcustomerdata:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
        
         _data = array1;
+        NSLog(@"获取客户资料---%@",_data);
+        self.beautitylistdataary = array2;
+        for (mycustomerdata *mydata in self.beautitylistdataary) {
+            NSLog(@"mydata.beautitydetailsno = %@",mydata.beautitydetailsno);
+        }
         
         [_myclienttableview reloadData];
         
@@ -118,12 +124,8 @@
     }else if (section == 1){
         return 3;
     }else{
-        mycustomerdata *data;
-        if (_data.count > 0) {
-            data = [_data objectAtIndex:0];
-        }
-       
-        return data.beautitylist.count + 1;
+        
+        return self.beautitylistdataary.count + 1;
     }
 }
 
@@ -289,16 +291,17 @@
         }
         
     }else if (indexPath.section == 2){
-        mycustomerdata *data;
-        if (_data.count > 0) {
-            data = [_data objectAtIndex:0];
-        }
+
         
         if (indexPath.row != 0) {
-          NSDictionary *mydict = [data.beautitylist objectAtIndex:indexPath.row - 1];
+            mycustomerdata *mydata = [self.beautitylistdataary objectAtIndex:indexPath.row - 1];
+            
             myclientobservedisease *myclient = [[myclientobservedisease alloc] init];
-            myclient.beautifydetailsno = [mydict objectForKey:@"beautifydetailsno"];
+            myclient.beautifydetailsno = mydata.beautitydetailsno;
+            myclient.customerSno = self.customerSno;
+            myclient.doctorsno = self.doctorsno;
             [self.navigationController pushViewController:myclient animated:YES];
+            NSLog(@"myclient.beautifydetailsno=%@",myclient.beautifydetailsno);
         }
 
     }

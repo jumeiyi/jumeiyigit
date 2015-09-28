@@ -13,6 +13,8 @@
 #import "myclientdiseaseediting.h"
 #import "PrefixHeader.pch"
 #import "AFHTTPRequestOpeartionManagerOfme.h"
+#import "medicalrecord.h"
+#import "myclientNewCreatDiseaseViewController.h"
 
 @interface myclientobservedisease ()
 
@@ -45,9 +47,10 @@
     [topbar addSubview:backbtn];
     
     UIButton *save = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 20, 50, 40)];
-    [save setTitle:@"保存" forState:UIControlStateNormal];
+    [save setTitle:@"新建" forState:UIControlStateNormal];
     save.titleLabel.font = [UIFont systemFontOfSize:16];
     save.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
+    [save addTarget:self action:@selector(createnewThedisease) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:save];
     
     self.mytableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 63)];
@@ -58,16 +61,29 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingbtnnot:) name:@"diseaseeditingbtnclick" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancellnot:) name:@"diseasequpingjia" object:nil];
     
-    [self Getgetmedicalhistorylis];
+    _medicalrecorddata = [[NSMutableArray alloc] initWithCapacity:0];
+    
+   
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+     [self Getgetmedicalhistorylis];
 }
 
 -(void)Getgetmedicalhistorylis
 {
+    [_medicalrecorddata removeAllObjects];
+    
     NSString *string = [NSString stringWithFormat:@"%@/doctor.getmedicalhistorylist.go?beautitydetailsno=%@",HTTPREQUESTPDOMAIN,self.beautifydetailsno];
     
     NSLog(@"string-病历订单-URL：%@",string);
     [AFHTTPRequestOpeartionManagerOfme postsGetgetmedicalhistorylis:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
+        _medicalrecorddata = array1;
+
+        [self.mytableview reloadData];
     }];
     
     
@@ -75,17 +91,41 @@
 -(void)editingbtnnot:(NSNotification *)noti
 {
     NSLog(@"编辑  %@",[noti object]);
+    NSInteger a = [[noti object] integerValue];
+    medicalrecord *medi;
+    if (_medicalrecorddata.count > 0) {
+         medi = [_medicalrecorddata objectAtIndex:a];
+    }
+   
     
     myclientdiseaseediting *edting = [[myclientdiseaseediting alloc] init];
+    edting.doctorsno = medi.doctorsno;
+    edting.medicalhistorysno = medi.sno;
     [self.navigationController pushViewController:edting animated:YES];
     
+    NSLog(@"medi.doctorsno%@===medi.sno%@",medi.doctorsno,medi.sno);
+}
+
+-(void)createnewThedisease{
+
+    myclientNewCreatDiseaseViewController *myclient = [[myclientNewCreatDiseaseViewController alloc] init];
+    myclient.orderDetailSno = self.beautifydetailsno;
+    myclient.customersno = self.customerSno;
+    myclient.doctorsno = self.doctorsno;
+    [self.navigationController pushViewController:myclient animated:YES];
+    
+    NSLog(@"self.beautifydetailsno=%@==self.customerSno=%@==self.doctorsno=%@=",self.beautifydetailsno,self.customerSno,self.doctorsno);
 }
 
 -(void)cancellnot:(NSNotification *)noti
 {
     NSLog(@"删除 %@",[noti object]);
     
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.deletemedicalhistory.go?medicalhistorysno=%@",HTTPREQUESTPDOMAIN,self.beautifydetailsno];
+    NSInteger a = arc4random() % 100;
+    
+    medicalrecord *mymedical = [_medicalrecorddata objectAtIndex:[[noti object] integerValue]];
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.deletemedicalhistory.go?medicalhistorysno=%@&%ld",HTTPREQUESTPDOMAIN,mymedical.sno,a];
     NSLog(@"删除病历---%@",string);
     
     [AFHTTPRequestOpeartionManagerOfme postscancellThemedicalhistory:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
@@ -96,7 +136,7 @@
 
 -(NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _medicalrecorddata.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,10 +147,13 @@
         cell = [[myclientobservediseaseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
+    medicalrecord *mymedical = [_medicalrecorddata objectAtIndex:indexPath.row];
+    NSArray *imageurl = [mymedical.imagelist componentsSeparatedByString:@","];
+    
     cell.date.frame = CGRectMake(15, 19, 150, 20);
     cell.date.font = [UIFont systemFontOfSize:15];
     cell.date.textColor = [self colorWithRGB:0x00c5bb alpha:1];
-    cell.date.text = @"2015-09-01";
+    cell.date.text = mymedical.createdt;
     
     
     cell.editingbtn.frame = CGRectMake(self.view.bounds.size.width - 120, 19, 44, 22);
@@ -126,21 +169,36 @@
     [cell.cancell setBackgroundImage:[UIImage imageNamed:@"guanzhudi"] forState:UIControlStateNormal];
      [cell.cancell setTitle:@"删除" forState:UIControlStateNormal];
     
-    cell.contents.frame = CGRectMake(15, 50, self.view.bounds.size.width - 30, [self contentsWithnsstring:@"cell.contents.frame = CGRectMake(15, 50, self.view.bounds.size.width - 30, 40)"]);
+    cell.contents.frame = CGRectMake(15, 50, self.view.bounds.size.width - 30, [self contentsWithnsstring:mymedical.content]);
     cell.contents.numberOfLines = 0;
     cell.contents.font = [UIFont systemFontOfSize:15];
     cell.contents.textColor = [self colorWithRGB:0x999999 alpha:1];
-    cell.contents.text = @"cell.contents.frame = CGRectMake(15, 50, self.view.bounds.size.width - 30, 40)";
+    cell.contents.text = mymedical.content;
     
-    
-    cell.image1.frame = CGRectMake(15, 90, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
-    [cell.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://car0.autoimg.cn/car/upload/2015/4/16/u_2015041609233799826411.jpg"]];
-    
-    cell.image2.frame = CGRectMake(15 + (self.view.bounds.size.width - 40)/3 + 5, 90, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
-    [cell.image2 sd_setImageWithURL:[NSURL URLWithString:@"http://car0.autoimg.cn/car/upload/2015/4/16/u_2015041609233799826411.jpg"]];
 
-    cell.image3.frame = CGRectMake(15 + ((self.view.bounds.size.width - 40)/3 * 2) + 10, 90, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
-    [cell.image3 sd_setImageWithURL:[NSURL URLWithString:@"http://car0.autoimg.cn/car/upload/2015/4/16/u_2015041609233799826411.jpg"]];
+    
+    if (imageurl.count > 0) {
+        NSString *str1 = [imageurl objectAtIndex:0];
+        NSString *imstring = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str1];
+        cell.image1.frame = CGRectMake(15, 90, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
+        [cell.image1 sd_setImageWithURL:[NSURL URLWithString:imstring]];
+    }
+    
+    if (imageurl.count > 1){
+    
+        NSString *str2 = [imageurl objectAtIndex:1];
+        NSString *imstring2 = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str2];
+        cell.image2.frame = CGRectMake(15 + (self.view.bounds.size.width - 40)/3 + 5, 90, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
+        [cell.image2 sd_setImageWithURL:[NSURL URLWithString:imstring2]];
+        
+    }
+    
+    if (imageurl.count > 2){
+        NSString *str3 = [imageurl objectAtIndex:2];
+        NSString *imstring3 = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str3];
+        cell.image3.frame = CGRectMake(15 + ((self.view.bounds.size.width - 40)/3 * 2) + 10, 90, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
+        [cell.image3 sd_setImageWithURL:[NSURL URLWithString:imstring3]];
+    }
     
     return cell;
 }

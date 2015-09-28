@@ -17,6 +17,7 @@
 
 #import "myclientdatasViewController.h"
 #import "myclientmainsetgropViewController.h"
+#import "UIImageView+WebCache.h"
 
 @interface MyClientViewController ()
 
@@ -473,15 +474,18 @@
         cell.headimage.image = [UIImage imageNamed:@""];
         
         cell.name.frame = CGRectMake(0, 0, 0, 0);
-        cell.name.text = @" 名称X X";
+        cell.name.text = @" ";
         
         cell.project1.frame = CGRectMake(0, 0, 0, 0);
+        cell.project1.backgroundColor = [UIColor whiteColor];
         cell.project1.text = @"";
         
         cell.project2.frame = CGRectMake(0, 0, 0, 0);
+        cell.project2.backgroundColor = [UIColor redColor];
         cell.project2.text = @"";
         
         cell.project3.frame = CGRectMake(0, 0, 0, 0);
+        cell.project3.backgroundColor = [UIColor redColor];
         cell.project3.text = @"";
 
         if (self.IsServiced == YES) {
@@ -503,7 +507,9 @@
                
                 
                 cell.headimage.frame = CGRectMake(15, 9, 50, 50);
-                cell.headimage.image = [UIImage imageNamed:@"图片4"];
+                [cell.headimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HTTPREQUESTPDOMAIN,customer.picsrc]] placeholderImage:[UIImage imageNamed:@"图片4"]];
+                cell.headimage.layer.masksToBounds = YES;
+                cell.headimage.layer.cornerRadius = 25;
                 
                 cell.name.frame = CGRectMake(80, 9, self.view.bounds.size.width - 100, 20);
                 cell.name.font = [UIFont systemFontOfSize:14];
@@ -516,9 +522,13 @@
                     cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
                     cell.project1.font = [UIFont systemFontOfSize:11];
                     cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
-                    cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
                     cell.project1.layer.masksToBounds = YES;
                     cell.project1.layer.cornerRadius = 3;
+                    if (cell.project1.text.length > 4) {
+                        cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                    }else{
+                        cell.project1.backgroundColor = [UIColor whiteColor];
+                    }
                     
                 }else if (proudctorary.count == 2){
                     cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
@@ -601,8 +611,11 @@
             NSArray *proudctorary = [customer.buyproductnames componentsSeparatedByString:@","];
             
                 cell.headimage.frame = CGRectMake(15, 9, 50, 50);
-                cell.headimage.image = [UIImage imageNamed:@"图片4"];
-                
+                //cell.headimage.image = [UIImage imageNamed:@"图片4"];
+            [cell.headimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HTTPREQUESTPDOMAIN,customer.picsrc]] placeholderImage:[UIImage imageNamed:@"图片4"]];
+            cell.headimage.layer.masksToBounds = YES;
+            cell.headimage.layer.cornerRadius = 25;
+            
                 cell.name.frame = CGRectMake(80, 9, self.view.bounds.size.width - 100, 20);
                 cell.name.font = [UIFont systemFontOfSize:14];
                 cell.name.text = [NSString stringWithFormat:@" %@",customer.truename];
@@ -610,13 +623,16 @@
                 
             if (proudctorary.count == 1) {
                 cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
-                
                 cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
                 cell.project1.font = [UIFont systemFontOfSize:11];
                 cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
-                cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
                 cell.project1.layer.masksToBounds = YES;
                 cell.project1.layer.cornerRadius = 3;
+                if (cell.project1.text.length > 4) {
+                cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+                }else{
+                cell.project1.backgroundColor = [UIColor whiteColor];
+                }
                 
             }else if (proudctorary.count == 2){
                 cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];

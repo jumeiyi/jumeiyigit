@@ -16,6 +16,7 @@
 #import "myclientdatasViewController.h"
 #import "myclientmainsetgropViewController.h"
 #import "AFHTTPRequestOpeartionManagerOfme.h"
+#import "UIImageView+WebCache.h"
 
 @interface myclientMenberGroupArrayViewController ()
 
@@ -99,7 +100,7 @@
     
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f)];
     self.searchBar.delegate =self;
-    self.searchBar.placeholder = @"搜索项目，医生";
+    self.searchBar.placeholder = @"搜索项目，客户";
     self.searchBar.tintColor = [UIColor lightGrayColor];
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -211,9 +212,13 @@
         [self.view addSubview:self.myscrollview];
 
     for (int i = 0; i < _getmanberary.count; i++) {
+        mycustomerdata *mydata = [_getmanberary objectAtIndex:i];
         float x = (20 + 50) * i + 20;
         UIImageView *manberimage = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, 50, 50)];
         manberimage.image = [UIImage imageNamed:@"图片4"];
+        [manberimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HTTPREQUESTPDOMAIN,mydata.picsrc]] placeholderImage:[UIImage imageNamed:@"图片4"]];
+        manberimage.layer.masksToBounds = YES;
+        manberimage.layer.cornerRadius = 25;
         manberimage.tag = i;
         [self.myscrollview addSubview:manberimage];
     }
@@ -318,9 +323,7 @@
 
 -(void)groupsbuttonclick
 {
-    
-    
-    
+
     if (self.isgroupes == NO) {
         
         if (shoosebtnview) {
@@ -523,6 +526,8 @@
         NSMutableArray *mycustomary = [_insectionofrow objectAtIndex:indexPath.section];
         mycustomerdata *mycustom = [mycustomary objectAtIndex:indexPath.row];
         
+        NSArray *proudctorary = [mycustom.buyproductnames componentsSeparatedByString:@","];
+        
         cell.headimage.frame = CGRectMake(0, 0, 0, 0);
         cell.headimage.image = [UIImage imageNamed:@""];
         
@@ -543,47 +548,109 @@
         
 
         
-            cell.headimage.frame = CGRectMake(15, 9, 50, 50);
-            cell.headimage.image = [UIImage imageNamed:@"图片4"];
-            
+        cell.headimage.frame = CGRectMake(15, 9, 50, 50);
+        [cell.headimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HTTPREQUESTPDOMAIN,mycustom.picsrc]] placeholderImage:[UIImage imageNamed:@"图片4"]];
+        cell.headimage.layer.masksToBounds = YES;
+        cell.headimage.layer.cornerRadius = 25;
+        
             cell.name.frame = CGRectMake(80, 9, self.view.bounds.size.width - 100, 20);
             cell.name.font = [UIFont systemFontOfSize:14];
-            cell.name.text = [NSString stringWithFormat:@" %@",mycustom.nickname];
+            cell.name.text = [NSString stringWithFormat:@" %@",mycustom.truename];
             cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
             
-            cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str: @"项目1"] + 20, 21);
-            cell.project1.text = @"   项目1";
+        if (proudctorary.count == 1) {
+            cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+            
+            cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
+            cell.project1.font = [UIFont systemFontOfSize:11];
+            cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+            cell.project1.layer.masksToBounds = YES;
+            cell.project1.layer.cornerRadius = 3;
+            if (cell.project1.text.length > 4) {
+                cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+            }else{
+                cell.project1.backgroundColor = [UIColor whiteColor];
+            }
+            
+        }else if (proudctorary.count == 2){
+            cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+            cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
+            
+            cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
             cell.project1.font = [UIFont systemFontOfSize:11];
             cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
             cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
             cell.project1.layer.masksToBounds = YES;
             cell.project1.layer.cornerRadius = 3;
             
-            cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 20, 39, [self NSStringwithsize:11 str: @"项目2"] + 20, 21);
-            cell.project2.text = @"   项目2";
+            cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 15, 39, [self NSStringwithsize:11 str:cell.project2.text] + 10, 21);
             cell.project2.font = [UIFont systemFontOfSize:11];
             cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
             cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
             cell.project2.layer.masksToBounds = YES;
             cell.project2.layer.cornerRadius = 3;
             
-            cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 20, 39, [self NSStringwithsize:11 str:@"项目3"] + 20, 21);
-            cell.project3.text = @"  项目3";
+        }else if (proudctorary.count == 3){
+            cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+            cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
+            cell.project3.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:2]];
+            
+            cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
+            cell.project1.font = [UIFont systemFontOfSize:11];
+            cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+            cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+            cell.project1.layer.masksToBounds = YES;
+            cell.project1.layer.cornerRadius = 3;
+            
+            cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 15, 39, [self NSStringwithsize:11 str:cell.project2.text] + 10, 21);
+            cell.project2.font = [UIFont systemFontOfSize:11];
+            cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+            cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+            cell.project2.layer.masksToBounds = YES;
+            cell.project2.layer.cornerRadius = 3;
+            
+            cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 15, 39, [self NSStringwithsize:11 str:cell.project3.text] + 10, 21);
             cell.project3.font = [UIFont systemFontOfSize:11];
             cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
             cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
             cell.project3.layer.masksToBounds = YES;
             cell.project3.layer.cornerRadius = 3;
-        
+            
+        }else if (proudctorary.count > 3){
+            cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
+            cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
+            cell.project3.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:2]];
+            
+            cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
+            cell.project1.font = [UIFont systemFontOfSize:11];
+            cell.project1.textColor = [self colorWithRGB:0xffffff alpha:1];
+            cell.project1.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+            cell.project1.layer.masksToBounds = YES;
+            cell.project1.layer.cornerRadius = 3;
+            
+            cell.project2.frame = CGRectMake(cell.project1.frame.origin.x + [self NSStringwithsize:11 str:cell.project1.text] + 15, 39, [self NSStringwithsize:11 str:cell.project2.text] + 10, 21);
+            cell.project2.font = [UIFont systemFontOfSize:11];
+            cell.project2.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+            cell.project2.textColor = [self colorWithRGB:0xffffff alpha:1];
+            cell.project2.layer.masksToBounds = YES;
+            cell.project2.layer.cornerRadius = 3;
+            
+            cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 15, 39, [self NSStringwithsize:11 str:cell.project3.text] + 10, 21);
+            cell.project3.font = [UIFont systemFontOfSize:11];
+            cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
+            cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
+            cell.project3.layer.masksToBounds = YES;
+            cell.project3.layer.cornerRadius = 3;
+        }
         
         NSMutableArray *rowary = [_sectionary objectAtIndex:indexPath.section];
         NSString *strary = [rowary objectAtIndex:indexPath.row];
         
         if ([strary isEqualToString:@"y"]) {
-            cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 22, 25, 25);
+            cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 12, 25, 25);
             cell.shooseimage.image = [UIImage imageNamed:@"sucaibaganger"];
         }else{
-            cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 22, 25, 25);
+            cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 12, 25, 25);
             cell.shooseimage.image = [UIImage imageNamed:@"sucaiba"];
         }
 
@@ -674,9 +741,13 @@
         [self shoosebtnclick];
     }else{
         
+        NSMutableArray *mycustomary = [_insectionofrow objectAtIndex:indexPath.section];
+        mycustomerdata *mycustom = [mycustomary objectAtIndex:indexPath.row];
+
         
         NSMutableArray *rowary = [_sectionary objectAtIndex:indexPath.section];
         NSString *str = [rowary objectAtIndex:indexPath.row];
+        
         if ([str isEqualToString:@"y"]) {
             [rowary replaceObjectAtIndex:indexPath.row withObject:@"x"];
             
@@ -699,6 +770,7 @@
                 mycustomerdata *mydt = [sectionary objectAtIndex:j];
                 if ([str isEqualToString:@"x"]) {
                     [_getmanberary addObject:mydt];
+                    NSLog(@"mydt.sno-: %@",mydt.sno);
                 }
             }
         }
@@ -715,7 +787,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == 62 || tableView.tag == 63) {
-        return 30;
+        return 43;
     }else{
         return 68;
     }
@@ -768,98 +840,17 @@
 
 -(void)startrequestaaa
 {
-    NSString *strinf = @"";
-    for (mycustomerdata *mydata in _getmanberary) {
-        NSString *str = [NSString stringWithFormat:@"%@",mydata.sno];
-        if ([strinf isEqualToString:@""]) {
-            strinf = [NSString stringWithFormat:@"%@",str];
-        }else{
-        strinf = [NSString stringWithFormat:@"%@,%@",strinf,str];
-        }
-        
+
+    for (mycustomerdata *myda in _getmanberary) {
+        NSLog(@"选择到的客户%@",myda.sno);
     }
     
-    self.customersIDs = strinf;
+    [self.manberary getManberarrayWithary:_getmanberary];
+    [self.newmanberary getManberarrayWithary:_getmanberary];
     
-    NSString *string = [NSString stringWithFormat:@"%@//doctor.savegroup.go?groupid=%@&groupname=%@&doctorsno=%@&customers=%@",HTTPREQUESTPDOMAIN,self.groupid,self.groupname,self.doctorsno,self.customersIDs];
-    
-    NSLog(@"string-保存URL-%@",string);
-    
-    [self requstwithurl:string];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark  request
-
--(void)requstwithurl:(NSString *)str
-{
-    
-    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                                   (CFStringRef)str,
-                                                                                   NULL,
-                                                                                   NULL,
-                                                                                   kCFStringEncodingUTF8));
-    NSURL *urlstr = [NSURL URLWithString:encodedString];
-    
-    NSURLRequest *requst = [NSURLRequest requestWithURL:urlstr];
-    
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:requst delegate:self];
-    
-    [connection start];
-    
-    NSLog(@"url--------%@",str);
-}
-
-#pragma mark  requestdelegate
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"请求失败  _ %@",error);
-}
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSLog(@"收到响应");
-    
-    [_data setData:[NSData data]];
-}
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSLog(@"请求数据接收");
-    [_data appendData:data];
-    
-}
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    
-    //     NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-    //    NSLog(@"str------》%@",str);
-    
-    //JSON解析器
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
-    
-    NSLog(@"000000------------%@",dic);
-    
-    
-    NSDictionary *customerData = [dic objectForKey:@"Content"];
-
-    NSString *masdiction = [NSString stringWithFormat:@"%@",[customerData objectForKey:@"state"]];
-     NSString *msgdictions = [NSString stringWithFormat:@"%@",[customerData objectForKey:@"msg"]];
-    
-    NSLog(@"masdiction:%@--msgdictions:%@",masdiction,msgdictions);
- 
-    if ([msgdictions isEqualToString:@"操作成功！"]) {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msgdictions delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }else{
-    
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msgdictions delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
-    }
-
-    
-    
-}
 
 
 

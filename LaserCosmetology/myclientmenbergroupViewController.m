@@ -12,6 +12,7 @@
 #import "PrefixHeader.pch"
 #import "myclientMenberGroupArrayViewController.h"
 #import "AFHTTPRequestOpeartionManagerOfme.h"
+#import "UIButton+WebCache.h"
 
 @interface myclientmenbergroupViewController ()
 
@@ -106,24 +107,43 @@
     cancelbtn.layer.cornerRadius = 3;
     [self.view addSubview:cancelbtn];
     
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.groupid];
+    
+    NSLog(@"客户的分组成员--%@",string);
+    self.manberarrays = [[NSMutableArray alloc] initWithCapacity:0];
+    self.gentmanberarrays = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    [AFHTTPRequestOpeartionManagerOfme postsallcustomerAndurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+        self.manberarrays = array1;
+        NSLog(@"原有的客户：%ld",array1.count);
+        
+        [self addmanbers];
+    }];
+
     
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.groupid];
-    
-    NSLog(@"客户的分组成员--%@",string);
-    self.manberarrays = [[NSMutableArray alloc] initWithCapacity:0];
-    
-    [AFHTTPRequestOpeartionManagerOfme postsallcustomerAndurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-        
-        self.manberarrays = array1;
-        
-        [self addmanbers];
-    }];
 
+    
+    for (mycustomerdata *mydata in self.gentmanberarrays) {
+        NSLog(@"把选择到的客户ID添加%@",mydata.sno);
+        [self.manberarrays addObject:mydata];
+       
+    }
 
+    [self addmanbers];
+}
+
+-(void)getManberarrayWithary:(NSArray *)ary{
+
+    for (mycustomerdata *myda in ary) {
+        [self.gentmanberarrays addObject:myda];
+    }
+    
+    NSLog(@"返回来之后的self.gentmanberarrays== %ld",self.gentmanberarrays.count);
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -147,9 +167,10 @@
     float width = 50;
     float heiht = width;
     
-    NSLog(@"self.manberarray.count-:%ld",self.manberarrays.count);
+    NSLog(@"self.manberarrays.count-:%ld",self.manberarrays.count);
     
     for (int j = 0; j < [self.manberarrays count]; j ++) {
+        mycustomerdata *mydata = [self.manberarrays objectAtIndex:j];
         
         NSInteger xn = j % 5;
         NSInteger yn = j / 5;
@@ -159,7 +180,7 @@
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, heiht)];
         button.backgroundColor = [UIColor redColor];
-        [button setBackgroundImage:[UIImage imageNamed:@"txtx"] forState:UIControlStateNormal];
+        [button sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HTTPREQUESTPDOMAIN,mydata.picsrc]]  forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"图片4"]];
         [button addTarget:self action:@selector(cancelbuttonclickl:) forControlEvents:UIControlEventTouchUpInside];
         button.userInteractionEnabled = NO;
         button.tag = 10 + j;
@@ -258,6 +279,8 @@
 }
 -(void)savebtnclick
 {
+    NSLog(@"保存的时候---%ld",self.manberarrays.count);
+    
     self.groupname = _grouptitle.text;
     
     self.customersIDs = @"";
@@ -349,6 +372,8 @@
     addmanber.doctorsno = self.doctorsno;
     addmanber.groupname = _grouptitle.text;
     addmanber.groupid = self.groupid;
+    
+    addmanber.manberary = self;
     NSLog(@"self.doctorsno,_grouptitle.text,self.groupid-%@-%@-%@",self.doctorsno,_grouptitle.text,self.groupid);
 
     [self.navigationController pushViewController:addmanber animated:YES];

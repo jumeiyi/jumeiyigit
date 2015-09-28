@@ -22,4 +22,5 @@
 @property(nonatomic,retain)NSString *doctorsno;
 @property(nonatomic,retain)NSString *beautitydetailsno;
 @property(nonatomic,retain)NSString *payattention;
+@property(nonatomic,retain)NSMutableArray *beautitylistdataary;
 @end

@@ -46,7 +46,7 @@
 //    mycustom.rownumber = [diction objectForKey:@"rownumber"];
 
     
-    mycustom.address = [NSString stringWithFormat:@"%@",[diction objectForKey:@"address"]];
+    mycustom.address = [diction objectForKey:@"address"];
     mycustom.agecount = [NSString stringWithFormat:@"%@",[diction objectForKey:@"agecount"]];
     mycustom.agetype = [NSString stringWithFormat:@"%@",[diction objectForKey:@"agetype"]];
     mycustom.birthday = [diction objectForKey:@"birthday"];
@@ -87,6 +87,35 @@
     mycustom.loginpassword = [diction objectForKey:@"loginpassword"];
     mycustom.weixinopenid = [diction objectForKey:@"weixinopenid"];
     mycustom.beautitylist = [diction objectForKey:@"beautitylist"];
+    
+    mycustom.amoumt =[NSString stringWithFormat:@"%@",[diction objectForKey:@"amoumt"]];
+    mycustom.beautifydetailid =[NSString stringWithFormat:@"%@",[diction objectForKey:@"beautifydetailid"]];
+    mycustom.beautifydetailremark =[NSString stringWithFormat:@"%@",[diction objectForKey:@"beautifydetailremark"]];
+    mycustom.beautifyid =[NSString stringWithFormat:@"%@",[diction objectForKey:@"beautifyid"]];
+    mycustom.beautifyremark =[NSString stringWithFormat:@"%@",[diction objectForKey:@"beautifyremark"]];
+    mycustom.beautifysno =[NSString stringWithFormat:@"%@",[diction objectForKey:@"beautifysno"]];
+    mycustom.beautitydetailsno =[NSString stringWithFormat:@"%@",[diction objectForKey:@"beautitydetailsno"]];
+    mycustom.buycount =[NSString stringWithFormat:@"%@",[diction objectForKey:@"buycount"]];
+    mycustom.buyprice =[NSString stringWithFormat:@"%@",[diction objectForKey:@"buyprice"]];
+    mycustom.paysno =[NSString stringWithFormat:@"%@",[diction objectForKey:@"paysno"]];
+    mycustom.evaluatecontents =[NSString stringWithFormat:@"%@",[diction objectForKey:@"evaluatecontents"]];
+    mycustom.evaluatedt =[NSString stringWithFormat:@"%@",[diction objectForKey:@"evaluatedt"]];
+    mycustom.evaluatelevel =[NSString stringWithFormat:@"%@",[diction objectForKey:@"evaluatelevel"]];
+    mycustom.evaluatereturncontents =[NSString stringWithFormat:@"%@",[diction objectForKey:@"evaluatereturncontents"]];
+    mycustom.isevaluate =[NSString stringWithFormat:@"%@",[diction objectForKey:@"isevaluate"]];
+    mycustom.nowstate =[NSString stringWithFormat:@"%@",[diction objectForKey:@"nowstate"]];
+    mycustom.orderno =[NSString stringWithFormat:@"%@",[diction objectForKey:@"orderno"]];
+    mycustom.phoneno =[NSString stringWithFormat:@"%@",[diction objectForKey:@"phoneno"]];
+    mycustom.productname =[NSString stringWithFormat:@"%@",[diction objectForKey:@"productname"]];
+    mycustom.productsno =[NSString stringWithFormat:@"%@",[diction objectForKey:@"productsno"]];
+    mycustom.producttype =[NSString stringWithFormat:@"%@",[diction objectForKey:@"producttype"]];
+    mycustom.status =[NSString stringWithFormat:@"%@",[diction objectForKey:@"status"]];
+    mycustom.statustext =[NSString stringWithFormat:@"%@",[diction objectForKey:@"statustext"]];
+    mycustom.totalamoumt =[NSString stringWithFormat:@"%@",[diction objectForKey:@"totalamoumt"]];
+    mycustom.typeno =[NSString stringWithFormat:@"%@",[diction objectForKey:@"typeno"]];
+    
+
+    
 
     return mycustom;
 }

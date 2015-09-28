@@ -160,6 +160,7 @@
 		8481B27E1B74925A00FADA49 /* 素材12.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481B27D1B74925A00FADA49 /* 素材12.png */; };
 		8481B2811B74A34600FADA49 /* 医生主页_03guanzhu.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481B27F1B74A34600FADA49 /* 医生主页_03guanzhu.png */; };
 		8481B2821B74A34600FADA49 /* 医生主页3_03yigunzhu.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481B2801B74A34600FADA49 /* 医生主页3_03yigunzhu.png */; };
+		84829EFC1BB3E1BC000D6A7E /* medicalrecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 84829EFB1BB3E1BC000D6A7E /* medicalrecord.m */; settings = {ASSET_TAGS = (); }; };
 		8483D7471AB6A60C00AF9B9E /* BestSellerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483D7421AB6A60C00AF9B9E /* BestSellerViewController.m */; };
 		8483D7481AB6A60C00AF9B9E /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483D7441AB6A60C00AF9B9E /* MyCollectionViewCell.m */; };
 		8483D7491AB6A60C00AF9B9E /* UICollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483D7461AB6A60C00AF9B9E /* UICollectionViewWaterfallLayout.m */; };
@@ -522,6 +523,7 @@
 		84CD88901AC3986A00B61664 /* zhuanjiabeijing4.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CD888B1AC3986A00B61664 /* zhuanjiabeijing4.png */; };
 		84CD88931AC39FBE00B61664 /* zhuanjiashuju.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CD88921AC39FBE00B61664 /* zhuanjiashuju.m */; };
 		84CD889D1AC3D6C600B61664 /* shouzhi.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CD889C1AC3D6C600B61664 /* shouzhi.png */; };
+		84D1BCB71BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D1BCB61BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.m */; settings = {ASSET_TAGS = (); }; };
 		84D5E0F41B9531AD00C36D23 /* myclientobservedisease.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0F31B9531AD00C36D23 /* myclientobservedisease.m */; };
 		84D5E0F71B95329100C36D23 /* myclientobservediseaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0F61B95329100C36D23 /* myclientobservediseaseCell.m */; };
 		84D5E0FD1B95584400C36D23 /* myclientdiseaseediting.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0FC1B95584400C36D23 /* myclientdiseaseediting.m */; };
@@ -754,6 +756,8 @@
 		8481B27D1B74925A00FADA49 /* 素材12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "素材12.png"; sourceTree = "<group>"; };
 		8481B27F1B74A34600FADA49 /* 医生主页_03guanzhu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "医生主页_03guanzhu.png"; sourceTree = "<group>"; };
 		8481B2801B74A34600FADA49 /* 医生主页3_03yigunzhu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "医生主页3_03yigunzhu.png"; sourceTree = "<group>"; };
+		84829EFA1BB3E1BC000D6A7E /* medicalrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = medicalrecord.h; sourceTree = "<group>"; };
+		84829EFB1BB3E1BC000D6A7E /* medicalrecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = medicalrecord.m; sourceTree = "<group>"; };
 		8483D7411AB6A60C00AF9B9E /* BestSellerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestSellerViewController.h; sourceTree = "<group>"; };
 		8483D7421AB6A60C00AF9B9E /* BestSellerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BestSellerViewController.m; sourceTree = "<group>"; };
 		8483D7431AB6A60C00AF9B9E /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1262,6 +1266,8 @@
 		84CD88911AC39FBE00B61664 /* zhuanjiashuju.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zhuanjiashuju.h; sourceTree = "<group>"; };
 		84CD88921AC39FBE00B61664 /* zhuanjiashuju.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zhuanjiashuju.m; sourceTree = "<group>"; };
 		84CD889C1AC3D6C600B61664 /* shouzhi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shouzhi.png; sourceTree = "<group>"; };
+		84D1BCB51BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientNewCreatDiseaseViewController.h; sourceTree = "<group>"; };
+		84D1BCB61BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientNewCreatDiseaseViewController.m; sourceTree = "<group>"; };
 		84D5E0F21B9531AD00C36D23 /* myclientobservedisease.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientobservedisease.h; sourceTree = "<group>"; };
 		84D5E0F31B9531AD00C36D23 /* myclientobservedisease.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientobservedisease.m; sourceTree = "<group>"; };
 		84D5E0F51B95329100C36D23 /* myclientobservediseaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientobservediseaseCell.h; sourceTree = "<group>"; };
@@ -2001,6 +2007,8 @@
 				84D5E0F31B9531AD00C36D23 /* myclientobservedisease.m */,
 				84D5E0F51B95329100C36D23 /* myclientobservediseaseCell.h */,
 				84D5E0F61B95329100C36D23 /* myclientobservediseaseCell.m */,
+				84D1BCB51BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.h */,
+				84D1BCB61BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.m */,
 				84D5E0FB1B95584400C36D23 /* myclientdiseaseediting.h */,
 				84D5E0FC1B95584400C36D23 /* myclientdiseaseediting.m */,
 				84C0C3561B968FC90034C2F6 /* myclientsetgropViewController.h */,
@@ -2436,6 +2444,8 @@
 				84A3E45A1B207C4D00A5745E /* persens.m */,
 				84A42D3A1B2D294A00B6047E /* Doctorpersents.h */,
 				84A42D3B1B2D294A00B6047E /* Doctorpersents.m */,
+				84829EFA1BB3E1BC000D6A7E /* medicalrecord.h */,
+				84829EFB1BB3E1BC000D6A7E /* medicalrecord.m */,
 			);
 			name = Modle;
 			sourceTree = "<group>";
@@ -2988,6 +2998,7 @@
 				846A6D5A1AFCDA1F00B685DE /* discuse.m in Sources */,
 				84BEE9D01A8B2D5300B0F9D6 /* TopBarView.m in Sources */,
 				8483D7691AB6A75A00AF9B9E /* CustomerEvaluationViewController.m in Sources */,
+				84D1BCB71BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.m in Sources */,
 				845EA0C51B2AA727004997E5 /* NewBeautyTableViewCell.m in Sources */,
 				84D7E7411B05BE2100364B16 /* careViewChat.m in Sources */,
 				84C1EA791AC5093300683A0B /* xiangmuxiangqing.m in Sources */,
@@ -3056,6 +3067,7 @@
 				84C2288D1AD4DE93000E3F18 /* yishengwanshanziliao.m in Sources */,
 				84C444541AE5FE1700098481 /* daijinquan.m in Sources */,
 				84C2288A1AD4C09F000E3F18 /* ModifyTheTemplate.m in Sources */,
+				84829EFC1BB3E1BC000D6A7E /* medicalrecord.m in Sources */,
 				84907E811ADE3DBE009002BC /* CustomerDetailcell.m in Sources */,
 				84CA61471AA940930002FBF1 /* AdultsViewController.m in Sources */,
 				84B83F8E1A8840B8008EE1CA /* AppDelegate.m in Sources */,

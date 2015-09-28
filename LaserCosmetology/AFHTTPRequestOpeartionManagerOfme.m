@@ -9,6 +9,7 @@
 #import "AFHTTPRequestOpeartionManagerOfme.h"
 #import "AFNetworking.h"
 #import "mycustomerdata.h"
+#import "medicalrecord.h"
 
 @implementation AFHTTPRequestOpeartionManagerOfme
 
@@ -261,7 +262,7 @@
         
         NSLog(@"分组列表的客户列表：headnamearray%@",headnamearray);
         
-        block(headnamearray,allgroup,nil);
+        block(headnamearray,allgroup,dctArray);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -286,6 +287,13 @@
         
                 NSLog(@"AFHTTPRequestOpeartionManager-个人信息数据-%@---- %@",data ,error);
         
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+        
 //                NSString *str = [data objectForKey:@"ErrorMessage"];
 //        
 //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
@@ -300,12 +308,16 @@
         
         NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
         
-        
             mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:dataary];
             [mycustomerDataarray addObject:mycustom];
         
-
-        block(mycustomerDataarray,nil,nil);
+        NSMutableArray *beautitylist = [[NSMutableArray alloc] initWithCapacity:0];
+        for (NSDictionary *buty in mycustom.beautitylist) {
+            mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:buty];
+            [beautitylist addObject:mycustom];
+        }
+        
+        block(mycustomerDataarray,beautitylist,nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -332,35 +344,35 @@
         
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
         
-                NSLog(@"AFHTTPRequestOpeartionManager获取订单的病例列表-%@---- %@",data ,error);
+        NSLog(@"AFHTTPRequestOpeartionManager-病历记录页面-%@---- %@",data ,error);
         
-        
-        //        NSString *str = [data objectForKey:@"ErrorMessage"];
-        
-                NSString *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
-                NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
-                NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
-                NSString *string = [NSString stringWithFormat:@"%@",dictArray];
-                NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
-        
-        
-        if ([string isEqualToString:@"0"]) {
-             NSLog(@"获取订单的病例列表：state--%@--msg--%@",dictArray,dctArray);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:dctArray delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
-            
-        }else{
-        
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
         }
-       
-
+        
+        //                NSString *str = [data objectForKey:@"ErrorMessage"];
+        //
+        //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        //        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSDictionary *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        
+        NSMutableArray *mymedicalary = [[NSMutableArray alloc] initWithCapacity:0];
+        for (NSDictionary *mydiction in dataary) {
+            medicalrecord *medical = [medicalrecord getmedicalrecordWithdictionary:mydiction];
+            [mymedicalary addObject:medical];
+        }
+        
 
         
-        block(nil,nil,nil);
+        block(mymedicalary,nil,nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
+    
 
 
 }
@@ -511,6 +523,13 @@
         
         NSLog(@"AFHTTPRequestOpeartionManager-//编辑病历-%@---- %@",data ,error);
         
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+
         
         NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
         NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
@@ -627,7 +646,7 @@
 //上传病历图片
 + (void)postModifyTheUserHeadRequestWitHUser:(NSString *)url medicalhistorysno:(NSString *)canshu1 doctorsno:(NSString *)canshu2 and:(NSData *)imagedata Completion:(dataBlcok)completion{
     
-     NSDictionary *parameters = @{@"medicalhistorysno": canshu1,@"doctorsno": canshu2,@"data":imagedata,@"datatype":@"image/jpg"};
+     NSDictionary *parameters = @{@"medicalhistorysno": canshu1,@"doctorsno": canshu2,@"datatype":@"image/jpg"};
     
     NSMutableURLRequest *request = nil;
     request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%@",url] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -652,12 +671,153 @@
         NSString *dictArray = [[responseObject objectForKey:@"Content"] objectForKey:@"msg"];
         NSString *dctArray = [[responseObject objectForKey:@"Content"] objectForKey:@"state"];
         
+        NSString *statestr = [NSString stringWithFormat:@"%@",dctArray];
+        if ([statestr isEqualToString:@"1"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+        
 
-        UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"提示" message:dictArray delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [al show];
     }];
     
     [uploadTask resume];
+
+}
+
+//设置分组成员
++(void)posetsetmanberInGroup:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager设置分组成员-%@---- %@",data ,error);
+        
+        
+        NSString *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
+        
+        
+        if ([string isEqualToString:@"0"]) {
+            NSLog(@"设置分组成员1：state--%@--msg--%@",dictArray,dctArray);
+        }else{
+            NSLog(@"设置分组成员2：state--%@--msg--%@",dictArray,dctArray);
+        }
+        
+        
+        
+        block(nil,nil,dctArray);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+
+
+}
+
+//上传编辑病历图片
++ (void)postModifyTheUserHeadRequestWitHUser:(NSString *)url medicalhistorysno:(NSString *)canshu1 doctorsno:(NSString *)canshu2 and:(NSString *)canshu3 and:(NSData *)imagedata Completion:(dataBlcok)completion{
+
+
+    NSDictionary *parameters = @{@"medicalhistorysno": canshu1,@"doctorsno": canshu2,@"datatype":@"image/jpg",@"medicalhistoryimagesno": canshu3};
+    
+    NSMutableURLRequest *request = nil;
+    request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%@",url] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+        
+        [formData appendPartWithFileData:imagedata name:@"data" fileName:fileName mimeType:@"image/jpg"];
+        
+    } error:nil];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSProgress *progress = nil;
+    
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+        NSLog(@"上传编辑病历图片==%@",responseObject);
+        //        NSLog(@"error == %@",error);
+        NSString *dictArray = [[responseObject objectForKey:@"Content"] objectForKey:@"msg"];
+        NSString *dctArray = [[responseObject objectForKey:@"Content"] objectForKey:@"state"];
+        
+        NSString *statestr = [NSString stringWithFormat:@"%@",dctArray];
+        if ([statestr isEqualToString:@"1"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+        
+        
+    }];
+    
+    [uploadTask resume];
+
+}
+
+//获取单条病历
++(void)posetgetAmedicalwithurl:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager--获取单条病历-%@---- %@",data ,error);
+        
+        
+        NSString *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSDictionary *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
+        
+        NSMutableArray *medicalhistoryimages = [dataary objectForKey:@"medicalhistoryimages"];
+        NSString *contents = [dataary objectForKey:@"content"];
+        
+        
+        if ([string isEqualToString:@"0"]) {
+            NSLog(@"获取单条病历：state--%@--msg--%@",dictArray,dctArray);
+        }else{
+            NSLog(@"获取单条病历：state--%@--msg--%@",dictArray,dctArray);
+        }
+        
+        
+        
+        block(medicalhistoryimages,nil,contents);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 
 }
 

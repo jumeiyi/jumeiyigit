@@ -11,9 +11,12 @@
 @interface myclientobservedisease : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 {
-    
+    NSMutableArray *_medicalrecorddata;
 
 }
 @property(nonatomic,retain)UITableView *mytableview;
 @property(nonatomic,retain)NSString *beautifydetailsno;
+@property(nonatomic,retain)NSString *doctorsno;
+@property(nonatomic,retain)NSString *customerSno;
+@property(nonatomic,retain)NSString *detailsno;
 @end

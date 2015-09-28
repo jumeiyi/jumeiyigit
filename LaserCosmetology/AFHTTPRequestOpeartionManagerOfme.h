@@ -45,4 +45,11 @@ typedef void(^dataBlcok2)(NSMutableArray *array1,NSMutableArray *array2,NSMutabl
 //上传图片
 //上传病历图片
 + (void)postModifyTheUserHeadRequestWitHUser:(NSString *)url medicalhistorysno:(NSString *)canshu1 doctorsno:(NSString *)canshu2 and:(NSData *)imagedata Completion:(dataBlcok)completion;
+//设置分组成员
++(void)posetsetmanberInGroup:(NSString *)url withblock:(dataBlcok)block;
+//获取单条病历
++(void)posetgetAmedicalwithurl:(NSString *)url withblock:(dataBlcok)block;
+//上传编辑病历图片
++ (void)postModifyTheUserHeadRequestWitHUser:(NSString *)url medicalhistorysno:(NSString *)canshu1 doctorsno:(NSString *)canshu2 and:(NSString *)canshu3 and:(NSData *)imagedata Completion:(dataBlcok)completion;
+
 @end
