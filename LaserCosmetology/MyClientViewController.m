@@ -145,7 +145,6 @@
     
     [self startrequest];
     
-
     
 }
 
@@ -197,6 +196,13 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+   
+    self.isgroupes = YES;
+    [self groupsbuttonclick];
+    
+    self.isproject = YES;
+    [self shoosebtnclick];
+    
     [_tableview endEditing:YES];
    
 }
@@ -204,7 +210,7 @@
 //表格滑动时候调用UIScrollView的方法
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    
+    NSLog(@"将要活动---------");
     [self.view endEditing:YES];
 }
 
@@ -275,13 +281,17 @@
         
          _btnimage.image = [UIImage imageNamed:@"yishengwdkhs"];
         
+        _tableview.userInteractionEnabled = NO;
         self.isgroupes = YES;
         
     }else{
+        
         [btnview removeFromSuperview];
         btnview = nil;
         [grouptableview removeFromSuperview];
         grouptableview = nil;
+        
+        _tableview.userInteractionEnabled = YES;
         self.isgroupes = NO;
         _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
     }
@@ -317,14 +327,19 @@
         [shoosebtnview addSubview:projectandname];
         
         self.isproject = YES;
+        _tableview.userInteractionEnabled = NO;
         
     }else{
-        [shoosebtnview removeFromSuperview];
-        shoosebtnview = nil;
+        
+            [shoosebtnview removeFromSuperview];
+            shoosebtnview = nil;
+       
+        
         [projectandname removeFromSuperview];
         projectandname = nil;
         
         self.isproject = NO;
+        _tableview.userInteractionEnabled = YES;
     }
     
    
@@ -373,6 +388,9 @@
             //             _timer1 = [NSTimer scheduledTimerWithTimeInterval:2.50 target:self selector:@selector(shuaxins) userInfo:nil repeats:NO];
         }
     }
+    
+
+
     
 }
 -(void)shuaxins
@@ -819,6 +837,9 @@
             myclient.doctorsno = self.doctorsno;
             [self.navigationController pushViewController:myclient animated:YES];
         }
+        
+        self.isproject = YES;
+        [self shoosebtnclick];
 
         }else if (tableView.tag == 62){
         if (indexPath.row != 0) {

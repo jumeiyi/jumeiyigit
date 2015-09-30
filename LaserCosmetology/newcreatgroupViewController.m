@@ -108,6 +108,7 @@
     
     self.gentmanberarrays = [[NSMutableArray alloc] initWithCapacity:0];
     self.manberarray = [[NSMutableArray alloc] initWithCapacity:0];
+    self.getmanberarrayIDs = [[NSMutableArray alloc] initWithCapacity:0];
     
     if (self.manberarray.count > 0) {
         mycustomerdata *data = [self.manberarray objectAtIndex:0];
@@ -127,14 +128,15 @@
     for (mycustomerdata *mydata in self.gentmanberarrays) {
         NSLog(@"把选择到的客户ID添加%@",mydata.sno);
         [self.manberarray addObject:mydata];
-        
+        [self.getmanberarrayIDs addObject:mydata.sno];
     }
-    
+    [self.gentmanberarrays removeAllObjects];
     [self addmanbers];
 }
 
 -(void)getManberarrayWithary:(NSArray *)ary{
     
+    NSLog(@"返回来的数组 %ld",ary.count);
     for (mycustomerdata *myda in ary) {
         [self.gentmanberarrays addObject:myda];
     }
@@ -256,6 +258,7 @@
     NSLog(@"12345");
     
     [self.manberarray removeObjectAtIndex:btn.tag - 10];
+    [self.getmanberarrayIDs removeObjectAtIndex:btn.tag - 10];
     [btn removeFromSuperview];
     
     NSLog(@"--self.manberarray.count:%ld",self.manberarray.count);
@@ -272,6 +275,8 @@
         
         self.iscancel = NO;
     }
+    
+    [self cancelbtnclick];
     
 }
 -(void)savebtnclickqq
@@ -370,12 +375,15 @@
 
 -(void)addGroupmanberbtn
 {
+    self.iscancel = YES;
+    [self cancelbtnclick];
+    NSLog(@"---self.getmanberarrayIDs----%@------",self.getmanberarrayIDs);
     
     myclientMenberGroupArrayViewController *addmanber = [[myclientMenberGroupArrayViewController alloc] init];
     addmanber.doctorsno = self.doctorsno;
     addmanber.groupname = _grouptitle.text;
     addmanber.groupid = self.groupid;
-    
+    addmanber.OriginalManberary = self.getmanberarrayIDs;
     addmanber.newmanberary = self;
     NSLog(@"self.doctorsno,_grouptitle.text,self.groupid-%@-%@-%@",self.doctorsno,_grouptitle.text,self.groupid);
     [self.navigationController pushViewController:addmanber animated:YES];

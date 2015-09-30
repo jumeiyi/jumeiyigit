@@ -28,6 +28,13 @@
         
         NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
         
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+        
         NSMutableArray *array = [[NSMutableArray alloc]init];
         
         NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
@@ -67,7 +74,12 @@
         NSLog(@"AFHTTPRequestOpeartionManager医生的客户分组-%@---- %@",data ,error);
         
         
-//        NSString *str = [data objectForKey:@"ErrorMessage"];
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
         
 //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
         NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
@@ -126,7 +138,12 @@
         
                 NSLog(@"AFHTTPRequestOpeartionManager-删除分组--%@---- %@--",data ,error);
         
-
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
         
                 NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
         NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
@@ -153,7 +170,12 @@
         //        NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
         
        
-        //        NSString *str = [data objectForKey:@"ErrorMessage"];
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
         
         //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
 //        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
@@ -219,10 +241,15 @@
         
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
         
-        //        NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
+                NSLog(@"AFHTTPRequestOpeartionManager-保存分组成员---%@---- %@",data ,error);
         
         
-        //        NSString *str = [data objectForKey:@"ErrorMessage"];
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
         
         NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
         NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
@@ -396,6 +423,13 @@
         
         NSLog(@"AFHTTPRequestOpeartionManager-保存选择的分组-%@---- %@",data ,error);
         
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+        
         
         NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
         NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
@@ -433,6 +467,13 @@
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
         
                 NSLog(@"AFHTTPRequestOpeartionManager-客户分组成员-%@---- %@",data ,error);
+        
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
         
         
                 NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
@@ -477,6 +518,13 @@
         
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
         
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+        
         NSLog(@"AFHTTPRequestOpeartionManager-客户分组成员-%@---- %@",data ,error);
         
         
@@ -520,6 +568,7 @@
         NSError *error = nil;
         
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
         
         NSLog(@"AFHTTPRequestOpeartionManager-//编辑病历-%@---- %@",data ,error);
         
@@ -576,6 +625,13 @@
         
         NSLog(@"AFHTTPRequestOpeartionManager-已关注我，或未关注我-%@---- %@",data ,error);
         
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+        
         
         NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
         NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
@@ -620,6 +676,13 @@
         
         NSLog(@"AFHTTPRequestOpeartionManager-删除病历-%@---- %@",data ,error);
         
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+        
         
         NSString *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
         NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
@@ -655,8 +718,11 @@
         formatter.dateFormat = @"yyyyMMddHHmmss";
         NSString *str = [formatter stringFromDate:[NSDate date]];
         NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
-        
-        [formData appendPartWithFileData:imagedata name:@"data" fileName:fileName mimeType:@"image/jpg"];
+      
+        if (imagedata.length > 50) {
+            [formData appendPartWithFileData:imagedata name:@"data" fileName:fileName mimeType:@"image/jpg"];
+
+        }
        
     } error:nil];
     
@@ -665,10 +731,10 @@
     
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         
-        NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+//        NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
                 NSLog(@"32423423==%@",responseObject);
         //        NSLog(@"error == %@",error);
-        NSString *dictArray = [[responseObject objectForKey:@"Content"] objectForKey:@"msg"];
+//        NSString *dictArray = [[responseObject objectForKey:@"Content"] objectForKey:@"msg"];
         NSString *dctArray = [[responseObject objectForKey:@"Content"] objectForKey:@"state"];
         
         NSString *statestr = [NSString stringWithFormat:@"%@",dctArray];

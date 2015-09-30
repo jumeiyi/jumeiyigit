@@ -134,6 +134,19 @@
     
     [AFHTTPRequestOpeartionManagerOfme postscancellThemedicalhistory:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
+        NSLog(@"-返回--%@",string);
+        
+        if ([string isEqualToString:@"操作成功！"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+            
+        }else{
+        
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"操作失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+        
+         [self Getgetmedicalhistorylis];
     }];
     
 }

@@ -137,8 +137,9 @@
     for (mycustomerdata *mydata in self.gentmanberarrays) {
         NSLog(@"把选择到的客户ID添加%@",mydata.sno);
         [self.manberarrays addObject:mydata];
-       
+        [self.customersidarray addObject:mydata.sno];
     }
+    [self.gentmanberarrays removeAllObjects];
 
     [self addmanbers];
 }
@@ -173,7 +174,7 @@
     float width = 50;
     float heiht = width;
     
-    NSLog(@"self.manberarrays.count-:%ld",self.manberarrays.count);
+    NSLog(@"---addmanbers--->self.manberarrays.count-:%ld",self.manberarrays.count);
     
     for (int j = 0; j < [self.manberarrays count]; j ++) {
         mycustomerdata *mydata = [self.manberarrays objectAtIndex:j];
@@ -217,7 +218,8 @@
 
 -(void)cancelbtnclick
 {
-    
+    NSLog(@"---cancelbtnclick--->self.manberarrays.count-:%ld",self.manberarrays.count);
+
     
     float width = 50;
     float heiht = width;
@@ -267,7 +269,7 @@
     [self.manberarrays removeObjectAtIndex:btn.tag - 10];
     [btn removeFromSuperview];
     
-    NSLog(@"--self.manberarray.count:%ld",self.manberarrays.count);
+    NSLog(@"--cancelbuttonclickl:(UIButton *)btn---<self.manberarray.count:%ld",self.manberarrays.count);
     
     [self addmanbers];
     
@@ -280,7 +282,10 @@
         btn.userInteractionEnabled = NO;
         
         self.iscancel = NO;
+        
     }
+    
+    [self cancelbtnclick];
 
 }
 -(void)savebtnclick
@@ -373,6 +378,8 @@
 
 -(void)addGroupmanberbtn
 {
+    self.iscancel = YES;
+    [self cancelbtnclick];
     
     myclientMenberGroupArrayViewController *addmanber = [[myclientMenberGroupArrayViewController alloc] init];
     addmanber.doctorsno = self.doctorsno;

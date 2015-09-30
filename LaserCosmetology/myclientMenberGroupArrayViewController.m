@@ -253,14 +253,17 @@
         
         //遍历换掉相同的参数
         for (int i = 0; i < _sectionary.count; i++) {
+            NSMutableArray *rowary = [_insectionofrow objectAtIndex:i];
             NSMutableArray *romnumber = [_sectionary objectAtIndex:i];
             
             for (int a = 0;a < romnumber.count;a++) {
-                NSString *romsno = [romnumber objectAtIndex:a];
+                mycustomerdata *romsno = [rowary objectAtIndex:a];
+                
                 for (NSString *str in self.OriginalManberary) {
                     
-                    if ([str isEqualToString:romsno]) {
+                    if ([str isEqualToString:romsno.sno]) {
                         [romnumber replaceObjectAtIndex:a withObject:@"xx"];
+                        NSLog(@"romsno.sno,str%@=-==%@",romsno.sno,str);
                     }
                 }
             }
@@ -370,13 +373,16 @@
         _btnimage.image = [UIImage imageNamed:@"yishengwdkhs"];
         
         self.isgroupes = YES;
+        _tableview.userInteractionEnabled = NO;
         
     }else{
         [btnview removeFromSuperview];
         btnview = nil;
         [_grouptableview removeFromSuperview];
         _grouptableview = nil;
+        
         self.isgroupes = NO;
+        _tableview.userInteractionEnabled = YES;
         _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
     }
     
@@ -395,7 +401,7 @@
             btnview = nil;
             self.isgroupes = NO;
         }
-        shoosebtnview = [[UIView alloc] initWithFrame:CGRectMake( 8 , 60 + 40, 60, 70)];
+        shoosebtnview = [[UIView alloc] initWithFrame:CGRectMake( 8 , 60 + 50, 60, 91)];
         [self.view addSubview:shoosebtnview];
         
         UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, shoosebtnview.bounds.size.width, shoosebtnview.bounds.size.height)];
@@ -411,6 +417,7 @@
         [shoosebtnview addSubview:projectandname];
         
         self.isproject = YES;
+        _tableview.userInteractionEnabled = NO;
         
     }else{
         [shoosebtnview removeFromSuperview];
@@ -419,6 +426,7 @@
         projectandname = nil;
         
         self.isproject = NO;
+        _tableview.userInteractionEnabled = YES;
     }
     
     
@@ -467,6 +475,7 @@
         }
     }
     
+   
 }
 -(void)shuaxins
 {
@@ -499,6 +508,15 @@
  */
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
     return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    self.isgroupes = YES;
+    [self groupsbuttonclick];
+    
+    self.isproject = YES;
+    [self shoosebtnclick];
 }
 
 #pragma mark tableview
@@ -668,6 +686,9 @@
         
         if ([strary isEqualToString:@"y"]) {
             cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 12, 25, 25);
+            cell.shooseimage.image = [UIImage imageNamed:@"huisegouxuan"];
+        }else if([strary isEqualToString:@"xx"]){
+            cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 12, 25, 25);
             cell.shooseimage.image = [UIImage imageNamed:@"sucaibaganger"];
         }else{
             cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 12, 25, 25);
@@ -761,18 +782,17 @@
         [self shoosebtnclick];
     }else{
         
-        NSMutableArray *mycustomary = [_insectionofrow objectAtIndex:indexPath.section];
-        mycustomerdata *mycustom = [mycustomary objectAtIndex:indexPath.row];
 
-        
         NSMutableArray *rowary = [_sectionary objectAtIndex:indexPath.section];
         NSString *str = [rowary objectAtIndex:indexPath.row];
         
         if ([str isEqualToString:@"y"]) {
             [rowary replaceObjectAtIndex:indexPath.row withObject:@"x"];
             
-        }else{
+        }else if([str isEqualToString:@"x"]){
             [rowary replaceObjectAtIndex:indexPath.row withObject:@"y"];
+        }else{
+        
         }
         
         NSIndexPath *indexPath_1=[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
