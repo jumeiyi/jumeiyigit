@@ -59,6 +59,8 @@
 @property(nonatomic,retain)NSString *customersIDs;//以逗号分隔
 @property(nonatomic,retain)UIScrollView *myscrollview;
 
+@property(nonatomic,retain)NSMutableArray *OriginalManberary;
+
 @property(nonatomic,retain)myclientmenbergroupViewController *manberary;
 @property(nonatomic,retain)newcreatgroupViewController *newmanberary;
 @end

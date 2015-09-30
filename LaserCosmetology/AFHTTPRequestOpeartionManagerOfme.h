@@ -51,5 +51,6 @@ typedef void(^dataBlcok2)(NSMutableArray *array1,NSMutableArray *array2,NSMutabl
 +(void)posetgetAmedicalwithurl:(NSString *)url withblock:(dataBlcok)block;
 //上传编辑病历图片
 + (void)postModifyTheUserHeadRequestWitHUser:(NSString *)url medicalhistorysno:(NSString *)canshu1 doctorsno:(NSString *)canshu2 and:(NSString *)canshu3 and:(NSData *)imagedata Completion:(dataBlcok)completion;
-
+//编辑病历。上传修改图片
++(void)posetUpdatatheChangeImage:(NSString *)url medicalhistorysno:(NSString *)canshu1 doctorsno:(NSString *)canshu2 medicalhistoryimagesno:(NSString *)canshu3 and:(NSData *)imagedata Completion:(dataBlcok)completion;
 @end

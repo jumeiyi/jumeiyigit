@@ -680,7 +680,6 @@
             [alert show];
         }
         
-
     }];
     
     [uploadTask resume];
@@ -818,6 +817,50 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
+
+}
+//编辑病历。上传修改图片
++(void)posetUpdatatheChangeImage:(NSString *)url medicalhistorysno:(NSString *)canshu1 doctorsno:(NSString *)canshu2 medicalhistoryimagesno:(NSString *)canshu3 and:(NSData *)imagedata Completion:(dataBlcok)completion{
+
+    
+    NSDictionary *parameters = @{@"medicalhistorysno": canshu1,@"doctorsno": canshu2,@"medicalhistoryimagesno": canshu3,@"datatype":@"image/jpg"};
+    
+    NSMutableURLRequest *request = nil;
+    request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%@",url] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+        
+        [formData appendPartWithFileData:imagedata name:@"data" fileName:fileName mimeType:@"image/jpg"];
+        
+    } error:nil];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSProgress *progress = nil;
+    
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+        NSLog(@"修改上传编辑病历图片==%@",responseObject);
+        //        NSLog(@"error == %@",error);
+        NSString *dictArray = [[responseObject objectForKey:@"Content"] objectForKey:@"msg"];
+        NSString *dctArray = [[responseObject objectForKey:@"Content"] objectForKey:@"state"];
+        
+        NSString *statestr = [NSString stringWithFormat:@"%@",dctArray];
+        if ([statestr isEqualToString:@"1"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+        
+        
+    }];
+    
+    [uploadTask resume];
 
 }
 

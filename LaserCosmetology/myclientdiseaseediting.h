@@ -25,6 +25,19 @@
 @property(nonatomic,retain)NSMutableArray *imagedataary;
 
 @property(nonatomic,assign)NSInteger cancelbtnindex;
+@property(nonatomic,assign)NSInteger shoosebuttonindex;
 @property(nonatomic,retain)NSMutableArray *imageURLary;
 @property(nonatomic,assign)NSInteger imagearycount;
+
+@property(nonatomic,retain)UIButton *addimagebtn;
+@property(nonatomic,retain)UIButton *imagebtn1;
+@property(nonatomic,retain)UIButton *imagebtn2;
+@property(nonatomic,retain)UIButton *imagebtn3;
+@property(nonatomic,retain)UIImage *image;
+@property(nonatomic,retain)UIImage *image2;
+@property(nonatomic,retain)UIImage *image3;
+@property(nonatomic,assign)BOOL isimage1;
+@property(nonatomic,assign)BOOL isimage2;
+@property(nonatomic,assign)BOOL isimage3;
+
 @end

@@ -97,13 +97,17 @@
          medi = [_medicalrecorddata objectAtIndex:a];
     }
    
+//    edting.orderDetailSno = self.beautifydetailsno;
+//    edting.customersno = self.customerSno;
+    //    edting.doctorsno = self.doctorsno;
+
     
     myclientdiseaseediting *edting = [[myclientdiseaseediting alloc] init];
     edting.doctorsno = medi.doctorsno;
     edting.medicalhistorysno = medi.sno;
     [self.navigationController pushViewController:edting animated:YES];
     
-    NSLog(@"medi.doctorsno%@===medi.sno%@",medi.doctorsno,medi.sno);
+    NSLog(@"self.doctorsno:%@===medi.doctorsno+%@",self.doctorsno,medi.doctorsno);
 }
 
 -(void)createnewThedisease{

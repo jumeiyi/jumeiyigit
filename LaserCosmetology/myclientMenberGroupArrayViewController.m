@@ -241,15 +241,35 @@
        
          _sectionary = [[NSMutableArray alloc] initWithCapacity:0];
         for (int i = 0; i < _insectionofrow.count; i++) {
-            
             NSMutableArray *rowary = [[NSMutableArray alloc] initWithCapacity:0];
             NSMutableArray *romnumber = [_insectionofrow objectAtIndex:i];
+            
             for (int j = 0; j <  romnumber.count;j++) {
                 [rowary addObject:@"y"];
             }
             [_sectionary addObject:rowary];
         }
         
+        
+        //遍历换掉相同的参数
+        for (int i = 0; i < _sectionary.count; i++) {
+            NSMutableArray *romnumber = [_sectionary objectAtIndex:i];
+            
+            for (int a = 0;a < romnumber.count;a++) {
+                NSString *romsno = [romnumber objectAtIndex:a];
+                for (NSString *str in self.OriginalManberary) {
+                    
+                    if ([str isEqualToString:romsno]) {
+                        [romnumber replaceObjectAtIndex:a withObject:@"xx"];
+                    }
+                }
+            }
+               
+            }
+        
+        
+        
+       
          [_tableview reloadData];
     }];
 

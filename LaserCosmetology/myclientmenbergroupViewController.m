@@ -112,6 +112,7 @@
     NSLog(@"客户的分组成员--%@",string);
     self.manberarrays = [[NSMutableArray alloc] initWithCapacity:0];
     self.gentmanberarrays = [[NSMutableArray alloc] initWithCapacity:0];
+    self.customersidarray = [[NSMutableArray alloc] initWithCapacity:0];
     
     [AFHTTPRequestOpeartionManagerOfme postsallcustomerAndurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
@@ -119,6 +120,11 @@
         NSLog(@"原有的客户：%ld",array1.count);
         
         [self addmanbers];
+        
+        for ( mycustomerdata *data in self.manberarrays) {
+            [self.customersidarray addObject:data.sno];
+        }
+        
     }];
 
     
@@ -372,7 +378,7 @@
     addmanber.doctorsno = self.doctorsno;
     addmanber.groupname = _grouptitle.text;
     addmanber.groupid = self.groupid;
-    
+    addmanber.OriginalManberary = self.customersidarray;
     addmanber.manberary = self;
     NSLog(@"self.doctorsno,_grouptitle.text,self.groupid-%@-%@-%@",self.doctorsno,_grouptitle.text,self.groupid);
 

@@ -17,6 +17,7 @@
 #import "myclientTheConditionRecordViewController.h"
 #import "AFHTTPRequestOpeartionManagerOfme.h"
 #import "mycustomerdata.h"
+#import "UIImageView+WebCache.h"
 
 @interface myclientdatasViewController ()
 
@@ -149,7 +150,9 @@
     if (indexPath.section == 0) {
         
         cell.headimage.frame = CGRectMake(30, 25, 50, 50);
-        cell.headimage.image = [UIImage imageNamed:@"图片4"];
+        [cell.headimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,data.picsrc]] placeholderImage:[UIImage imageNamed:@"图片4"]];
+        cell.headimage.layer.masksToBounds = YES;
+        cell.headimage.layer.cornerRadius = 25;
         
         cell.name.frame = CGRectMake(100, 25,[self NSStringwithsize:16 str:data.truename] , 20);
         cell.name.text = data.truename;

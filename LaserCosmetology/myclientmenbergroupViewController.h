@@ -28,6 +28,7 @@
 @property(nonatomic,retain)NSMutableArray *manberarray;
 @property(nonatomic,retain)NSMutableArray *manberarrays;
 @property(nonatomic,retain)NSMutableArray *gentmanberarrays;
+@property(nonatomic,retain)NSMutableArray *customersidarray;
 @property(nonatomic,assign)BOOL iscancel;
 
 -(void)getManberarrayWithary:(NSArray *)ary;
