@@ -908,7 +908,7 @@
 {
     if (tableView.tag == 60) {
         _tableview.sectionIndexBackgroundColor = [UIColor clearColor];//设置索引背景颜色
-        _tableview.sectionIndexColor = [self colorWithRGB:0x666666 alpha:1];
+        _tableview.sectionIndexColor = [self colorWithRGB:0x666666 alpha:1];//设置字体颜色
         return _headnamearray;
     }else{
         return nil;
@@ -1013,7 +1013,7 @@
     
     
     [_allgroup removeAllObjects];
-    _allgroup = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
+    _allgroup = [[NSMutableArray alloc] initWithCapacity:0];//每一个区的数据
         for (NSString *str in _headnamearray) {
              NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
             for (mycustomerdata *mydata in _mycustomerDataarray) {
@@ -1025,6 +1025,8 @@
            [_allgroup addObject:indexary];
         }
     
+    
+
     
     if ([state isEqualToString:@"0"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
