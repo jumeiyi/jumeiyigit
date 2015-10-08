@@ -25,4 +25,5 @@
 @property(nonatomic,retain)NSData *imagedat;
 @property(nonatomic,retain)NSString *customersno;
 @property(nonatomic,retain)NSString *orderDetailSno;
+@property(nonatomic,assign)NSInteger a;
 @end

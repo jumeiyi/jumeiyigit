@@ -58,10 +58,14 @@
     self.mytableview.dataSource = self;
     [self.view addSubview:self.mytableview];
     
+    _refreshControl=[[RefreshControl alloc] initWithScrollView:self.mytableview delegate:self];
+    _refreshControl.topEnabled=YES;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingbtnnot:) name:@"diseaseeditingbtnclick" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancellnot:) name:@"diseasequpingjia" object:nil];
     
     _medicalrecorddata = [[NSMutableArray alloc] initWithCapacity:0];
+    self.contentshightary = [[NSMutableArray alloc] initWithCapacity:0];
     
    
 }
@@ -82,6 +86,14 @@
     [AFHTTPRequestOpeartionManagerOfme postsGetgetmedicalhistorylis:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
         _medicalrecorddata = array1;
+        
+        for (int i = 0; i < array1.count; i++) {
+            
+            medicalrecord *mymedical = [_medicalrecorddata objectAtIndex:i];
+            
+            NSString *str = [NSString stringWithFormat:@"%f",[self contentsWithnsstring:mymedical.content]];
+            [self.contentshightary addObject:str];
+        }
 
         [self.mytableview reloadData];
     }];
@@ -119,6 +131,42 @@
     [self.navigationController pushViewController:myclient animated:YES];
     
     NSLog(@"self.beautifydetailsno=%@==self.customerSno=%@==self.doctorsno=%@=",self.beautifydetailsno,self.customerSno,self.doctorsno);
+}
+
+
+- (void)refreshControl:(RefreshControl *)refreshControl didEngageRefreshDirection:(RefreshDirection)direction
+{
+    if (direction==RefreshDirectionTop)
+    {
+        NSLog(@"下拉刷新");
+      [self Getgetmedicalhistorylis];
+        
+    }
+    else if (direction==RefreshDirectionBottom)
+    {
+        NSLog(@"上拉刷新");
+    }
+    
+    __weak typeof(self)weakSelf=self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        __strong typeof(weakSelf)strongSelf=weakSelf;
+        [strongSelf reloadData];
+    });
+    
+}
+
+-(void)reloadData
+{
+    
+    if (self.refreshControl.refreshingDirection==RefreshingDirectionTop)
+    {
+        [self.refreshControl finishRefreshingDirection:RefreshDirectionTop];
+    }
+    else if (self.refreshControl.refreshingDirection==RefreshingDirectionBottom)
+    {
+        [self.refreshControl finishRefreshingDirection:RefreshDirectionBottom];
+    }
+    
 }
 
 -(void)cancellnot:(NSNotification *)noti
@@ -193,11 +241,13 @@
     cell.contents.text = mymedical.content;
     
 
+    NSString *contentshight = [self.contentshightary objectAtIndex:indexPath.row];
+    float hight = [contentshight floatValue];
     
     if (imageurl.count > 0) {
         NSString *str1 = [imageurl objectAtIndex:0];
         NSString *imstring = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str1];
-        cell.image1.frame = CGRectMake(15, 90, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
+        cell.image1.frame = CGRectMake(15, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
         [cell.image1 sd_setImageWithURL:[NSURL URLWithString:imstring]];
     }
     
@@ -205,7 +255,7 @@
     
         NSString *str2 = [imageurl objectAtIndex:1];
         NSString *imstring2 = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str2];
-        cell.image2.frame = CGRectMake(15 + (self.view.bounds.size.width - 40)/3 + 5, 90, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
+        cell.image2.frame = CGRectMake(15 + (self.view.bounds.size.width - 40)/3 + 5, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
         [cell.image2 sd_setImageWithURL:[NSURL URLWithString:imstring2]];
         
     }
@@ -213,7 +263,7 @@
     if (imageurl.count > 2){
         NSString *str3 = [imageurl objectAtIndex:2];
         NSString *imstring3 = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str3];
-        cell.image3.frame = CGRectMake(15 + ((self.view.bounds.size.width - 40)/3 * 2) + 10, 90, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
+        cell.image3.frame = CGRectMake(15 + ((self.view.bounds.size.width - 40)/3 * 2) + 10, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
         [cell.image3 sd_setImageWithURL:[NSURL URLWithString:imstring3]];
     }
     
@@ -221,7 +271,10 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 210;
+   NSString *contentshight = [self.contentshightary objectAtIndex:indexPath.row];
+    float hight = [contentshight floatValue];
+    
+    return 190 + hight;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -262,8 +315,8 @@
 //计算文字内容在规定宽度时候它的显示高度
 -(CGFloat)contentsWithnsstring:(NSString *)str
 {
-    UIFont *font = [UIFont systemFontOfSize:17];
-    CGSize size = CGSizeMake(self.view.bounds.size.width - 10,6000);
+    UIFont *font = [UIFont systemFontOfSize:15];
+    CGSize size = CGSizeMake(self.view.bounds.size.width - 30,6000);
     CGRect labelRect = [str boundingRectWithSize:size options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)  attributes:[NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName] context:nil];
     CGFloat gaodu = labelRect.size.height;
     return gaodu;

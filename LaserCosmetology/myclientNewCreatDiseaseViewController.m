@@ -72,6 +72,7 @@
     _imagearry = [[NSMutableArray alloc] initWithCapacity:0];
     self.imagedataary = [[NSMutableArray alloc] initWithCapacity:0];
 
+    self.a = 0;
 }
 
 
@@ -87,6 +88,32 @@
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
     
     return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+-(void)keyboardShow:(NSNotification *)note
+{
+    
+    CGRect keyBoardRect=[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat deltaY=keyBoardRect.size.height;
+    
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+        
+        // self.view.transform=CGAffineTransformMakeTranslation(0, - deltaY);
+//        NSLog(@"deltaY = %f",deltaY);
+        if (self.a == 0) {
+            _mytextview.text = @"";
+        }
+    
+    }];
+    
+    self.a ++;
 }
 
 -(void)sendimage:(UIImage *)imagess

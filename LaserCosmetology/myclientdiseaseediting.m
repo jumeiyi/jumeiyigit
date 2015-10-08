@@ -207,6 +207,7 @@
     
 }
 
+
 -(void)shooseimages{
     
     pickerimageViewController *picker = [[pickerimageViewController alloc] init];

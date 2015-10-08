@@ -249,9 +249,13 @@
             NSDictionary *prodctoer = [data.beautitylist objectAtIndex:indexPath.row - 1];
 
             cell.date.frame = CGRectMake(19, 15, 140, 20);
-            cell.date.text = @"2015-09-01 16:40 ";
             cell.date.font = [UIFont systemFontOfSize:12];
             cell.date.textColor = [self colorWithRGB:0x999999 alpha:1];
+            NSString *creatdt = [prodctoer objectForKey:@"CreateDt"];
+            if (creatdt.length > 5) {
+            cell.date.text = [NSString stringWithFormat:@"%@",creatdt];
+
+            }
 
             
             cell.projectname.frame = CGRectMake(140, 15, 120, 20);

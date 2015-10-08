@@ -1020,13 +1020,10 @@
                 if ([mydata.firstsearchword isEqualToString:str]) {
                     [indexary addObject:mydata];
                 }
-                
             }
            [_allgroup addObject:indexary];
         }
     
-    
-
     
     if ([state isEqualToString:@"0"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
