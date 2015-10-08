@@ -20,5 +20,4 @@
 
 #define HTTPREQUESTER  HTTPREQUESTPDOMAIN@"/WebService/DocService.asmx"
 
-
 #endif
