@@ -131,7 +131,7 @@
     
     _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
     
-    self.typeInfo = @"";  self.a = 1;
+    self.typeInfo = @"name";  self.a = 1;
     
       _data = [[NSMutableData alloc] init];
     
@@ -877,13 +877,19 @@
         }
         self.group = [_groupIDarray objectAtIndex:indexPath.row];
         
-        NSLog(@"self.group2---%@",self.group);
     }else {
     
-        [self shoosebtnclick];
+       
+        NSString *str = [NSString stringWithFormat:@"%ld",indexPath.row];
         
-        self.typeInfo = [_shooesproject objectAtIndex:indexPath.row];
-        NSLog(@"所选择的项目-----%@",self.typeInfo);
+        if ([str isEqualToString:@"0"]) {
+            self.typeInfo = @"name";
+        }else{
+            self.typeInfo = @"product";
+        }
+        
+         [self shoosebtnclick];
+
     }
 
 }

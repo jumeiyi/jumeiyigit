@@ -79,7 +79,7 @@
     //_refreshControl.bottomEnabled=YES;//会崩
     
     
-    self.typeInfo = @"";  self.a = 1;
+    self.typeInfo = @"name";  self.a = 1;
     
 
     
@@ -138,6 +138,8 @@
 -(void)searchrequestdata{
 
        NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15&querytype=%@&condition=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.group,self.typeInfo,self.searchcontents];
+    
+    NSLog(@"string--搜索：%@",string);
     
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                                                      (CFStringRef)string,
@@ -836,7 +838,21 @@
             _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
        
     }else if (tableView.tag == 63){
+        
+        
+        NSString *str = [NSString stringWithFormat:@"%ld",indexPath.row];
+        
+        if ([str isEqualToString:@"0"]) {
+            self.typeInfo = @"name";
+        }else{
+            self.typeInfo = @"product";
+        }
+        
+        NSLog(@"%ld----%@",indexPath.row,self.typeInfo);
+
         [self shoosebtnclick];
+        
+       
     }else{
         
 
@@ -877,7 +893,7 @@
         
     }
     
-    NSLog(@"我点击了%ld区，%ld行",indexPath.section,indexPath.row);
+    
     
 }
 
