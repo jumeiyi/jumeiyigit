@@ -301,8 +301,7 @@
         return;
     }
     
-
-        
+    
         if (self.personordocter == NO) {
             [self soaprequestwithPhoneNo:_phonenumber.text AuthCode:_testnumber.text UserType:@"CommomUser" recommendNo:self.recommendNo registrationId:registration_id];
             
@@ -313,7 +312,6 @@
             //[self gotodoctercenter];//医生个人中心
         }
         
-
     
 }
 //进入页面
@@ -670,7 +668,7 @@
         
         NSLog(@"用户登录的客户索引:%@",ret);
         
-      //  NSLog(@"登录的请求:ret%@-- msg%@--state%@",ret,msg,state);
+
         if ([state isEqualToString:@"1"]) {
             [self enter];
         }else if([state isEqualToString:@"0"]){

@@ -36,7 +36,7 @@ typedef void(^dataBlcok2)(NSMutableArray *array1,NSMutableArray *array2,NSMutabl
 +(void)postSaveTheShooseGroup:(NSString *)url withblock:(dataBlcok)block;
 //单个病历列表
 +(void)posetgetmedicalhistorylis:(NSString *)url withblock:(dataBlcok)block;
-//编辑病历
+//上传病历前获取medicalhistorysno
 +(void)postsEditingmedical:(NSString *)url withblock:(dataBlcok)block;
 //已关注我，或未关注我
 +(void)postsattentionTOMe:(NSString *)url withblock:(dataBlcok)block;
@@ -53,4 +53,15 @@ typedef void(^dataBlcok2)(NSMutableArray *array1,NSMutableArray *array2,NSMutabl
 + (void)postModifyTheUserHeadRequestWitHUser:(NSString *)url medicalhistorysno:(NSString *)canshu1 doctorsno:(NSString *)canshu2 and:(NSString *)canshu3 and:(NSData *)imagedata Completion:(dataBlcok)completion;
 //编辑病历。上传修改图片
 +(void)posetUpdatatheChangeImage:(NSString *)url medicalhistorysno:(NSString *)canshu1 doctorsno:(NSString *)canshu2 medicalhistoryimagesno:(NSString *)canshu3 and:(NSData *)imagedata Completion:(dataBlcok)completion;
+
+//获取订单详情
++(void)postsetnowstateWithurl:(NSString *)url withblock:(dataBlcok)block;
+
+//上传病历进度nowstate
++(void)posetchangenowstateWithurl:(NSString *)url withblock:(dataBlcok)block;
+
+//医生上传病历界面项目列表
++(void)getbeautifyproductlist:(NSString *)url withblock:(dataBlcok)block;
+
+
 @end

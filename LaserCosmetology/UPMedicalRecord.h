@@ -34,6 +34,7 @@
 @property(nonatomic,retain)NSString *medicalhistorysno;
 @property(nonatomic,retain)NSString *datatype;
 @property(nonatomic,retain)NSData *imagedat;
+@property(nonatomic,retain)NSString *OrderSno;
 
 @property(nonatomic,assign)BOOL isfenlei;
 @property(nonatomic,retain)UITableView *Righttableview;

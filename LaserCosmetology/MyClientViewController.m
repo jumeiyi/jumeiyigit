@@ -177,7 +177,7 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     self.searchBar.frame = CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f);
-    NSLog(@"%@",searchBar.text);
+    self.searchcontents = searchBar.text;
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
@@ -187,11 +187,15 @@
         return;
     }else{
         
-//        [self soaprequstWithGetProTypePageData:searchBar.text];
-        NSLog(@"searchBar.text---> %@",searchBar.text);
     }
     
     self.searchBar.frame = CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f);
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+
+    NSLog(@"MMMMMMMM");
+    [self.view endEditing:YES];
+    [self searchdata];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -877,6 +881,9 @@
     }else {
     
         [self shoosebtnclick];
+        
+        self.typeInfo = [_shooesproject objectAtIndex:indexPath.row];
+        NSLog(@"所选择的项目-----%@",self.typeInfo);
     }
 
 }
@@ -931,7 +938,19 @@
     }
     
 }
+//搜索得到的数据
+-(void)searchdata{
 
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15&querytype=%@&condition=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.group,self.typeInfo,self.searchcontents];
+    
+    
+    NSLog(@"客户数据搜索--%@",string);
+    [self requstwithurl:string];
+
+}
+
+//页面数据
 -(void)startrequest
 {
     NSLog(@"self.group3--%@",self.group);
@@ -947,7 +966,13 @@
 
 -(void)requstwithurl:(NSString *)str
 {
-    NSURL *urlstr = [NSURL URLWithString:str];
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)str,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    NSURL *urlstr = [NSURL URLWithString:encodedString];
     
     NSURLRequest *requst = [NSURLRequest requestWithURL:urlstr];
     
@@ -1033,8 +1058,6 @@
     [self creattableview];
     
 }
-
-
 
 
 @end

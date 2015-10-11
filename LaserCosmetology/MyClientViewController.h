@@ -41,6 +41,7 @@
 @property(nonatomic,assign)NSInteger a;
 @property(nonatomic,retain)NSString *typeInfo;
 @property(nonatomic,retain)NSString *firstWord;
+@property(nonatomic,retain)NSString *searchcontents;
 @property(nonatomic,strong)RefreshControl * refreshControl;
 @property(nonatomic,retain)UISearchBar *searchBar;
 @property(nonatomic,retain)UISearchDisplayController *searchDisplay;

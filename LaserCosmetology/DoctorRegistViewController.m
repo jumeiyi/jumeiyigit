@@ -82,8 +82,10 @@
 }
 -(void)gotodoctormainviewcv
 {
-    DoctorMainViewController *main = [[DoctorMainViewController alloc] init];
-    [self.navigationController pushViewController:main animated:YES];
+//    DoctorMainViewController *main = [[DoctorMainViewController alloc] init];
+//    [self.navigationController pushViewController:main animated:YES];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)segmentclick:(UISegmentedControl *)segment

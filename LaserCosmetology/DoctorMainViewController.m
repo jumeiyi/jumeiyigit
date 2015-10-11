@@ -320,7 +320,8 @@
 -(void)doctersbuttonclick:(UIButton *)button
 {
     if ([self.checkState isEqualToString:@"0"]) {
-        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您好！您的资料我们在审核中，通过后便可以使用会员所有功能！谢谢您的使用！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您好！您的资料我们在审核中，通过后便可以使用会员所有功能！谢谢您的使用！" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        alertview.tag = 200;
         [alertview show];
         return;
     }
@@ -602,9 +603,17 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSLog(@"我点击了扫描出来的确定按钮");
-    WEBViewController *webview = [[WEBViewController alloc] init];
-    webview.urlString = self.saomiaoURL;
-    [self.navigationController pushViewController:webview animated:YES];
+    if (alertView.tag == 200) {
+       
+        [self soaprequstWithdoctorSno:self.doctorSno];
+    }else{
+    
+        WEBViewController *webview = [[WEBViewController alloc] init];
+        webview.urlString = self.saomiaoURL;
+        [self.navigationController pushViewController:webview animated:YES];
+        
+    }
+
 }
 
 

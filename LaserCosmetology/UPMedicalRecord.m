@@ -139,8 +139,26 @@
     self.selectorary = [[NSMutableArray alloc] initWithCapacity:0];
     self.resut = [[NSMutableArray alloc] initWithCapacity:0];
     
-   
-     [self updateWithmedicaldetail];
+//   [self soaprequst2WithdoctorSno:self.doctorsno orderDetailSno:self.orderDetailSno];
+    
+
+        [self getbeautifydetail];
+        [self updateWithmedicaldetail];
+        [self getbeautifyproductlist];
+    
+}
+
+//获取病历详情
+-(void)getbeautifydetail
+{
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.getbeautifydetail.go?doctorsno=%@&orderdetailsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.orderDetailSno];
+    
+    NSLog(@"请求的URL = %@",string);
+    
+    [AFHTTPRequestOpeartionManagerOfme postsetnowstateWithurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+    }];
+    
 }
 -(void)relodimage
 {
@@ -477,19 +495,21 @@ NSLog(@"取消发送照片");
     
 }
 
-//上传病历
+//上传病历前获取medicalhistorysno
 -(void)updateWithmedicaldetail
 {
-NSString *contentstr = @"病历";
+    NSString *contentstr = @"病历";
     
     NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&customersno=%@&orderdetailsno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.customersno,self.orderDetailSno,contentstr];
     NSLog(@"上传病历前请求----%@",string);
     
     [AFHTTPRequestOpeartionManagerOfme postsEditingmedical:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-        NSLog(@"返回来的-medicalhistorysnostring= %@",string);
+        
         self.medicalhistorysno = string;
+        
     }];
 }
+//上传病历
 -(void)updateWithmedicaldetailTwo
 {
     self.datatype = @"png";
@@ -500,11 +520,45 @@ NSString *contentstr = @"病历";
     
      NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.savemedicalhistoryimage.go",HTTPREQUESTPDOMAIN];
     
-    [AFHTTPRequestOpeartionManagerOfme postModifyTheUserHeadRequestWitHUser:urlstr medicalhistorysno:self.medicalhistorysno doctorsno:self.doctorsno and:self.imagedat Completion:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+    if (self.imagedat.length > 10) {
+       
+        [AFHTTPRequestOpeartionManagerOfme postModifyTheUserHeadRequestWitHUser:urlstr medicalhistorysno:self.medicalhistorysno doctorsno:self.doctorsno and:self.imagedat Completion:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+            
+        }];
         
-    }];
+        [self changenowstatenowstate:@"3"];
+        
+    }else{
+    
+        [self changenowstatenowstate:@"2"];
+    }
+    
     
 }
+//改变订单状态
+-(void)changenowstatenowstate:(NSString *)nowstate{
+    
+   
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.savebeautitydetailnowstate.go?doctorsno=%@&orderdetailsno=%@&nowstate=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.orderDetailSno,nowstate];
+    
+    NSLog(@"病历进度nowstate-%@",string);
+    [AFHTTPRequestOpeartionManagerOfme posetchangenowstateWithurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+    }];
+
+}
+
+//项目列表
+-(void)getbeautifyproductlist{
+
+        NSString *string = [NSString stringWithFormat:@"%@/doctor.getbeautifyproductlist.go?doctorsno=%@&orderdetailsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.orderDetailSno];
+    
+    [AFHTTPRequestOpeartionManagerOfme getbeautifyproductlist:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+    }];
+
+}
+
 #pragma mark -- soap请求
 //病历上传界面数据
 -(void)soaprequst2WithdoctorSno:(NSString *)doctorSno orderDetailSno:(NSString *)orderDetailSno

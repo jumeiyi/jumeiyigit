@@ -135,6 +135,60 @@
     
 }
 
+-(void)searchrequestdata{
+
+       NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15&querytype=%@&condition=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.group,self.typeInfo,self.searchcontents];
+    
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)string,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    
+    [AFHTTPRequestOpeartionManagerOfme postmanberplistandurl:encodedString withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+        _sectionindex = array1;
+        _insectionofrow = array2;
+        
+        
+        _sectionary = [[NSMutableArray alloc] initWithCapacity:0];
+        for (int i = 0; i < _insectionofrow.count; i++) {
+            NSMutableArray *rowary = [[NSMutableArray alloc] initWithCapacity:0];
+            NSMutableArray *romnumber = [_insectionofrow objectAtIndex:i];
+            
+            for (int j = 0; j <  romnumber.count;j++) {
+                [rowary addObject:@"y"];
+            }
+            [_sectionary addObject:rowary];
+        }
+        
+        
+        //遍历换掉相同的参数
+        for (int i = 0; i < _sectionary.count; i++) {
+            NSMutableArray *rowary = [_insectionofrow objectAtIndex:i];
+            NSMutableArray *romnumber = [_sectionary objectAtIndex:i];
+            
+            for (int a = 0;a < romnumber.count;a++) {
+                mycustomerdata *romsno = [rowary objectAtIndex:a];
+                
+                for (NSString *str in self.OriginalManberary) {
+                    
+                    if ([str isEqualToString:romsno.sno]) {
+                        [romnumber replaceObjectAtIndex:a withObject:@"xx"];
+                        NSLog(@"romsno.sno,str%@=-==%@",romsno.sno,str);
+                    }
+                }
+            }
+            
+        }
+        
+        
+        [_tableview reloadData];
+    }];
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated
 
 {
@@ -269,9 +323,7 @@
             }
                
             }
-        
-        
-        
+                
        
          [_tableview reloadData];
     }];
@@ -289,7 +341,7 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     self.searchBar.frame = CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f);
-    NSLog(@"%@",searchBar.text);
+    self.searchcontents = searchBar.text;
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
@@ -299,13 +351,18 @@
         return;
     }else{
         
-        //[self soaprequstWithGetProTypePageData:searchBar.text];
-        NSLog(@"searchBar.text---> %@",searchBar.text);
     }
     
     self.searchBar.frame = CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f);
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    
+    NSLog(@"MMMMMMMM");
+    [self.view endEditing:YES];
+    
+    [self searchrequestdata];
+}
 
 - (void)refreshControl:(RefreshControl *)refreshControl didEngageRefreshDirection:(RefreshDirection)direction
 {

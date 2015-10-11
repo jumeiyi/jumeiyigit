@@ -18,6 +18,7 @@
 #import "AFHTTPRequestOpeartionManagerOfme.h"
 #import "mycustomerdata.h"
 #import "UIImageView+WebCache.h"
+#import "GuestbookChatVC.h"
 
 @interface myclientdatasViewController ()
 
@@ -168,22 +169,9 @@
         }
 
         
-        
         cell.age.font = [UIFont systemFontOfSize:14];
         cell.age.textColor = [self colorWithRGB:0x868686 alpha:1];
-        if ([data.agetype isEqualToString:@"150603114228871"]) {
-            cell.age.text = @"年龄:25岁以下 ";
-        }else if ([data.agetype isEqualToString:@"150603114302633"]){
-            cell.age.text = @"年龄:25~30 ";
-        }else if ([data.agetype isEqualToString:@"150603114333287"]){
-            cell.age.text = @"年龄:31~35 ";
-        }else if ([data.agetype isEqualToString:@"150603114418103"]){
-            cell.age.text = @"年龄:36~40 ";
-        }else if ([data.agetype isEqualToString:@"150603114430779"]){
-            cell.age.text = @"年龄:41~45 ";
-        }else{
-            cell.age.text = @"年龄:46岁以上 ";
-        }
+        cell.age.text = [NSString stringWithFormat:@"%@",data.agecount];
         cell.age.frame = CGRectMake(100, 55, [self NSStringwithsize:14 str:cell.age.text], 20);
 
         
@@ -251,12 +239,10 @@
             cell.date.frame = CGRectMake(19, 15, 140, 20);
             cell.date.font = [UIFont systemFontOfSize:12];
             cell.date.textColor = [self colorWithRGB:0x999999 alpha:1];
-            NSString *creatdt = [prodctoer objectForKey:@"CreateDt"];
+            NSString *creatdt = [prodctoer objectForKey:@"createdt"];
             if (creatdt.length > 5) {
             cell.date.text = [NSString stringWithFormat:@"%@",creatdt];
-
             }
-
             
             cell.projectname.frame = CGRectMake(140, 15, 120, 20);
             cell.projectname.text = [prodctoer objectForKey:@"productname"];
@@ -306,9 +292,15 @@
             myclient.customersno = self.customerSno;
                 [self.navigationController pushViewController:myclient animated:YES];
         }else if (indexPath.row == 1){
+            
             [self callphone];
         }else{
         
+            GuestbookChatVC *chat = [[GuestbookChatVC alloc] init];
+            chat.doctorsno = self.doctorsno;
+            chat.customerSno = self.customerSno;
+            NSLog(@"self.doctorsno=%@----self.customerSno=%@",self.doctorsno,self.customerSno);
+            [self.navigationController pushViewController:chat animated:YES];
         }
         
     }else if (indexPath.section == 2){

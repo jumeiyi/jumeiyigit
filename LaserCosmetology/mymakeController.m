@@ -159,6 +159,7 @@
     medicalrecord.phonenumber = doctor.CusPhone;
     medicalrecord.project = doctor.ProductName;
     medicalrecord.date = doctor.BookDt;
+    medicalrecord.OrderSno = doctor.OrderSno;
     [self.navigationController pushViewController:medicalrecord animated:YES];
 }
 
@@ -373,7 +374,7 @@ static NSString *identifier = @"cell";
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-       // NSLog(@"医生里面我的预约资料的数据：dic%@",dic);
+        NSLog(@"医生里面我的预约资料的数据：dic%@",dic);
         
         NSString *state = [dic objectForKey:@"state"];
         

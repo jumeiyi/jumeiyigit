@@ -552,7 +552,7 @@
 
 }
 
-//编辑病历
+//上传病历前获取medicalhistorysno
 +(void)postsEditingmedical:(NSString *)url withblock:(dataBlcok)block{
 
     NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
@@ -570,7 +570,7 @@
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
         
         
-        NSLog(@"AFHTTPRequestOpeartionManager-//编辑病历-%@---- %@",data ,error);
+        NSLog(@"AFHTTPRequestOpeartionManager-上传病历前获取medicalhistorysno-%@---- %@",data ,error);
         
         NSString *errorstring = [data objectForKey:@"ErrorMessage"];
         if (errorstring.length > 10) {
@@ -696,6 +696,7 @@
         NSLog(@"删除病历2：state--%@--msg--%@",dictArray,dctArray);
         }
 
+       
         
         
         block(nil,nil,dctArray);
@@ -927,6 +928,137 @@
     }];
     
     [uploadTask resume];
+
+}
+
+//获取订单详情
++(void)postsetnowstateWithurl:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager--获取订单详情-%@---- %@--",data ,error);
+        
+        
+        NSDictionary *datadiction = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        NSDictionary *medicalhistorydic = [[data objectForKey:@"Content"] objectForKey:@"medicalhistory"];
+        NSString *msg = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        
+        NSLog(@"msg------%@",msg);
+        
+        
+        if ([msg isEqualToString:@"0"]) {
+           
+        }else{
+            
+        }
+        
+        
+        
+        block(nil,nil,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+
+}
+
+//上传病历进度nowstate
++(void)posetchangenowstateWithurl:(NSString *)url withblock:(dataBlcok)block{
+
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager--上传病历进度nowstate-%@---- %@--",data ,error);
+        
+//        
+//        NSDictionary *datadiction = [[data objectForKey:@"Content"] objectForKey:@"data"];
+//        NSDictionary *medicalhistorydic = [[data objectForKey:@"Content"] objectForKey:@"medicalhistory"];
+        
+         NSString *msg = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        
+        NSString *statestr = [NSString stringWithFormat:@"%@",[[data objectForKey:@"Content"] objectForKey:@"state"]];
+        if ([statestr isEqualToString:@"1"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+        
+        block(nil,nil,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+
+}
+
+//医生上传病历界面项目列表
++(void)getbeautifyproductlist:(NSString *)url withblock:(dataBlcok)block
+{
+    
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager--医生上传病历界面项目列表-%@---- %@--",data ,error);
+        
+        
+        //        NSDictionary *datadiction = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        //        NSDictionary *medicalhistorydic = [[data objectForKey:@"Content"] objectForKey:@"medicalhistory"];
+        //        NSString *msg = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        //
+        //        NSLog(@"msg------%@",msg);
+        //
+        //
+        //        if ([msg isEqualToString:@"0"]) {
+        //
+        //        }else{
+        //
+        //        }
+        
+        block(nil,nil,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
 
 }
 
