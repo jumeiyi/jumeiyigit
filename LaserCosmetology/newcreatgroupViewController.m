@@ -96,16 +96,6 @@
     [_manberview addSubview:_subtraction];
     
     
-    UIButton *cancelbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 50, self.view.bounds.size.height - 100, 100, 40)];
-    [cancelbtn setTitle:@"删除分组" forState:UIControlStateNormal];
-    cancelbtn.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
-    cancelbtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    cancelbtn.backgroundColor = [self colorWithRGB:0x00c5bb alpha:1];
-    [cancelbtn addTarget:self action:@selector(cancelgroupbtnclick) forControlEvents:UIControlEventTouchUpInside];
-    cancelbtn.layer.masksToBounds = YES;
-    cancelbtn.layer.cornerRadius = 3;
-    [self.view addSubview:cancelbtn];
-    
     self.gentmanberarrays = [[NSMutableArray alloc] initWithCapacity:0];
     self.manberarray = [[NSMutableArray alloc] initWithCapacity:0];
     self.getmanberarrayIDs = [[NSMutableArray alloc] initWithCapacity:0];
@@ -315,28 +305,7 @@
    
 }
 
--(void)cancelgroupbtnclick
-{
-    //医生删除群组
-    //    /doctor.deletegroup.go
-    //    groupid=group的sno
-    //    doctorsno=医生sno
-    
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.deletegroup.go?groupid=%@&doctorsno=%@",HTTPREQUESTPDOMAIN,self.groupid,self.doctorsno];
-    
-    NSLog(@"删除群组的URL %@",string);
-    
-    [AFHTTPRequestOpeartionManagerOfme postdeletegroup:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-        NSLog(@"string--->%@",string);
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
-        
-    }];
-    
-    
-    
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

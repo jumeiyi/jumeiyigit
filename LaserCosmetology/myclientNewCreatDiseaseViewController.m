@@ -41,7 +41,7 @@
     [topbar addSubview:backbtn];
     
     UIButton *save = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 20, 50, 40)];
-    [save setTitle:@"发送" forState:UIControlStateNormal];
+    [save setTitle:@"保存" forState:UIControlStateNormal];
     save.titleLabel.font = [UIFont systemFontOfSize:16];
     save.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
     [save addTarget:self action:@selector(saveenewThedisease) forControlEvents:UIControlEventTouchUpInside];
@@ -78,7 +78,23 @@
 
 -(void)comebacksaaaza
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否保存编辑？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.tag = 20;
+    [alert show];
+    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 20) {
+        if (buttonIndex == 0) {
+          [self.navigationController popViewControllerAnimated:YES];
+        }else{
+        
+        }
+        
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

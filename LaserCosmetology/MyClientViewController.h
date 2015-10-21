@@ -48,6 +48,7 @@
 @property(nonatomic,assign)BOOL isgroupes;
 @property(nonatomic,assign)BOOL isproject;
 @property(nonatomic,assign)BOOL IsServiced;
+@property(nonatomic,assign)BOOL AllowRefresh;
 @property(nonatomic,retain)NSString *group;
 
 @end

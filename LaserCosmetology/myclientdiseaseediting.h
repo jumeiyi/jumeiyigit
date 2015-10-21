@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "pickerimageViewController.h"
-@interface myclientdiseaseediting : UIViewController<UIImagePickerControllerDelegate,sendvaluedelegate>
+@interface myclientdiseaseediting : UIViewController<UIImagePickerControllerDelegate,sendvaluedelegate,UIAlertViewDelegate>
 
 {
     NSMutableArray *_imagearry;

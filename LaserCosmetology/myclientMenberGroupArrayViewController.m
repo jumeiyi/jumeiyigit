@@ -39,7 +39,7 @@
     [topbar addSubview:backbtn];
     
     UIButton *save = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 20, 50, 40)];
-    [save setTitle:@"保存" forState:UIControlStateNormal];
+    [save setTitle:@"确定" forState:UIControlStateNormal];
     save.titleLabel.font = [UIFont systemFontOfSize:16];
     save.titleLabel.textColor = [self colorWithRGB:0xffffff alpha:1];
     [save addTarget:self action:@selector(startrequestaaa) forControlEvents:UIControlEventTouchUpInside];
@@ -847,8 +847,6 @@
         }else{
             self.typeInfo = @"product";
         }
-        
-        NSLog(@"%ld----%@",indexPath.row,self.typeInfo);
 
         [self shoosebtnclick];
         
@@ -889,7 +887,6 @@
         }
         
         [self addmanberToscrollview];
-        NSLog(@"_getmanberary.count-: %ld",_getmanberary.count);
         
     }
     

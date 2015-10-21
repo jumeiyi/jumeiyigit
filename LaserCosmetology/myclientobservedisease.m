@@ -64,6 +64,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingbtnnot:) name:@"diseaseeditingbtnclick" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancellnot:) name:@"diseasequpingjia" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pusimage:) name:@"pusimage" object:nil];
+    
     _medicalrecorddata = [[NSMutableArray alloc] initWithCapacity:0];
     self.contentshightary = [[NSMutableArray alloc] initWithCapacity:0];
     
@@ -78,12 +80,14 @@
 
 -(void)Getgetmedicalhistorylis
 {
-    [_medicalrecorddata removeAllObjects];
+   
     
     NSString *string = [NSString stringWithFormat:@"%@/doctor.getmedicalhistorylist.go?beautitydetailsno=%@",HTTPREQUESTPDOMAIN,self.beautifydetailsno];
     
     NSLog(@"string-病历订单-URL：%@",string);
     [AFHTTPRequestOpeartionManagerOfme postsGetgetmedicalhistorylis:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+         [_medicalrecorddata removeAllObjects];
         
         _medicalrecorddata = array1;
         
@@ -94,12 +98,17 @@
             NSString *str = [NSString stringWithFormat:@"%f",[self contentsWithnsstring:mymedical.content]];
             [self.contentshightary addObject:str];
         }
+        
+        NSLog(@"请求完毕----%ld",_medicalrecorddata.count);
 
-        [self.mytableview reloadData];
+      [self.mytableview reloadData];
+        
     }];
     
     
 }
+
+
 -(void)editingbtnnot:(NSNotification *)noti
 {
     NSLog(@"编辑  %@",[noti object]);
@@ -169,6 +178,17 @@
     
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 150) {
+        if (buttonIndex == 1) {
+            [self deletemedicalrecords];
+        }else{
+        
+        }
+    }
+
+}
 -(void)cancellnot:(NSNotification *)noti
 {
     NSLog(@"删除 %@",[noti object]);
@@ -178,9 +198,19 @@
     medicalrecord *mymedical = [_medicalrecorddata objectAtIndex:[[noti object] integerValue]];
     
     NSString *string = [NSString stringWithFormat:@"%@/doctor.deletemedicalhistory.go?medicalhistorysno=%@&%ld",HTTPREQUESTPDOMAIN,mymedical.sno,a];
-    NSLog(@"删除病历---%@",string);
+    self.deleteurlstring = string;
     
-    [AFHTTPRequestOpeartionManagerOfme postscancellThemedicalhistory:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否需要删除？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.tag = 150;
+    [alert show];
+
+    
+}
+
+-(void)deletemedicalrecords{
+
+    
+    [AFHTTPRequestOpeartionManagerOfme postscancellThemedicalhistory:self.deleteurlstring withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
         NSLog(@"-返回--%@",string);
         
@@ -189,18 +219,20 @@
             [alert show];
             
         }else{
-        
+            
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"操作失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
         }
         
-         [self Getgetmedicalhistorylis];
+        [self Getgetmedicalhistorylis];
     }];
-    
 }
+
+
 
 -(NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+     NSLog(@"表格区行数----%ld",_medicalrecorddata.count);
     return _medicalrecorddata.count;
 }
 
@@ -211,9 +243,36 @@
     if (!cell) {
         cell = [[myclientobservediseaseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    
+    NSLog(@"UITableViewCell执行-indexPath.row--%ld------_medicalrecorddata.count-%ld",indexPath.row,_medicalrecorddata.count);
     medicalrecord *mymedical = [_medicalrecorddata objectAtIndex:indexPath.row];
-    NSArray *imageurl = [mymedical.imagelist componentsSeparatedByString:@","];
+    NSMutableArray *imageurl = [[NSMutableArray alloc] initWithCapacity:0];
+   NSArray *imagestring = [mymedical.imagelist componentsSeparatedByString:@","];
+    for (NSString *str in imagestring) {
+        if (str.length > 10) {
+            [imageurl addObject:str];
+        }
+    }
+    NSLog(@"incell--mymedical.imagelist=%@",mymedical.imagelist);
+    
+    cell.btn1.frame = CGRectMake(0, 0, 0, 0);
+    cell.btn1.userInteractionEnabled = NO;
+    cell.btn2.frame = CGRectMake(0, 0, 0, 0);
+    cell.btn2.userInteractionEnabled = NO;
+    cell.btn3.frame = CGRectMake(0, 0, 0, 0);
+    cell.btn3.userInteractionEnabled = NO;
+    cell.date.frame = CGRectMake(0, 0, 0, 0);
+    cell.date.text = @"";
+    cell.editingbtn.frame = CGRectMake(0, 0, 0, 0);
+    cell.cancell.frame = CGRectMake(0, 0, 0, 0);
+    cell.contents.frame = CGRectMake(0, 0, 0, 0);
+    cell.contents.text = @"";
+    cell.image1.frame = CGRectMake(0, 0, 0, 0);
+    [cell.image1 sd_setImageWithURL:[NSURL URLWithString:@""]];
+    cell.image2.frame = CGRectMake(0, 0, 0, 0);
+    [cell.image2 sd_setImageWithURL:[NSURL URLWithString:@""]];
+    cell.image3.frame = CGRectMake(0, 0, 0, 0);
+    [cell.image3 sd_setImageWithURL:[NSURL URLWithString:@""]];
+    
     
     cell.date.frame = CGRectMake(15, 19, 150, 20);
     cell.date.font = [UIFont systemFontOfSize:15];
@@ -241,6 +300,8 @@
     cell.contents.text = mymedical.content;
     
 
+
+    
     NSString *contentshight = [self.contentshightary objectAtIndex:indexPath.row];
     float hight = [contentshight floatValue];
     
@@ -249,6 +310,9 @@
         NSString *imstring = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str1];
         cell.image1.frame = CGRectMake(15, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
         [cell.image1 sd_setImageWithURL:[NSURL URLWithString:imstring]];
+        
+        cell.btn1.frame = CGRectMake(15, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
+        cell.btn1.userInteractionEnabled = YES;
     }
     
     if (imageurl.count > 1){
@@ -257,7 +321,10 @@
         NSString *imstring2 = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str2];
         cell.image2.frame = CGRectMake(15 + (self.view.bounds.size.width - 40)/3 + 5, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
         [cell.image2 sd_setImageWithURL:[NSURL URLWithString:imstring2]];
+
         
+        cell.btn2.frame = CGRectMake(15 + (self.view.bounds.size.width - 40)/3 + 5, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
+        cell.btn2.userInteractionEnabled = YES;
     }
     
     if (imageurl.count > 2){
@@ -265,6 +332,10 @@
         NSString *imstring3 = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str3];
         cell.image3.frame = CGRectMake(15 + ((self.view.bounds.size.width - 40)/3 * 2) + 10, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
         [cell.image3 sd_setImageWithURL:[NSURL URLWithString:imstring3]];
+
+        
+        cell.btn3.frame = CGRectMake(15 + ((self.view.bounds.size.width - 40)/3 * 2) + 10, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
+        cell.btn3.userInteractionEnabled = YES;
     }
     
     return cell;
@@ -332,5 +403,99 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)pusimage:(NSNotification *)notifier
+{
+    // NSInteger str = [[notifier object] integerValue];
+    
+    
+    NSArray *str1 = [[notifier object] componentsSeparatedByString:@"/"];
+    NSString *indexpathpistr = [str1 objectAtIndex:0];
+    NSString *indexpathrow = [str1 objectAtIndex:1];
+    
+    
+    medicalrecord *mymedical = [_medicalrecorddata objectAtIndex:[indexpathrow integerValue]];
+    NSMutableArray *imageurl = [[NSMutableArray alloc] initWithCapacity:0];
+    NSArray *imagestring = [mymedical.imagelist componentsSeparatedByString:@","];
+    for (NSString *str in imagestring) {
+        if (str.length > 10) {
+            [imageurl addObject:str];
+        }
+    }
+
+    
+    if (_imagebackview == nil) {
+        _imagebackview = [[UIView alloc] initWithFrame:self.view.bounds];
+        _imagebackview.backgroundColor = [UIColor blackColor];
+        _imagebackview.alpha = 0.9;
+        [self.view addSubview:_imagebackview];
+    }
+    
+    if (_imagetunningview == nil) {
+        _imagetunningview = [[UIView alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width , self.view.bounds.size.width)];
+        _imagetunningview.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:_imagetunningview];
+    }
+    
+    UIScrollView *imagescrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 100)];
+    imagescrollview.contentSize = CGSizeMake(imageurl.count * self.view.bounds.size.width, 0);
+    imagescrollview.contentOffset = CGPointMake(self.view.bounds.size.width * ([indexpathpistr integerValue] - 120), 0);
+    imagescrollview.pagingEnabled = YES;
+    [_imagetunningview addSubview:imagescrollview];
+    
+    
+    UIView *blackview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, imageurl.count * self.view.bounds.size.width, self.view.bounds.size.height - 100)];
+    blackview.backgroundColor = [UIColor blackColor];
+    [imagescrollview addSubview:blackview];
+    
+
+    
+    NSLog(@"图片数量--%ld----URL：%@",imageurl.count,imageurl);
+    for (int i = 0; i < imageurl.count; i++) {//[picstrarray objectAtIndex:i]
+        
+        NSString *str2 = [imageurl objectAtIndex:i];
+        NSString *imstring2 = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str2];
+        
+        NSLog(@"imstring2 = %@",imstring2);
+        UIImageView *scrollimagev2 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * i, 0,self.view.bounds.size.width,100)];
+        [scrollimagev2 sd_setImageWithURL:[NSURL URLWithString:imstring2] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+            NSLog(@"scrollimagev2.image.size.height{%f",scrollimagev2.image.size.height);
+            
+            if (scrollimagev2.image.size.height > 0) {
+               scrollimagev2.frame = CGRectMake(self.view.bounds.size.width * i, 0, self.view.bounds.size.width, scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width));
+            }else{
+            
+            }
+            
+        }];
+        
+        scrollimagev2.userInteractionEnabled = YES;
+        [imagescrollview addSubview:scrollimagev2];
+        
+        UIButton *scrollimagev = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * i, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
+        // [scrollimagev sd_setBackgroundImageWithURL:[NSURL URLWithString:[picstrarray objectAtIndex:i]] forState:UIControlStateNormal];
+        scrollimagev.backgroundColor = [UIColor clearColor];
+        [scrollimagev addTarget:self action:@selector(imageoffbuttunclick:) forControlEvents:UIControlEventTouchUpInside];
+        [imagescrollview addSubview:scrollimagev];
+        
+    }
+    
+    
+        //关闭按钮
+    UIButton *off = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
+    [off addTarget:self action:@selector(imageoffbuttunclick:) forControlEvents:UIControlEventTouchUpInside];
+    [imagescrollview addSubview:off];
+    
+}
+-(void)imageoffbuttunclick:(UIButton *)btn
+{
+    
+    NSLog(@"关闭");
+    [_imagebackview removeFromSuperview];
+    _imagebackview = nil;
+    [_imagetunningview removeFromSuperview];
+    _imagetunningview = nil;
+}
 
 @end

@@ -128,6 +128,9 @@
     _refreshControl.topEnabled=YES;
     //_refreshControl.bottomEnabled=YES;//会崩
     
+    _headnamearray = [[NSMutableArray alloc] initWithCapacity:0];
+    _allgroup = [[NSMutableArray alloc] initWithCapacity:0];
+
     
     _mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
     
@@ -142,6 +145,7 @@
     self.isproject = NO;
     self.IsServiced = YES;
     self.group = @"serviced";
+    self.AllowRefresh = NO;
     
     [self startrequest];
     
@@ -151,6 +155,8 @@
 
 -(void)creattableview
 {
+    
+    NSLog(@"creattableview");
     if (!_tableview) {
         _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 67 + 62, self.view.bounds.size.width, self.view.bounds.size.height - (67 + 62))];
         _tableview.delegate = self;
@@ -161,6 +167,7 @@
         _tableview.tag = 60;
         [self.view addSubview:_tableview];
     }else{
+        
         [_tableview reloadData];
     }
 
@@ -455,6 +462,8 @@
     if (tableView.tag == 60) {
 
         if (self.IsServiced == YES) {
+            
+            NSLog(@"self.IsServiced == YES A-%ld",_allgroup.count);
             if (section == 0) {
                 return 1;
             }else{
@@ -462,6 +471,9 @@
                 return ary1.count;
             }
         }else{
+            
+            NSLog(@"self.IsServiced == NO B %ld",_allgroup.count);
+            
               NSMutableArray *ary1 = [_allgroup objectAtIndex:section];
             return ary1.count;
         }
@@ -470,6 +482,7 @@
     }else if (tableView.tag == 62){
         return _groups.count;
     }else {
+        
         return 2;
     }
     
@@ -478,7 +491,11 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (tableView.tag == 60) {
+
+    
+    if (tableView.tag == 60 && self.AllowRefresh == YES) {
+        
+        NSLog(@"self.AllowRefresh = %d",self.AllowRefresh);
         
         static NSString *identifier = @"cell";
         
@@ -509,6 +526,7 @@
         cell.project3.frame = CGRectMake(0, 0, 0, 0);
         cell.project3.backgroundColor = [UIColor redColor];
         cell.project3.text = @"";
+        
 
         if (self.IsServiced == YES) {
             if (indexPath.section == 0) {
@@ -627,8 +645,14 @@
  
         }else{
             
+            NSLog(@"cellForRowAtIndexPath");
+            
+            NSLog(@"_allgroup.count = %ld",_allgroup.count);
+
+            
             NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
             mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
+
             
             NSArray *proudctorary = [customer.buyproductnames componentsSeparatedByString:@","];
             
@@ -730,12 +754,12 @@
 
 
             
-
+           
             
         }
         
         
-        
+       
         return cell;
 
     }else if (tableView.tag == 62){
@@ -759,10 +783,14 @@
         if (!cell3) {
             cell3 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         }
-        cell3.textLabel.text = [_shooesproject objectAtIndex:indexPath.row];
-        cell3.textLabel.font = [UIFont systemFontOfSize:15];
-        cell3.textLabel.textColor = [UIColor whiteColor];
-        cell3.backgroundColor = [UIColor clearColor];
+        NSLog(@"_shooesproject.count : %ld",_shooesproject.count);
+        if (self.AllowRefresh == YES) {
+            cell3.textLabel.text = [_shooesproject objectAtIndex:indexPath.row];
+            cell3.textLabel.font = [UIFont systemFontOfSize:15];
+            cell3.textLabel.textColor = [UIColor whiteColor];
+            cell3.backgroundColor = [UIColor clearColor];
+        }
+
         
         return cell3;
         
@@ -846,6 +874,9 @@
         [self shoosebtnclick];
 
         }else if (tableView.tag == 62){
+            
+            self.AllowRefresh = NO;
+            
         if (indexPath.row != 0) {
             self.IsServiced = NO;
             [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
@@ -855,8 +886,8 @@
             _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
             
             [self groupsbuttonclick];
-            
             [self startrequest];
+            
             _tableview.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
             
         }else{
@@ -869,11 +900,10 @@
             _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
             
             [self groupsbuttonclick];
-         
-            
-            [_tableview reloadData];
-             _tableview.frame = CGRectMake(0,67 + 62, self.view.bounds.size.width, self.view.bounds.size.height - (67 + 62));
             [self startrequest];
+            
+             _tableview.frame = CGRectMake(0,67 + 62, self.view.bounds.size.width, self.view.bounds.size.height - (67 + 62));
+            
         }
         self.group = [_groupIDarray objectAtIndex:indexPath.row];
         
@@ -950,120 +980,154 @@
     
     NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15&querytype=%@&condition=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.group,self.typeInfo,self.searchcontents];
     
+        NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                         (CFStringRef)string,
+                                                                                                         NULL,
+                                                                                                         NULL,
+                                                                                                         kCFStringEncodingUTF8));
     
     NSLog(@"客户数据搜索--%@",string);
-    [self requstwithurl:string];
+//    [self requstwithurl:string];
+    
+    [AFHTTPRequestOpeartionManagerOfme postmanberplistandurl:encodedString withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+        _headnamearray = array1;
+        _allgroup = array2;
+        
+        self.AllowRefresh = YES;
+        [self creattableview];
+    }];
 
 }
 
-//页面数据
 -(void)startrequest
 {
-    NSLog(@"self.group3--%@",self.group);
     
     NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.group];
     
-   
-    NSLog(@"客户数据-aA--%@",string);
-    [self requstwithurl:string];
+    
+    [AFHTTPRequestOpeartionManagerOfme postmanberplistandurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+        _headnamearray = array1;
+        _allgroup = array2;
+        
+        NSLog(@"_headnamearray : %@------_allgroup-%@",_headnamearray,_allgroup);
+        
+
+        self.AllowRefresh = YES;
+        [self creattableview];
+        
+    }];
+    
 }
+
+
+//页面数据
+//-(void)startrequest
+//{
+//    
+//    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.group];
+//    
+//    NSLog(@"startrequest");
+//    [self requstwithurl:string];
+//    
+//}
 
 #pragma mark  request
 
--(void)requstwithurl:(NSString *)str
-{
-    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                                                     (CFStringRef)str,
-                                                                                                     NULL,
-                                                                                                     NULL,
-                                                                                                     kCFStringEncodingUTF8));
-    
-    NSURL *urlstr = [NSURL URLWithString:encodedString];
-    
-    NSURLRequest *requst = [NSURLRequest requestWithURL:urlstr];
-    
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:requst delegate:self];
-    
-    [connection start];
-    
-    NSLog(@"url--------%@",urlstr);
-}
-
-#pragma mark  requestdelegate
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"请求失败");
-}
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSLog(@"收到响应");
-    
-    [_data setData:[NSData data]];
-}
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSLog(@"请求数据接收");
-    [_data appendData:data];
-    
-}
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    
-//     NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
+//-(void)requstwithurl:(NSString *)str
+//{
+//    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+//                                                                                                     (CFStringRef)str,
+//                                                                                                     NULL,
+//                                                                                                     NULL,
+//                                                                                                     kCFStringEncodingUTF8));
 //    
-//    NSLog(@"str------》%@",str);
-    
-    //JSON解析器
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
-    
-    NSLog(@"000000------------%@",dic);
-    
-    NSString *state = [dic objectForKey:@"state"];
-    
-    NSString *msg = [dic objectForKey:@"msg"];
-    
-    
-        [_mycustomerDataarray removeAllObjects];
-    
-    
-    
-    NSDictionary *customerData = [dic objectForKey:@"Content"];
-    NSMutableArray *dataary = [customerData objectForKey:@"data"];
-    
-    
-     _headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
-    NSString *stra;
-    for (NSDictionary *mycusdiction in dataary) {
-        mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-            if (![stra isEqualToString:mycustom.firstsearchword]) {
-                 [_headnamearray addObject:mycustom.firstsearchword];
-            }
-        stra = mycustom.firstsearchword;
-        [_mycustomerDataarray addObject:mycustom];
-        }
-    
-    
-    [_allgroup removeAllObjects];
-    _allgroup = [[NSMutableArray alloc] initWithCapacity:0];//每一个区的数据
-        for (NSString *str in _headnamearray) {
-             NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
-            for (mycustomerdata *mydata in _mycustomerDataarray) {
-                if ([mydata.firstsearchword isEqualToString:str]) {
-                    [indexary addObject:mydata];
-                }
-            }
-           [_allgroup addObject:indexary];
-        }
-    
-    
-    if ([state isEqualToString:@"0"]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
-    }
-    
-    [self creattableview];
-    
-}
-
+//    NSURL *urlstr = [NSURL URLWithString:encodedString];
+//    
+//    NSURLRequest *requst = [NSURLRequest requestWithURL:urlstr];
+//    
+//    NSURLConnection *connection = [NSURLConnection connectionWithRequest:requst delegate:self];
+//    
+//    [connection start];
+//    
+//    
+//}
+//
+//#pragma mark  requestdelegate
+//-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+//{
+//    NSLog(@"请求失败");
+//}
+//-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+//{
+//    NSLog(@"收到响应");
+//    
+//    [_data setData:[NSData data]];
+//}
+//-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+//{
+//    NSLog(@"请求数据接收");
+//    [_data appendData:data];
+//    
+//}
+//-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+//{
+//    
+////     NSString *str = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
+////    
+////    NSLog(@"str------》%@",str);
+//    
+//    //JSON解析器
+//    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
+//    
+//   // NSLog(@"000000------------%@",dic);
+//    
+//    NSString *state = [dic objectForKey:@"state"];
+//    
+//    NSString *msg = [dic objectForKey:@"msg"];
+//    
+//    
+//        [_mycustomerDataarray removeAllObjects];
+//    
+//    NSLog(@"connectionDidFinishLoading");
+//    NSDictionary *customerData = [dic objectForKey:@"Content"];
+//    NSMutableArray *dataary = [customerData objectForKey:@"data"];
+//    
+//    
+//     _headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
+//    NSString *stra;
+//    for (NSDictionary *mycusdiction in dataary) {
+//        mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
+//            if (![stra isEqualToString:mycustom.firstsearchword]) {
+//                 [_headnamearray addObject:mycustom.firstsearchword];
+//            }
+//        stra = mycustom.firstsearchword;
+//        [_mycustomerDataarray addObject:mycustom];
+//        }
+//    
+//    
+//    [_allgroup removeAllObjects];
+//    _allgroup = [[NSMutableArray alloc] initWithCapacity:0];//每一个区的数据
+//        for (NSString *str in _headnamearray) {
+//             NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
+//            for (mycustomerdata *mydata in _mycustomerDataarray) {
+//                if ([mydata.firstsearchword isEqualToString:str]) {
+//                    [indexary addObject:mydata];
+//                }
+//            }
+//           [_allgroup addObject:indexary];
+//        }
+//    
+//    
+//    if ([state isEqualToString:@"0"]) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//        [alert show];
+//    }
+//    
+//    [self creattableview];
+//    
+//}
+//
 
 @end

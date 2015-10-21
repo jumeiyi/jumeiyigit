@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "pickerimageViewController.h"
 
-@interface myclientNewCreatDiseaseViewController : UIViewController<sendvaluedelegate>
+@interface myclientNewCreatDiseaseViewController : UIViewController<sendvaluedelegate,UIAlertViewDelegate>
 
 {
     UIView *_editingview;

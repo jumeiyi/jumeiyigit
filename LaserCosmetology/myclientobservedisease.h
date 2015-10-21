@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "RefreshControl.h"
 
-@interface myclientobservedisease : UIViewController<UITableViewDataSource,UITableViewDelegate,RefreshControlDelegate>
+@interface myclientobservedisease : UIViewController<UITableViewDataSource,UITableViewDelegate,RefreshControlDelegate,UIAlertViewDelegate>
 
 {
     NSMutableArray *_medicalrecorddata;
     
     RefreshControl *_refreshControl;
+    
+    UIView *_imagebackview;
+    UIView *_imagetunningview;
+    
 
 }
 @property (nonatomic,strong)RefreshControl * refreshControl;
@@ -25,4 +29,5 @@
 @property(nonatomic,retain)NSString *customerSno;
 @property(nonatomic,retain)NSString *detailsno;
 @property(nonatomic,retain)NSMutableArray *contentshightary;
+@property(nonatomic,retain)NSString *deleteurlstring;
 @end

@@ -323,6 +323,14 @@
 //    groupid=group的sno
 //    doctorsno=医生sno
     
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否需要删除？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.tag = 80;
+    [alert show];
+    
+}
+
+-(void)gotocancelgroupbtnclick{
+
     NSString *string = [NSString stringWithFormat:@"%@/doctor.deletegroup.go?groupid=%@&doctorsno=%@",HTTPREQUESTPDOMAIN,self.groupid,self.doctorsno];
     
     NSLog(@"删除群组的URL %@",string);
@@ -336,9 +344,23 @@
         [self.navigationController popViewControllerAnimated:YES];
         
     }];
-    
-    
-   
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 80) {
+        if (buttonIndex == 1) {
+            [self gotocancelgroupbtnclick];
+        }
+    }
+
+    if (alertView.tag == 81) {
+        if (buttonIndex == 0) {
+           [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [self savebtnclick];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -394,7 +416,11 @@
 
 -(void)comebacksaaa
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否保存？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.tag = 81;
+    [alert show];
+    
+
 }
 
 @end

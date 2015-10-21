@@ -193,7 +193,8 @@
     
     NSString *str = [NSString stringWithFormat:@"%ld/%ld",indexPath.row,btn.tag];
   
-[[NSNotificationCenter defaultCenter] postNotificationName:@"imagebuttonclick" object:str];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"imagebuttonclick" object:str];
+    
 }
 
 @end

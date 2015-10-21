@@ -63,5 +63,7 @@ typedef void(^dataBlcok2)(NSMutableArray *array1,NSMutableArray *array2,NSMutabl
 //医生上传病历界面项目列表
 +(void)getbeautifyproductlist:(NSString *)url withblock:(dataBlcok)block;
 
+//保存编辑的病历
++(void)savermediclhistoryWithurl:(NSString *)url withblock:(dataBlcok)block;
 
 @end

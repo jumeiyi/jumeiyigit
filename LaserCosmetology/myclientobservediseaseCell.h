@@ -19,5 +19,8 @@
 @property(nonatomic,retain)UIImageView *image2;
 @property(nonatomic,retain)UIImageView *image3;
 
+@property(nonatomic,retain)UIButton *btn1;
+@property(nonatomic,retain)UIButton *btn2;
+@property(nonatomic,retain)UIButton *btn3;
 
 @end

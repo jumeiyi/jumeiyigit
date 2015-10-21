@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface myclientmenbergroupViewController : UIViewController
+@interface myclientmenbergroupViewController : UIViewController<UIAlertViewDelegate>
 
 {
     

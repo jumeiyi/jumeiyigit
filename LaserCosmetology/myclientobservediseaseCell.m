@@ -49,6 +49,21 @@
         self.image3 = [[UIImageView alloc] init];
         [self addSubview:self.image3];
         
+        self.btn1 = [[UIButton alloc] init];
+        [self.btn1 addTarget:self action:@selector(btnclick:) forControlEvents:UIControlEventTouchUpInside];
+        self.btn1.tag = 120;
+        [self addSubview:self.btn1];
+        
+        self.btn2 = [[UIButton alloc] init];
+        [self.btn2 addTarget:self action:@selector(btnclick:) forControlEvents:UIControlEventTouchUpInside];
+        self.btn2.tag = 121;
+        [self addSubview:self.btn2];
+        
+        self.btn3 = [[UIButton alloc] init];
+        [self.btn3 addTarget:self action:@selector(btnclick:) forControlEvents:UIControlEventTouchUpInside];
+        self.btn3.tag = 122;
+        [self addSubview:self.btn3];
+        
         
     }
 
@@ -63,6 +78,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"diseaseeditingbtnclick" object:[NSString stringWithFormat:@"%ld",indexPath.row]];
 }
+
 -(void)cancellclick:(UIButton *)button {
 
     UITableViewCell *cell = (UITableViewCell*) [button superview];
@@ -71,5 +87,19 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"diseasequpingjia" object:[NSString stringWithFormat:@"%ld",indexPath.row]];
 }
+
+-(void)btnclick:(UIButton *)btn
+{
+
+    UITableViewCell *cell = (UITableViewCell*) [btn superview];
+    UITableView *table = (UITableView*)[[[btn superview] superview] superview];
+    NSIndexPath *indexPath = [table indexPathForCell:cell];
+    
+    
+    NSLog(@"btn.tag= %ld-----indexPath.row = %ld",btn.tag,indexPath.row);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pusimage" object:[NSString stringWithFormat:@"%ld/%ld",btn.tag,indexPath.row]];
+}
+
 
 @end

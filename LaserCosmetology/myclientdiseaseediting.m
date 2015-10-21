@@ -120,20 +120,19 @@
     NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&medicalhistorysno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.medicalhistorysno,self.content];
     NSLog(@"保存编辑url=%@",string);
     
-    [AFHTTPRequestOpeartionManagerOfme postsEditingmedical:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-        
+
+    
+    [AFHTTPRequestOpeartionManagerOfme savermediclhistoryWithurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+       
         [self upImageData];
-        
         [self changimage];
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 
 }
 
 //新增图片
 -(void)upImageData{
-
-
-    
     
     NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.savemedicalhistoryimage.go",HTTPREQUESTPDOMAIN];
     
@@ -143,11 +142,9 @@
         
         [AFHTTPRequestOpeartionManagerOfme postModifyTheUserHeadRequestWitHUser:urlstr medicalhistorysno:self.medicalhistorysno doctorsno:self.doctorsno and:imagedata Completion:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
             
-            
         }];
     }
     
-    //[self.navigationController popViewControllerAnimated:YES];
 }
 
 //上传修改图片
@@ -202,12 +199,25 @@
         }];
     }
     
-
-
     
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 10) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    if (alertView.tag == 11) {
+        
+        if (buttonIndex == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+        }else{
+        [self saverediting];
+        }
+    }
 
+}
 -(void)shooseimages{
     
     pickerimageViewController *picker = [[pickerimageViewController alloc] init];
@@ -250,6 +260,7 @@
     
     NSLog(@"_imagearry.count=%ld-----",_imagearry.count);
 }
+
 -(void)creatimagebtn
 {
     
@@ -302,9 +313,9 @@
     
     
 }
+
 -(void)addimageTothebutton
 {
-    NSLog(@"self.imageURLary.count--%ld",self.imageURLary.count);
     
     if (self.imageURLary.count > 0) {
         NSDictionary *imageurdic = [self.imageURLary objectAtIndex:0];
@@ -326,11 +337,10 @@
     if (self.imageURLary.count > 2){
         NSDictionary *imageurdic = [self.imageURLary objectAtIndex:2];
         NSString *imageurl = [imageurdic objectForKey:@"url"];
-        [self.imagebtn2 sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,imageurl]] forState:UIControlStateNormal];
-        self.imagebtn2.userInteractionEnabled = YES;
+        [self.imagebtn3 sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,imageurl]] forState:UIControlStateNormal];
+        self.imagebtn3.userInteractionEnabled = YES;
     
     }
-    
     
     
     float width0 = (self.view.bounds.size.width - (12 * 4))/3;
@@ -366,24 +376,27 @@
             [self.addimagebtn addTarget:self action:@selector(imageshoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
             self.addimagebtn.tag = 10;
             [_editingview addSubview:self.addimagebtn];
-
         }
 
-        
     }else{
-    
-        NSInteger xn = self.imageURLary.count % 3;
-        NSInteger yn = self.imageURLary.count / 3;
-        int x = (12 + width0) * xn + 12;
-        int y = (12 + heiht0) * yn + 170;
         
-        [self.addimagebtn removeFromSuperview];
-        self.addimagebtn = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width0, heiht0)];
-        [self.addimagebtn setBackgroundImage:[UIImage imageNamed:@"fangxingjia"] forState:UIControlStateNormal];
-        [self.addimagebtn addTarget:self action:@selector(imageshoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
-        self.addimagebtn.tag = 10;
-        [_editingview addSubview:self.addimagebtn];
-    
+        if (self.imageURLary.count >= 3) {
+            
+        }else{
+        
+            NSInteger xn = self.imageURLary.count % 3;
+            NSInteger yn = self.imageURLary.count / 3;
+            int x = (12 + width0) * xn + 12;
+            int y = (12 + heiht0) * yn + 170;
+            
+            [self.addimagebtn removeFromSuperview];
+            self.addimagebtn = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width0, heiht0)];
+            [self.addimagebtn setBackgroundImage:[UIImage imageNamed:@"fangxingjia"] forState:UIControlStateNormal];
+            [self.addimagebtn addTarget:self action:@selector(imageshoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
+            self.addimagebtn.tag = 10;
+            [_editingview addSubview:self.addimagebtn];
+        }
+        
     }
     
     
@@ -391,7 +404,6 @@
         [self.imagebtn1 setBackgroundImage:self.image forState:UIControlStateNormal];
         self.imagebtn1.userInteractionEnabled = YES;
     }
-
     
     if (self.shoosebuttonindex == 11) {
         [self.imagebtn2 setBackgroundImage:self.image2 forState:UIControlStateNormal];
@@ -402,8 +414,6 @@
         [self.imagebtn3 setBackgroundImage:self.image3 forState:UIControlStateNormal];
         self.imagebtn3.userInteractionEnabled = YES;
     }
-    
-
     
     
 }
@@ -469,7 +479,10 @@
 
 -(void)comebacksaaazz
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否需要保存?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.tag = 11;
+    [alert show];
+    
 }
 
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{

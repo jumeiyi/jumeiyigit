@@ -38,7 +38,7 @@
     [self.view addSubview:topbar];
     
     UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-    titilelable.text = @"客户姓名";
+    titilelable.text = @"客户资料";
     titilelable.textColor = [UIColor whiteColor];
     titilelable.font = [UIFont systemFontOfSize:22];
     titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
@@ -62,8 +62,13 @@
     _data = [[NSMutableArray alloc] initWithCapacity:0];
     self.beautitylistdataary = [[NSMutableArray alloc] initWithCapacity:0];
 
-    [self startrequest];
     
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self startrequest];
 }
 
 -(void)startrequest
@@ -86,7 +91,7 @@
     }];
     
     
-    NSString *string2 = [NSString stringWithFormat:@"%@/doctor.hasfocused.go?customersno=%@&doctorsno=%@",HTTPREQUESTPDOMAIN,self.customerSno,self.doctorsno];
+    NSString *string2 = [NSString stringWithFormat:@"%@/doctor.isfollowed.go?customersno=%@&doctorsno=%@",HTTPREQUESTPDOMAIN,self.customerSno,self.doctorsno];
     
     [AFHTTPRequestOpeartionManagerOfme postsattentionTOMe:string2 withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
@@ -299,7 +304,6 @@
             GuestbookChatVC *chat = [[GuestbookChatVC alloc] init];
             chat.doctorsno = self.doctorsno;
             chat.customerSno = self.customerSno;
-            NSLog(@"self.doctorsno=%@----self.customerSno=%@",self.doctorsno,self.customerSno);
             [self.navigationController pushViewController:chat animated:YES];
         }
         

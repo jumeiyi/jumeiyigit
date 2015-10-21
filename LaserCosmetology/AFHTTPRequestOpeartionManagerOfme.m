@@ -738,14 +738,14 @@
 //        NSString *dictArray = [[responseObject objectForKey:@"Content"] objectForKey:@"msg"];
         NSString *dctArray = [[responseObject objectForKey:@"Content"] objectForKey:@"state"];
         
-        NSString *statestr = [NSString stringWithFormat:@"%@",dctArray];
-        if ([statestr isEqualToString:@"1"]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
-        }
+//        NSString *statestr = [NSString stringWithFormat:@"%@",dctArray];
+//        if ([statestr isEqualToString:@"1"]) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
+//        }else{
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
+//        }
         
     }];
     
@@ -915,14 +915,14 @@
         NSString *dictArray = [[responseObject objectForKey:@"Content"] objectForKey:@"msg"];
         NSString *dctArray = [[responseObject objectForKey:@"Content"] objectForKey:@"state"];
         
-        NSString *statestr = [NSString stringWithFormat:@"%@",dctArray];
-        if ([statestr isEqualToString:@"1"]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
-        }
+//        NSString *statestr = [NSString stringWithFormat:@"%@",dctArray];
+//        if ([statestr isEqualToString:@"1"]) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
+//        }else{
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"图片添加失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
+//        }
         
         
     }];
@@ -1061,6 +1061,51 @@
 
 
 }
+
+//保存编辑的病历
++(void)savermediclhistoryWithurl:(NSString *)url withblock:(dataBlcok)block{
+
+    
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager--保存编辑的病历-%@---- %@--",data ,error);
+        
+        
+                NSDictionary *datadiction = [[data objectForKey:@"Content"] objectForKey:@"data"];
+                NSDictionary *medicalhistorydic = [[data objectForKey:@"Content"] objectForKey:@"medicalhistory"];
+                NSString *msg = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        
+                NSLog(@"msg------%@",msg);
+        
+        
+                if ([msg isEqualToString:@"0"]) {
+        
+                }else{
+        
+                }
+        
+        block(nil,nil,msg);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+
+}
+
+
 
 + (void)checkNetWorkStatus{
     

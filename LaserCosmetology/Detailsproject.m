@@ -127,7 +127,7 @@
     }else{
         
          NSLog(@"是否进来CommomDoctor");
-        UIAlertView *alerter = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您不是客户，请去个人中心登录！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+        UIAlertView *alerter = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您还未登录客户端哦，请去个人中心登录！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
         [alerter show];
     }
 
