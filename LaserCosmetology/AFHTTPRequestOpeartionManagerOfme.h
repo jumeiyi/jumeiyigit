@@ -66,4 +66,7 @@ typedef void(^dataBlcok2)(NSMutableArray *array1,NSMutableArray *array2,NSMutabl
 //保存编辑的病历
 +(void)savermediclhistoryWithurl:(NSString *)url withblock:(dataBlcok)block;
 
+
+
+
 @end

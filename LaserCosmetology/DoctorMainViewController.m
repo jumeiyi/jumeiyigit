@@ -25,6 +25,8 @@
 #import "QRCodeReader.h"
 #import "HuQiJingsharManage.h"
 #import "PrefixHeader.pch"
+#import "AFHTTPRequestOpeartionManagerOfme.h"
+
 @interface DoctorMainViewController ()
 
 @end
@@ -95,7 +97,7 @@
     Sharebuttun.tag = 12;
     [Sharebuttun addTarget:self action:@selector(doctersbuttonclick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:Sharebuttun];
-    
+
     //我的收益
     UIImageView *myProfit = [[UIImageView alloc] initWithFrame:CGRectMake(10, [self heigthwithnumber:1], withd, buttonH)];
     myProfit.image = [UIImage imageNamed:@"wodeyuyue"];
@@ -160,7 +162,7 @@
     [CustomerEvaluationbuttun addTarget:self action:@selector(doctersbuttonclick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:CustomerEvaluationbuttun];
     
-    _monaay = [[NSArray alloc] initWithObjects:@"01",@"02", @"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",nil];
+    _monaay = [[NSArray alloc] initWithObjects:@"星期一",@"星期二", @"星期三",@"星期四",@"星期五",@"星期六",@"星期日",nil];
     
 //    UIButton *erweima = [[UIButton alloc] initWithFrame:CGRectMake(150, self.view.bounds.size.height - 140, 100, 100)];
 //    erweima.backgroundColor = [UIColor clearColor];
@@ -171,17 +173,51 @@
 //    [erweima addTarget:self action:@selector(scanAction:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:erweima];
     
-   
-   
     
-    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    tabBarimage.image = [UIImage imageNamed:@"首页1_04ss"];
+//    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+//    tabBarimage.image = [UIImage imageNamed:@"首页1_04ss"];
+//    [self.view addSubview:tabBarimage];
+//    
+//    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+//    [self.view addSubview:botom];
+    
+    float imageX = self.view.bounds.size.width/5;
+    
+    UIImageView *tabBarimage0 = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+    tabBarimage0.image = [UIImage imageNamed:@"diseq"];
+    [self.view addSubview:tabBarimage0];
+    
+    
+    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 1,self.view.bounds.size.height - botomerhight, imageX - 10, botomerhight)];
+    tabBarimage.image = [UIImage imageNamed:@"anjianzuo"];
     [self.view addSubview:tabBarimage];
+    
+    UIImageView *tabBarimage2 = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 3,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
+    tabBarimage2.image = [UIImage imageNamed:@"anjianyoub"];
+    [self.view addSubview:tabBarimage2];
     
     BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
     [self.view addSubview:botom];
     
-   
+    NSDate*date = [NSDate date];
+    NSString *date1 = [self weekdayStringFromDate:date];
+    
+    if ([date1 isEqualToString:@"周一"]) {
+        self.weekCount = 1;
+    }else if ([date1 isEqualToString:@"周二"]){
+        self.weekCount = 2;
+    }else if ([date1 isEqualToString:@"周三"]){
+        self.weekCount = 3;
+    }else if ([date1 isEqualToString:@"周四"]){
+        self.weekCount = 4;
+    }else if ([date1 isEqualToString:@"周五"]){
+        self.weekCount = 5;
+    }else if ([date1 isEqualToString:@"周六"]){
+        self.weekCount = 6;
+    }else{
+        self.weekCount = 7;
+    }
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -202,6 +238,7 @@
 //        [self.navigationController pushViewController:MyIncome animated:YES];
 //    }
 //    NSLog(@"ishaver  %@--",ishaver);
+    
     
  float botomerhight = 0.130667 * self.view.bounds.size.width;
 
@@ -225,6 +262,8 @@
     [self soaprequestwithuserSno:self.doctorSno registrationId:registID];
     
     self.isshonwlertconnection = NO;
+
+
 }
 -(void)isNewLogin
 {
@@ -331,6 +370,8 @@
             [self getdate];
             
             [self soaprequstWithcustomerSno:@"" doctorSno:self.doctorSno yearCount:[NSString stringWithFormat:@"%ld",self.year] monthCount:[NSString stringWithFormat:@"%ld",self.month] dayCount:[NSString stringWithFormat:@"%ld",self.day]];
+            
+
 
         }
             break;
@@ -417,7 +458,7 @@
         }
         NSString *hasmakestr = [NSString stringWithFormat:@"%@:%@",yuyue.HourCount,yuyue.MinuteCount];
         [hasmake addObject:hasmakestr];
-        NSLog(@"已经被预约的时间：%@",hasmakestr);
+        //NSLog(@"已经被预约的时间：%@",hasmakestr);
         [_timeclickarray addObject:hasmakestr];
     }
     
@@ -453,18 +494,35 @@
     background.layer.cornerRadius = 4;
     [_tunningview addSubview:background];
     
-    if (self.pickerview) {
-        
-    }else{
-        self.pickerview = [[UIPickerView alloc] initWithFrame:CGRectMake(48, -14, background.bounds.size.width-80, 20)];
-    }
-    self.pickerview.backgroundColor = [UIColor clearColor];
-    self.pickerview.dataSource = self;
-    self.pickerview.delegate = self;
-    [_tunningview addSubview:self.pickerview];
     
-    [self.pickerview selectRow:self.month-1 inComponent:0 animated:YES];
-    [self.pickerview selectRow:self.day-1 inComponent:2 animated:YES];
+//    if (self.pickerview) {
+//        
+//    }else{
+//        self.pickerview = [[UIPickerView alloc] initWithFrame:CGRectMake(48, -14, background.bounds.size.width-80, 20)];
+//    }
+//    self.pickerview.backgroundColor = [UIColor clearColor];
+//    self.pickerview.dataSource = self;
+//    self.pickerview.delegate = self;
+//    [_tunningview addSubview:self.pickerview];
+//    
+//    [self.pickerview selectRow:self.month-1 inComponent:0 animated:YES];
+//    [self.pickerview selectRow:self.day-1 inComponent:2 animated:YES];
+    
+
+//    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"2015-10-30"];
+//    NSString *strDate = [dateFormatter stringFromDate:[NSDate date]];
+
+
+    
+    UIPickerView *pickerview = [[UIPickerView alloc] initWithFrame:CGRectMake(50, 0, _tunningview.bounds.size.width - 100, 80)];
+    pickerview.dataSource = self;
+    pickerview.delegate = self;
+    [pickerview selectRow:self.weekCount - 1 inComponent:0 animated:YES];
+    [_tunningview addSubview:pickerview];
+    
+
     
     //关闭按钮
     UIButton *off = [[UIButton alloc] initWithFrame:CGRectMake(_tunningview.bounds.size.width - 35, 2, 37, 35)];
@@ -506,7 +564,7 @@
             
             if ([str isEqualToString:btntitle]) {
                 [btn setTitle:str forState:UIControlStateNormal];
-                [btn setBackgroundImage:[UIImage imageNamed:@"yiyuyue_03"] forState:UIControlStateNormal];
+                [btn setBackgroundImage:[UIImage imageNamed:@"doctor_time_off"] forState:UIControlStateNormal];
             }
         }
     }
@@ -516,14 +574,11 @@
 //关闭按钮
 -(void)offbuttunclick
 {
-    
     NSLog(@"关闭");
     [_backview removeFromSuperview];
     _backview = nil;
     [_tunningview removeFromSuperview];
     _tunningview = nil;
-    
-    
     
 }
 -(void)timeButtonClick:(UIButton *)button
@@ -538,7 +593,9 @@
             if ([str isEqualToString:btntitle]) {//标题在已预约的数组里，把它换成可预约
                 [button setBackgroundImage:[UIImage imageNamed:@"专家列表_03"] forState:UIControlStateNormal];
                 
-                [self soaprequstWithdoctorSno:self.doctorSno yearCount:[NSString stringWithFormat:@"%ld",self.year] monthCount:[NSString stringWithFormat:@"%ld",self.month] dayCount:[NSString stringWithFormat:@"%ld",self.day] hourCount:[strary objectAtIndex:0] minuteCount:[strary objectAtIndex:1] setType:@"0"];//(setType设置类型:1为忙0为闲)
+                [self soaprequstWithdoctorSno:self.doctorSno weekCount:[NSString stringWithFormat:@"%ld",self.weekCount] hourCount:[strary objectAtIndex:0] minuteCount:[strary objectAtIndex:1] setType:@"0"];//(setType设置类型:1为忙0为闲)
+
+                
                 NSLog(@"那么多:%@",str);
                 [_timeclickarray removeObject:btntitle];
                 haver = YES;
@@ -548,14 +605,18 @@
     
     if (haver == NO) {
         
-        [button setBackgroundImage:[UIImage imageNamed:@"yiyuyue_03"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"doctor_time_off"] forState:UIControlStateNormal];
         
-        [self soaprequstWithdoctorSno:self.doctorSno yearCount:[NSString stringWithFormat:@"%ld",self.year] monthCount:[NSString stringWithFormat:@"%ld",self.month] dayCount:[NSString stringWithFormat:@"%ld",self.day] hourCount:[strary objectAtIndex:0] minuteCount:[strary objectAtIndex:1] setType:@"1"];//(setType设置类型:1为忙0为闲)
+        [self soaprequstWithdoctorSno:self.doctorSno weekCount:[NSString stringWithFormat:@"%ld",self.weekCount] hourCount:[strary objectAtIndex:0] minuteCount:[strary objectAtIndex:1] setType:@"1"];//(setType设置类型:1为忙0为闲)
+
+        
         [_timeclickarray addObject:btntitle];
     }
     
     NSLog(@"_timeclickarray%@",_timeclickarray);
 }
+
+
 
 
 #pragma mark-- 二维码
@@ -623,6 +684,25 @@
     
 }
 
+//算周几
+-(NSString*)weekdayStringFromDate:(NSDate*)inputDate {
+    
+    NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSTimeZone *timeZone = [[NSTimeZone alloc] initWithName:@"Asia/Shanghai"];
+    
+    [calendar setTimeZone: timeZone];
+    
+    NSCalendarUnit calendarUnit = NSWeekdayCalendarUnit;
+    
+    NSDateComponents *theComponents = [calendar components:calendarUnit fromDate:inputDate];
+    
+    return [weekdays objectAtIndex:theComponents.weekday];
+    
+}
+
 #pragma mark--计算每个月的天数
 -(NSInteger)getDaysOfMonthwithyear:(NSInteger)year month:(NSInteger)month
 {
@@ -655,67 +735,54 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
     
-    return 40;
+    return 100;
 }
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
     return 50;
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    
-    if (component == 0) {
-        return [_monaay objectAtIndex:row];
-    }else if (component == 1){
-        return @"月";
-    }else if (component == 2){
-        return [self.dayarray objectAtIndex:row];
-    }else{
-        return @"日";
-    }
-    
+    return [_monaay objectAtIndex:row];
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    NSLog(@"选取了---- %ld--->: %@",row,[_monaay objectAtIndex:row]);
     
-    if (component == 0) {
-        self.month = row + 1;//月份
-        
-        NSInteger days = [self getDaysOfMonthwithyear:self.year month:self.month];//计算当月的天数
-        [self.dayarray removeAllObjects];
-        for (int a = 1; a < days + 1; a ++) {
-            NSString *daystr = [NSString stringWithFormat:@"%d",a];
-            [self.dayarray addObject:daystr];
-        }
-        [pickerView reloadComponent:2];
-        
-    }else if (component == 2){
-     self.day = row + 1;//日期
+    NSString *weekstr = [_monaay objectAtIndex:row];
+    
+    if ([weekstr isEqualToString:@"星期一"]) {
+        self.weekCount = 1;
+    }else if ([weekstr isEqualToString:@"星期二"]){
+        self.weekCount = 2;
+    }else if ([weekstr isEqualToString:@"星期三"]){
+        self.weekCount = 3;
+    }else if ([weekstr isEqualToString:@"星期四"]){
+        self.weekCount = 4;
+    }else if ([weekstr isEqualToString:@"星期五"]){
+        self.weekCount = 5;
+    }else if ([weekstr isEqualToString:@"星期六"]){
+        self.weekCount = 6;
+    }else{
+        self.weekCount = 7;
     }
     
-    [self selectpikerviewgetdata:self.month];
+    NSLog(@"选择的时间----%ld",self.weekCount);
     
     [self soaprequstWithcustomerSno:@"" doctorSno:self.doctorSno yearCount:[NSString stringWithFormat:@"%ld",self.year] monthCount:[NSString stringWithFormat:@"%ld",self.month] dayCount:[NSString stringWithFormat:@"%ld",self.day]];
     
 }
 // returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 4;
+    return 1;
 }
 
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (component == 0) {
-        return 12;
-    }else if (component == 1){
-        return 1;
-    }else if (component == 2){
-        return self.dayarray.count;
-    }else{
-        return 1;
-    }
+    return 7;
 }
+
 
 #pragma mark -- NSURLConnection
 -(void)requstwithurl:(NSString *)str
@@ -728,29 +795,27 @@
     
     [connection start];
     
-    
 }
 #pragma mark --SOAP请求
 //获取时间的表格
 -(void)soaprequstWithcustomerSno:(NSString *)customerSno doctorSno:(NSString *)doctorSno yearCount:(NSString *)yearCount monthCount:(NSString *)monthCount dayCount:(NSString *)dayCount
 {
+    NSLog(@"UID:%@-----PSW:%@------doctorSno-%@-----[NSString stringWithFormat:@"",self.weekCount;%@",UID,PSW,doctorSno,[NSString stringWithFormat:@"%ld",self.weekCount]);
     
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
                              @"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
                              "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
                              "<soap:Body>\n"
-                             "<GetDoctorTimeSetBySno xmlns=\"Doc\">\n"
+                             "<GetDoctorTimeSetBySnoAndWeek xmlns=\"Doc\">\n"
                              "<uid>%@</uid>\n"
                              "<pwd>%@</pwd>\n"
                              "<customerSno>%@</customerSno>\n"
                              "<doctorSno>%@</doctorSno>\n"
-                             "<yearCount>%@</yearCount>\n"
-                             "<monthCount>%@</monthCount>\n"
-                             "<dayCount>%@</dayCount>\n"
-                             "</GetDoctorTimeSetBySno>\n"
+                             "<weekCount>%@</weekCount>\n"
+                             "</GetDoctorTimeSetBySnoAndWeek>\n"
                              "</soap:Body>\n"
-                             "</soap:Envelope>\n",UID,PSW,customerSno,doctorSno,yearCount,monthCount,dayCount
+                             "</soap:Envelope>\n",UID,PSW,customerSno,doctorSno,[NSString stringWithFormat:@"%ld",self.weekCount]
                              ];
     //NSLog(@"soapMessage");
     //请求发送到的路径
@@ -760,7 +825,7 @@
     
     //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
     [theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [theRequest addValue: @"Doc/GetDoctorTimeSetBySno" forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: @"Doc/GetDoctorTimeSetBySnoAndWeek" forHTTPHeaderField:@"SOAPAction"];
     
     
     [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
@@ -783,27 +848,26 @@
     
 }
 //设置时间表格(setType设置类型:1为忙0为闲)
--(void)soaprequstWithdoctorSno:(NSString *)doctorSno yearCount:(NSString *)yearCount monthCount:(NSString *)monthCount dayCount:(NSString *)dayCount hourCount:(NSString *)hourCount  minuteCount:(NSString *)minuteCount setType:(NSString *)setType
+-(void)soaprequstWithdoctorSno:(NSString *)doctorSno weekCount:(NSString *)weekCount hourCount:(NSString *)hourCount  minuteCount:(NSString *)minuteCount setType:(NSString *)setType
 {
     
+    NSLog(@"doctorSno:%@---weekCount-%@-----hourCount:%@-----minuteCount%@----setType-%@------",doctorSno,weekCount,hourCount,minuteCount,setType);
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
                              @"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
                              "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
                              "<soap:Body>\n"
-                             "<SetDoctorTime xmlns=\"Doc\">\n"
+                             "<SetDoctorTimeByWeek xmlns=\"Doc\">\n"
                              "<uid>%@</uid>\n"
                              "<pwd>%@</pwd>\n"
                              "<doctorSno>%@</doctorSno>\n"
-                             "<yearCount>%@</yearCount>\n"
-                             "<monthCount>%@</monthCount>\n"
-                             "<dayCount>%@</dayCount>\n"
+                             "<weekCount>%@</weekCount>\n"
                              "<hourCount>%@</hourCount>\n"
                              "<minuteCount>%@</minuteCount>\n"
                              "<setType>%@</setType>\n"
-                             "</SetDoctorTime>\n"
+                             "</SetDoctorTimeByWeek>\n"
                              "</soap:Body>\n"
-                             "</soap:Envelope>\n",UID,PSW,doctorSno,yearCount,monthCount,dayCount,hourCount,minuteCount,setType];
+                             "</soap:Envelope>\n",UID,PSW,doctorSno,[NSString stringWithFormat:@"%ld",self.weekCount],hourCount,minuteCount,setType];
                              
     //NSLog(@"soapMessage");
     //请求发送到的路径
@@ -813,7 +877,7 @@
     
     //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
     [theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [theRequest addValue: @"Doc/SetDoctorTime" forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: @"Doc/SetDoctorTimeByWeek" forHTTPHeaderField:@"SOAPAction"];
     
     
     [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
@@ -973,19 +1037,11 @@
 {
     // NSLog(@"3 DONE. Received Bytes: %ld", [webData length]);
     NSString *theXML = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-    NSLog(@"提交预约的数据--%@",theXML);
     
+    //NSLog(@"提交预约的数据--%@",theXML);
     
-    //        NSString *str = [[NSString alloc] initWithData:webData encoding:NSUTF8StringEncoding];
-    //
-    //
-    //             NSLog(@"请求回来的数据-2--%@",str);
-    
-    //重新加載xmlParser
-    //    if( xmlParser )
-    //    {
-    //       // [xmlParser release];
-    //    }
+    // NSString *str = [[NSString alloc] initWithData:webData encoding:NSUTF8StringEncoding];
+
     
     xmlParser = [[NSXMLParser alloc] initWithData: webData];
     [xmlParser setDelegate: self];
@@ -1001,7 +1057,7 @@
    attributes: (NSDictionary *)attributeDict
 {
     
-    if ([elementName isEqualToString:@"GetDoctorTimeSetBySnoResult"]) {
+    if ([elementName isEqualToString:@"GetDoctorTimeSetBySnoAndWeekResult"]) {
         
         [_soapResults setString:@""];//把它置空，准备接收新值。
     }
@@ -1010,6 +1066,12 @@
         
         [_soapResults setString:@""];//把它置空，准备接收新值。
     }
+    
+    if ([elementName isEqualToString:@"SetDoctorTimeByWeekResult"]) {
+        
+        [_soapResults setString:@""];//把它置空，准备接收新值。
+    }
+    
     
 }
 
@@ -1023,16 +1085,14 @@
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     
-    if ([elementName isEqualToString:@"GetDoctorTimeSetBySnoResult"]) {
-        
-        
+    if ([elementName isEqualToString:@"GetDoctorTimeSetBySnoAndWeekResult"]) {
         
         NSData *jsonData = [_soapResults dataUsingEncoding:NSUTF8StringEncoding];
         NSError *err;
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-        NSLog(@"医生时间表详情：dic%@",dic);
+       // NSLog(@"医生时间表详情：dic%@",dic);
         
         NSString *state = [dic objectForKey:@"state"];
         
@@ -1081,6 +1141,17 @@
         [self isNewLogin];
     }
 
+    if ([elementName isEqualToString:@"SetDoctorTimeByWeekResult"]) {
+        
+        NSData *jsonData = [_soapResults dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&err];
+        NSLog(@"医生设置时间：dic%@",dic);
+
+    }
+    
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser{

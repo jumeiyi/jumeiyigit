@@ -215,7 +215,7 @@ static NSString * const identifier = @"cell";
         self.tabBarController.navigationItem.hidesBackButton = YES;
     }
     
-    self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.y, self.view.bounds.size.height + 10, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+    self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.y, self.view.bounds.size.height + 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
 
 }
 -(void)chengeindexpage:(NSNotification *)noti

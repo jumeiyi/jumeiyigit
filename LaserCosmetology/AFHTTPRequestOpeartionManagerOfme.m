@@ -772,6 +772,12 @@
         
         NSLog(@"AFHTTPRequestOpeartionManager设置分组成员-%@---- %@",data ,error);
         
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
         
         NSString *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
         NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
@@ -860,6 +866,13 @@
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
         
         NSLog(@"AFHTTPRequestOpeartionManager--获取单条病历-%@---- %@",data ,error);
+        
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
         
         
         NSString *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
@@ -950,6 +963,12 @@
         
         NSLog(@"AFHTTPRequestOpeartionManager--获取订单详情-%@---- %@--",data ,error);
         
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
         
         NSDictionary *datadiction = [[data objectForKey:@"Content"] objectForKey:@"data"];
         NSDictionary *medicalhistorydic = [[data objectForKey:@"Content"] objectForKey:@"medicalhistory"];
@@ -1039,6 +1058,12 @@
         
         NSLog(@"AFHTTPRequestOpeartionManager--医生上传病历界面项目列表-%@---- %@--",data ,error);
         
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
         
         //        NSDictionary *datadiction = [[data objectForKey:@"Content"] objectForKey:@"data"];
         //        NSDictionary *medicalhistorydic = [[data objectForKey:@"Content"] objectForKey:@"medicalhistory"];
@@ -1083,8 +1108,15 @@
         NSLog(@"AFHTTPRequestOpeartionManager--保存编辑的病历-%@---- %@--",data ,error);
         
         
-                NSDictionary *datadiction = [[data objectForKey:@"Content"] objectForKey:@"data"];
-                NSDictionary *medicalhistorydic = [[data objectForKey:@"Content"] objectForKey:@"medicalhistory"];
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+        
+//                NSDictionary *datadiction = [[data objectForKey:@"Content"] objectForKey:@"data"];
+//                NSDictionary *medicalhistorydic = [[data objectForKey:@"Content"] objectForKey:@"medicalhistory"];
                 NSString *msg = [[data objectForKey:@"Content"] objectForKey:@"msg"];
         
                 NSLog(@"msg------%@",msg);
@@ -1104,8 +1136,6 @@
 
 
 }
-
-
 
 + (void)checkNetWorkStatus{
     

@@ -46,9 +46,9 @@
     [topbar addSubview:titilelable];
     
     float hi = self.view.bounds.size.width/8.0;
-    NSArray *titleary = [[NSArray alloc] initWithObjects:@"    美容足迹",@"    意见反馈",@"    优惠活动",@"    退出登录", nil];
-    NSArray *buttonimagesary = [[NSArray alloc] initWithObjects:@"更多_02e",@"更多_02e",@"更多_02e",@"更多_02e", nil];
-    for (int i = 0; i < 4; i++) {
+    NSArray *titleary = [[NSArray alloc] initWithObjects:@"    意见反馈",@"    优惠活动",@"    退出登录", nil];
+    NSArray *buttonimagesary = [[NSArray alloc] initWithObjects:@"更多_02e",@"更多_02e",@"更多_02e", nil];
+    for (int i = 0; i < 3; i++) {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, hi * i + 80, self.view.bounds.size.width , self.view.bounds.size.width/9.70)];
         button.backgroundColor = [UIColor whiteColor];
         [button setTitle:[titleary objectAtIndex:i] forState:UIControlStateNormal];
@@ -62,10 +62,20 @@
 
     float botomerhight = 0.130667 * self.view.bounds.size.width;
     
-    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    tabBarimage.image = [UIImage imageNamed:@"首页1_05ss"];
-    [self.view addSubview:tabBarimage];
+    float imageX = self.view.bounds.size.width/5;
     
+    UIImageView *tabBarimage0 = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+    tabBarimage0.image = [UIImage imageNamed:@"diseq"];
+    [self.view addSubview:tabBarimage0];
+    
+    UIImageView *tabBarimage1 = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 1,self.view.bounds.size.height - botomerhight, imageX - 10, botomerhight)];
+    tabBarimage1.image = [UIImage imageNamed:@"anjianzuob"];
+    [self.view addSubview:tabBarimage1];
+    
+    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 3,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
+    tabBarimage.image = [UIImage imageNamed:@"anjianyou"];
+    [self.view addSubview:tabBarimage];
+
     BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
     [self.view addSubview:botom];
     
@@ -80,14 +90,14 @@
 {
     
     
-    if (butn.tag == 1) {
+    if (butn.tag == 1011) {
        BeautyFootprint *footprint = [[BeautyFootprint alloc] init];
         [self.navigationController pushViewController:footprint animated:YES];
-    }else if(butn.tag == 2){
+    }else if(butn.tag == 1){
     
     AdultsViewController *Adults = [[AdultsViewController alloc] init];
         [self.navigationController pushViewController:Adults animated:YES];
-    }else if(butn.tag == 3){
+    }else if(butn.tag == 2){
         
         YouHuiViewController *youh = [[YouHuiViewController alloc] init];
         [self.navigationController pushViewController:youh animated:YES];
@@ -121,6 +131,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"dengluye" object:nil];
         
         [HuQiJingsharManage shareManage].sssss = @"3";
+        
+        self.tabBarController.selectedIndex = 0;
         // }
     }
 
@@ -281,7 +293,6 @@
                                                               error:&err];
         NSLog(@"退出登录------：dic%@",dic);
         
-
         
     }
     

@@ -251,8 +251,14 @@
 		84907E881ADE615E009002BC /* MyCusTomerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 84907E871ADE615E009002BC /* MyCusTomerDetails.m */; };
 		849130721B7A15CC00947EE5 /* 素材4.png in Resources */ = {isa = PBXBuildFile; fileRef = 849130711B7A15CC00947EE5 /* 素材4.png */; };
 		849364151AD9093A0003A892 /* evaluateDoctorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 849364141AD9093A0003A892 /* evaluateDoctorData.m */; };
+		84977DBA1BD784010082BF89 /* anjianyou.png in Resources */ = {isa = PBXBuildFile; fileRef = 84977DB61BD784010082BF89 /* anjianyou.png */; settings = {ASSET_TAGS = (); }; };
+		84977DBB1BD784010082BF89 /* anjianzuob.png in Resources */ = {isa = PBXBuildFile; fileRef = 84977DB71BD784010082BF89 /* anjianzuob.png */; settings = {ASSET_TAGS = (); }; };
+		84977DBC1BD784010082BF89 /* anjianzuo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84977DB81BD784010082BF89 /* anjianzuo.png */; settings = {ASSET_TAGS = (); }; };
+		84977DBD1BD784010082BF89 /* anjianyoub.png in Resources */ = {isa = PBXBuildFile; fileRef = 84977DB91BD784010082BF89 /* anjianyoub.png */; settings = {ASSET_TAGS = (); }; };
+		84977DBF1BD785E20082BF89 /* diseq.png in Resources */ = {isa = PBXBuildFile; fileRef = 84977DBE1BD785E20082BF89 /* diseq.png */; settings = {ASSET_TAGS = (); }; };
 		849AEC2C1B9D1798008C1C49 /* myclientTheConditionRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849AEC2B1B9D1798008C1C49 /* myclientTheConditionRecordViewController.m */; };
 		849AEC321B9D3383008C1C49 /* myclientTheConditionRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 849AEC311B9D3383008C1C49 /* myclientTheConditionRecord.m */; };
+		849D159D1BE1FFEC00C2025C /* doctor_time_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 849D159C1BE1FFEC00C2025C /* doctor_time_off.png */; settings = {ASSET_TAGS = (); }; };
 		849F68FC1AE63F3E00C6B32F /* zujigerenzhongxinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F68FB1AE63F3E00C6B32F /* zujigerenzhongxinViewController.m */; };
 		849F68FF1AE6424B00C6B32F /* gerenzujiCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F68FE1AE6424B00C6B32F /* gerenzujiCollectionViewCell.m */; };
 		849F69021AE6427A00C6B32F /* gerenzujiViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F69011AE6427A00C6B32F /* gerenzujiViewLayout.m */; };
@@ -880,10 +886,16 @@
 		849130711B7A15CC00947EE5 /* 素材4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "素材4.png"; sourceTree = "<group>"; };
 		849364131AD9093A0003A892 /* evaluateDoctorData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evaluateDoctorData.h; sourceTree = "<group>"; };
 		849364141AD9093A0003A892 /* evaluateDoctorData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evaluateDoctorData.m; sourceTree = "<group>"; };
+		84977DB61BD784010082BF89 /* anjianyou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anjianyou.png; sourceTree = "<group>"; };
+		84977DB71BD784010082BF89 /* anjianzuob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anjianzuob.png; sourceTree = "<group>"; };
+		84977DB81BD784010082BF89 /* anjianzuo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anjianzuo.png; sourceTree = "<group>"; };
+		84977DB91BD784010082BF89 /* anjianyoub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anjianyoub.png; sourceTree = "<group>"; };
+		84977DBE1BD785E20082BF89 /* diseq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diseq.png; sourceTree = "<group>"; };
 		849AEC2A1B9D1798008C1C49 /* myclientTheConditionRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientTheConditionRecordViewController.h; sourceTree = "<group>"; };
 		849AEC2B1B9D1798008C1C49 /* myclientTheConditionRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientTheConditionRecordViewController.m; sourceTree = "<group>"; };
 		849AEC301B9D3383008C1C49 /* myclientTheConditionRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientTheConditionRecord.h; sourceTree = "<group>"; };
 		849AEC311B9D3383008C1C49 /* myclientTheConditionRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientTheConditionRecord.m; sourceTree = "<group>"; };
+		849D159C1BE1FFEC00C2025C /* doctor_time_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doctor_time_off.png; sourceTree = "<group>"; };
 		849F68FA1AE63F3E00C6B32F /* zujigerenzhongxinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zujigerenzhongxinViewController.h; sourceTree = "<group>"; };
 		849F68FB1AE63F3E00C6B32F /* zujigerenzhongxinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zujigerenzhongxinViewController.m; sourceTree = "<group>"; };
 		849F68FD1AE6424B00C6B32F /* gerenzujiCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gerenzujiCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1007,7 +1019,7 @@
 		84B717DA1AA3F62C00FD889A /* Beautyitems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beautyitems.m; sourceTree = "<group>"; };
 		84B717E41AA4548600FD889A /* 个人中心_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人中心_03.png"; sourceTree = "<group>"; };
 		84B717E51AA4548600FD889A /* 个人中心_034_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人中心_034_03.png"; sourceTree = "<group>"; };
-		84B83F851A8840B8008EE1CA /* 聚美医.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "聚美医.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B83F851A8840B8008EE1CA /* jumeiyi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jumeiyi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B83F891A8840B8008EE1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B83F8A1A8840B8008EE1CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84B83F8C1A8840B8008EE1CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1017,7 +1029,7 @@
 		84B83F931A8840B8008EE1CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84B83F951A8840B8008EE1CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		84B83F981A8840B8008EE1CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		84B83F9E1A8840B8008EE1CA /* 聚美医Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "聚美医Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B83F9E1A8840B8008EE1CA /* jumeiyi.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jumeiyi.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B83FA31A8840B9008EE1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B83FA41A8840B9008EE1CA /* LaserCosmetologyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaserCosmetologyTests.m; sourceTree = "<group>"; };
 		84B83FB71A884384008EE1CA /* PersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
@@ -1772,6 +1784,19 @@
 			name = youhui;
 			sourceTree = "<group>";
 		};
+		84977DB51BD783690082BF89 /* twoimagebtn */ = {
+			isa = PBXGroup;
+			children = (
+				849D159C1BE1FFEC00C2025C /* doctor_time_off.png */,
+				84977DB61BD784010082BF89 /* anjianyou.png */,
+				84977DB71BD784010082BF89 /* anjianzuob.png */,
+				84977DB81BD784010082BF89 /* anjianzuo.png */,
+				84977DB91BD784010082BF89 /* anjianyoub.png */,
+				84977DBE1BD785E20082BF89 /* diseq.png */,
+			);
+			name = twoimagebtn;
+			sourceTree = "<group>";
+		};
 		84A42D3F1B2DAD8400B6047E /* yindaoye */ = {
 			isa = PBXGroup;
 			children = (
@@ -1841,8 +1866,8 @@
 		84B83F861A8840B8008EE1CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84B83F851A8840B8008EE1CA /* 聚美医.app */,
-				84B83F9E1A8840B8008EE1CA /* 聚美医Tests.xctest */,
+				84B83F851A8840B8008EE1CA /* jumeiyi.app */,
+				84B83F9E1A8840B8008EE1CA /* jumeiyi.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1888,6 +1913,7 @@
 		84B83F881A8840B8008EE1CA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84977DB51BD783690082BF89 /* twoimagebtn */,
 				846E82441B9054D2007B2B11 /* myclient */,
 				8481B2561B72FE4E00FADA49 /* sucai */,
 				84AC814A1B414E76009A00E3 /* launch image */,
@@ -2519,9 +2545,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		84B83F841A8840B8008EE1CA /* 聚美医 */ = {
+		84B83F841A8840B8008EE1CA /* jumeiyi */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84B83FA81A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "聚美医" */;
+			buildConfigurationList = 84B83FA81A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "jumeiyi" */;
 			buildPhases = (
 				84B83F811A8840B8008EE1CA /* Sources */,
 				84B83F821A8840B8008EE1CA /* Frameworks */,
@@ -2531,14 +2557,14 @@
 			);
 			dependencies = (
 			);
-			name = "聚美医";
+			name = jumeiyi;
 			productName = LaserCosmetology;
-			productReference = 84B83F851A8840B8008EE1CA /* 聚美医.app */;
+			productReference = 84B83F851A8840B8008EE1CA /* jumeiyi.app */;
 			productType = "com.apple.product-type.application";
 		};
-		84B83F9D1A8840B8008EE1CA /* 聚美医Tests */ = {
+		84B83F9D1A8840B8008EE1CA /* jumeiyiTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84B83FAB1A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "聚美医Tests" */;
+			buildConfigurationList = 84B83FAB1A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "jumeiyiTests" */;
 			buildPhases = (
 				84B83F9A1A8840B8008EE1CA /* Sources */,
 				84B83F9B1A8840B8008EE1CA /* Frameworks */,
@@ -2549,9 +2575,9 @@
 			dependencies = (
 				84B83FA01A8840B8008EE1CA /* PBXTargetDependency */,
 			);
-			name = "聚美医Tests";
+			name = jumeiyiTests;
 			productName = LaserCosmetologyTests;
-			productReference = 84B83F9E1A8840B8008EE1CA /* 聚美医Tests.xctest */;
+			productReference = 84B83F9E1A8840B8008EE1CA /* jumeiyi.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -2565,7 +2591,7 @@
 				TargetAttributes = {
 					84B83F841A8840B8008EE1CA = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = B2LBK7FF2A;
+						DevelopmentTeam = 36SNK862WB;
 					};
 					84B83F9D1A8840B8008EE1CA = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -2574,7 +2600,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 84B83F801A8840B8008EE1CA /* Build configuration list for PBXProject "聚美医" */;
+			buildConfigurationList = 84B83F801A8840B8008EE1CA /* Build configuration list for PBXProject "jumeiyi" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2588,8 +2614,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				84B83F841A8840B8008EE1CA /* 聚美医 */,
-				84B83F9D1A8840B8008EE1CA /* 聚美医Tests */,
+				84B83F841A8840B8008EE1CA /* jumeiyi */,
+				84B83F9D1A8840B8008EE1CA /* jumeiyiTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2713,6 +2739,7 @@
 				84AA3DC51B467CAD00195A5F /* 03.png in Resources */,
 				8483D9731B1557420069D729 /* 客户评价_05a.png in Resources */,
 				846ECE4A1B93FFE9003823AA /* fangxingjia.png in Resources */,
+				84977DBB1BD784010082BF89 /* anjianzuob.png in Resources */,
 				8488904D1AE4E3D800DFE28F /* yiqiangguang.png in Resources */,
 				84CABE9F1A8CA34000306B93 /* anniu3.png in Resources */,
 				84C40FE51BA17C6000FF7E04 /* txtx.png in Resources */,
@@ -2835,6 +2862,7 @@
 				84A05FC81B3D249100C1B759 /* 引导页04.jpg in Resources */,
 				84BEE9B51A8AEE1300B0F9D6 /* huitiao.png in Resources */,
 				84C0FEEF1AD6880F0098F453 /* dukeyi1.png in Resources */,
+				849D159D1BE1FFEC00C2025C /* doctor_time_off.png in Resources */,
 				84BD65521A8DDC14003770D3 /* xiangmuxiangqing.png in Resources */,
 				8478C0B71B8D5B9000768326 /* yishengwdkh.png in Resources */,
 				84D6DBA61B5E547900837A14 /* 首页1_03ss.png in Resources */,
@@ -2845,6 +2873,7 @@
 				84AC814F1B414EA8009A00E3 /* Default.png in Resources */,
 				8460124C1B7AF18700AD8088 /* 启动页.jpg in Resources */,
 				84BC7E061B1D84A9007830E4 /* 个人中心4_03.png in Resources */,
+				84977DBA1BD784010082BF89 /* anjianyou.png in Resources */,
 				84B717E71AA4548600FD889A /* 个人中心_03.png in Resources */,
 				844BCE511B5638E5007F61CD /* 编辑日志3_02.png in Resources */,
 				84AC812E1B4110DA009A00E3 /* Icon-40@3x.png in Resources */,
@@ -2885,9 +2914,11 @@
 				8481B2661B72FE4E00FADA49 /* 素材6.png in Resources */,
 				843C243D1B0055F300A943C0 /* 更多_10.png in Resources */,
 				845267611B25812A0048AA96 /* 我的预约20150402_06.png in Resources */,
+				84977DBD1BD784010082BF89 /* anjianyoub.png in Resources */,
 				842B6B661AD773E50002518E /* mymakeryuandian.png in Resources */,
 				84B717E81AA4548600FD889A /* 个人中心_034_03.png in Resources */,
 				84BD65511A8DDC14003770D3 /* quxiao.png in Resources */,
+				84977DBF1BD785E20082BF89 /* diseq.png in Resources */,
 				84AC81331B4110DA009A00E3 /* Icon-72@2x.png in Resources */,
 				84AA3DC41B467CAD00195A5F /* 02.png in Resources */,
 				8483D89C1AB6C2AD00AF9B9E /* Resource.bundle in Resources */,
@@ -2908,6 +2939,7 @@
 				846ECE571B93FFE9003823AA /* sucaiwu.png in Resources */,
 				8481B2721B73596E00FADA49 /* 医生主页3_02.png in Resources */,
 				84A83E521B22D4DB007B7352 /* 完善资料_04.png in Resources */,
+				84977DBC1BD784010082BF89 /* anjianzuo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3129,7 +3161,7 @@
 /* Begin PBXTargetDependency section */
 		84B83FA01A8840B8008EE1CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84B83F841A8840B8008EE1CA /* 聚美医 */;
+			target = 84B83F841A8840B8008EE1CA /* jumeiyi */;
 			targetProxy = 84B83F9F1A8840B8008EE1CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -3180,8 +3212,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3201,7 +3233,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e9197eb7-20f2-4541-aa6e-336e7b431cbd";
+				PROVISIONING_PROFILE = "13eefbfc-ff63-4daa-b5f8-1a6eb2d99bb6";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3224,8 +3256,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3238,7 +3270,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "e9197eb7-20f2-4541-aa6e-336e7b431cbd";
+				PROVISIONING_PROFILE = "13eefbfc-ff63-4daa-b5f8-1a6eb2d99bb6";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/[lib ]";
@@ -3251,8 +3283,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Connection",
@@ -3274,8 +3306,8 @@
 					"$(PROJECT_DIR)/LaserCosmetology",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "聚美医";
-				PROVISIONING_PROFILE = "e9197eb7-20f2-4541-aa6e-336e7b431cbd";
+				PRODUCT_NAME = jumeiyi;
+				PROVISIONING_PROFILE = "13eefbfc-ff63-4daa-b5f8-1a6eb2d99bb6";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
@@ -3286,8 +3318,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Connection",
@@ -3310,8 +3342,8 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "聚美医";
-				PROVISIONING_PROFILE = "e9197eb7-20f2-4541-aa6e-336e7b431cbd";
+				PRODUCT_NAME = jumeiyi;
+				PROVISIONING_PROFILE = "13eefbfc-ff63-4daa-b5f8-1a6eb2d99bb6";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/[lib]";
 				VALIDATE_PRODUCT = YES;
@@ -3334,7 +3366,7 @@
 				);
 				INFOPLIST_FILE = LaserCosmetologyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "聚美医Tests";
+				PRODUCT_NAME = jumeiyi;
 				PROVISIONING_PROFILE = "3582052b-29a1-4171-ae6a-8036438f4983";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LaserCosmetology.app/LaserCosmetology";
 			};
@@ -3352,7 +3384,7 @@
 				);
 				INFOPLIST_FILE = LaserCosmetologyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "聚美医Tests";
+				PRODUCT_NAME = jumeiyi;
 				PROVISIONING_PROFILE = "3582052b-29a1-4171-ae6a-8036438f4983";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LaserCosmetology.app/LaserCosmetology";
 			};
@@ -3361,7 +3393,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84B83F801A8840B8008EE1CA /* Build configuration list for PBXProject "聚美医" */ = {
+		84B83F801A8840B8008EE1CA /* Build configuration list for PBXProject "jumeiyi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84B83FA61A8840B9008EE1CA /* Debug */,
@@ -3370,7 +3402,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84B83FA81A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "聚美医" */ = {
+		84B83FA81A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "jumeiyi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84B83FA91A8840B9008EE1CA /* Debug */,
@@ -3379,7 +3411,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84B83FAB1A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "聚美医Tests" */ = {
+		84B83FAB1A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "jumeiyiTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84B83FAC1A8840B9008EE1CA /* Debug */,

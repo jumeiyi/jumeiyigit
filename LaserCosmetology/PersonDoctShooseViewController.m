@@ -14,6 +14,7 @@
 #import "DoctorMainViewController.h"
 #import "DoctorRegistViewController.h"
 #import "PrefixHeader.pch"
+#import "HuQiJingsharManage.h"
 @interface PersonDoctShooseViewController ()
 
 @end
@@ -29,6 +30,8 @@
     backgroundimage.image = [UIImage imageNamed:@"医生登陆页面"];
     [self.view addSubview:backgroundimage];
     
+    
+       [[HuQiJingsharManage shareManage] addObserver:self forKeyPath:@"sssss" options:NSKeyValueObservingOptionNew context:nil];
     
     _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(60, 130, 250, 30)];
     _phonenumber.backgroundColor = [UIColor whiteColor];
@@ -83,23 +86,23 @@
     [self.view addSubview:xieyiclick];
     
     
-    mybutton *consumer = [[mybutton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 130 -(self.view.bounds.size.width - 250)/2, 270, 65, 30)];
-    [consumer addTarget:self action:@selector(consumerAndDoctor:) forControlEvents:UIControlEventTouchUpInside];
-    [consumer setBackgroundImage:[UIImage imageNamed:@"01"] forState:UIControlStateNormal];
-    [consumer setTitle:@"我是客户" forState:UIControlStateNormal];
-    consumer.titleLabel.font = [UIFont systemFontOfSize:15];
-    consumer.tag = 11;
-    consumer.isclick = YES;
-    [self.view addSubview:consumer];
-    
-    mybutton *doctor = [[mybutton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 65 -(self.view.bounds.size.width - 250)/2, 270, 65, 30)];
-    [doctor addTarget:self action:@selector(consumerAndDoctor:) forControlEvents:UIControlEventTouchUpInside];
-    [doctor setBackgroundImage:[UIImage imageNamed:@"03"] forState:UIControlStateNormal];
-    [doctor setTitle:@"我是医生" forState:UIControlStateNormal];
-    [doctor setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    doctor.titleLabel.font = [UIFont systemFontOfSize:15];
-    doctor.tag = 12;
-    [self.view addSubview:doctor];
+//    mybutton *consumer = [[mybutton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 130 -(self.view.bounds.size.width - 250)/2, 270, 65, 30)];
+//    [consumer addTarget:self action:@selector(consumerAndDoctor:) forControlEvents:UIControlEventTouchUpInside];
+//    [consumer setBackgroundImage:[UIImage imageNamed:@"01"] forState:UIControlStateNormal];
+//    [consumer setTitle:@"我是客户" forState:UIControlStateNormal];
+//    consumer.titleLabel.font = [UIFont systemFontOfSize:15];
+//    consumer.tag = 11;
+//    consumer.isclick = YES;
+//    [self.view addSubview:consumer];
+//    
+//    mybutton *doctor = [[mybutton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 65 -(self.view.bounds.size.width - 250)/2, 270, 65, 30)];
+//    [doctor addTarget:self action:@selector(consumerAndDoctor:) forControlEvents:UIControlEventTouchUpInside];
+//    [doctor setBackgroundImage:[UIImage imageNamed:@"03"] forState:UIControlStateNormal];
+//    [doctor setTitle:@"我是医生" forState:UIControlStateNormal];
+//    [doctor setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    doctor.titleLabel.font = [UIFont systemFontOfSize:15];
+//    doctor.tag = 12;
+//    [self.view addSubview:doctor];
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(60, 300, 200, 40)];
     [button addTarget:self action:@selector(commitclick) forControlEvents:UIControlEventTouchUpInside];
@@ -111,12 +114,23 @@
     [self.view addSubview:button];
     
     self.Isxieyi = YES;
+    self.personordocter = YES;
     
     float botomerhight = 0.130667 * self.view.bounds.size.width;
+    float imageX = self.view.bounds.size.width/5;
     
-    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    tabBarimage.image = [UIImage imageNamed:@"首页1_04ss"];
+    UIImageView *tabBarimage0 = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+    tabBarimage0.image = [UIImage imageNamed:@"diseq"];
+    [self.view addSubview:tabBarimage0];
+
+    
+    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 1,self.view.bounds.size.height - botomerhight, imageX - 10, botomerhight)];
+    tabBarimage.image = [UIImage imageNamed:@"anjianzuo"];
     [self.view addSubview:tabBarimage];
+    
+    UIImageView *tabBarimage2 = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 3,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
+    tabBarimage2.image = [UIImage imageNamed:@"anjianyoub"];
+    [self.view addSubview:tabBarimage2];
     
     BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
     [self.view addSubview:botom];
@@ -155,6 +169,22 @@
 
    
 }
+
+//KVO传值
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    NSString *discciti = [change objectForKey:@"new"];
+    
+    self.tabBarController.selectedIndex = [discciti integerValue];
+    if (self.tabBarController.selectedIndex == 4) {
+        self.tabBarController.navigationItem.hidesBackButton = YES;
+    }
+    
+    self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.y, self.view.bounds.size.height + 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+    
+}
+
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];

@@ -47,6 +47,6 @@
 @property(nonatomic,retain)UIImageView *redsmlimgae;
 
 @property(nonatomic,assign)BOOL isshonwlertconnection;
-
+@property(nonatomic,assign)NSInteger weekCount;
 @end
 

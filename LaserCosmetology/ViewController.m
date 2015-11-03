@@ -65,49 +65,52 @@
 {
     NSMutableArray *viewcontrollarray = [[NSMutableArray alloc] initWithCapacity:0];
     
-    MainViewController *mainview = [[MainViewController alloc] init];
-    UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:mainview];
-    vc.tabBarItem.title = @"首页";
-   // vc.tabBarItem.image = [UIImage imageNamed:@"shouyel"];
-    vc.navigationBarHidden = YES;
-    mainview.hidesBottomBarWhenPushed = YES;
-    [viewcontrollarray addObject:vc];
-    
-    
-    //BeautyItemsViewController *beautyitem = [[BeautyItemsViewController alloc] init];
-    beautymennutViewController *beautyitem = [[beautymennutViewController alloc] init];
-    vc = [[UINavigationController alloc] initWithRootViewController:beautyitem];
-    vc.tabBarItem.title = @"美容项目";
-    //vc.tabBarItem.image = [UIImage imageNamed:@"meirongn"];
-    vc.navigationBarHidden = YES;
-    beautyitem.hidesBottomBarWhenPushed = YES;
-    [viewcontrollarray addObject:vc];
-    
-    
-    BeautyExpertViewController *beautyexpert = [[BeautyExpertViewController alloc] init];
-    vc = [[UINavigationController alloc] initWithRootViewController:beautyexpert];
-    vc.tabBarItem.title = @"医美专家";
-    //vc.tabBarItem.image = [UIImage imageNamed:@"zhuanjian"];
-    vc.navigationBarHidden = YES;
-    beautyexpert.hidesBottomBarWhenPushed = YES;
-    [viewcontrollarray addObject:vc];
+//    MainViewController *mainview = [[MainViewController alloc] init];
+//    UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:mainview];
+//    vc.tabBarItem.title = @"首页";
+//   // vc.tabBarItem.image = [UIImage imageNamed:@"shouyel"];
+//    vc.navigationBarHidden = YES;
+//    mainview.hidesBottomBarWhenPushed = YES;
+//    [viewcontrollarray addObject:vc];
+//
+//    
+//    //BeautyItemsViewController *beautyitem = [[BeautyItemsViewController alloc] init];
+//    beautymennutViewController *beautyitem = [[beautymennutViewController alloc] init];
+//    vc = [[UINavigationController alloc] initWithRootViewController:beautyitem];
+//    vc.tabBarItem.title = @"美容项目";
+//    //vc.tabBarItem.image = [UIImage imageNamed:@"meirongn"];
+//    vc.navigationBarHidden = YES;
+//    beautyitem.hidesBottomBarWhenPushed = YES;
+//    [viewcontrollarray addObject:vc];
+//    
+//    
+//    BeautyExpertViewController *beautyexpert = [[BeautyExpertViewController alloc] init];
+//    vc = [[UINavigationController alloc] initWithRootViewController:beautyexpert];
+//    vc.tabBarItem.title = @"医美专家";
+//    //vc.tabBarItem.image = [UIImage imageNamed:@"zhuanjian"];
+//    vc.navigationBarHidden = YES;
+//    beautyexpert.hidesBottomBarWhenPushed = YES;
+//    [viewcontrollarray addObject:vc];
     
     
     PersonDoctShooseViewController *personal = [[PersonDoctShooseViewController alloc] init];
-    vc = [[UINavigationController alloc] initWithRootViewController:personal];
+    UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:personal];//新加的UINavigationController *
     vc.tabBarItem.title = @"个人中心";
-    //vc.tabBarItem.image = [UIImage imageNamed:@"zhongxinn"];
+    vc.tabBarItem.image = [UIImage imageNamed:@""];
     vc.navigationBarHidden = YES;
     personal.hidesBottomBarWhenPushed = YES;
     [viewcontrollarray addObject:vc];
     
+
+    
     AboutViewController *about = [[AboutViewController alloc] init];
     vc = [[UINavigationController alloc] initWithRootViewController:about];
     vc.tabBarItem.title = @"更多页面";
-    //vc.tabBarItem.image = [UIImage imageNamed:@"hhn"];
+    vc.tabBarItem.image = [UIImage imageNamed:@""];
     vc.navigationBarHidden = YES;
     about.hidesBottomBarWhenPushed = YES;
     [viewcontrollarray addObject:vc];
+    
     
     UITabBarController *tabBarcontroll = [[UITabBarController alloc] init];
     tabBarcontroll.viewControllers = viewcontrollarray;
