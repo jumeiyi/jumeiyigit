@@ -25,7 +25,7 @@
     
     UIView *btnview;
     UIView *shoosebtnview;
-    UIImageView *_btnimage;
+    UIButton *_imagebtn;
     NSMutableArray *_shooesproject;
     UIButton *_groupbtn;
     UIButton *_shoosebtn;
@@ -38,7 +38,7 @@
     NSMutableArray *_insectionofrow;
     
     NSMutableArray *_sectionary;
-    
+    NSMutableArray *_numberofmanber;
     NSMutableArray *_getmanberary;
 }
 
@@ -59,7 +59,7 @@
 @property(nonatomic,retain)NSString *groupname;
 @property(nonatomic,retain)NSString *customersIDs;//以逗号分隔
 @property(nonatomic,retain)UIScrollView *myscrollview;
-
+@property(nonatomic,assign)NSInteger didselector;//选中的分组
 @property(nonatomic,retain)NSMutableArray *OriginalManberary;
 
 @property(nonatomic,retain)myclientmenbergroupViewController *manberary;

@@ -31,4 +31,5 @@
 @property(nonatomic,assign)BOOL iscancel;
 
 -(void)getManberarrayWithary:(NSArray *)ary;
+
 @end

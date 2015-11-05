@@ -42,15 +42,17 @@
     
     [AFHTTPRequestOpeartionManagerOfme postSetgroups:string withBlock:^(NSMutableArray *array1, NSMutableArray *array2, NSMutableArray *array3) {
         
-        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
-        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
+//        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
+//        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
+        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"休眠客户", nil];
+        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"sleep",nil];
         
         for (int i = 0; i < array1.count; i++) {
             [_groups addObject:[array1 objectAtIndex:i]];
         }
         [_groupbtn setTitle:[_groups objectAtIndex:0] forState:UIControlStateNormal];
         _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, _groupbtn.frame.size.height);
-        _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+        _imagebtn.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
         
         for (int i = 0; i < array3.count; i++) {
             [_groupIDarray addObject:[array3 objectAtIndex:i]];
@@ -58,6 +60,13 @@
         
         
        
+    }];
+    
+    
+    [AFHTTPRequestOpeartionManagerOfme getTheGroupOfNumberWith:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+        _numberofmanber = array1;
+        
     }];
     
 }
@@ -84,16 +93,17 @@
     [topbar addSubview:_groupbtn];
     
     
-    _btnimage = [[UIImageView alloc] initWithFrame:CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10)];
-    _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
-    [topbar addSubview:_btnimage];
+    _imagebtn = [[UIButton alloc] initWithFrame:CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10)];
+    [_imagebtn setBackgroundImage:[UIImage imageNamed:@"yishengwdkhx"] forState:UIControlStateNormal];
+    [_imagebtn addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
+    [topbar addSubview:_imagebtn];
     
-    
-    
+    //搜索边框
     UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(15, 75, self.view.bounds.size.width - 30, 42)];
     shoosebtnimageback.image = [UIImage imageNamed:@"sousuobian"];
     shoosebtnimageback.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:shoosebtnimageback];
+    
     
     _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 77, 50, 37)];
     [_shoosebtn setTitle:@"姓名 " forState:UIControlStateNormal];
@@ -146,9 +156,9 @@
     self.IsServiced = YES;
     self.group = @"serviced";
     self.AllowRefresh = NO;
+    self.didselector = 0;
     
     [self startrequest];
-    
     
 }
 
@@ -162,7 +172,6 @@
         _tableview.delegate = self;
         _tableview.dataSource = self;
         _tableview.layer.cornerRadius = 8;
-        //    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableview.backgroundColor = [UIColor whiteColor];
         _tableview.tag = 60;
         [self.view addSubview:_tableview];
@@ -170,6 +179,16 @@
         
         [_tableview reloadData];
     }
+    
+    
+    if (_allgroup.count > 0) {
+        _tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+
+    }else{
+        _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    }
+        
 
 }
 
@@ -290,7 +309,7 @@
         grouptableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         [btnview addSubview:grouptableview];
         
-         _btnimage.image = [UIImage imageNamed:@"yishengwdkhs"];
+        [_imagebtn setBackgroundImage:[UIImage imageNamed:@"yishengwdkhs"] forState:UIControlStateNormal];
         
         _tableview.userInteractionEnabled = NO;
         self.isgroupes = YES;
@@ -304,7 +323,7 @@
         
         _tableview.userInteractionEnabled = YES;
         self.isgroupes = NO;
-        _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
+        [_imagebtn setBackgroundImage:[UIImage imageNamed:@"yishengwdkhx"] forState:UIControlStateNormal];
     }
 
 }
@@ -312,7 +331,7 @@
 -(void)shoosebtnclick
 {
     
-    _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
+    [_imagebtn setBackgroundImage:[UIImage imageNamed:@"yishengwdkhx"] forState:UIControlStateNormal];
     UITableView *projectandname;
     
     if (self.isproject == NO) {
@@ -764,15 +783,29 @@
 
     }else if (tableView.tag == 62){
         
+        NSLog(@"indexPath.row-%ld-----_numberofmanber.count-%ld",indexPath.row,_numberofmanber.count);
         static NSString *ident = @"cell2";
         UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:ident];
         if (!cell2) {
             cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         }
-        cell2.textLabel.text = [_groups objectAtIndex:indexPath.row];
+        if (indexPath.row < 4) {
+            cell2.textLabel.text = [_groups objectAtIndex:indexPath.row];
+        }else{
+            NSString *str = [NSString stringWithFormat:@"%@     (%@)",[_groups objectAtIndex:indexPath.row],[_numberofmanber objectAtIndex:indexPath.row - 4]];
+            cell2.textLabel.text = str;
+        }
+        
+        
         cell2.textLabel.font = [UIFont systemFontOfSize:15];
         cell2.textLabel.textColor = [UIColor whiteColor];
         cell2.backgroundColor = [UIColor clearColor];
+        
+        if (self.didselector == indexPath.row) {
+            cell2.textLabel.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+        }else{
+            cell2.textLabel.textColor = [UIColor whiteColor];
+        }
         
         return cell2;
         
@@ -876,14 +909,15 @@
         }else if (tableView.tag == 62){
             
             self.AllowRefresh = NO;
+            self.didselector = indexPath.row;
             
         if (indexPath.row != 0) {
             self.IsServiced = NO;
             [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
             _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
             self.group = [_groupIDarray objectAtIndex:indexPath.row];
-            NSLog(@"self.group1---%@",self.group);
-            _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+            
+            _imagebtn.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
             
             [self groupsbuttonclick];
             [self startrequest];
@@ -897,7 +931,7 @@
             _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
             self.group = [_groupIDarray objectAtIndex:indexPath.row];
             
-            _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+            _imagebtn.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
             
             [self groupsbuttonclick];
             [self startrequest];
@@ -908,13 +942,14 @@
         self.group = [_groupIDarray objectAtIndex:indexPath.row];
         
     }else {
-    
        
         NSString *str = [NSString stringWithFormat:@"%ld",indexPath.row];
         
         if ([str isEqualToString:@"0"]) {
             self.typeInfo = @"name";
+            [_shoosebtn setTitle:@"姓名" forState:UIControlStateNormal];
         }else{
+            [_shoosebtn setTitle:@"项目" forState:UIControlStateNormal];
             self.typeInfo = @"product";
         }
         

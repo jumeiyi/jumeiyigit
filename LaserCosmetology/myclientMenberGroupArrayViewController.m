@@ -45,32 +45,34 @@
     [save addTarget:self action:@selector(startrequestaaa) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:save];
     
-    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
-    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
+//    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
+//    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
+    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"休眠客户", nil];
+    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"sleep",nil];
     
     _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, 20)];
     [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
     [_groupbtn setTitle:[_groups objectAtIndex:0] forState:UIControlStateNormal];
     [topbar addSubview:_groupbtn];
     
+
     
-    _btnimage = [[UIImageView alloc] initWithFrame:CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10)];
-    _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
-    [topbar addSubview:_btnimage];
-    
-    
+    _imagebtn = [[UIButton alloc] initWithFrame:CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10)];
+    [_imagebtn setBackgroundImage:[UIImage imageNamed:@"yishengwdkhx"] forState:UIControlStateNormal];
+    [_imagebtn addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
+    [topbar addSubview:_imagebtn];
     
     UIImageView *gradimage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 67 + 62, self.view.bounds.size.width, 22)];
     gradimage.backgroundColor = [self colorWithRGB:0xEEEEEE alpha:1];
     [self.view addSubview:gradimage];
     
     
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0,  67 + 62 + 22 + 68, self.view.bounds.size.width, self.view.bounds.size.height - ( 67 + 62 + 22 + 68))];
+    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0,  67 + 62 , self.view.bounds.size.width, self.view.bounds.size.height - ( 67 + 62 ))];
     _tableview.delegate = self;
     _tableview.dataSource = self;
     _tableview.layer.cornerRadius = 8;
 //    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableview.backgroundColor = [UIColor clearColor];
+    _tableview.backgroundColor = [UIColor whiteColor];
     _tableview.tag = 60;
     [self.view addSubview:_tableview];
     
@@ -81,7 +83,6 @@
     
     self.typeInfo = @"name";  self.a = 1;
     
-
     
     UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(5, 75, self.view.bounds.size.width - 10, 42)];
     shoosebtnimageback.image = [UIImage imageNamed:@"sousuobian"];
@@ -122,6 +123,7 @@
     self.isgroupes = NO;
     self.isproject = NO;
     self.group = [_groupIDarray objectAtIndex:0];
+    self.didselector = 0;
     
     _sectionindex = [[NSMutableArray alloc] initWithCapacity:0];
     _insectionofrow = [[NSMutableArray alloc] initWithCapacity:0];
@@ -133,6 +135,9 @@
 
     [self startrequest];
     
+    
+
+
 }
 
 -(void)searchrequestdata{
@@ -186,6 +191,13 @@
         }
         
         
+        if (_insectionofrow.count > 0) {
+            _tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            
+        }else{
+            _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+            
+        }
         [_tableview reloadData];
     }];
     
@@ -208,21 +220,31 @@
     
     [AFHTTPRequestOpeartionManagerOfme postSetgroups:string withBlock:^(NSMutableArray *array1, NSMutableArray *array2, NSMutableArray *array3) {
         
-        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
-        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
+//        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
+//        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
+        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"休眠客户", nil];
+        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"sleep",nil];
         
         for (int i = 0; i < array1.count; i++) {
             [_groups addObject:[array1 objectAtIndex:i]];
         }
+        
         [_groupbtn setTitle:[_groups objectAtIndex:0] forState:UIControlStateNormal];
         _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, _groupbtn.frame.size.height);
-        _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+        _imagebtn.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
         
         for (int i = 0; i < array3.count; i++) {
             [_groupIDarray addObject:[array3 objectAtIndex:i]];
         }
         
         [_grouptableview reloadData];
+        
+    }];
+    
+    
+    [AFHTTPRequestOpeartionManagerOfme getTheGroupOfNumberWith:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+        _numberofmanber = array1;
         
     }];
     
@@ -234,7 +256,7 @@
     NSString *strinf;
     for (mycustomerdata *mydata in _getmanberary) {
       NSString *str = [NSString stringWithFormat:@"%@",mydata.sno];
-        NSLog(@"mydata.nickname--str:%@",str);
+        
         strinf = [NSString stringWithFormat:@"%@,%@",strinf,str];
         
     }
@@ -259,25 +281,25 @@
 -(void)addmanberToscrollview
 {
     
-        [self.myscrollview removeFromSuperview];
-        self.myscrollview = nil;
-    
-        self.myscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 67 + 62 + 22, self.view.bounds.size.width, 68)];
-        self.myscrollview.backgroundColor = [UIColor whiteColor];
-        self.myscrollview.contentSize = CGSizeMake(self.view.bounds.size.width * 2, 68);
-        [self.view addSubview:self.myscrollview];
-
-    for (int i = 0; i < _getmanberary.count; i++) {
-        mycustomerdata *mydata = [_getmanberary objectAtIndex:i];
-        float x = (20 + 50) * i + 20;
-        UIImageView *manberimage = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, 50, 50)];
-        manberimage.image = [UIImage imageNamed:@"图片4"];
-        [manberimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HTTPREQUESTPDOMAIN,mydata.picsrc]] placeholderImage:[UIImage imageNamed:@"图片4"]];
-        manberimage.layer.masksToBounds = YES;
-        manberimage.layer.cornerRadius = 25;
-        manberimage.tag = i;
-        [self.myscrollview addSubview:manberimage];
-    }
+//        [self.myscrollview removeFromSuperview];
+//        self.myscrollview = nil;
+//    
+//        self.myscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 67 + 62 + 22, self.view.bounds.size.width, 68)];
+//        self.myscrollview.backgroundColor = [UIColor whiteColor];
+//        self.myscrollview.contentSize = CGSizeMake(self.view.bounds.size.width * 2, 68);
+//        [self.view addSubview:self.myscrollview];
+//
+//    for (int i = 0; i < _getmanberary.count; i++) {
+//        mycustomerdata *mydata = [_getmanberary objectAtIndex:i];
+//        float x = (20 + 50) * i + 20;
+//        UIImageView *manberimage = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, 50, 50)];
+//        manberimage.image = [UIImage imageNamed:@"图片4"];
+//        [manberimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HTTPREQUESTPDOMAIN,mydata.picsrc]] placeholderImage:[UIImage imageNamed:@"图片4"]];
+//        manberimage.layer.masksToBounds = YES;
+//        manberimage.layer.cornerRadius = 25;
+//        manberimage.tag = i;
+//        [self.myscrollview addSubview:manberimage];
+//    }
 
 
 }
@@ -293,7 +315,6 @@
         
         _sectionindex = array1;
         _insectionofrow = array2;
-        
        
          _sectionary = [[NSMutableArray alloc] initWithCapacity:0];
         for (int i = 0; i < _insectionofrow.count; i++) {
@@ -323,10 +344,17 @@
                     }
                 }
             }
-               
             }
                 
        
+        if (_insectionofrow.count > 0) {
+            _tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            
+        }else{
+            _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+            
+        }
+        
          [_tableview reloadData];
     }];
 
@@ -429,7 +457,8 @@
         _grouptableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         [btnview addSubview:_grouptableview];
         
-        _btnimage.image = [UIImage imageNamed:@"yishengwdkhs"];
+        [_imagebtn setBackgroundImage:[UIImage imageNamed:@"yishengwdkhs"] forState:UIControlStateNormal];
+        
         
         self.isgroupes = YES;
         _tableview.userInteractionEnabled = NO;
@@ -442,7 +471,8 @@
         
         self.isgroupes = NO;
         _tableview.userInteractionEnabled = YES;
-        _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
+        [_imagebtn setBackgroundImage:[UIImage imageNamed:@"yishengwdkhx"] forState:UIControlStateNormal];
+        
     }
     
 }
@@ -450,7 +480,8 @@
 -(void)shoosebtnclick
 {
     
-    _btnimage.image = [UIImage imageNamed:@"yishengwdkhx"];
+    [_imagebtn setBackgroundImage:[UIImage imageNamed:@"yishengwdkhx"] forState:UIControlStateNormal];
+
     UITableView *projectandname;
     
     if (self.isproject == NO) {
@@ -616,7 +647,7 @@
             
             cell = [[myclientManGroupCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor whiteColor];
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 8;
         
@@ -765,10 +796,23 @@
         if (!cell2) {
             cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         }
-        cell2.textLabel.text = [_groups objectAtIndex:indexPath.row];
+        
+        if (indexPath.row < 4) {
+            cell2.textLabel.text = [_groups objectAtIndex:indexPath.row];
+        }else{
+            NSString *str = [NSString stringWithFormat:@"%@     (%@)",[_groups objectAtIndex:indexPath.row],[_numberofmanber objectAtIndex:indexPath.row - 4]];
+            cell2.textLabel.text = str;
+        }
+        
         cell2.textLabel.font = [UIFont systemFontOfSize:15];
         cell2.textLabel.textColor = [UIColor whiteColor];
         cell2.backgroundColor = [UIColor clearColor];
+        
+        if (self.didselector == indexPath.row) {
+            cell2.textLabel.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+        }else{
+            cell2.textLabel.textColor = [UIColor whiteColor];
+        }
         
         return cell2;
         
@@ -827,15 +871,18 @@
     
     if (tableView.tag == 62) {
         self.group = [_groupIDarray objectAtIndex:indexPath.row];
+        self.didselector = indexPath.row;
         
         [self startrequest];
         [self groupsbuttonclick];
         
+
+        
             [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
-            _groupbtn.frame = CGRectMake(_groupbtn.frame.origin.x, _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
+        _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
             self.group = [_groupIDarray objectAtIndex:indexPath.row];
             
-            _btnimage.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+            _imagebtn.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
        
     }else if (tableView.tag == 63){
         
@@ -844,8 +891,10 @@
         
         if ([str isEqualToString:@"0"]) {
             self.typeInfo = @"name";
+            [_shoosebtn setTitle:@"名称" forState:UIControlStateNormal];
         }else{
             self.typeInfo = @"product";
+            [_shoosebtn setTitle:@"项目" forState:UIControlStateNormal];
         }
 
         [self shoosebtnclick];
@@ -886,7 +935,7 @@
             }
         }
         
-        [self addmanberToscrollview];
+//        [self addmanberToscrollview];
         
     }
     
@@ -960,8 +1009,6 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 
 
 @end

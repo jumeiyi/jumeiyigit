@@ -25,7 +25,7 @@
     
      UIView *btnview;
     UIView *shoosebtnview;
-    UIImageView *_btnimage;
+    UIButton *_imagebtn;
     NSMutableArray *_shooesproject;
     NSMutableArray *_groups;
     NSMutableArray *_groupIDarray;
@@ -34,6 +34,7 @@
     
      NSMutableData *_data;
     NSMutableArray *_allgroup;
+    NSMutableArray *_numberofmanber;
 }
 @property(nonatomic,assign)BOOL istop;
 @property(nonatomic,retain)NSString *doctorsno;
@@ -50,5 +51,5 @@
 @property(nonatomic,assign)BOOL IsServiced;
 @property(nonatomic,assign)BOOL AllowRefresh;
 @property(nonatomic,retain)NSString *group;
-
+@property(nonatomic,assign)NSInteger didselector;
 @end

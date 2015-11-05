@@ -92,7 +92,7 @@
     
     
     NSString *string2 = [NSString stringWithFormat:@"%@/doctor.isfollowed.go?customersno=%@&doctorsno=%@",HTTPREQUESTPDOMAIN,self.customerSno,self.doctorsno];
-    
+    NSLog(@"获取关注信息----》%@",string2);
     [AFHTTPRequestOpeartionManagerOfme postsattentionTOMe:string2 withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
         self.payattention = string;

@@ -58,15 +58,15 @@
     _testbtn.layer.cornerRadius = 4;
     [self.view addSubview:_testbtn];
     
-    _recommendNotf = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 220, 120, 30)];
-    _recommendNotf.backgroundColor = [UIColor whiteColor];
-    _recommendNotf.placeholder = @" 客户推荐码";
-    _recommendNotf.layer.masksToBounds = YES;
-    _recommendNotf.layer.cornerRadius = 4;
-    self.recommendNo = _recommendNotf.text;
-    [self.view addSubview:_recommendNotf];
+//    _recommendNotf = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 220, 120, 30)];
+//    _recommendNotf.backgroundColor = [UIColor whiteColor];
+//    _recommendNotf.placeholder = @" 客户推荐码";
+//    _recommendNotf.layer.masksToBounds = YES;
+//    _recommendNotf.layer.cornerRadius = 4;
+//    self.recommendNo = _recommendNotf.text;
+//    [self.view addSubview:_recommendNotf];
     
-    UIButton *agreementbtn = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 275, 20, 20)];
+    UIButton *agreementbtn = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 225, 20, 20)];
     [agreementbtn addTarget:self action:@selector(agreementclick:) forControlEvents:UIControlEventTouchUpInside];
     [agreementbtn setBackgroundImage:[UIImage imageNamed:@"06"] forState:UIControlStateNormal];
     agreementbtn.tag = 10;
@@ -74,12 +74,12 @@
     agreementbtn.layer.cornerRadius = 4;
     [self.view addSubview:agreementbtn];
     
-    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 270, 100, 30)];
+    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 220, 100, 30)];
     lable.text = @"用户协议";
     lable.textColor = [UIColor whiteColor];
     [self.view addSubview:lable];
     
-    UIButton *xieyiclick = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 270, 100, 30)];
+    UIButton *xieyiclick = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 220, 100, 30)];
     [xieyiclick addTarget:self action:@selector(agreementclick:) forControlEvents:UIControlEventTouchUpInside];
     xieyiclick.layer.masksToBounds = YES;
     xieyiclick.layer.cornerRadius = 2;

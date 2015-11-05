@@ -1137,6 +1137,49 @@
 
 }
 
+//获取群组的人数
++(void)getTheGroupOfNumberWith:(NSString *)url withblock:(dataBlcok)block
+{
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",url] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+       // NSLog(@"AFHTTPRequestOpeartionManager医生的客户分组-----人数----%@---- %@",data ,error);
+        
+        
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+        
+        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+
+
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        
+        for (NSDictionary *manber in dataary) {
+           NSString *str = [manber objectForKey:@"groupnum"];
+            [array addObject:str];
+        }
+        
+        block(array,nil,nil);
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+    
+}
+
+
 + (void)checkNetWorkStatus{
     
     /**
