@@ -246,10 +246,13 @@
             cell.date.textColor = [self colorWithRGB:0x999999 alpha:1];
             NSString *creatdt = [prodctoer objectForKey:@"createdt"];
             if (creatdt.length > 5) {
-            cell.date.text = [NSString stringWithFormat:@"%@",creatdt];
+            
+                NSArray *are = [[NSString stringWithFormat:@"%@",creatdt] componentsSeparatedByString:@" "];
+                cell.date.text = [are objectAtIndex:0];
+                
             }
             
-            cell.projectname.frame = CGRectMake(140, 15, 120, 20);
+            cell.projectname.frame = CGRectMake(100, 15, 120, 20);
             cell.projectname.text = [prodctoer objectForKey:@"productname"];
             cell.projectname.font = [UIFont systemFontOfSize:14];
             cell.projectname.textColor = [self colorWithRGB:0x00c5bb alpha:1];
