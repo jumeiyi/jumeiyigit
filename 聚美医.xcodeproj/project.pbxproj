@@ -1019,7 +1019,7 @@
 		84B717DA1AA3F62C00FD889A /* Beautyitems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beautyitems.m; sourceTree = "<group>"; };
 		84B717E41AA4548600FD889A /* 个人中心_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人中心_03.png"; sourceTree = "<group>"; };
 		84B717E51AA4548600FD889A /* 个人中心_034_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人中心_034_03.png"; sourceTree = "<group>"; };
-		84B83F851A8840B8008EE1CA /* jumeiyi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jumeiyi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B83F851A8840B8008EE1CA /* 聚美医.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "聚美医.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B83F891A8840B8008EE1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B83F8A1A8840B8008EE1CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84B83F8C1A8840B8008EE1CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1029,7 +1029,7 @@
 		84B83F931A8840B8008EE1CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84B83F951A8840B8008EE1CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		84B83F981A8840B8008EE1CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		84B83F9E1A8840B8008EE1CA /* jumeiyi.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jumeiyi.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B83F9E1A8840B8008EE1CA /* 聚美医.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "聚美医.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B83FA31A8840B9008EE1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B83FA41A8840B9008EE1CA /* LaserCosmetologyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaserCosmetologyTests.m; sourceTree = "<group>"; };
 		84B83FB71A884384008EE1CA /* PersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
@@ -1866,8 +1866,8 @@
 		84B83F861A8840B8008EE1CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84B83F851A8840B8008EE1CA /* jumeiyi.app */,
-				84B83F9E1A8840B8008EE1CA /* jumeiyi.xctest */,
+				84B83F851A8840B8008EE1CA /* 聚美医.app */,
+				84B83F9E1A8840B8008EE1CA /* 聚美医.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2545,9 +2545,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		84B83F841A8840B8008EE1CA /* jumeiyi */ = {
+		84B83F841A8840B8008EE1CA /* 聚美医 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84B83FA81A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "jumeiyi" */;
+			buildConfigurationList = 84B83FA81A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "聚美医" */;
 			buildPhases = (
 				84B83F811A8840B8008EE1CA /* Sources */,
 				84B83F821A8840B8008EE1CA /* Frameworks */,
@@ -2557,14 +2557,14 @@
 			);
 			dependencies = (
 			);
-			name = jumeiyi;
+			name = "聚美医";
 			productName = LaserCosmetology;
-			productReference = 84B83F851A8840B8008EE1CA /* jumeiyi.app */;
+			productReference = 84B83F851A8840B8008EE1CA /* 聚美医.app */;
 			productType = "com.apple.product-type.application";
 		};
-		84B83F9D1A8840B8008EE1CA /* jumeiyiTests */ = {
+		84B83F9D1A8840B8008EE1CA /* 聚美医Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84B83FAB1A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "jumeiyiTests" */;
+			buildConfigurationList = 84B83FAB1A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "聚美医Tests" */;
 			buildPhases = (
 				84B83F9A1A8840B8008EE1CA /* Sources */,
 				84B83F9B1A8840B8008EE1CA /* Frameworks */,
@@ -2575,9 +2575,9 @@
 			dependencies = (
 				84B83FA01A8840B8008EE1CA /* PBXTargetDependency */,
 			);
-			name = jumeiyiTests;
+			name = "聚美医Tests";
 			productName = LaserCosmetologyTests;
-			productReference = 84B83F9E1A8840B8008EE1CA /* jumeiyi.xctest */;
+			productReference = 84B83F9E1A8840B8008EE1CA /* 聚美医.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -2600,7 +2600,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 84B83F801A8840B8008EE1CA /* Build configuration list for PBXProject "jumeiyi" */;
+			buildConfigurationList = 84B83F801A8840B8008EE1CA /* Build configuration list for PBXProject "聚美医" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2614,8 +2614,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				84B83F841A8840B8008EE1CA /* jumeiyi */,
-				84B83F9D1A8840B8008EE1CA /* jumeiyiTests */,
+				84B83F841A8840B8008EE1CA /* 聚美医 */,
+				84B83F9D1A8840B8008EE1CA /* 聚美医Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -3161,7 +3161,7 @@
 /* Begin PBXTargetDependency section */
 		84B83FA01A8840B8008EE1CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84B83F841A8840B8008EE1CA /* jumeiyi */;
+			target = 84B83F841A8840B8008EE1CA /* 聚美医 */;
 			targetProxy = 84B83F9F1A8840B8008EE1CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -3283,8 +3283,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Connection",
@@ -3306,8 +3306,8 @@
 					"$(PROJECT_DIR)/LaserCosmetology",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = jumeiyi;
-				PROVISIONING_PROFILE = "a6b3526a-5a1c-4c40-8198-78643a50e6ca";
+				PRODUCT_NAME = "聚美医";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
@@ -3318,8 +3318,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Connection",
@@ -3342,8 +3342,8 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = jumeiyi;
-				PROVISIONING_PROFILE = "a6b3526a-5a1c-4c40-8198-78643a50e6ca";
+				PRODUCT_NAME = "聚美医";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/[lib]";
 				VALIDATE_PRODUCT = YES;
@@ -3366,7 +3366,7 @@
 				);
 				INFOPLIST_FILE = LaserCosmetologyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = jumeiyi;
+				PRODUCT_NAME = "聚美医";
 				PROVISIONING_PROFILE = "3582052b-29a1-4171-ae6a-8036438f4983";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LaserCosmetology.app/LaserCosmetology";
 			};
@@ -3384,7 +3384,7 @@
 				);
 				INFOPLIST_FILE = LaserCosmetologyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = jumeiyi;
+				PRODUCT_NAME = "聚美医";
 				PROVISIONING_PROFILE = "3582052b-29a1-4171-ae6a-8036438f4983";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LaserCosmetology.app/LaserCosmetology";
 			};
@@ -3393,7 +3393,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84B83F801A8840B8008EE1CA /* Build configuration list for PBXProject "jumeiyi" */ = {
+		84B83F801A8840B8008EE1CA /* Build configuration list for PBXProject "聚美医" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84B83FA61A8840B9008EE1CA /* Debug */,
@@ -3402,7 +3402,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84B83FA81A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "jumeiyi" */ = {
+		84B83FA81A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "聚美医" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84B83FA91A8840B9008EE1CA /* Debug */,
@@ -3411,7 +3411,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84B83FAB1A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "jumeiyiTests" */ = {
+		84B83FAB1A8840B9008EE1CA /* Build configuration list for PBXNativeTarget "聚美医Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84B83FAC1A8840B9008EE1CA /* Debug */,

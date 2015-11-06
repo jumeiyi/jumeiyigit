@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "84B83F841A8840B8008EE1CA"
-               BuildableName = "jumeiyi.app"
-               BlueprintName = "jumeiyi"
-               ReferencedContainer = "container:jumeiyi.xcodeproj">
+               BuildableName = "&#x805a;&#x7f8e;&#x533b;.app"
+               BlueprintName = "&#x805a;&#x7f8e;&#x533b;"
+               ReferencedContainer = "container:&#x805a;&#x7f8e;&#x533b;.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84B83F841A8840B8008EE1CA"
-            BuildableName = "jumeiyi.app"
-            BlueprintName = "jumeiyi"
-            ReferencedContainer = "container:jumeiyi.xcodeproj">
+            BuildableName = "&#x805a;&#x7f8e;&#x533b;.app"
+            BlueprintName = "&#x805a;&#x7f8e;&#x533b;"
+            ReferencedContainer = "container:&#x805a;&#x7f8e;&#x533b;.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84B83F841A8840B8008EE1CA"
-            BuildableName = "jumeiyi.app"
-            BlueprintName = "jumeiyi"
-            ReferencedContainer = "container:jumeiyi.xcodeproj">
+            BuildableName = "&#x805a;&#x7f8e;&#x533b;.app"
+            BlueprintName = "&#x805a;&#x7f8e;&#x533b;"
+            ReferencedContainer = "container:&#x805a;&#x7f8e;&#x533b;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84B83F841A8840B8008EE1CA"
-            BuildableName = "jumeiyi.app"
-            BlueprintName = "jumeiyi"
-            ReferencedContainer = "container:jumeiyi.xcodeproj">
+            BuildableName = "&#x805a;&#x7f8e;&#x533b;.app"
+            BlueprintName = "&#x805a;&#x7f8e;&#x533b;"
+            ReferencedContainer = "container:&#x805a;&#x7f8e;&#x533b;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
