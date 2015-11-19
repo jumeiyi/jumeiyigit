@@ -283,7 +283,7 @@
 
 -(void)groupsbuttonclick
 {
-   
+    NSLog(@"开始groupsbuttonclick");
     UITableView *grouptableview;
     
     if (self.isgroupes == NO) {
@@ -465,6 +465,7 @@
         if (self.IsServiced == YES) {
             return _headnamearray.count + 1;
         }else{
+            NSLog(@"numberOfSectionsInTableView--_headnamearray.count:%ld",_headnamearray.count);
         return _headnamearray.count;
         }
         
@@ -482,7 +483,6 @@
 
         if (self.IsServiced == YES) {
             
-            NSLog(@"self.IsServiced == YES A-%ld",_allgroup.count);
             if (section == 0) {
                 return 1;
             }else{
@@ -514,7 +514,6 @@
     
     if (tableView.tag == 60 && self.AllowRefresh == YES) {
         
-        NSLog(@"self.AllowRefresh = %d",self.AllowRefresh);
         
         static NSString *identifier = @"cell";
         
@@ -666,7 +665,6 @@
             
             NSLog(@"cellForRowAtIndexPath");
             
-            NSLog(@"_allgroup.count = %ld",_allgroup.count);
 
             
             NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
@@ -858,6 +856,7 @@
                 [view addSubview:titlelable];
             }
         }else{
+            NSLog(@"--开始-viewForHeaderInSection---_headnamearray--%ld--section:-%ld",_headnamearray.count,section);
             UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
             titlelable.text = [_headnamearray objectAtIndex:section];
             titlelable.font = [UIFont systemFontOfSize:13];
@@ -868,8 +867,11 @@
          return view;
         
     }else{
+        
     return nil;
     }
+    
+
 
 }
 
@@ -1037,7 +1039,7 @@
 
 -(void)startrequest
 {
-    
+    NSLog(@"开始startrequest");
     NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.group];
     
     
@@ -1046,14 +1048,14 @@
         _headnamearray = array1;
         _allgroup = array2;
         
-        NSLog(@"_headnamearray : %@------_allgroup-%@",_headnamearray,_allgroup);
+        //NSLog(@"_headnamearray : %@------_allgroup-%@",_headnamearray,_allgroup);
         
 
         self.AllowRefresh = YES;
         [self creattableview];
         
     }];
-    NSLog(@"");
+    NSLog(@"结束startrequest");
 }
 
 

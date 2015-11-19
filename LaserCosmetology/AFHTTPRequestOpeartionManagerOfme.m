@@ -183,7 +183,7 @@
         //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
         //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
         
-         NSLog(@"分组：data--%@",data);
+        // NSLog(@"分组：data--%@",data);
         
         NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
         

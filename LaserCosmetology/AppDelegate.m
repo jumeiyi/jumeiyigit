@@ -29,41 +29,38 @@
     
         [ShareSDK registerApp:@"6236ece9b586"];//字符串api20为您的ShareSDK的AppKey
     
-    //添加新浪微博应用 注册网址 http://open.weibo.com
-    [ShareSDK connectSinaWeiboWithAppKey:@"302195624"
-                               appSecret:@"71515c5b9277d2d4f72c2a7feee1ee35"
-                             redirectUri:@"http://www.sharesdk.cn"];
+//    //添加新浪微博应用 注册网址 http://open.weibo.com
+//    [ShareSDK connectSinaWeiboWithAppKey:@"302195624"
+//                               appSecret:@"71515c5b9277d2d4f72c2a7feee1ee35"
+//                             redirectUri:@"http://www.sharesdk.cn"];
+//
+//    //当使用新浪微博客户端分享的时候需要按照下面的方法来初始化新浪的平台
+//    [ShareSDK  connectSinaWeiboWithAppKey:@"302195624"
+//                                appSecret:@"71515c5b9277d2d4f72c2a7feee1ee35"
+//                              redirectUri:@"http://www.sharesdk.cn"
+//                              weiboSDKCls:[WeiboSDK class]];
 
-    //当使用新浪微博客户端分享的时候需要按照下面的方法来初始化新浪的平台
-    [ShareSDK  connectSinaWeiboWithAppKey:@"302195624"
-                                appSecret:@"71515c5b9277d2d4f72c2a7feee1ee35"
-                              redirectUri:@"http://www.sharesdk.cn"
-                              weiboSDKCls:[WeiboSDK class]];
-
-    //添加腾讯微博应用 注册网址 http://dev.t.qq.com
-    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
-                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
-                                redirectUri:@"http://www.sharesdk.cn"
-                                   wbApiCls:[WeiboApi class]];
+//    //添加腾讯微博应用 注册网址 http://dev.t.qq.com
+//    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
+//                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
+//                                redirectUri:@"http://www.sharesdk.cn"
+//                                   wbApiCls:[WeiboApi class]];
     
-    //添加QQ空间应用  注册网址  http://connect.qq.com/intro/login/
-    [ShareSDK connectQZoneWithAppKey:@"100371282"
-                           appSecret:@"aed9b0303e3ed1e27bae87c33761161d"
-                   qqApiInterfaceCls:[QQApiInterface class]
-                     tencentOAuthCls:[TencentOAuth class]];
-    
+//    //添加QQ空间应用  注册网址  http://connect.qq.com/intro/login/
+//    [ShareSDK connectQZoneWithAppKey:@"100371282"
+//                           appSecret:@"aed9b0303e3ed1e27bae87c33761161d"
+//                   qqApiInterfaceCls:[QQApiInterface class]
+//                     tencentOAuthCls:[TencentOAuth class]];
+//    
     //添加微信应用 注册网址 http://open.weixin.qq.com
     [ShareSDK connectWeChatWithAppId:@"wxa41e44eb390fcaf7"
                            wechatCls:[WXApi class]];
     
 
-    
+
     self.launchOptions = launchOptions;
     
-    
-
-   
-    // Required
+        // Required
 # if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //categories
@@ -90,7 +87,6 @@
     }
     [APService setupWithOption:launchOptions];
 
-    
     return YES;
 }
 
@@ -238,4 +234,7 @@ fetchCompletionHandler:(void
 
 }
 
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+//    NSLog(@"------推送--------推送-------");
+//}
 @end

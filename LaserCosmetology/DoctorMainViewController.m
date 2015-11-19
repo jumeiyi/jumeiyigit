@@ -26,7 +26,7 @@
 #import "HuQiJingsharManage.h"
 #import "PrefixHeader.pch"
 #import "AFHTTPRequestOpeartionManagerOfme.h"
-
+#import "PointViewController.h"
 @interface DoctorMainViewController ()
 
 @end
@@ -424,11 +424,13 @@
             break;
         case 17:
         {
-            CustomerEvaluationViewController *CustomerEvaluation = [[CustomerEvaluationViewController alloc] init];
-            CustomerEvaluation.doctorsno = self.doctorSno;
-            CustomerEvaluation.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:CustomerEvaluation animated:YES];
-            
+//            CustomerEvaluationViewController *CustomerEvaluation = [[CustomerEvaluationViewController alloc] init];
+//            CustomerEvaluation.doctorsno = self.doctorSno;
+//            CustomerEvaluation.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:CustomerEvaluation animated:YES];
+           
+            PointViewController *pointview = [[PointViewController alloc] init];
+            [self.navigationController pushViewController:pointview animated:YES];
         
         }
             break;
