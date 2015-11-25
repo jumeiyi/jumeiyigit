@@ -35,7 +35,7 @@
     [self.view addSubview:topbar];
     
     UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 160, 25)];
-    titilelable.text = @"与客户交谈中";
+    titilelable.text = self.customerName;
     titilelable.textColor = [UIColor whiteColor];
     titilelable.font = [UIFont systemFontOfSize:22];
     titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
@@ -149,6 +149,11 @@
 {
         //fromType发送类型(医生发给客 户:20150213142252612;客户发给医生20150213142231226);fileType发送文件类型(文字 20150213142908837;图片20150213142921851;音频20150213142939496;视频 20150213142950810)
 
+
+    
+    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString *currentTime = [formatter stringFromDate:[NSDate date]];
     
     if ([_text.text isEqualToString:@""]) {
         
@@ -158,6 +163,7 @@
         recod.TextInfo = _text.text;
         recod.FromType = @"20150213142252612";
         recod.FileType = @"20150213142908837";
+        recod.CreateDt = currentTime;
         [_custommesarray insertObject:recod atIndex:0];
         [_tableview reloadData];
         
@@ -175,8 +181,6 @@
         
         
     }
-    
-
     
 }
 
@@ -276,6 +280,10 @@
             chatview.tag = 3;
             [vi addSubview:chatview];
             
+            NSLog(@"时间------------------》cusmes.CreateDt：%@",cusmes.CreateDt);
+            if (cusmes.CreateDt == NULL) {
+                NSLog(@"#$^%%#@*())");
+            }
             
         }else if ([cusmes.FileType isEqualToString:@"20150213142939496"]){//音频
         
@@ -670,8 +678,8 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     // NSLog(@"3 DONE. Received Bytes: %ld", [webData length]);
-    //NSString *theXML = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-    //NSLog(@"我的预约的数据--%@",theXML);
+//    NSString *theXML = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+//    NSLog(@"我的预约的数据--%@",theXML);
     
     //        NSString *str = [[NSString alloc] initWithData:webData encoding:NSUTF8StringEncoding];
     //
@@ -701,6 +709,10 @@
         [_soapResults setString:@""];//把它置空，准备接收新值。
     }
     
+    if ([elementName isEqualToString:@"SendDoctorCustomerTalkDataResult"]) {
+        [_soapResults setString:@""];//把它置空，准备接收新值。
+    }
+    
 }
 
 // 找到内容
@@ -712,6 +724,21 @@
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
+    if ([elementName isEqualToString:@"SendDoctorCustomerTalkDataResult"]) {
+        
+        NSData *jsonData = [_soapResults dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&err];
+        NSLog(@"发送了消息：dic%@",dic);
+        
+        NSString *string = [dic objectForKey:@"msg"];
+        NSLog(@"string-----> %@",string);
+        if ([string isEqualToString:@"操作成功"]) {
+           
+        }
+    }
     
     if ([elementName isEqualToString:@"GetDoctorCustomerTalkDataResult"]) {
         
@@ -720,7 +747,7 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-        NSLog(@"客户留言的数据：dic%@",dic);
+        //NSLog(@"客户留言的数据：dic%@",dic);
         
         NSMutableArray *ret = [dic objectForKey:@"ret"];
         

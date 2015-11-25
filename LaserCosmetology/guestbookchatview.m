@@ -100,7 +100,7 @@
                 date.font = [UIFont systemFontOfSize:14];
                 [self.rigthimage addSubview:date];
             }else{
-                UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(self.rigthimage.bounds.size.width - [self NSStringwithsize:14 str:creatdate] - 20, self.rigthcontents.bounds.size.height + self.rigthcontents.frame.origin.y + 5, self.bounds.size.width, 20)];
+                UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(10, self.rigthcontents.bounds.size.height + self.rigthcontents.frame.origin.y + 5, self.bounds.size.width, 20)];
                 date.text = creatdate;
                 date.font = [UIFont systemFontOfSize:14];
                 [self.rigthimage addSubview:date];

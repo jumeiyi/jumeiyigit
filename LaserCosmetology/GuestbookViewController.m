@@ -61,8 +61,16 @@
     
      _custommesarray = [[NSMutableArray alloc] initWithCapacity:0];
     
-    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"20"];
+    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
 
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    static int w = 0;
+    if (w!=0) {
+    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
+    }
+    w++;
 }
 
 - (void)refreshControl:(RefreshControl *)refreshControl didEngageRefreshDirection:(RefreshDirection)direction
@@ -73,7 +81,7 @@
         self.a = 1;
         self.istop = YES;
         
-        [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"20"];
+        [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
     }
     else if (direction==RefreshDirectionBottom)
     {
@@ -209,6 +217,7 @@
     GuestbookChatVC *chat = [[GuestbookChatVC alloc] init];
     chat.doctorsno = self.doctorsno;
     chat.customerSno = self.customersno;
+    chat.customerName = cus.CustomerName;
     [self.navigationController pushViewController:chat animated:YES];
 }
 
