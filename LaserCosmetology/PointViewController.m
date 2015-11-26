@@ -9,6 +9,9 @@
 #import "PointViewController.h"
 #import "PointTableViewCell.h"
 #import "TopBarView.h"
+#import "mypointsmodle.h"
+#import "wodejifen.h"
+#import "PrefixHeader.pch"
 @interface PointViewController ()
 
 @end
@@ -50,6 +53,13 @@
     self.mytableview.dataSource = self;
     [self.view addSubview:self.mytableview];
     
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.mypoints.go?doctorsno=%@&toPage=1&Count_per_Page=10",HTTPREQUESTPDOMAIN,self.doctorsno];
+    NSLog(@"URL------%@-----",string);
+    
+    [wodejifen getTheDataWithULR:string AndBlock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        
+    }];
     
 }
 

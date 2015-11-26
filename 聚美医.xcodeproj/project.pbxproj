@@ -534,6 +534,8 @@
 		84CD88931AC39FBE00B61664 /* zhuanjiashuju.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CD88921AC39FBE00B61664 /* zhuanjiashuju.m */; };
 		84CD889D1AC3D6C600B61664 /* shouzhi.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CD889C1AC3D6C600B61664 /* shouzhi.png */; };
 		84D1BCB71BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D1BCB61BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.m */; };
+		84D4E1751C0618C100F4F00D /* wodejifen.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4E1741C0618C100F4F00D /* wodejifen.m */; };
+		84D4E1781C061F0500F4F00D /* mypointsmodle.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4E1771C061F0500F4F00D /* mypointsmodle.m */; };
 		84D5E0F41B9531AD00C36D23 /* myclientobservedisease.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0F31B9531AD00C36D23 /* myclientobservedisease.m */; };
 		84D5E0F71B95329100C36D23 /* myclientobservediseaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0F61B95329100C36D23 /* myclientobservediseaseCell.m */; };
 		84D5E0FD1B95584400C36D23 /* myclientdiseaseediting.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0FC1B95584400C36D23 /* myclientdiseaseediting.m */; };
@@ -1290,6 +1292,10 @@
 		84CD889C1AC3D6C600B61664 /* shouzhi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shouzhi.png; sourceTree = "<group>"; };
 		84D1BCB51BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientNewCreatDiseaseViewController.h; sourceTree = "<group>"; };
 		84D1BCB61BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientNewCreatDiseaseViewController.m; sourceTree = "<group>"; };
+		84D4E1731C0618C100F4F00D /* wodejifen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wodejifen.h; sourceTree = "<group>"; };
+		84D4E1741C0618C100F4F00D /* wodejifen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wodejifen.m; sourceTree = "<group>"; };
+		84D4E1761C061F0500F4F00D /* mypointsmodle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mypointsmodle.h; sourceTree = "<group>"; };
+		84D4E1771C061F0500F4F00D /* mypointsmodle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mypointsmodle.m; sourceTree = "<group>"; };
 		84D5E0F21B9531AD00C36D23 /* myclientobservedisease.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientobservedisease.h; sourceTree = "<group>"; };
 		84D5E0F31B9531AD00C36D23 /* myclientobservedisease.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientobservedisease.m; sourceTree = "<group>"; };
 		84D5E0F51B95329100C36D23 /* myclientobservediseaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientobservediseaseCell.h; sourceTree = "<group>"; };
@@ -1572,6 +1578,8 @@
 			children = (
 				84750E351BAA97C3008A7A6E /* AFHTTPRequestOpeartionManagerOfme.h */,
 				84750E361BAA97C3008A7A6E /* AFHTTPRequestOpeartionManagerOfme.m */,
+				84D4E1731C0618C100F4F00D /* wodejifen.h */,
+				84D4E1741C0618C100F4F00D /* wodejifen.m */,
 				847422041BB2DB0300B20AC4 /* UpdataiWithimage.h */,
 				847422051BB2DB0300B20AC4 /* UpdataiWithimage.m */,
 			);
@@ -2488,6 +2496,8 @@
 				84A42D3B1B2D294A00B6047E /* Doctorpersents.m */,
 				84829EFA1BB3E1BC000D6A7E /* medicalrecord.h */,
 				84829EFB1BB3E1BC000D6A7E /* medicalrecord.m */,
+				84D4E1761C061F0500F4F00D /* mypointsmodle.h */,
+				84D4E1771C061F0500F4F00D /* mypointsmodle.m */,
 			);
 			name = Modle;
 			sourceTree = "<group>";
@@ -3109,6 +3119,7 @@
 				844632FA1AF211DA00D0C585 /* MyAppointmentCollectionVC.m in Sources */,
 				84750E291BAA64E6008A7A6E /* AFNetworkReachabilityManager.m in Sources */,
 				84BDFFF41B2BE27F00789CE3 /* ProjectpersentTableViewCell.m in Sources */,
+				84D4E1781C061F0500F4F00D /* mypointsmodle.m in Sources */,
 				841FA6471AF3336A00FBB6CB /* MyAppointmentViewController.m in Sources */,
 				84907E771ADE18E1009002BC /* mycustomerdata.m in Sources */,
 				84C447661AA1ACA900F24402 /* discount.m in Sources */,
@@ -3125,6 +3136,7 @@
 				848890421AE4CE5F00DFE28F /* YouHuiViewController.m in Sources */,
 				84CC88E51AC24B4300A796A7 /* HuQiJingsharManage.m in Sources */,
 				84C2288D1AD4DE93000E3F18 /* yishengwanshanziliao.m in Sources */,
+				84D4E1751C0618C100F4F00D /* wodejifen.m in Sources */,
 				84C444541AE5FE1700098481 /* daijinquan.m in Sources */,
 				84C2288A1AD4C09F000E3F18 /* ModifyTheTemplate.m in Sources */,
 				84829EFC1BB3E1BC000D6A7E /* medicalrecord.m in Sources */,

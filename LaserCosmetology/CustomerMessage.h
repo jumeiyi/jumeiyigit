@@ -26,10 +26,10 @@
 @property(nonatomic,copy)NSString *NoticeDt;
 @property(nonatomic,copy)NSString *NoticeEndDt;
 @property(nonatomic,copy)NSString *TypeNo;
+@property(nonatomic,copy)NSString *CustomerPic;
+@property(nonatomic,copy)NSString *DoctorPic;
 
 +(CustomerMessage *)CustomerMessageWithdiction:(NSDictionary *)diction;
 
 @end
-
-
 

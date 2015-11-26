@@ -430,6 +430,7 @@
 //            [self.navigationController pushViewController:CustomerEvaluation animated:YES];
            
             PointViewController *pointview = [[PointViewController alloc] init];
+            pointview.doctorsno = self.doctorSno;
             [self.navigationController pushViewController:pointview animated:YES];
         
         }

@@ -11,5 +11,6 @@
 @interface PointViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,retain)UITableView *mytableview;
+@property(nonatomic,retain)NSString *doctorsno;
 
 @end

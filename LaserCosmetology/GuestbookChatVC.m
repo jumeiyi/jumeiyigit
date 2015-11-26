@@ -747,7 +747,7 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-        //NSLog(@"客户留言的数据：dic%@",dic);
+        NSLog(@"客户留言的数据：dic%@",dic);
         
         NSMutableArray *ret = [dic objectForKey:@"ret"];
         

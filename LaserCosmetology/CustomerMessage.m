@@ -31,6 +31,8 @@
       cusmes.TypeNo = [diction objectForKey:@"TypeNo"];
       cusmes.NoticeDt = [diction objectForKey:@"NoticeDt"];
       cusmes.NoticeEndDt = [diction objectForKey:@"NoticeEndDt"];
+      cusmes.CustomerPic = [diction objectForKey:@"CustomerPic"];
+      cusmes.DoctorPic = [diction objectForKey:@"DoctorPic"];
     
     return cusmes;
 }

@@ -27,6 +27,7 @@
             UIEdgeInsets ed = {50.0f, 40.0f, 40.0f, 40.0f};
             self.lefetimage.image = [[UIImage imageNamed:@"chatfrom_bg_normalss"] resizableImageWithCapInsets:ed];
             [self.myview addSubview:self.lefetimage];
+            
             if ([filetype isEqualToString:@"20150213142921851"]) {
                 self.lefetimage.frame = CGRectMake(10, 5, 280, 300);
             }
