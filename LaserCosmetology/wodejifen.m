@@ -8,6 +8,7 @@
 
 #import "wodejifen.h"
 #import "AFNetworking.h"
+#import "mypointsmodle.h"
 @implementation wodejifen
 
 +(void)getTheDataWithULR:(NSString *)url AndBlock:(dataBlcok)block{
@@ -38,13 +39,20 @@
         
 //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
 //        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
-//        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
-        //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
-        //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
+        NSMutableArray *diction = [[data objectForKey:@"Content"] objectForKey:@"data"];
+//                NSString *string = [NSString stringWithFormat:@"%@",dictArray];
+//                NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
         
+        NSMutableArray *mypointsary = [[NSMutableArray alloc] initWithCapacity:0];
+        for (NSDictionary *dic in diction) {
+            mypointsmodle *mypoints = [mypointsmodle mypointswithdiction:dic];
+            [mypointsary addObject:mypoints];
+        }
         
+        NSString *point = [[data objectForKey:@"Content"] objectForKey:@"points"];
+
         
-        block(nil,nil,nil);
+        block(mypointsary,nil,point);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         

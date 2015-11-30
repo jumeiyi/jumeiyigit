@@ -81,10 +81,9 @@
     groupmanber.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:groupmanber];
     
-    _manberview = [[UIView alloc] initWithFrame:CGRectMake(0, 64 + 90 + 45, self.view.bounds.size.width, 200)];
+    _manberview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64 + 90 + 45, self.view.bounds.size.width, self.view.bounds.size.height - (150 + 64 + 90 + 45))];
     _manberview.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_manberview];
-    
     
     _addbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 17, 50, 50)];
     [_addbtn setBackgroundImage:[UIImage imageNamed:@"yuanxingjia"] forState:UIControlStateNormal];
@@ -150,7 +149,6 @@
         [self.gentmanberarrays addObject:myda];
     }
     
-    NSLog(@"返回来之后的self.gentmanberarrays== %ld",self.gentmanberarrays.count);
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -174,7 +172,6 @@
     float width = 50;
     float heiht = width;
     
-    NSLog(@"---addmanbers--->self.manberarrays.count-:%ld",self.manberarrays.count);
     
     for (int j = 0; j < [self.manberarrays count]; j ++) {
         mycustomerdata *mydata = [self.manberarrays objectAtIndex:j];
@@ -213,12 +210,18 @@
     int y2 = (20 + heiht) * yn2 + 17;
 
     _subtraction.frame = CGRectMake(x2, y2, width , heiht);
+    
+    float scrollwithd = self.view.bounds.size.height - (150 + 64 + 90 + 45);
+    
+    if (y2 + 50 > scrollwithd) {
+        _manberview.contentSize = CGSizeMake(self.view.bounds.size.width, y2 + 70);
+
+    }
 
 }
 
 -(void)cancelbtnclick
 {
-    NSLog(@"---cancelbtnclick--->self.manberarrays.count-:%ld",self.manberarrays.count);
 
     
     float width = 50;
@@ -269,7 +272,6 @@
     [self.manberarrays removeObjectAtIndex:btn.tag - 10];
     [btn removeFromSuperview];
     
-    NSLog(@"--cancelbuttonclickl:(UIButton *)btn---<self.manberarray.count:%ld",self.manberarrays.count);
     
     [self addmanbers];
     
@@ -409,7 +411,6 @@
     addmanber.groupid = self.groupid;
     addmanber.OriginalManberary = self.customersidarray;
     addmanber.manberary = self;
-    NSLog(@"self.doctorsno,_grouptitle.text,self.groupid-%@-%@-%@",self.doctorsno,_grouptitle.text,self.groupid);
 
     [self.navigationController pushViewController:addmanber animated:YES];
 }

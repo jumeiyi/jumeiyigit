@@ -50,7 +50,7 @@
     _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
     _tableview.delegate = self;
     _tableview.dataSource = self;
-    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     _tableview.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_tableview];
     
@@ -61,16 +61,16 @@
     
      _custommesarray = [[NSMutableArray alloc] initWithCapacity:0];
     
-    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
+
 
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    static int w = 0;
-    if (w!=0) {
+ 
+    self.istop = YES;
     [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
-    }
-    w++;
+    
+
 }
 
 - (void)refreshControl:(RefreshControl *)refreshControl didEngageRefreshDirection:(RefreshDirection)direction
@@ -156,6 +156,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
+    return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
+}
+
+//计算字体长度
+-(float)NSStringwithsize:(int )a str:(NSString *)string
+{
+    
+    UIFont *font = [UIFont systemFontOfSize:a];
+    
+    CGSize size = [string sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    // 名字的H
+    //CGFloat nameH = size.height;
+    // 名字的W
+    CGFloat strwidth = size.width;
+    
+    return strwidth;
+}
+
 /*
 #pragma mark - Navigation
 
@@ -178,7 +197,8 @@
     
     GuestbookCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"GuestbookCell" owner:nil options:nil] objectAtIndex:0];
+        //cell = [[[NSBundle mainBundle] loadNibNamed:@"GuestbookCell" owner:nil options:nil] objectAtIndex:0];
+        cell = [[GuestbookCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     CustomerMessage *cusmes = [_custommesarray objectAtIndex:indexPath.row];
     
@@ -186,16 +206,31 @@
     cell.views.layer.cornerRadius = 4;
     
     cell.customename.text = cusmes.CustomerName;
+    cell.customename.frame = CGRectMake(15, 15,[self NSStringwithsize:18 str:cusmes.CustomerName], 20);
+    cell.customename.font = [UIFont systemFontOfSize:18];
+    cell.customename.textColor = [self colorWithRGB:0x333333 alpha:1];
+    
     cell.bookcontents.text = cusmes.TextInfo;
+    cell.bookcontents.font = [UIFont systemFontOfSize:15];
+    cell.bookcontents.frame = CGRectMake(15, 40, [self NSStringwithsize:15 str:cusmes.TextInfo], 20);
+    cell.bookcontents.textColor = [self colorWithRGB:0x666666 alpha:1];
+    
     cell.thetiems.text = cusmes.CreateDt;
-    cell.thetiems.textAlignment =  NSTextAlignmentRight;
+    cell.thetiems.frame = CGRectMake(self.view.bounds.size.width - [self NSStringwithsize:12 str:cusmes.CreateDt] - 20, 10, [self NSStringwithsize:12 str:cusmes.CreateDt], 20);
+    cell.thetiems.font = [UIFont systemFontOfSize:12];
+    cell.thetiems.textColor = [self colorWithRGB:0x999999 alpha:1];
     
     if ([cusmes.IsReturn isEqualToString:@"1"]) {
         cell.notrechis.text = @"已回复";
-        cell.notrechis.textColor = [UIColor blackColor];
+        cell.notrechis.textColor = [self colorWithRGB:0x666666 alpha:1];
+        cell.notrechis.frame = CGRectMake(self.view.bounds.size.width - 80, 35, 80, 20);
+        cell.notrechis.font = [UIFont systemFontOfSize:14];
     }else if([cusmes.IsReturn isEqualToString:@"0"]){
         cell.notrechis.text = @"未回复";
-        cell.notrechis.textColor = [UIColor redColor];
+        cell.notrechis.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+        cell.notrechis.frame = CGRectMake(self.view.bounds.size.width - 80, 35, 80, 20);
+        cell.notrechis.font = [UIFont systemFontOfSize:14];
+
     }else{
     
     }
@@ -207,7 +242,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 70;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

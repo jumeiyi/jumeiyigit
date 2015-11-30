@@ -80,7 +80,7 @@
     groupmanber.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:groupmanber];
     
-    _manberview = [[UIView alloc] initWithFrame:CGRectMake(0, 64 + 90 + 45, self.view.bounds.size.width, 200)];
+    _manberview = [[UIView alloc] initWithFrame:CGRectMake(0, 64 + 90 + 45, self.view.bounds.size.width, self.view.bounds.size.height - (64 + 90 + 45))];
     _manberview.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_manberview];
     

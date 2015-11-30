@@ -28,7 +28,7 @@
     [def synchronize];
     
      self.a = 1;
-     _customerOrderDataarray = [[NSMutableArray alloc] initWithCapacity:0];
+    
     
     [self soaprequstWithdoctorSno:self.doctorSno customerSno:@"" orderState:@"" strPageindex:@"1" strPagesize:@"15"];
 }
@@ -38,6 +38,8 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    _customerOrderDataarray = [[NSMutableArray alloc] initWithCapacity:0];
     
     UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
     background.image = [UIImage imageNamed:@"huidi"];
@@ -191,7 +193,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-static NSString *identifier = @"cell";
+    static NSString *identifier = @"cell";
     mymakerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"mymakerCell" owner:nil options:nil] objectAtIndex:0];

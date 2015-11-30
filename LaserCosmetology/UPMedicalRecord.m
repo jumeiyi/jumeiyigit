@@ -302,6 +302,8 @@
             [self removeshoosetableviewFromSuperviews1];
         }
 
+    }else if (alertView.tag == 72){
+        [self.navigationController popViewControllerAnimated:YES];
     }else{
         [self fanhui];
     }
@@ -544,6 +546,17 @@ NSLog(@"取消发送照片");
     NSLog(@"病历进度nowstate-%@",string);
     [AFHTTPRequestOpeartionManagerOfme posetchangenowstateWithurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
+        NSString *msg = [array2 objectAtIndex:0];
+        if ([string isEqualToString:@"1"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            alert.tag = 72;
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            alert.tag = 72;
+            [alert show];
+        }
+
     }];
 
 }

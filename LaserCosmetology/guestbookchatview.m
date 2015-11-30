@@ -20,10 +20,11 @@
         self.myview = [[UIView alloc] initWithFrame:self.bounds];
         [self addSubview:self.myview];
         
+        
         //fileType发送文件类型(文字 20150213142908837;图片20150213142921851;音频20150213142939496;视频 20150213142950810)
         if ([tyfrom isEqualToString:@"kehu"]) {
             
-            self.lefetimage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 280, contentshigth + 40)];
+            self.lefetimage = [[UIImageView alloc] initWithFrame:CGRectMake(60, 5, self.bounds.size.width - 80, contentshigth + 40)];
             UIEdgeInsets ed = {50.0f, 40.0f, 40.0f, 40.0f};
             self.lefetimage.image = [[UIImage imageNamed:@"chatfrom_bg_normalss"] resizableImageWithCapInsets:ed];
             [self.myview addSubview:self.lefetimage];
@@ -53,11 +54,13 @@
             if ([filetype isEqualToString:@"20150213142921851"]) {
                 UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(20, self.lefetimage.bounds.size.height - 22, self.bounds.size.width, 20)];
                 date.text = creatdate;
+                date.textColor = [self colorWithRGB:0x999999 alpha:1];
                 date.font = [UIFont systemFontOfSize:14];
                 [self.lefetimage addSubview:date];
             }else{
                 UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(20, self.lefetcontents.bounds.size.height + self.lefetcontents.frame.origin.y + 5, self.bounds.size.width, 20)];
                 date.text = creatdate;
+                date.textColor = [self colorWithRGB:0x999999 alpha:1];
                 date.font = [UIFont systemFontOfSize:14];
                 [self.lefetimage addSubview:date];
             }
@@ -65,7 +68,7 @@
             
         }else{//fileType发送文件类型(文字 20150213142908837;图片20150213142921851;音频20150213142939496;视频 20150213142950810)
         
-            self.rigthimage = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width - 300, 5, 280, contentshigth + 40)];
+            self.rigthimage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 5, self.bounds.size.width - 80, contentshigth + 40)];
             UIEdgeInsets ed = {50.0f, 40.0f, 40.0f, 40.0f};
             self.rigthimage.image = [[UIImage imageNamed:@"chatto_bg_normalss"] resizableImageWithCapInsets:ed];
             [self.myview addSubview:self.rigthimage];
@@ -98,17 +101,18 @@
             if ([filetype isEqualToString:@"20150213142921851"]) {
                 UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(self.rigthimage.bounds.size.width - [self NSStringwithsize:14 str:creatdate] - 20, self.rigthimage.bounds.size.height - 40, self.bounds.size.width, 20)];
                 date.text = creatdate;
+                date.textColor = [self colorWithRGB:0x999999 alpha:1];
                 date.font = [UIFont systemFontOfSize:14];
                 [self.rigthimage addSubview:date];
             }else{
                 UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(10, self.rigthcontents.bounds.size.height + self.rigthcontents.frame.origin.y + 5, self.bounds.size.width, 20)];
                 date.text = creatdate;
+                date.textColor = [self colorWithRGB:0x999999 alpha:1];
                 date.font = [UIFont systemFontOfSize:14];
                 [self.rigthimage addSubview:date];
             
             }
            
-
         }
        
 
@@ -145,6 +149,10 @@
     CGFloat strwidth = size.width;
     
     return strwidth;
+}
+
+-(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
+    return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
 }
 
 @end

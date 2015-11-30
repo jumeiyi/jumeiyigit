@@ -28,8 +28,8 @@
         self.bgimage = [[UIImageView alloc] init];
         [self addSubview:self.bgimage];
         
-        self.whiteview = [[UIView alloc] init];
-        [self addSubview:self.whiteview];
+        self.whiteview = [[UIImageView alloc] init];
+        [self.bgimage addSubview:self.whiteview];
         
         self.jifen = [[UILabel alloc] init];
         [self addSubview:self.jifen];

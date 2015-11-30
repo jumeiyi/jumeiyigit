@@ -167,7 +167,6 @@
 		8483D7511AB6A72900AF9B9E /* MyClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483D7501AB6A72900AF9B9E /* MyClientViewController.m */; };
 		8483D7631AB6A75A00AF9B9E /* GuestbookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483D7531AB6A75A00AF9B9E /* GuestbookViewController.m */; };
 		8483D7641AB6A75A00AF9B9E /* GuestbookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483D7551AB6A75A00AF9B9E /* GuestbookCell.m */; };
-		8483D7651AB6A75A00AF9B9E /* GuestbookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8483D7561AB6A75A00AF9B9E /* GuestbookCell.xib */; };
 		8483D7661AB6A75A00AF9B9E /* CustomerCareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483D7581AB6A75A00AF9B9E /* CustomerCareViewController.m */; };
 		8483D7671AB6A75A00AF9B9E /* CustomerCareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483D75A1AB6A75A00AF9B9E /* CustomerCareCell.m */; };
 		8483D7681AB6A75A00AF9B9E /* CustomerCareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8483D75B1AB6A75A00AF9B9E /* CustomerCareCell.xib */; };
@@ -536,6 +535,7 @@
 		84D1BCB71BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D1BCB61BB8C25000A8A5E5 /* myclientNewCreatDiseaseViewController.m */; };
 		84D4E1751C0618C100F4F00D /* wodejifen.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4E1741C0618C100F4F00D /* wodejifen.m */; };
 		84D4E1781C061F0500F4F00D /* mypointsmodle.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4E1771C061F0500F4F00D /* mypointsmodle.m */; };
+		84D4E17A1C070B8600F4F00D /* whiteview.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D4E1791C070B8600F4F00D /* whiteview.png */; };
 		84D5E0F41B9531AD00C36D23 /* myclientobservedisease.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0F31B9531AD00C36D23 /* myclientobservedisease.m */; };
 		84D5E0F71B95329100C36D23 /* myclientobservediseaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0F61B95329100C36D23 /* myclientobservediseaseCell.m */; };
 		84D5E0FD1B95584400C36D23 /* myclientdiseaseediting.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D5E0FC1B95584400C36D23 /* myclientdiseaseediting.m */; };
@@ -782,7 +782,6 @@
 		8483D7531AB6A75A00AF9B9E /* GuestbookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestbookViewController.m; sourceTree = "<group>"; };
 		8483D7541AB6A75A00AF9B9E /* GuestbookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestbookCell.h; sourceTree = "<group>"; };
 		8483D7551AB6A75A00AF9B9E /* GuestbookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestbookCell.m; sourceTree = "<group>"; };
-		8483D7561AB6A75A00AF9B9E /* GuestbookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuestbookCell.xib; sourceTree = "<group>"; };
 		8483D7571AB6A75A00AF9B9E /* CustomerCareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCareViewController.h; sourceTree = "<group>"; };
 		8483D7581AB6A75A00AF9B9E /* CustomerCareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCareViewController.m; sourceTree = "<group>"; };
 		8483D7591AB6A75A00AF9B9E /* CustomerCareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCareCell.h; sourceTree = "<group>"; };
@@ -1296,6 +1295,7 @@
 		84D4E1741C0618C100F4F00D /* wodejifen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wodejifen.m; sourceTree = "<group>"; };
 		84D4E1761C061F0500F4F00D /* mypointsmodle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mypointsmodle.h; sourceTree = "<group>"; };
 		84D4E1771C061F0500F4F00D /* mypointsmodle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mypointsmodle.m; sourceTree = "<group>"; };
+		84D4E1791C070B8600F4F00D /* whiteview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteview.png; sourceTree = "<group>"; };
 		84D5E0F21B9531AD00C36D23 /* myclientobservedisease.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientobservedisease.h; sourceTree = "<group>"; };
 		84D5E0F31B9531AD00C36D23 /* myclientobservedisease.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientobservedisease.m; sourceTree = "<group>"; };
 		84D5E0F51B95329100C36D23 /* myclientobservediseaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientobservediseaseCell.h; sourceTree = "<group>"; };
@@ -1796,6 +1796,7 @@
 		84977DB51BD783690082BF89 /* twoimagebtn */ = {
 			isa = PBXGroup;
 			children = (
+				84D4E1791C070B8600F4F00D /* whiteview.png */,
 				849878311BF5D84500A1E4AF /* go_back.png */,
 				8498782F1BF5D69C00A1E4AF /* my_point.jpg */,
 				849D159C1BE1FFEC00C2025C /* doctor_time_off.png */,
@@ -2080,7 +2081,6 @@
 				8483D7531AB6A75A00AF9B9E /* GuestbookViewController.m */,
 				8483D7541AB6A75A00AF9B9E /* GuestbookCell.h */,
 				8483D7551AB6A75A00AF9B9E /* GuestbookCell.m */,
-				8483D7561AB6A75A00AF9B9E /* GuestbookCell.xib */,
 				84B4D9031AF8E0DC002A92A8 /* GuestbookChatVC.h */,
 				84B4D9041AF8E0DC002A92A8 /* GuestbookChatVC.m */,
 				84B55D9B1AF9C610002F7442 /* guestbookchatview.h */,
@@ -2617,7 +2617,7 @@
 				TargetAttributes = {
 					84B83F841A8840B8008EE1CA = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 36SNK862WB;
+						DevelopmentTeam = 483G2KUG77;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2665,6 +2665,7 @@
 				84C0FEE81AD6865C0098F453 /* wodeyuyue.png in Resources */,
 				843C242A1B004DFA00A943C0 /* 完善资料_03s.png in Resources */,
 				84B363681B5507F000716575 /* 足迹详情_03.png in Resources */,
+				84D4E17A1C070B8600F4F00D /* whiteview.png in Resources */,
 				84AC81371B4110DA009A00E3 /* Icon-98.png in Resources */,
 				84887DE91B6B285000E97C57 /* ank_03.png in Resources */,
 				843C243F1B0055F300A943C0 /* 医生登陆页面.png in Resources */,
@@ -2933,7 +2934,6 @@
 				842B6B651AD773E50002518E /* dowmto.png in Resources */,
 				845EA0D01B2AD3E8004997E5 /* 项目目录2_02l.png in Resources */,
 				84AC812A1B4110DA009A00E3 /* Icon-29@2x.png in Resources */,
-				8483D7651AB6A75A00AF9B9E /* GuestbookCell.xib in Resources */,
 				84D6DBA41B5E547900837A14 /* 首页1_01ss.png in Resources */,
 				847D3ECB1AC403A9006EFA13 /* liaotiananniu.png in Resources */,
 				84AC813A1B4110DA009A00E3 /* Icon-512.png in Resources */,
@@ -3273,7 +3273,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "a6b3526a-5a1c-4c40-8198-78643a50e6ca";
+				PROVISIONING_PROFILE = "203dbb5c-e8c3-41c7-992f-3f2bafad1528";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3310,7 +3310,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "a6b3526a-5a1c-4c40-8198-78643a50e6ca";
+				PROVISIONING_PROFILE = "203dbb5c-e8c3-41c7-992f-3f2bafad1528";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/[lib ]";
@@ -3323,8 +3323,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Connection",
@@ -3348,7 +3348,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fenghuang.jumeiyi;
 				PRODUCT_NAME = "聚美医";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "203dbb5c-e8c3-41c7-992f-3f2bafad1528";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
@@ -3359,8 +3359,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/LaserCosmetology/ShareSDK/Connection",
@@ -3385,7 +3385,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fenghuang.jumeiyi;
 				PRODUCT_NAME = "聚美医";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "203dbb5c-e8c3-41c7-992f-3f2bafad1528";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/[lib]";
 				VALIDATE_PRODUCT = YES;

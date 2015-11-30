@@ -13,4 +13,6 @@
 @property(nonatomic,retain)UITableView *mytableview;
 @property(nonatomic,retain)NSString *doctorsno;
 
+@property(nonatomic,retain)NSMutableArray *mypointsary;
+@property(nonatomic,retain)NSString *points;
 @end

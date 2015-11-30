@@ -11,7 +11,7 @@
 @interface PointTableViewCell : UITableViewCell
 
 @property(nonatomic,retain)UIImageView *bgimage;
-@property(nonatomic,retain)UIView *whiteview;
+@property(nonatomic,retain)UIImageView *whiteview;
 @property(nonatomic,retain)UILabel *jifen;
 @property(nonatomic,retain)UILabel *jifennumber;
 

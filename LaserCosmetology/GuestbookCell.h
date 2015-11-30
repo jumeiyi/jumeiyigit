@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface GuestbookCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *customename;
-@property (weak, nonatomic) IBOutlet UILabel *bookcontents;
-@property (weak, nonatomic) IBOutlet UILabel *notrechis;
-@property (weak, nonatomic) IBOutlet UILabel *thetiems;
-@property (weak, nonatomic) IBOutlet UIView *views;
+
+@property (retain, nonatomic)  UILabel *customename;
+@property (retain, nonatomic)  UILabel *bookcontents;
+@property (retain, nonatomic)  UILabel *notrechis;
+@property (retain, nonatomic)  UILabel *thetiems;
+@property (retain, nonatomic)  UIView *views;
 
 @end

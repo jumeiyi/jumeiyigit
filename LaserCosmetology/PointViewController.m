@@ -58,8 +58,12 @@
     NSLog(@"URL------%@-----",string);
     
     [wodejifen getTheDataWithULR:string AndBlock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+        self.mypointsary = array1;
+        self.points = string;
         
+        [self.mytableview reloadData];
     }];
+    
     
 }
 
@@ -84,7 +88,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 100;
+    return self.mypointsary.count + 2;
 
 }
 
@@ -96,6 +100,11 @@
     if (!cell) {
         cell = [[PointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    mypointsmodle *mypoint;
+    if (indexPath.row >= 2) {
+        mypoint = [self.mypointsary objectAtIndex:indexPath.row - 2];
+    }
+    
     
     cell.bgimage.frame = CGRectMake(0, 0, 0,0);
     cell.bgimage.image = [UIImage imageNamed:@""];
@@ -120,7 +129,7 @@
         cell.bgimage.image = [UIImage imageNamed:@"my_point.jpg"];
         
         cell.whiteview.frame = CGRectMake(self.view.bounds.size.width/2 - 60, 40, 120, 120);
-        cell.whiteview.backgroundColor = [UIColor whiteColor];
+        cell.whiteview.image = [UIImage imageNamed:@"whiteview"];
         cell.whiteview.layer.masksToBounds = YES;
         cell.whiteview.layer.cornerRadius = 60;
         
@@ -129,7 +138,7 @@
         cell.jifen.font = [UIFont systemFontOfSize:18];
         cell.jifen.textColor = [self colorWithRGB:0x666666 alpha:1];
         
-        cell.jifennumber.text = @"5000";
+        cell.jifennumber.text = self.points;
         cell.jifennumber.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:28 str:cell.jifennumber.text]/2), 100, [self NSStringwithsize:28 str:cell.jifennumber.text], 20);
         cell.jifennumber.font = [UIFont systemFontOfSize:28];
         cell.jifennumber.textColor = [self colorWithRGB:0x22A49D alpha:1];
@@ -143,16 +152,16 @@
         cell.jifenmingxi.textColor = [self colorWithRGB:0x22A49D alpha:1];
     }else{
         cell.celltitle.frame = CGRectMake(15, 8, self.view.bounds.size.width - 30, 20);
-        cell.celltitle.text = @"积分指数";
+        cell.celltitle.text = mypoint.reason;
         cell.celltitle.font = [UIFont systemFontOfSize:14];
         cell.celltitle.textColor = [self colorWithRGB:0x333333 alpha:1];
         
         cell.celltime.frame = CGRectMake(15, 30, self.view.bounds.size.width - 30, 20);
-        cell.celltime.text = @"2015-11-11";
+        cell.celltime.text = mypoint.createdt;
         cell.celltime.font = [UIFont systemFontOfSize:14];
         cell.celltime.textColor = [self colorWithRGB:0x999999 alpha:1];
         
-        cell.cellnumber.text = @"+ 5000000";
+        cell.cellnumber.text = [NSString stringWithFormat:@"+  %@",mypoint.points];
         cell.cellnumber.frame = CGRectMake(self.view.bounds.size.width - [self NSStringwithsize:16 str:cell.cellnumber.text] - 15, 20, [self NSStringwithsize:16 str:cell.cellnumber.text], 20);
         cell.cellnumber.font = [UIFont systemFontOfSize:16];
         cell.cellnumber.textColor = [self colorWithRGB:0x77D5BA alpha:1];

@@ -14,10 +14,10 @@
 
     mypointsmodle *mypoint = [[mypointsmodle alloc] init];
     
-    mypoint.points = [diction objectForKey:@"points"];
+    mypoint.points = [NSString stringWithFormat:@"%@",[diction objectForKey:@"points"]];
     mypoint.reason = [diction objectForKey:@"reason"];
     mypoint.createdt = [diction objectForKey:@"createdt"];
-    mypoint.rownumber = [diction objectForKey:@"rownumber"];
+    mypoint.rownumber = [NSString stringWithFormat:@"%@",[diction objectForKey:@"rownumber"]];
     mypoint.createdate = [diction objectForKey:@"createdate"];
     mypoint.createtime = [diction objectForKey:@"createtime"];
     mypoint.abspoints = [diction objectForKey:@"abspoints"];

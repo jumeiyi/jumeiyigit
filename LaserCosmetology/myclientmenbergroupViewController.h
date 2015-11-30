@@ -14,7 +14,7 @@
     
     NSMutableData *_data;
     
-    UIView *_manberview;
+    UIScrollView *_manberview;
     UIButton *_addbtn;
     UIButton *_subtraction;
     

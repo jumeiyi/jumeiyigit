@@ -68,7 +68,7 @@
     tabBarimage0.image = [UIImage imageNamed:@"diseq"];
     [self.view addSubview:tabBarimage0];
     
-    UIImageView *tabBarimage1 = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 1,self.view.bounds.size.height - botomerhight, imageX - 10, botomerhight)];
+    UIImageView *tabBarimage1 = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 1,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
     tabBarimage1.image = [UIImage imageNamed:@"anjianzuob"];
     [self.view addSubview:tabBarimage1];
     

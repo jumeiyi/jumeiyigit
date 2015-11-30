@@ -14,7 +14,7 @@
 #import "guestbookchatview.h"
 #import "NSString+DocumentPath.h"
 #import "PrefixHeader.pch"
-
+#import "UIImageView+WebCache.h"
 @interface GuestbookChatVC ()
 
 @end
@@ -247,6 +247,10 @@
         UIView *cellview = [[UIView alloc] initWithFrame:cell.bounds];
         cellview.tag = 2;
         [cell addSubview:cellview];
+        
+        UIImageView *headimage = [[UIImageView alloc] init];
+        headimage.tag = 4;
+        [cellview addSubview:headimage];
     }
     CustomerMessage *cusmes = [_custommesarray objectAtIndex:_custommesarray.count - indexPath.row - 1];
    
@@ -262,7 +266,44 @@
     NSData *imagedata = [diction objectForKey:cusmes.PicSrc];
     
     //fromType发送类型(医生发给客 户:20150213142252612;客户发给医生20150213142231226);fileType发送文件类型(文字 20150213142908837;图片20150213142921851;音频20150213142939496;视频 20150213142950810)
+    if (cusmes.DoctorPic.length > 10) {
+        self.DoctorPic = cusmes.DoctorPic;
+    }
  
+    //医生发给客户
+    if ([cusmes.FromType isEqualToString:@"20150213142252612"]) {
+        
+        if (cusmes.DoctorPic.length > 10) {
+            UIView *view =(UIView *)[cell viewWithTag:2];
+            UIImageView *imagev = (UIImageView *)[view viewWithTag:4];
+            imagev.frame = CGRectMake(self.view.bounds.size.width - 60, 5, 50, 50);
+            [imagev sd_setImageWithURL:[NSURL URLWithString:cusmes.DoctorPic]];
+            imagev.layer.masksToBounds = YES;
+            imagev.layer.cornerRadius = 25;
+            [vi addSubview:imagev];
+        }else{
+            UIView *view =(UIView *)[cell viewWithTag:2];
+            UIImageView *imagev = (UIImageView *)[view viewWithTag:4];
+            imagev.frame = CGRectMake(self.view.bounds.size.width - 60, 5, 50, 50);
+            [imagev sd_setImageWithURL:[NSURL URLWithString:self.DoctorPic]];
+            imagev.layer.masksToBounds = YES;
+            imagev.layer.cornerRadius = 25;
+            [vi addSubview:imagev];
+        }
+        
+    }else{
+        
+        UIView *view =(UIView *)[cell viewWithTag:2];
+        UIImageView *imagev = (UIImageView *)[view viewWithTag:4];
+        imagev.frame = CGRectMake(10, 5, 50, 50);
+        [imagev sd_setImageWithURL:[NSURL URLWithString:cusmes.CustomerPic]];
+        imagev.layer.masksToBounds = YES;
+        imagev.layer.cornerRadius = 25;
+        [vi addSubview:imagev];
+        
+        
+    
+    }
     
    //医生发给客户
     if ([cusmes.FromType isEqualToString:@"20150213142252612"]) {
@@ -280,7 +321,6 @@
             chatview.tag = 3;
             [vi addSubview:chatview];
             
-            NSLog(@"时间------------------》cusmes.CreateDt：%@",cusmes.CreateDt);
             if (cusmes.CreateDt == NULL) {
                 NSLog(@"#$^%%#@*())");
             }

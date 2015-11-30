@@ -49,6 +49,7 @@
 @property(nonatomic,retain)NSString *noticeDt;
 @property(nonatomic,retain)NSString *orderDetailSno;
 @property(nonatomic,retain)NSString *customerName;
+@property(nonatomic,retain)NSString *DoctorPic;
 
 @property(nonatomic,assign)BOOL isRefreshLoading;
 
