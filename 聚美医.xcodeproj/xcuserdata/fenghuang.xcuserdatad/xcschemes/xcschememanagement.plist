@@ -4,22 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>聚美医.xcscheme_^#shared#^_</key>
+		<key>聚美医.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<true/>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>84B83F841A8840B8008EE1CA</key>
+		<key>8462C6231C0D37B00067085B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>84B83F9D1A8840B8008EE1CA</key>
+		<key>8462C63C1C0D37B00067085B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8462C6471C0D37B00067085B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
