@@ -73,7 +73,8 @@
 
 -(void)startrequest
 {
-        NSString *string = [NSString stringWithFormat:@"%@/doctor.getcustomer.go?customersno=%@",HTTPREQUESTPDOMAIN,self.customerSno];
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.getcustomer.go?customersno=%@&doctorsno=%@",HTTPREQUESTPDOMAIN,self.customerSno,self.doctorsno];
     
     NSLog(@"获取客户资料---%@",string);
     

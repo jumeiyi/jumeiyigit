@@ -19,6 +19,7 @@
 @end
 
 @implementation mymakeController
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -29,8 +30,9 @@
     
      self.a = 1;
     
-    
-    [self soaprequstWithdoctorSno:self.doctorSno customerSno:@"" orderState:@"" strPageindex:@"1" strPagesize:@"15"];
+    self.istop = YES;
+       [self soaprequstWithdoctorSno:self.doctorSno customerSno:@"" orderState:@"" strPageindex:@"1" strPagesize:@"15"];
+ 
 }
 
 - (void)viewDidLoad {
@@ -72,6 +74,8 @@
    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updata:) name:@"updata" object:nil];
+    
+    
 }
 
 

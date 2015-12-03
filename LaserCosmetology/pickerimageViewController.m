@@ -14,8 +14,6 @@
 
 @implementation pickerimageViewController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -90,6 +88,29 @@
 
 - (void)takeNewPhoto:(UIButton *)sender{
     
+    if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized) {
+        
+        ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+        
+        [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+            
+            if (*stop) {
+                //点击“好”回调方法:这里是重点
+                NSLog(@"好");
+                return;
+                
+            }
+            *stop = TRUE;
+            
+        } failureBlock:^(NSError *error) {
+            
+            //点击“不允许”回调方法:这里是重点
+            NSLog(@"不允许");
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }];
+    }
+    
     //创建图片选择器
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     
@@ -119,6 +140,29 @@
 }
 - (void)shooseimage:(UIButton *)sender{
     
+    if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied) {
+        
+        ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+        
+        [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+            
+            if (*stop) {
+                //点击“好”回调方法:这里是重点
+                NSLog(@"好");
+                return;
+                
+            }
+            *stop = TRUE;
+            
+        } failureBlock:^(NSError *error) {
+            
+            //点击“不允许”回调方法:这里是重点
+            NSLog(@"不允许");
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }];
+    }
+    
     
     //创建图片选择器
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
@@ -139,6 +183,48 @@
         UIAlertView *alert =[[UIAlertView alloc] initWithTitle:nil message:@"相机不能用" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil];
         [alert show];
     }
+    
+    
+}
+
+//相册获取测试
+-(void)LoadPhotoAlbum:(id)sender
+{
+    if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+        
+        ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+        
+        [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+            
+            if (*stop) {
+                //点击“好”回调方法:
+                NSLog(@"好");
+                return;
+                
+            }
+            *stop = TRUE;
+            
+        } failureBlock:^(NSError *error) {
+            
+            //点击“不允许”回调方法:
+            NSLog(@"不允许");
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }];
+    }
+    
+    UIImagePickerController *PickerC = [[UIImagePickerController alloc] init];
+    PickerC.delegate = self;
+    PickerC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        popOver = [[UIPopoverController alloc] initWithContentViewController:PickerC];
+//        [popOver presentPopoverFromRect:CGRectMake(0, 800, 500, 500) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+//        
+//        popOver.delegate = self;
+    } else {
+        [self presentViewController:PickerC animated:YES completion:nil];
+    }
+    
 }
 
 //- (IBAction)shooseimage2:(id)sender {
@@ -214,6 +300,122 @@
 ////    [imageData writeToURL:saveURL atomically:YES];
 //    
 //    
+//}
+
+
+
+
+//-(void)addImagef{
+//    
+//    NSLog(@"click me");
+//    
+//    UIActionSheet *sheet;
+//    
+//    // 判断是否支持相机
+//    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+//    {
+//        sheet  = [[UIActionSheet alloc] initWithTitle:@"选择图像" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照", @"从相册选择", nil];
+//    }
+//    else {
+//        sheet = [[UIActionSheet alloc] initWithTitle:@"选择图像" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"从相册选择", nil];
+//    }
+//    
+//    sheet.tag = 255;
+//    
+//    [sheet showInView:self.view];
+//    
+//    
+//}
+//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (actionSheet.tag == 255)
+//    {
+//        NSUInteger sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//        // 判断是否支持相机
+//        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+//        {
+//            switch (buttonIndex)
+//            {
+//                case 0:
+//                    return;
+//                case 1: //相机
+//                    sourceType = UIImagePickerControllerSourceTypeCamera;
+//                    break;
+//                case 2: //相册
+//                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//                    break;
+//            }
+//        }
+//        else
+//        {
+//            if (buttonIndex == 0)
+//            {
+//                return;
+//            }
+//            else
+//            {
+//                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+//            }
+//        }
+//        
+//        // 跳转到相机或相册页面
+//        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+//        imagePickerController.delegate = self;
+//        imagePickerController.allowsEditing = YES;
+//        imagePickerController.sourceType = sourceType;
+//        
+//        [self presentModalViewController:imagePickerController animated:YES];
+//        [self presentViewController:imagePickerController animated:YES completion:^{
+//            NSLog(@"显示相册页面");
+//        }];
+//    }
+//    
+//}
+//-(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
+//{
+//    UIGraphicsBeginImageContext(CGSizeMake(image.size.width*scaleSize,image.size.height*scaleSize));
+//    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height *scaleSize)];
+//    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return scaledImage;
+//}
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//{
+////    _pickNum=_pickNum+1;
+////    UIImageView *kk = (UIImageView *)[_scrollView viewWithTag:(99+_pickNum)];
+////    UIImage *image = info[UIImagePickerControllerEditedImage];
+////    NSLog(@"%@",image);
+////    //image=[self scaleImage:image toScale:0.3];
+////    NSLog(@"%@",image);
+////    
+////    kk.image = image;
+////    kk.hidden = NO;
+////    //_imgArr=[_imgArr mutableCopy];
+////    [_imgArr addObject:image];
+////    [_addImage removeFromSuperview];
+////    [_addImage setFrame:CGRectMake(5*PW+135*PW*_pickNum, 63*PH, 125*PW, 125*PH)];
+////    [_scrollView addSubview:_addImage];
+////    if (_pickNum>=2) {
+////        _scrollView.contentSize = CGSizeMake(_addImage.frame.origin.x+135*PW, 125*PH);
+////    }
+////    if (_pickNum >=7)
+////    {
+////        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"友情提示" message:@"最多可添加六张图片！" delegate:self cancelButtonTitle:@"好!" otherButtonTitles:nil, nil];
+////        [alert show];
+////        _scrollView.contentSize = CGSizeMake(5*PW+135*PW*6, 220*PH);
+////        [_addImage removeFromSuperview];
+////    }
+////    [picker dismissViewControllerAnimated:YES completion:^{}];
+////    _redImagr.hidden=NO;
+////    _imageNumber.text=[[NSNumber numberWithInt:_pickNum] stringValue];
+////    _imageNumber.hidden=NO;
+//}
+
+
+
+//-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+//{
+//   [self.navigationController popViewControllerAnimated:YES];
 //}
 
 @end

@@ -239,6 +239,7 @@
 		8488904D1AE4E3D800DFE28F /* yiqiangguang.png in Resources */ = {isa = PBXBuildFile; fileRef = 848890491AE4E3D800DFE28F /* yiqiangguang.png */; };
 		848890501AE4F11100DFE28F /* youhuihuodong.m in Sources */ = {isa = PBXBuildFile; fileRef = 8488904F1AE4F11100DFE28F /* youhuihuodong.m */; };
 		848890521AE5059A00DFE28F /* xiaohengxian.png in Resources */ = {isa = PBXBuildFile; fileRef = 848890511AE5059A00DFE28F /* xiaohengxian.png */; };
+		848A68181C0BF98F0038B99E /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848A68171C0BF98F0038B99E /* AssetsLibrary.framework */; };
 		848ED7B51B9EC33900A813A2 /* myclientmainsetgropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848ED7B41B9EC33900A813A2 /* myclientmainsetgropViewController.m */; };
 		848ED7B81B9EC36600A813A2 /* myclientgroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 848ED7B71B9EC36600A813A2 /* myclientgroupTableViewCell.m */; };
 		84903F0C1B535B4E006C78C5 /* BeautyFootTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84903F0B1B535B4E006C78C5 /* BeautyFootTableViewCell.m */; };
@@ -871,6 +872,7 @@
 		8488904E1AE4F11100DFE28F /* youhuihuodong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = youhuihuodong.h; sourceTree = "<group>"; };
 		8488904F1AE4F11100DFE28F /* youhuihuodong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = youhuihuodong.m; sourceTree = "<group>"; };
 		848890511AE5059A00DFE28F /* xiaohengxian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaohengxian.png; sourceTree = "<group>"; };
+		848A68171C0BF98F0038B99E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		848ED7B31B9EC33900A813A2 /* myclientmainsetgropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientmainsetgropViewController.h; sourceTree = "<group>"; };
 		848ED7B41B9EC33900A813A2 /* myclientmainsetgropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientmainsetgropViewController.m; sourceTree = "<group>"; };
 		848ED7B61B9EC36600A813A2 /* myclientgroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientgroupTableViewCell.h; sourceTree = "<group>"; };
@@ -1331,6 +1333,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848A68181C0BF98F0038B99E /* AssetsLibrary.framework in Frameworks */,
 				84B3BFE31BFDF7A000FDC427 /* libPushSDK-1.8.8.a in Frameworks */,
 				84750E301BAA663F008A7A6E /* MobileCoreServices.framework in Frameworks */,
 				8483D7F11AB6AF0700AF9B9E /* SystemConfiguration.framework in Frameworks */,
@@ -1385,6 +1388,7 @@
 		840589D71AB8039F0061ECA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				848A68171C0BF98F0038B99E /* AssetsLibrary.framework */,
 				84750E2F1BAA663F008A7A6E /* MobileCoreServices.framework */,
 				84A2C9231B300EF600D5BB23 /* CoreFoundation.framework */,
 				84B55DA01AFA018F002F7442 /* AVFoundation.framework */,
@@ -3273,7 +3277,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "203dbb5c-e8c3-41c7-992f-3f2bafad1528";
+				PROVISIONING_PROFILE = "6219dd23-af64-4ef2-a28c-a05468e1ab55";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3310,7 +3314,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "203dbb5c-e8c3-41c7-992f-3f2bafad1528";
+				PROVISIONING_PROFILE = "6219dd23-af64-4ef2-a28c-a05468e1ab55";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/[lib ]";
@@ -3345,10 +3349,11 @@
 					"$(SRCROOT)/[lib]",
 					"$(PROJECT_DIR)/LaserCosmetology",
 				);
+				New_Setting = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fenghuang.jumeiyi;
 				PRODUCT_NAME = "聚美医";
-				PROVISIONING_PROFILE = "203dbb5c-e8c3-41c7-992f-3f2bafad1528";
+				PROVISIONING_PROFILE = "6219dd23-af64-4ef2-a28c-a05468e1ab55";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
@@ -3381,11 +3386,12 @@
 					"$(SRCROOT)/[lib]",
 					"$(PROJECT_DIR)/LaserCosmetology",
 				);
+				New_Setting = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fenghuang.jumeiyi;
 				PRODUCT_NAME = "聚美医";
-				PROVISIONING_PROFILE = "203dbb5c-e8c3-41c7-992f-3f2bafad1528";
+				PROVISIONING_PROFILE = "6219dd23-af64-4ef2-a28c-a05468e1ab55";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/[lib]";
 				VALIDATE_PRODUCT = YES;

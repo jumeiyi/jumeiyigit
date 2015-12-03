@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import<AssetsLibrary/ALAssetsLibrary.h>
 @protocol sendvaluedelegate <NSObject>
 
 @required

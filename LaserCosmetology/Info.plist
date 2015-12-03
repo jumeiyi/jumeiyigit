@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string></string>
+	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string></string>
 	<key>CFBundleExecutable</key>
@@ -86,6 +86,6 @@
 	<key>item0</key>
 	<string>Icon-120</string>
 	<key>remote-notification</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

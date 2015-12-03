@@ -15,8 +15,8 @@
 
 //#define HTTPREQUESTPDOMAIN @"http://10.5.2.2:8080"
 //#define HTTPREQUESTPDOMAIN @"http://10.5.2.2"
-#define HTTPREQUESTPDOMAIN @"http://cs.jumeiyiyun.com"
-//#define HTTPREQUESTPDOMAIN @"http://jk.jumeiyiyun.com"
+//#define HTTPREQUESTPDOMAIN @"http://cs.jumeiyiyun.com"
+#define HTTPREQUESTPDOMAIN @"http://jk.jumeiyiyun.com"
 
 #define HTTPREQUESTER  HTTPREQUESTPDOMAIN@"/WebService/DocService.asmx"
 
