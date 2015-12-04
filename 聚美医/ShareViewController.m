@@ -12,6 +12,7 @@
 #import "TopBarView.h"
 #import <ShareSDK/ShareSDK.h>
 #import "PrefixHeader.pch"
+#import "UIImageView+WebCache.h"
 @interface ShareViewController ()
 
 @end
@@ -48,73 +49,35 @@
     [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
     [backbtn addTarget:self action:@selector(comeback) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:backbtn];
-   
-
-//    UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(10, 86, 60, 20)];
-//    number.text = @"专属码:";
-//    [self.view addSubview:number];
-//    
-//    _text = [[UITextField alloc] initWithFrame:CGRectMake(70, 84, self.view.bounds.size.width - 80, 25)];
-//    _text.backgroundColor = [UIColor whiteColor];
-//    [self.view addSubview:_text];
-//    
-//    
-//    UILabel *urllabe = [[UILabel alloc] initWithFrame:CGRectMake(10, 122, 60, 20)];
-//    urllabe.text = @"网   址:";
-//    [self.view addSubview:urllabe];
-//    
-//    _urllabeft = [[UITextField alloc] initWithFrame:CGRectMake(70, 120, self.view.bounds.size.width - 80, 25)];
-//    _urllabeft.backgroundColor = [UIColor whiteColor];
-//    [self.view addSubview:_urllabeft];
-   
     
-    UILabel *lable1 = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, self.view.bounds.size.width - 100, 50)];
-    lable1.text = @"邀请粉丝注册聚美医，成为您的：专属客户，让您终身受益!";
+    
+    UILabel *lable1 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ((self.view.bounds.size.width - 180)/2), 120, self.view.bounds.size.width - 180, 50)];
+    lable1.text = @"让患者扫一扫二维码关注我的微信公众号";
     lable1.font = [UIFont systemFontOfSize:20];
     lable1.numberOfLines = 0;
-    lable1.textColor = [self colorWithRGB:0x00c5bb alpha:1];
+    lable1.textColor = [self colorWithRGB:0x666666 alpha:1];
     [self.view addSubview:lable1];
     
+
+    UIImageView *QRcode = [[UIImageView alloc] initWithFrame:CGRectMake(50, 200, self.view.bounds.size.width - 100, self.view.bounds.size.width - 100)];
+    QRcode.image = [UIImage imageNamed:@"qr_fenxiang"];
+    [self.view addSubview:QRcode];
     
-    UILabel *lable2 = [[UILabel alloc] initWithFrame:CGRectMake(50, lable1.frame.origin.y + 80, self.view.bounds.size.width - 100, 50)];
-    lable2.text = @"专属客户未来在平台上的每单预约，您均可以获得奖励。";
-    lable2.font = [UIFont systemFontOfSize:17];
-    lable2.numberOfLines = 0;
-    lable2.textColor = [self colorWithRGB:0xeb6100 alpha:1];
-    [self.view addSubview:lable2];
+    self.qrimage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, QRcode.bounds.size.width - 40, QRcode.bounds.size.height - 40)];
+    [QRcode addSubview:self.qrimage];
     
-    
-    UIButton *sharebutton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 80, self.view.bounds.size.height/2 - 30, 160, 40)];
-    [sharebutton setTitle:@"分享专属下载链接" forState:UIControlStateNormal];
+    UIButton *sharebutton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 100, self.view.bounds.size.height - 100, 200, 40)];
+    [sharebutton setTitle:@"分享二维码" forState:UIControlStateNormal];
     [sharebutton setBackgroundColor:[self colorWithRGB:0x00c5bb alpha:1]];
     sharebutton.layer.masksToBounds = YES;
     sharebutton.layer.cornerRadius = 4;
     [sharebutton addTarget:self action:@selector(fenxiang) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sharebutton];
     
-    UILabel *lable3 = [[UILabel alloc] initWithFrame:CGRectMake(50, sharebutton.frame.origin.y + 80, self.view.bounds.size.width - 100, 50)];
-    lable3.text = @"粉丝下载注册聚美医后，即可获得";
-    lable3.font = [UIFont systemFontOfSize:20];
-    lable3.numberOfLines = 0;
-    [self.view addSubview:lable3];
-    
-    UILabel *lable4 = [[UILabel alloc] initWithFrame:CGRectMake(50, lable3.frame.origin.y + 35, self.view.bounds.size.width - 100, 50)];
-    lable4.text = @"50元平台红包";
-    lable4.font = [UIFont systemFontOfSize:18];
-    lable4.numberOfLines = 0;
-    lable4.textColor = [self colorWithRGB:0x00c5bb alpha:1];
-    [self.view addSubview:lable4];
-    
 
-    
     [self soaprequstWithdoctorSno:self.userSno];
 }
 
--(void)repredata
-{
-    _text.text = [NSString stringWithFormat:@"  %@",self.codeNo];
-    _urllabeft.text = [NSString stringWithFormat:@"  %@",self.appUrl];
-}
 
 
 -(void)fenxiang
@@ -124,10 +87,10 @@
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"AppIcon120x120" ofType:@"png"];
     
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:@"分享优惠活动！ "
+    id<ISSContent> publishContent = [ShareSDK content:@"关注我的公众号，您可以通过微信预约我；还可以线上与我沟通咨询。"
                                        defaultContent:@"测试一下"
                                                 image:[ShareSDK imageWithPath:imagePath]
-                                                title:@"聚美医"
+                                                title:self.myname
                                                   url:[NSString stringWithFormat:@"http://cs.jumeiyiyun.com/html/fx/index.html?s=%@",self.userSno]
                                           description:@"这是一条分享信息"
                                             mediaType:SSPublishContentMediaTypeNews];//
@@ -191,11 +154,11 @@
                              @"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
                              "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
                              "<soap:Body>\n"
-                             "<GetUserRecommendNo xmlns=\"Doc\">\n"
+                             "<GetDoctorInfo xmlns=\"Doc\">\n"
                              "<uid>%@</uid>\n"
                              "<pwd>%@</pwd>\n"
-                             "<userSno>%@</userSno>\n"
-                             "</GetUserRecommendNo>\n"
+                             "<doctorSno>%@</doctorSno>\n"
+                             "</GetDoctorInfo>\n"
                              "</soap:Body>\n"
                              "</soap:Envelope>\n",UID,PSW,userSno];
     
@@ -207,7 +170,7 @@
     
     //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
     [theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [theRequest addValue: @"Doc/GetUserRecommendNo" forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: @"Doc/GetDoctorInfo" forHTTPHeaderField:@"SOAPAction"];
     
     
     [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
@@ -271,7 +234,7 @@
 {
     // NSLog(@"3 DONE. Received Bytes: %ld", [webData length]);
     NSString *theXML = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-    NSLog(@"提交预约的数据--%@",theXML);
+    NSLog(@"分享的数据--%@",theXML);
     
     
     //        NSString *str = [[NSString alloc] initWithData:webData encoding:NSUTF8StringEncoding];
@@ -299,7 +262,7 @@
    attributes: (NSDictionary *)attributeDict
 {
     
-    if ([elementName isEqualToString:@"GetUserRecommendNoResult"]) {
+    if ([elementName isEqualToString:@"GetDoctorInfoResult"]) {
         
         [_soapResults setString:@""];//把它置空，准备接收新值。
     }
@@ -317,7 +280,7 @@
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     
-    if ([elementName isEqualToString:@"GetUserRecommendNoResult"]) {
+    if ([elementName isEqualToString:@"GetDoctorInfoResult"]) {
         
         
         
@@ -326,13 +289,15 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-         NSLog(@"医生时间表详情：dic%@",dic);
+         NSLog(@"分享的数据表详情：dic%@",dic);
         
-        self.appUrl = [dic objectForKey:@"appUrl"];
+
+        NSArray *dataary = [dic objectForKey:@"basicData"];
+        NSDictionary *basicData = [dataary objectAtIndex:0];
+        NSString *str = [basicData objectForKey:@"Qrcode"];
+        self.myname =[NSString stringWithFormat:@"我是%@医生，扫描二维码关注我的公众号！",[basicData objectForKey:@"TrueName"]];
         
-       self.codeNo = [dic objectForKey:@"codeNo"];
-        
-        [self repredata];
+        [self.qrimage sd_setImageWithURL:[NSURL URLWithString:str]];
         
         
 

@@ -19,20 +19,7 @@
         _bottomview.backgroundColor = [UIColor clearColor];
         [self addSubview:_bottomview];
 
-//        
-//        float butnwidth = self.bounds.size.width/5;
-//        
-//        for (int i = 0 ; i < 5; i++) {
-//            UIButton *butn = [[UIButton alloc] initWithFrame:CGRectMake(butnwidth * i, 0, butnwidth, 49)];
-//            [butn addTarget:self action:@selector(butnclickssss:) forControlEvents:UIControlEventTouchUpInside];
-//            butn.tag = i + 10;
-//            butn.backgroundColor = [UIColor clearColor];
-//            [_bottomview addSubview:butn];
-//        }
-//    }
-    
-
-        
+       
         float butnwidth = self.bounds.size.width/2;
         
         for (int i = 0 ; i < 2; i++) {

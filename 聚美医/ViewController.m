@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 #import "BottomBarView.h"
 #import "beautymennutViewController.h"
+#import "ShouYeViewController.h"
 @interface ViewController ()
 
 @end
@@ -93,22 +94,38 @@
 //    [viewcontrollarray addObject:vc];
     
     
+//    PersonDoctShooseViewController *personal = [[PersonDoctShooseViewController alloc] init];
+//    UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:personal];//新加的UINavigationController *
+//    vc.tabBarItem.title = @"个人中心";
+//    vc.tabBarItem.image = [UIImage imageNamed:@""];
+//    vc.navigationBarHidden = YES;
+//    personal.hidesBottomBarWhenPushed = YES;
+//    [viewcontrollarray addObject:vc];
+    
+
+    
+    ShouYeViewController *shouiye = [[ShouYeViewController alloc] init];
+    UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:shouiye];//新加的UINavigationController *
+    vc.tabBarItem.title = @"首页";
+    vc.tabBarItem.image = [UIImage imageNamed:@""];
+    vc.navigationBarHidden = YES;
+    shouiye.hidesBottomBarWhenPushed = YES;
+    [viewcontrollarray addObject:vc];
+    
     PersonDoctShooseViewController *personal = [[PersonDoctShooseViewController alloc] init];
-    UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:personal];//新加的UINavigationController *
-    vc.tabBarItem.title = @"个人中心";
+    vc = [[UINavigationController alloc] initWithRootViewController:personal];
+    vc.tabBarItem.title = @"消息";
     vc.tabBarItem.image = [UIImage imageNamed:@""];
     vc.navigationBarHidden = YES;
     personal.hidesBottomBarWhenPushed = YES;
     [viewcontrollarray addObject:vc];
     
-
-    
-    AboutViewController *about = [[AboutViewController alloc] init];
-    vc = [[UINavigationController alloc] initWithRootViewController:about];
-    vc.tabBarItem.title = @"更多页面";
+    AboutViewController *more = [[AboutViewController alloc] init];
+    vc = [[UINavigationController alloc] initWithRootViewController:more];
+    vc.tabBarItem.title = @"更多";
     vc.tabBarItem.image = [UIImage imageNamed:@""];
     vc.navigationBarHidden = YES;
-    about.hidesBottomBarWhenPushed = YES;
+    more.hidesBottomBarWhenPushed = YES;
     [viewcontrollarray addObject:vc];
     
     
@@ -117,10 +134,9 @@
     AppDelegate *app = [UIApplication sharedApplication].delegate;
     app.window.rootViewController = tabBarcontroll;
 
-    tabBarcontroll.tabBar.frame= CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 40);
+//    tabBarcontroll.tabBar.frame= CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 40);
    
-//    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - 40, self.view.bounds.size.width, 40)];
-//    [app.window addSubview:botom];
+
 
    
 }

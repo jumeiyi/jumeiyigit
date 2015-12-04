@@ -60,24 +60,24 @@
         [self.view addSubview:button];
     }
 
-    float botomerhight = 0.130667 * self.view.bounds.size.width;
-    
-    float imageX = self.view.bounds.size.width/5;
-    
-    UIImageView *tabBarimage0 = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    tabBarimage0.image = [UIImage imageNamed:@"diseq"];
-    [self.view addSubview:tabBarimage0];
-    
-    UIImageView *tabBarimage1 = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 1,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
-    tabBarimage1.image = [UIImage imageNamed:@"anjianzuob"];
-    [self.view addSubview:tabBarimage1];
-    
-    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 3,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
-    tabBarimage.image = [UIImage imageNamed:@"anjianyou"];
-    [self.view addSubview:tabBarimage];
-
-    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    [self.view addSubview:botom];
+//    float botomerhight = 0.130667 * self.view.bounds.size.width;
+//    
+//    float imageX = self.view.bounds.size.width/5;
+//    
+//    UIImageView *tabBarimage0 = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+//    tabBarimage0.image = [UIImage imageNamed:@"diseq"];
+//    [self.view addSubview:tabBarimage0];
+//    
+//    UIImageView *tabBarimage1 = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 1,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
+//    tabBarimage1.image = [UIImage imageNamed:@"anjianzuob"];
+//    [self.view addSubview:tabBarimage1];
+//    
+//    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 3,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
+//    tabBarimage.image = [UIImage imageNamed:@"anjianyou"];
+//    [self.view addSubview:tabBarimage];
+//
+//    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+//    [self.view addSubview:botom];
     
     
 }

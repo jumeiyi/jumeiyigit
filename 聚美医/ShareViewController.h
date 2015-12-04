@@ -11,14 +11,13 @@
 @interface ShareViewController : UIViewController<NSXMLParserDelegate>
 
 {
-    UITextField *_text;
-    UITextField *_urllabeft;
+
     
     NSMutableData *webData;
     NSMutableString *_soapResults;
     NSXMLParser *xmlParser;
 }
 @property(nonatomic,retain)NSString *userSno;
-@property(nonatomic,retain)NSString *appUrl;
-@property(nonatomic,retain)NSString *codeNo;
+@property(nonatomic,retain)UIImageView *qrimage;
+@property(nonatomic,retain)NSString *myname;
 @end
