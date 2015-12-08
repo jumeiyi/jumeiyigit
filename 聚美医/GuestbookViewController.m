@@ -42,10 +42,10 @@
     titilelable.textAlignment = NSTextAlignmentCenter;
     [topbar addSubview:titilelable];
    
-    UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 27, 40, 30)];
-    [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
-    [backbtn addTarget:self action:@selector(comeback) forControlEvents:UIControlEventTouchUpInside];
-    [topbar addSubview:backbtn];
+//    UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 27, 40, 30)];
+//    [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
+//    [backbtn addTarget:self action:@selector(comeback) forControlEvents:UIControlEventTouchUpInside];
+//    [topbar addSubview:backbtn];
     
     _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
     _tableview.delegate = self;
@@ -67,6 +67,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
  
+    NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
+    self.doctorsno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
+    
     self.istop = YES;
     [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
     
@@ -253,6 +256,7 @@
     chat.doctorsno = self.doctorsno;
     chat.customerSno = self.customersno;
     chat.customerName = cus.CustomerName;
+    chat.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chat animated:YES];
 }
 

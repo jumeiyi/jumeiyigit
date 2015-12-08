@@ -10,12 +10,12 @@
 
 #import "AboutViewController.h"
 #import "TopBarView.h"
-#import "BottomBarView.h"
-#import "BeautyFootprint.h"
 #import "AdultsViewController.h"
 #import "YouHuiViewController.h"
 #import "HuQiJingsharManage.h"
 #import "PrefixHeader.pch"
+#import "PerfectDataViewController.h"
+#import "PointViewController.h"
 @interface AboutViewController ()
 
 @end
@@ -45,41 +45,28 @@
     titilelable.textAlignment = NSTextAlignmentCenter;
     [topbar addSubview:titilelable];
     
-    float hi = self.view.bounds.size.width/8.0;
-    NSArray *titleary = [[NSArray alloc] initWithObjects:@"    意见反馈",@"    优惠活动",@"    退出登录", nil];
-    NSArray *buttonimagesary = [[NSArray alloc] initWithObjects:@"更多_02e",@"更多_02e",@"更多_02e", nil];
-    for (int i = 0; i < 3; i++) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, hi * i + 80, self.view.bounds.size.width , self.view.bounds.size.width/9.70)];
+    float hi = 46;
+    NSArray *titleary = [[NSArray alloc] initWithObjects:@"    完善资料",@"    我的积分",@"    意见反馈",@"    优惠活动",@"    退出登录", nil];
+    NSArray *buttonimagesary = [[NSArray alloc] initWithObjects:@"更多_02e",@"更多_02e",@"更多_02e",@"更多_02e",@"更多_02e", nil];
+    for (int i = 0; i < 5; i++) {
+
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, hi * i + 70, self.view.bounds.size.width , 44)];
         button.backgroundColor = [UIColor whiteColor];
         [button setTitle:[titleary objectAtIndex:i] forState:UIControlStateNormal];
         [button setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:[buttonimagesary objectAtIndex:i]] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(gotomoreviewcr:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = 1 + i;
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [self.view addSubview:button];
+        
+        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 20, hi * i + 84, 10 , 17)];
+        image.image = [UIImage imageNamed:[buttonimagesary objectAtIndex:i]];
+        [self.view addSubview:image];
     }
 
-//    float botomerhight = 0.130667 * self.view.bounds.size.width;
-//    
-//    float imageX = self.view.bounds.size.width/5;
-//    
-//    UIImageView *tabBarimage0 = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-//    tabBarimage0.image = [UIImage imageNamed:@"diseq"];
-//    [self.view addSubview:tabBarimage0];
-//    
-//    UIImageView *tabBarimage1 = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 1,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
-//    tabBarimage1.image = [UIImage imageNamed:@"anjianzuob"];
-//    [self.view addSubview:tabBarimage1];
-//    
-//    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 3,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
-//    tabBarimage.image = [UIImage imageNamed:@"anjianyou"];
-//    [self.view addSubview:tabBarimage];
-//
-//    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-//    [self.view addSubview:botom];
     
-    
+    NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
+    self.doctorSno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
 }
 
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
@@ -90,16 +77,29 @@
 {
     
     
-    if (butn.tag == 1011) {
-       BeautyFootprint *footprint = [[BeautyFootprint alloc] init];
-        [self.navigationController pushViewController:footprint animated:YES];
-    }else if(butn.tag == 1){
-    
-    AdultsViewController *Adults = [[AdultsViewController alloc] init];
-        [self.navigationController pushViewController:Adults animated:YES];
+    if (butn.tag == 1) {
+     
+        PerfectDataViewController *PerfectInformation = [[PerfectDataViewController alloc] init];
+        PerfectInformation.doctorSno = self.doctorSno;
+        PerfectInformation.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:PerfectInformation animated:YES];
+        
     }else if(butn.tag == 2){
         
+        PointViewController *point = [[PointViewController alloc] init];
+        point.doctorsno = self.doctorSno;
+        point.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:point animated:YES];
+
+    }else if(butn.tag == 3){
+    
+    AdultsViewController *Adults = [[AdultsViewController alloc] init];
+        Adults.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:Adults animated:YES];
+    }else if(butn.tag == 4){
+        
         YouHuiViewController *youh = [[YouHuiViewController alloc] init];
+        youh.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:youh animated:YES];
     }else{
 

@@ -10,7 +10,7 @@
 
 #import "BeautyExpertViewController.h"
 #import "TopBarView.h"
-#import "BottomBarView.h"
+//#import "BottomBarView.h"
 #import "contentViewCell.h"
 #import "discount.h"
 #import "HuQiJingsharManage.h"
@@ -156,8 +156,8 @@
     tabBarimage.image = [UIImage imageNamed:@"首页1_03ss"];
     [self.view addSubview:tabBarimage];
     
-    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    [self.view addSubview:botom];
+//    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+//    [self.view addSubview:botom];
 
 
 }

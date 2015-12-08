@@ -13,7 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "HuQiJingsharManage.h"
 #import "zujigerenzhongxinViewController.h"
-#import "BottomBarView.h"
+//#import "BottomBarView.h"
 #import "MaiTabieTableViewCell.h"
 #import "UIButton+WebCache.h"
 #import "MainWebViewController.h"
@@ -116,8 +116,8 @@ static NSString * const identifier = @"cell";
     tabBarimage.image = [UIImage imageNamed:@"首页1_01ss"];
     [self.view addSubview:tabBarimage];
     
-    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    [self.view addSubview:botom];
+//    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+//    [self.view addSubview:botom];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chengeindexpage:) name:@"changeNotification" object:nil];
 
@@ -215,7 +215,7 @@ static NSString * const identifier = @"cell";
         self.tabBarController.navigationItem.hidesBackButton = YES;
     }
     
-    self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.y, self.view.bounds.size.height + 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+//    self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.y, self.view.bounds.size.height + 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
 
 }
 -(void)chengeindexpage:(NSNotification *)noti

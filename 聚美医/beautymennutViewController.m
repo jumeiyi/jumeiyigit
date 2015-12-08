@@ -12,7 +12,7 @@
 #import "TopBarView.h"
 #import "NewBeautyTableViewCell.h"
 #import "NewprojectdetailViewController.h"
-#import "BottomBarView.h"
+//#import "BottomBarView.h"
 #import "Beautyitems.h"
 #import "UIImageView+WebCache.h"
 #import "SearchBarViewController.h"
@@ -71,8 +71,8 @@
     tabBarimage.image = [UIImage imageNamed:@"首页1_02ss"];
     [self.view addSubview:tabBarimage];
     
-    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    [self.view addSubview:botom];
+//    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+//    [self.view addSubview:botom];
     
     self.tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64 + botomerhight, self.view.bounds.size.width, self.view.bounds.size.height - 64 - botomerhight - botomerhight)];
     self.tableview.delegate = self;

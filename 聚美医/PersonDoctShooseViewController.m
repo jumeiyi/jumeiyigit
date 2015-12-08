@@ -10,11 +10,13 @@
 
 #import "PersonDoctShooseViewController.h"
 #import "PersonalViewController.h"
-#import "BottomBarView.h"
-#import "DoctorMainViewController.h"
+//#import "BottomBarView.h"
+//#import "DoctorMainViewController.h"
 #import "DoctorRegistViewController.h"
 #import "PrefixHeader.pch"
 #import "HuQiJingsharManage.h"
+#import "ShouYeViewController.h"
+
 @interface PersonDoctShooseViewController ()
 
 @end
@@ -116,25 +118,28 @@
     self.Isxieyi = YES;
     self.personordocter = YES;
     
-    float botomerhight = 0.130667 * self.view.bounds.size.width;
-    float imageX = self.view.bounds.size.width/5;
+//    float botomerhight = 0.130667 * self.view.bounds.size.width;
+//    float imageX = self.view.bounds.size.width/5;
+//    
+//    UIImageView *tabBarimage0 = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+//    tabBarimage0.image = [UIImage imageNamed:@"diseq"];
+//    [self.view addSubview:tabBarimage0];
+//
+//    
+//    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 1,self.view.bounds.size.height - botomerhight, imageX - 10, botomerhight)];
+//    tabBarimage.image = [UIImage imageNamed:@"anjianzuo"];
+//    [self.view addSubview:tabBarimage];
+//    
+//    UIImageView *tabBarimage2 = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 3,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
+//    tabBarimage2.image = [UIImage imageNamed:@"anjianyoub"];
+//    [self.view addSubview:tabBarimage2];
     
-    UIImageView *tabBarimage0 = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    tabBarimage0.image = [UIImage imageNamed:@"diseq"];
-    [self.view addSubview:tabBarimage0];
+//    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+//    [self.view addSubview:botom];
+    
+    self.tabBarController.tabBar.frame = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 40);
+        //tabBarcontroll.tabBar.frame= CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 40);
 
-    
-    UIImageView *tabBarimage = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 1,self.view.bounds.size.height - botomerhight, imageX - 10, botomerhight)];
-    tabBarimage.image = [UIImage imageNamed:@"anjianzuo"];
-    [self.view addSubview:tabBarimage];
-    
-    UIImageView *tabBarimage2 = [[UIImageView alloc] initWithFrame:CGRectMake(imageX * 3,self.view.bounds.size.height - botomerhight, imageX - 15, botomerhight)];
-    tabBarimage2.image = [UIImage imageNamed:@"anjianyoub"];
-    [self.view addSubview:tabBarimage2];
-    
-    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    [self.view addSubview:botom];
-    
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -180,7 +185,7 @@
         self.tabBarController.navigationItem.hidesBackButton = YES;
     }
     
-    self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.y, self.view.bounds.size.height + 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+//    self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.y, self.view.bounds.size.height + 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
     
 }
 
@@ -408,6 +413,7 @@
 
     }
 
+    
     
 }
 
@@ -777,8 +783,23 @@
 -(void)gotodoctercenter
 {
     NSLog(@"self.isNew--%@",self.isNew);
+//    if ([self.isNew isEqualToString:@"0"]) {
+//        DoctorMainViewController *main = [[DoctorMainViewController alloc] init];
+//        [self.navigationController pushViewController:main animated:YES];
+//    }else if([self.isNew isEqualToString:@"1"]){
+//        
+//        self.isNew = @"0";
+//        DoctorRegistViewController *regist = [[DoctorRegistViewController alloc] init];
+//        regist.doctorSno = self.customerSno;
+//        regist.phone = _phonenumber.text;
+//        [self.navigationController pushViewController:regist animated:YES];
+//    }else{
+//        DoctorMainViewController *main = [[DoctorMainViewController alloc] init];
+//        [self.navigationController pushViewController:main animated:YES];
+//    }
+    
     if ([self.isNew isEqualToString:@"0"]) {
-        DoctorMainViewController *main = [[DoctorMainViewController alloc] init];
+        ShouYeViewController *main = [[ShouYeViewController alloc] init];
         [self.navigationController pushViewController:main animated:YES];
     }else if([self.isNew isEqualToString:@"1"]){
         
@@ -788,10 +809,9 @@
         regist.phone = _phonenumber.text;
         [self.navigationController pushViewController:regist animated:YES];
     }else{
-        DoctorMainViewController *main = [[DoctorMainViewController alloc] init];
+        ShouYeViewController *main = [[ShouYeViewController alloc] init];
         [self.navigationController pushViewController:main animated:YES];
     }
-    
 
     
 }

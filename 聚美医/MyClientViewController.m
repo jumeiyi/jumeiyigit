@@ -98,31 +98,31 @@
     [_imagebtn addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:_imagebtn];
     
-    //搜索边框
-    UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(15, 75, self.view.bounds.size.width - 30, 42)];
-    shoosebtnimageback.image = [UIImage imageNamed:@"sousuobian"];
-    shoosebtnimageback.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:shoosebtnimageback];
-    
-    
-    _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 77, 50, 37)];
-    [_shoosebtn setTitle:@"姓名 " forState:UIControlStateNormal];
-    [_shoosebtn setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
-    [_shoosebtn addTarget:self action:@selector(shoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_shoosebtn];
-    
-    UIImageView *shoosebtnimage = [[UIImageView alloc] initWithFrame:CGRectMake(62, 90, 15, 10)];
-    shoosebtnimage.image = [UIImage imageNamed:@"图片2"];
-    [self.view addSubview:shoosebtnimage];
-    
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f)];
-    self.searchBar.delegate =self;
-    self.searchBar.placeholder = @"搜索项目，客户";
-    self.searchBar.tintColor = [UIColor lightGrayColor];
-    self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.searchBar.keyboardType = UIKeyboardTypeDefault;
-    [self.view addSubview:self.searchBar];
+//    //搜索边框
+//    UIImageView *shoosebtnimageback = [[UIImageView alloc] initWithFrame:CGRectMake(15, 75, self.view.bounds.size.width - 30, 42)];
+//    shoosebtnimageback.image = [UIImage imageNamed:@"sousuobian"];
+//    shoosebtnimageback.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:shoosebtnimageback];
+//    
+//    
+//    _shoosebtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 77, 50, 37)];
+//    [_shoosebtn setTitle:@"姓名 " forState:UIControlStateNormal];
+//    [_shoosebtn setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
+//    [_shoosebtn addTarget:self action:@selector(shoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:_shoosebtn];
+//    
+//    UIImageView *shoosebtnimage = [[UIImageView alloc] initWithFrame:CGRectMake(62, 90, 15, 10)];
+//    shoosebtnimage.image = [UIImage imageNamed:@"图片2"];
+//    [self.view addSubview:shoosebtnimage];
+//    
+//    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(80.0f,77, self.view.frame.size.width - 110 , 37.0f)];
+//    self.searchBar.delegate =self;
+//    self.searchBar.placeholder = @"搜索项目，客户";
+//    self.searchBar.tintColor = [UIColor lightGrayColor];
+//    self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+//    self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+//    self.searchBar.keyboardType = UIKeyboardTypeDefault;
+//    [self.view addSubview:self.searchBar];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baisebeijing"]];
     imageView.backgroundColor = [UIColor clearColor];
@@ -168,7 +168,7 @@
     
     NSLog(@"creattableview");
     if (!_tableview) {
-        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 67 + 62, self.view.bounds.size.width, self.view.bounds.size.height - (67 + 62))];
+        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
         _tableview.delegate = self;
         _tableview.dataSource = self;
         _tableview.layer.cornerRadius = 8;

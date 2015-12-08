@@ -16,4 +16,5 @@
     NSXMLParser *xmlParser;
 
 }
+@property(nonatomic,retain)NSString *doctorSno;
 @end

@@ -10,7 +10,7 @@
 
 #import "PersonalViewController.h"
 #import "TopBarView.h"
-#import "BottomBarView.h"
+//#import "BottomBarView.h"
 #import "UpLoadingHeadImage.h"
 #import "MySecretaryVC.h"
 #import "MyRewardVC.h"
@@ -107,14 +107,15 @@ static NSString * const MyExpertidentifier = @"MyExpertCLViewCell";
     tabBarimage.image = [UIImage imageNamed:@"首页1_04ss"];
     [self.view addSubview:tabBarimage];
     
-    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
-    [self.view addSubview:botom];
+//    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
+//    [self.view addSubview:botom];
     
 
     NSMutableArray *buttonimagearray = [[NSMutableArray alloc] initWithObjects:@"个人中心4_02",@"个人中心4_04",@"个人中心4_06",@"个人中心4_10",@"个人中心4_11",@"个人中心4_12", nil];
     float btnheigth = (self.view.bounds.size.width - 4)/3;
     float y1 = self.view.bounds.size.height/2 - 30 + redbackimage.frame.origin.y;
-    float btnhigth = ((self.view.bounds.size.height - y1 - botom.frame.size.height) - 2)/2;
+//    float btnhigth = ((self.view.bounds.size.height - y1 - botom.frame.size.height) - 2)/2;
+    float btnhigth = (self.view.bounds.size.height - 44 - 2 - y1)/2;
     for (int i = 0; i < 6; i ++) {
         
         float x = (btnheigth + 2) * (i % 3) + 2;

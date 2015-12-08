@@ -10,7 +10,7 @@
 
 #import "DoctorMainViewController.h"
 #import "TopBarView.h"
-#import "BottomBarView.h"
+//#import "BottomBarView.h"
 #import "PerfectDataViewController.h"
 #import "GongNengSheZhi.h"
 #import "MyClientViewController.h"

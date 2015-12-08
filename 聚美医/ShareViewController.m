@@ -37,7 +37,7 @@
     [self.view addSubview:topbar];
     
     UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-    titilelable.text = @"我的分享";
+    titilelable.text = @"添加患者";
     titilelable.textColor = [UIColor whiteColor];
     titilelable.font = [UIFont systemFontOfSize:22];
     titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
@@ -51,14 +51,21 @@
     [topbar addSubview:backbtn];
     
     
-    UILabel *lable1 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ((self.view.bounds.size.width - 180)/2), 120, self.view.bounds.size.width - 180, 50)];
-    lable1.text = @"让患者扫一扫二维码关注我的微信公众号";
+    UILabel *lable1 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:20 str:@"让患者扫一扫二维码"]/2), 120, [self NSStringwithsize:20 str:@"让患者扫一扫二维码"], 50)];
+    lable1.text = @"让患者扫一扫二维码";
     lable1.font = [UIFont systemFontOfSize:20];
     lable1.numberOfLines = 0;
     lable1.textColor = [self colorWithRGB:0x666666 alpha:1];
     [self.view addSubview:lable1];
     
 
+    UILabel *lable2 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:20 str:@"关注我的微信公众号"]/2), 144, [self NSStringwithsize:20 str:@"关注我的微信公众号"], 50)];
+    lable2.text = @"关注我的微信公众号";
+    lable2.font = [UIFont systemFontOfSize:20];
+    lable2.numberOfLines = 0;
+    lable2.textColor = [self colorWithRGB:0x666666 alpha:1];
+    [self.view addSubview:lable2];
+    
     UIImageView *QRcode = [[UIImageView alloc] initWithFrame:CGRectMake(50, 200, self.view.bounds.size.width - 100, self.view.bounds.size.width - 100)];
     QRcode.image = [UIImage imageNamed:@"qr_fenxiang"];
     [self.view addSubview:QRcode];
@@ -78,7 +85,20 @@
     [self soaprequstWithdoctorSno:self.userSno];
 }
 
-
+//计算字体长度
+-(float)NSStringwithsize:(int )a str:(NSString *)string
+{
+    
+    UIFont *font = [UIFont systemFontOfSize:a];
+    
+    CGSize size = [string sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    // 名字的H
+    //CGFloat nameH = size.height;
+    // 名字的W
+    CGFloat strwidth = size.width;
+    
+    return strwidth;
+}
 
 -(void)fenxiang
 {
