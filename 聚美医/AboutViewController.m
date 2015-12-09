@@ -45,12 +45,12 @@
     titilelable.textAlignment = NSTextAlignmentCenter;
     [topbar addSubview:titilelable];
     
-    float hi = 46;
+    float hi = 45;
     NSArray *titleary = [[NSArray alloc] initWithObjects:@"    完善资料",@"    我的积分",@"    意见反馈",@"    优惠活动",@"    退出登录", nil];
     NSArray *buttonimagesary = [[NSArray alloc] initWithObjects:@"更多_02e",@"更多_02e",@"更多_02e",@"更多_02e",@"更多_02e", nil];
     for (int i = 0; i < 5; i++) {
 
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, hi * i + 70, self.view.bounds.size.width , 44)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, hi * i + 64, self.view.bounds.size.width , 44)];
         button.backgroundColor = [UIColor whiteColor];
         [button setTitle:[titleary objectAtIndex:i] forState:UIControlStateNormal];
         [button setTitleColor:[self colorWithRGB:0x00c5bb alpha:1] forState:UIControlStateNormal];
@@ -59,7 +59,7 @@
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [self.view addSubview:button];
         
-        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 20, hi * i + 84, 10 , 17)];
+        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 20, hi * i + 78, 10 , 17)];
         image.image = [UIImage imageNamed:[buttonimagesary objectAtIndex:i]];
         [self.view addSubview:image];
     }

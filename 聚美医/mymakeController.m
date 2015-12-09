@@ -76,7 +76,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updata:) name:@"updata" object:nil];
     
-    
 }
 
 
@@ -198,6 +197,8 @@
             [alert show];
         }
         
+        [_table reloadData];
+        
     }];
 
 }
@@ -229,13 +230,18 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    static NSString *identifier = @"cell";
+//    mymakerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+//    if (!cell) {
+//        cell = [[mymakerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//    }
+//    cell.tiemess.textColor = [UIColor redColor];
     static NSString *identifier = @"cell";
     mymakerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"mymakerCell" owner:nil options:nil] objectAtIndex:0];
     }
     cell.tiemess.textColor = [UIColor redColor];
-    
    
     
     doctorinmymaker *doctor = [_customerOrderDataarray objectAtIndex:indexPath.row];
@@ -273,8 +279,6 @@
     }else{
         
     }
-    
-    NSLog(@"时间轴--------------> %@",doctor.NowState);
     
     return cell;
 }
@@ -444,6 +448,7 @@
             doctorinmymaker *doctor = [doctorinmymaker mymakerWithDiction:diction];
             [_customerOrderDataarray addObject:doctor];
         }
+        
         [_table reloadData];
         
         if ([state isEqualToString:@"0"]) {

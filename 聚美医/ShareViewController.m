@@ -53,7 +53,7 @@
     [topbar addSubview:backbtn];
     
     
-    UILabel *lable1 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:20 str:@"让患者扫一扫二维码"]/2), 120, [self NSStringwithsize:20 str:@"让患者扫一扫二维码"], 50)];
+    UILabel *lable1 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:20 str:@"让患者扫一扫二维码"]/2), 120, [self NSStringwithsize:21 str:@"让患者扫一扫二维码"], 50)];
     lable1.text = @"让患者扫一扫二维码";
     lable1.font = [UIFont systemFontOfSize:20];
     lable1.numberOfLines = 0;
@@ -61,7 +61,7 @@
     [self.view addSubview:lable1];
     
 
-    UILabel *lable2 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:20 str:@"关注我的微信公众号"]/2), 144, [self NSStringwithsize:20 str:@"关注我的微信公众号"], 50)];
+    UILabel *lable2 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:20 str:@"关注我的微信公众号"]/2), 144, [self NSStringwithsize:21 str:@"关注我的微信公众号"], 50)];
     lable2.text = @"关注我的微信公众号";
     lable2.font = [UIFont systemFontOfSize:20];
     lable2.numberOfLines = 0;
@@ -113,7 +113,7 @@
                                        defaultContent:@"测试一下"
                                                 image:[ShareSDK imageWithPath:imagePath]
                                                 title:self.myname
-                                                  url:[NSString stringWithFormat:@"http://cs.jumeiyiyun.com/html/fx/index.html?s=%@",self.userSno]
+                                                  url:[NSString stringWithFormat:@"%@/doctorqrshare.map?doctorsno=%@",HTTPREQUESTPDOMAIN,self.userSno]
                                           description:@"这是一条分享信息"
                                             mediaType:SSPublishContentMediaTypeNews];//
     //创建弹出菜单容器
@@ -191,6 +191,8 @@
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
     return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
 }
+
+
 /*
 #pragma mark - Navigation
 
@@ -355,7 +357,7 @@
         
         [self.qrimage sd_setImageWithURL:[NSURL URLWithString:str]];
         
-        
+        NSLog(@"二维码路径--%@",str);
 
     }
     

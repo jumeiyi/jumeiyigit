@@ -95,7 +95,7 @@
                         <rect key="frame" x="40" y="134" width="20" height="20"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzs-7L-saf">
-                        <rect key="frame" x="236" y="77" width="80" height="20"/>
+                        <rect key="frame" x="221" y="77" width="97" height="20"/>
                         <state key="normal" backgroundImage="[cell.binglibtn setBackgroundImage:[UIImage imageNamed:@&quot;mymaker_btn&quot;] forState:UIControlStateNormal];">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>

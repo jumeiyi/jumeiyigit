@@ -47,8 +47,8 @@
     
 //    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
 //    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
-    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"休眠客户", nil];
-    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"sleep",nil];
+    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务", nil];
+    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",nil];
     
     _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, 20)];
     [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
@@ -222,8 +222,8 @@
         
 //        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
 //        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
-        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"休眠客户", nil];
-        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"sleep",nil];
+        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",nil];
+        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",nil];
         
         for (int i = 0; i < array1.count; i++) {
             [_groups addObject:[array1 objectAtIndex:i]];
@@ -671,8 +671,6 @@
         cell.project2.frame = CGRectMake(0, 0, 0, 0);
         cell.project2.text = @"";
         
-        cell.project3.frame = CGRectMake(0, 0, 0, 0);
-        cell.project3.text = @"";
         
 
         
@@ -721,7 +719,6 @@
         }else if (proudctorary.count == 3){
             cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
             cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
-            cell.project3.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:2]];
             
             cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
             cell.project1.font = [UIFont systemFontOfSize:11];
@@ -737,17 +734,11 @@
             cell.project2.layer.masksToBounds = YES;
             cell.project2.layer.cornerRadius = 3;
             
-            cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 15, 39, [self NSStringwithsize:11 str:cell.project3.text] + 10, 21);
-            cell.project3.font = [UIFont systemFontOfSize:11];
-            cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-            cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
-            cell.project3.layer.masksToBounds = YES;
-            cell.project3.layer.cornerRadius = 3;
+
             
         }else if (proudctorary.count > 3){
             cell.project1.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:0]];
             cell.project2.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:1]];
-            cell.project3.text = [NSString stringWithFormat:@"  %@",[proudctorary objectAtIndex:2]];
             
             cell.project1.frame = CGRectMake(80, 39, [self NSStringwithsize:11 str:cell.project1.text] + 10, 21);
             cell.project1.font = [UIFont systemFontOfSize:11];
@@ -763,12 +754,6 @@
             cell.project2.layer.masksToBounds = YES;
             cell.project2.layer.cornerRadius = 3;
             
-            cell.project3.frame = CGRectMake(cell.project2.frame.origin.x + [self NSStringwithsize:11 str:cell.project2.text] + 15, 39, [self NSStringwithsize:11 str:cell.project3.text] + 10, 21);
-            cell.project3.font = [UIFont systemFontOfSize:11];
-            cell.project3.backgroundColor = [self colorWithRGB:0x80e2dd alpha:1];
-            cell.project3.textColor = [self colorWithRGB:0xffffff alpha:1];
-            cell.project3.layer.masksToBounds = YES;
-            cell.project3.layer.cornerRadius = 3;
         }
         
         NSMutableArray *rowary = [_sectionary objectAtIndex:indexPath.section];

@@ -14,6 +14,5 @@
 @property(nonatomic,retain)UILabel *name;
 @property(nonatomic,retain)UILabel *project1;
 @property(nonatomic,retain)UILabel *project2;
-@property(nonatomic,retain)UILabel *project3;
 
 @end

@@ -40,8 +40,6 @@
         self.project2 = [[UILabel alloc] init];
         [self addSubview:self.project2];
         
-        self.project3 = [[UILabel alloc] init];
-        [self addSubview:self.project3];
         
     }
     
