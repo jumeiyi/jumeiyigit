@@ -47,7 +47,7 @@
     
 //    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
 //    _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
-    _groups = [[NSMutableArray alloc] initWithObjects:@"已服务", nil];
+    _groups = [[NSMutableArray alloc] initWithObjects:@"我的患者", nil];
     _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",nil];
     
     _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:0]]/2 + 10) , 27, [self NSStringwithsize:17 str:[_groups objectAtIndex:0]] + 20, 20)];
@@ -67,18 +67,7 @@
     [self.view addSubview:gradimage];
     
     
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0,  64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
-    _tableview.delegate = self;
-    _tableview.dataSource = self;
-    _tableview.layer.cornerRadius = 8;
-//    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableview.backgroundColor = [UIColor whiteColor];
-    _tableview.tag = 60;
-    [self.view addSubview:_tableview];
-    
-    _refreshControl=[[RefreshControl alloc] initWithScrollView:_tableview delegate:self];
-    _refreshControl.topEnabled=YES;
-    //_refreshControl.bottomEnabled=YES;//会崩
+
     
     
     self.typeInfo = @"name";  self.a = 1;
@@ -136,6 +125,30 @@
     [self startrequest];
     
     
+
+
+}
+
+-(void)creatmytableview{
+
+    if (_tableview) {
+        [_tableview reloadData];
+    }else{
+    
+        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0,  64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
+        _tableview.delegate = self;
+        _tableview.dataSource = self;
+        _tableview.layer.cornerRadius = 8;
+        //    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableview.backgroundColor = [UIColor whiteColor];
+        _tableview.tag = 60;
+        [self.view addSubview:_tableview];
+        
+        _refreshControl=[[RefreshControl alloc] initWithScrollView:_tableview delegate:self];
+        _refreshControl.topEnabled=YES;
+        //_refreshControl.bottomEnabled=YES;//会崩
+        
+    }
 
 
 }
@@ -198,7 +211,8 @@
             _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
             
         }
-        [_tableview reloadData];
+        [self creatmytableview];
+    
     }];
     
 }
@@ -222,7 +236,7 @@
         
 //        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
 //        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
-        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",nil];
+        _groups = [[NSMutableArray alloc] initWithObjects:@"我的患者",nil];
         _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",nil];
         
         for (int i = 0; i < array1.count; i++) {
@@ -301,7 +315,7 @@
 //        [self.myscrollview addSubview:manberimage];
 //    }
 
-
+    
 }
 
 -(void)startrequest
@@ -317,32 +331,32 @@
         _insectionofrow = array2;
        
          _sectionary = [[NSMutableArray alloc] initWithCapacity:0];
-        for (int i = 0; i < _insectionofrow.count; i++) {
-            NSMutableArray *rowary = [[NSMutableArray alloc] initWithCapacity:0];
-            NSMutableArray *romnumber = [_insectionofrow objectAtIndex:i];
-            
-            for (int j = 0; j <  romnumber.count;j++) {
-                [rowary addObject:@"y"];
-            }
-            [_sectionary addObject:rowary];
-        }
+//        for (int i = 0; i < _insectionofrow.count; i++) {
+//            NSMutableArray *rowary = [[NSMutableArray alloc] initWithCapacity:0];
+//            NSMutableArray *romnumber = [_insectionofrow objectAtIndex:i];
+//            
+//            for (int j = 0; j <  romnumber.count;j++) {
+//                [rowary addObject:@"y"];
+//            }
+//            [_sectionary addObject:rowary];
+//        }
         
+        for (int i = 0; i < _insectionofrow.count; i++) {
+            [_sectionary addObject:@"y"];
+        }
         
         //遍历换掉相同的参数
         for (int i = 0; i < _sectionary.count; i++) {
-            NSMutableArray *rowary = [_insectionofrow objectAtIndex:i];
-            NSMutableArray *romnumber = [_sectionary objectAtIndex:i];
-            
-            for (int a = 0;a < romnumber.count;a++) {
-                mycustomerdata *romsno = [rowary objectAtIndex:a];
+
+                mycustomerdata *romsno = [_insectionofrow objectAtIndex:i];
                 
                 for (NSString *str in self.OriginalManberary) {
                     
                     if ([str isEqualToString:romsno.sno]) {
-                        [romnumber replaceObjectAtIndex:a withObject:@"xx"];
+                        [_sectionary replaceObjectAtIndex:i withObject:@"xx"];
                         NSLog(@"romsno.sno,str%@=-==%@",romsno.sno,str);
                     }
-                }
+                
             }
             }
                 
@@ -355,7 +369,7 @@
             
         }
         
-         [_tableview reloadData];
+        [self creatmytableview];
     }];
 
 }
@@ -610,20 +624,23 @@
 }
 
 #pragma mark tableview
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    if (tableView.tag == 60) {
-        return _sectionindex.count;
-    }else{
-        return 1;
-    }
-}
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+////    if (tableView.tag == 60) {
+////        return _sectionindex.count;
+////    }else{
+////        return 1;
+////    }
+//    return 1;
+//}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
-        NSMutableArray *rownumber = [_insectionofrow objectAtIndex:section];
-        return  rownumber.count;
+//        NSMutableArray *rownumber = [_insectionofrow objectAtIndex:section];
+//        return  rownumber.count;
+        
+        return _insectionofrow.count;
         
     }else if (tableView.tag == 62){
         return _groups.count;
@@ -631,11 +648,13 @@
         return 2;
     }
     
+    NSLog(@"_insectionofrow.count:%ld",_insectionofrow.count);
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSLog(@"cellForRowAtIndexPath_insectionofrow.count:%ld",_insectionofrow.count);
     if (tableView.tag == 60) {
         
 
@@ -651,8 +670,10 @@
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 8;
         
-        NSMutableArray *mycustomary = [_insectionofrow objectAtIndex:indexPath.section];
-        mycustomerdata *mycustom = [mycustomary objectAtIndex:indexPath.row];
+//        NSMutableArray *mycustomary = [_insectionofrow objectAtIndex:indexPath.section];
+//        mycustomerdata *mycustom = [mycustomary objectAtIndex:indexPath.row];
+        
+        mycustomerdata *mycustom = [_insectionofrow objectAtIndex:indexPath.row];
         
         NSArray *proudctorary = [mycustom.buyproductnames componentsSeparatedByString:@","];
         
@@ -756,8 +777,7 @@
             
         }
         
-        NSMutableArray *rowary = [_sectionary objectAtIndex:indexPath.section];
-        NSString *strary = [rowary objectAtIndex:indexPath.row];
+        NSString *strary = [_sectionary objectAtIndex:indexPath.row];
         
         if ([strary isEqualToString:@"y"]) {
             cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 12, 25, 25);
@@ -888,14 +908,13 @@
     }else{
         
 
-        NSMutableArray *rowary = [_sectionary objectAtIndex:indexPath.section];
-        NSString *str = [rowary objectAtIndex:indexPath.row];
+        NSString *str = [_sectionary objectAtIndex:indexPath.row];
         
         if ([str isEqualToString:@"y"]) {
-            [rowary replaceObjectAtIndex:indexPath.row withObject:@"x"];
+            [_sectionary replaceObjectAtIndex:indexPath.row withObject:@"x"];
             
         }else if([str isEqualToString:@"x"]){
-            [rowary replaceObjectAtIndex:indexPath.row withObject:@"y"];
+            [_sectionary replaceObjectAtIndex:indexPath.row withObject:@"y"];
         }else{
         
         }
@@ -906,18 +925,15 @@
         
         [_getmanberary removeAllObjects];
         
-        for (int a = 0; a < _insectionofrow.count; a ++) {
-            NSMutableArray *sectionary = [_insectionofrow objectAtIndex:a];
-            NSMutableArray *rowary = [_sectionary objectAtIndex:a];
+
             
-            for (int j = 0; j < sectionary.count; j++) {
-                 NSString *str = [rowary objectAtIndex:j];
-                mycustomerdata *mydt = [sectionary objectAtIndex:j];
+            for (int j = 0; j < _sectionary.count; j++) {
+                 NSString *str = [_sectionary objectAtIndex:j];
+                mycustomerdata *mydt = [_insectionofrow objectAtIndex:j];
                 if ([str isEqualToString:@"x"]) {
                     [_getmanberary addObject:mydt];
-                    NSLog(@"mydt.sno-: %@",mydt.sno);
                 }
-            }
+            
         }
         
 //        [self addmanberToscrollview];

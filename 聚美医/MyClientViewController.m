@@ -30,10 +30,8 @@
 {
     
     [super viewWillAppear:animated];
-    [_groups removeAllObjects];
-    _groups = nil;
-    [_groupIDarray removeAllObjects];
-    _groupIDarray = nil;
+    
+
     
     self.group = @"serviced";
     
@@ -44,7 +42,15 @@
         
 //        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务",@"关注我",@"专属客户",@"休眠客户", nil];
 //        _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",@"focusme",@"Exclusive",@"sleep",nil];
-        _groups = [[NSMutableArray alloc] initWithObjects:@"已服务", nil];
+        
+        [_groups removeAllObjects];
+        _groups = nil;
+        [_groupIDarray removeAllObjects];
+        _groupIDarray = nil;
+        
+        NSLog(@"_groups.count-1--%ld",_groups.count);
+        
+        _groups = [[NSMutableArray alloc] initWithObjects:@"我的患者", nil];
         _groupIDarray = [[NSMutableArray alloc] initWithObjects:@"serviced",nil];
         
         for (int i = 0; i < array1.count; i++) {
@@ -58,7 +64,7 @@
             [_groupIDarray addObject:[array3 objectAtIndex:i]];
         }
         
-        
+        NSLog(@"_groups--2-: %ld",_groups.count);
        
     }];
     
@@ -87,9 +93,9 @@
     [topbar addSubview:backbtn];
     
     
-    _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:@"已服务"]/2 + 10) , 27, [self NSStringwithsize:17 str:@"已服务"] + 20, 20)];
+    _groupbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:@"我的患者"]/2 + 10) , 27, [self NSStringwithsize:17 str:@"我的患者"] + 20, 20)];
     [_groupbtn  addTarget:self action:@selector(groupsbuttonclick) forControlEvents:UIControlEventTouchUpInside];
-    [_groupbtn setTitle:@"已服务" forState:UIControlStateNormal];
+    [_groupbtn setTitle:@"我的患者" forState:UIControlStateNormal];
     [topbar addSubview:_groupbtn];
     
     
@@ -221,7 +227,7 @@
 
     NSLog(@"MMMMMMMM");
     [self.view endEditing:YES];
-    [self searchdata];
+//    [self searchdata];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -283,7 +289,9 @@
 
 -(void)groupsbuttonclick
 {
-    NSLog(@"开始groupsbuttonclick");
+
+    NSLog(@"_groups.count --3- %ld",_groups.count);
+    
     UITableView *grouptableview;
     
     if (self.isgroupes == NO) {
@@ -462,16 +470,20 @@
 {
      
     if (tableView.tag == 60) {
-        if (self.IsServiced == YES) {
-            return _headnamearray.count + 1;
-        }else{
-            NSLog(@"numberOfSectionsInTableView--_headnamearray.count:%ld",_headnamearray.count);
-        return _headnamearray.count;
-        }
-        
+//        if (self.IsServiced == YES) {
+//            return _headnamearray.count + 1;
+//        }else{
+//            NSLog(@"numberOfSectionsInTableView--_headnamearray.count:%ld",_headnamearray.count);
+//        return _headnamearray.count;
+//        }
+        return 2;
+    }else if (tableView.tag == 62){
+     return 1;
     }else{
         return 1;
     }
+    
+   
     
   
 }
@@ -486,19 +498,24 @@
             if (section == 0) {
                 return 1;
             }else{
-                 NSMutableArray *ary1 = [_allgroup objectAtIndex:section - 1];
-                return ary1.count;
+//                 NSMutableArray *ary1 = [_allgroup objectAtIndex:section - 1];
+//                return ary1.count;
+              return _allgroup.count;
             }
+            
+            
         }else{
-            
-            NSLog(@"self.IsServiced == NO B %ld",_allgroup.count);
-            
-              NSMutableArray *ary1 = [_allgroup objectAtIndex:section];
-            return ary1.count;
+//            
+//            NSLog(@"self.IsServiced == NO B %ld",_allgroup.count);
+//            
+//              NSMutableArray *ary1 = [_allgroup objectAtIndex:section];
+//            return ary1.count;
+            return _allgroup.count;
         }
         
-
+        
     }else if (tableView.tag == 62){
+        NSLog(@"_groups.count------3-:%ld",_groups.count);
         return _groups.count;
     }else {
         
@@ -552,13 +569,15 @@
                 
                 cell.name.frame = CGRectMake(80, 25, 100, 20);
                 cell.name.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
-                cell.name.text = @"分组";
+                cell.name.text = @"患者分组";
                 cell.name.textColor = [self colorWithRGB:0x00c5bb alpha:1];
                 
             }else{
                 
-                NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
-                mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
+                //NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
+                //mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
+                mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
+                
                 NSArray *proudctorary = [customer.buyproductnames componentsSeparatedByString:@","];
                
                 
@@ -653,9 +672,10 @@
             
 
             
-            NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
-            mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
+//            NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
+//            mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
 
+            mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
             
             NSArray *proudctorary = [customer.buyproductnames componentsSeparatedByString:@","];
             
@@ -742,29 +762,25 @@
 
             }
             
-
-
-            
-           
             
         }
         
-        
        
         return cell;
+        
 
     }else if (tableView.tag == 62){
-        
+        NSLog(@"_groups.count--- 4 ---%ld",_groups.count);
         NSLog(@"indexPath.row-%ld-----_numberofmanber.count-%ld",indexPath.row,_numberofmanber.count);
         static NSString *ident = @"cell2";
         UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:ident];
         if (!cell2) {
             cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         }
-        if (indexPath.row < 4) {
+        if (indexPath.row < 1) {
             cell2.textLabel.text = [_groups objectAtIndex:indexPath.row];
         }else{
-            NSString *str = [NSString stringWithFormat:@"%@     (%@)",[_groups objectAtIndex:indexPath.row],[_numberofmanber objectAtIndex:indexPath.row - 4]];
+            NSString *str = [NSString stringWithFormat:@"%@     (%@)",[_groups objectAtIndex:indexPath.row],[_numberofmanber objectAtIndex:indexPath.row - 1]];
             cell2.textLabel.text = str;
         }
         
@@ -861,8 +877,8 @@
                 myclient.doctorsno = self.doctorsno;
                 [self.navigationController pushViewController:myclient animated:YES];
             }else{
-                NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
-                mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
+               // NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
+                mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
                 
                 myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
                 myclient.customerSno = customer.sno;
@@ -870,8 +886,8 @@
                 [self.navigationController pushViewController:myclient animated:YES];
               }
         }else{
-            NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
-            mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
+           // NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
+            mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
             
             myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
             myclient.customerSno = customer.sno;
@@ -984,31 +1000,31 @@
     }
     
 }
-//搜索得到的数据
--(void)searchdata{
-
-    
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15&querytype=%@&condition=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.group,self.typeInfo,self.searchcontents];
-    
-        NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                                                         (CFStringRef)string,
-                                                                                                         NULL,
-                                                                                                         NULL,
-                                                                                                         kCFStringEncodingUTF8));
-    
-    NSLog(@"客户数据搜索--%@",string);
-//    [self requstwithurl:string];
-    
-    [AFHTTPRequestOpeartionManagerOfme postmanberplistandurl:encodedString withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-        
-        _headnamearray = array1;
-        _allgroup = array2;
-        
-        self.AllowRefresh = YES;
-        [self creattableview];
-    }];
-
-}
+////搜索得到的数据
+//-(void)searchdata{
+//
+//    
+//    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15&querytype=%@&condition=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.group,self.typeInfo,self.searchcontents];
+//    
+//        NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+//                                                                                                         (CFStringRef)string,
+//                                                                                                         NULL,
+//                                                                                                         NULL,
+//                                                                                                         kCFStringEncodingUTF8));
+//    
+//    NSLog(@"客户数据搜索--%@",string);
+////    [self requstwithurl:string];
+//    
+//    [AFHTTPRequestOpeartionManagerOfme postmanberplistandurl:encodedString withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+//        
+//        _headnamearray = array1;
+//        _allgroup = array2;
+//        
+//        self.AllowRefresh = YES;
+//        [self creattableview];
+//    }];
+//
+//}
 
 -(void)startrequest
 {
@@ -1021,7 +1037,9 @@
         _headnamearray = array1;
         _allgroup = array2;
         
-        //NSLog(@"_headnamearray : %@------_allgroup-%@",_headnamearray,_allgroup);
+
+
+//        NSLog(@"_headnamearray : %@------_allgroup-%@",_headnamearray,_allgroup);
         
 
         self.AllowRefresh = YES;

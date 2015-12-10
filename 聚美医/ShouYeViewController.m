@@ -64,7 +64,7 @@
     
     
     self.kehu = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:@"3000"] - 15 - [self NSStringwithsize:16 str:@"客户:"], 228 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:@"客户:"], 20)];
-    self.kehu.text = @"客户:";
+    self.kehu.text = @"患者:";
     self.kehu.font = [UIFont systemFontOfSize:16];
     self.kehu.textColor = [self colorWithRGB:0x666666 alpha:1];
     [self.view addSubview:self.kehu];
@@ -74,17 +74,17 @@
     self.kehushu.textColor = [self colorWithRGB:0x1bc6bc alpha:1];
     [self.view addSubview:self.kehushu];
     
-    UIImageView *shuxian = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, 228 + ((self.view.bounds.size.width * 0.373)/2), 1, 25)];
+    UIImageView *shuxian = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, 228 + ((self.view.bounds.size.width * 0.373)/2), 0.5, 25)];
     shuxian.image = [UIImage imageNamed:@"shouye_shuxian"];
     [self.view addSubview:shuxian];
     
     UILabel *yuyuedanshu = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 + 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20)];
-    yuyuedanshu.text = @"预约单数:";
+    yuyuedanshu.text = @"预约数:";
     yuyuedanshu.font = [UIFont systemFontOfSize:16];
     yuyuedanshu.textColor = [self colorWithRGB:0x666666 alpha:1];
     [self.view addSubview:yuyuedanshu];
     
-    self.yuyueshu = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 + [self NSStringwithsize:17 str:@"预约单数:"] + 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20)];
+    self.yuyueshu = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 + [self NSStringwithsize:17 str:@"预单数:"] + 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20)];
     self.yuyueshu.text = @"5000";
     self.yuyueshu.textColor = [self colorWithRGB:0xf5a556 alpha:1];
     [self.view addSubview:self.yuyueshu];
@@ -105,7 +105,7 @@
     buttonbg1.image = [UIImage imageNamed:@"wodeshijian_@3x"];
     [self.view addSubview:buttonbg1];
     
-    UILabel *shijian = [[UILabel alloc] initWithFrame:CGRectMake(imagebg1.bounds.size.width/2 - 35, withd - 124 + 25, 80, 20)];
+    UILabel *shijian = [[UILabel alloc] initWithFrame:CGRectMake(imagebg1.bounds.size.width/2 - ([self NSStringwithsize:16 str:@"我的时间"]/2), withd - 124 + 25, [self NSStringwithsize:16 str:@"我的时间"], 20)];
     shijian.text = @"我的时间";
     shijian.font = [UIFont systemFontOfSize:16];
     shijian.textColor = [self colorWithRGB:0x666666 alpha:1];
@@ -126,7 +126,7 @@
     buttonbg2.image = [UIImage imageNamed:@"wodeyuyue_@3x"];
     [self.view addSubview:buttonbg2];
     
-    UILabel *yuyue = [[UILabel alloc] initWithFrame:CGRectMake(imagebg2.bounds.size.width/2 - 35, withd - 124 + 25, 80, 20)];
+    UILabel *yuyue = [[UILabel alloc] initWithFrame:CGRectMake(imagebg2.bounds.size.width/2 - ([self NSStringwithsize:16 str:@"我的预约"]/2), withd - 124 + 25, [self NSStringwithsize:16 str:@"我的预约"], 20)];
     yuyue.text = @"我的预约";
     yuyue.font = [UIFont systemFontOfSize:16];
     yuyue.textColor = [self colorWithRGB:0x666666 alpha:1];
@@ -149,8 +149,8 @@
     buttonbg3.image = [UIImage imageNamed:@"wodekehu_@3x"];
     [self.view addSubview:buttonbg3];
     
-    UILabel *kehubg = [[UILabel alloc] initWithFrame:CGRectMake(imagebg3.bounds.size.width/2 - 35, withd - 124 + 25, 80, 20)];
-    kehubg.text = @"我的客户";
+    UILabel *kehubg = [[UILabel alloc] initWithFrame:CGRectMake(imagebg3.bounds.size.width/2 - ([self NSStringwithsize:16 str:@"我的患者"]/2), withd - 124 + 25, [self NSStringwithsize:16 str:@"我的患者"], 20)];
+    kehubg.text = @"我的患者";
     kehubg.font = [UIFont systemFontOfSize:16];
     kehubg.textColor = [self colorWithRGB:0x666666 alpha:1];
     [imagebg3 addSubview:kehubg];
@@ -172,7 +172,7 @@
     buttonbg4.image = [UIImage imageNamed:@"tianjiahuanzhese_@3x"];
     [self.view addSubview:buttonbg4];
     
-    UILabel *tianjia = [[UILabel alloc] initWithFrame:CGRectMake(imagebg4.bounds.size.width/2 - 35, withd - 124 + 25, 80, 20)];
+    UILabel *tianjia = [[UILabel alloc] initWithFrame:CGRectMake(imagebg4.bounds.size.width/2 - ([self NSStringwithsize:16 str:@"添加患者"]/2), withd - 124 + 25, [self NSStringwithsize:16 str:@"添加患者"], 20)];
     tianjia.text = @"添加患者";
     tianjia.font = [UIFont systemFontOfSize:16];
     tianjia.textColor = [self colorWithRGB:0x666666 alpha:1];
@@ -187,6 +187,16 @@
     
     NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
     self.doctorSno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
+//    NSString *ishaver = [userdf objectForKey:@"ishaver"];
+//    NSLog(@"ishaver---> %@",ishaver);
+//    
+//    if ([ishaver isEqualToString:@"1"]) {
+//            self.redbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, -10, 15, 15)];
+//            self.redbtn.backgroundColor = [UIColor redColor];
+//            self.redbtn.layer.masksToBounds = YES;
+//            self.redbtn.layer.cornerRadius = 7.5;
+//            [self.tabBarController.tabBar addSubview:self.redbtn];
+//    }
     
     self.tabBarController.tabBar.frame = CGRectMake(0, self.view.bounds.size.height - 49, self.view.bounds.size.width, 49);
     
@@ -213,6 +223,30 @@
     }
     
     NSLog(@"self.doctorSno --- *** %@",self.doctorSno);
+    
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chengeindexpage:) name:@"msg" object:nil];
+    
+
+}
+
+-(void)chengeindexpage:(NSNotification *)noti
+{
+    NSString *string = [noti object];
+    if ([string isEqualToString:@"1"]) {
+        
+        self.redbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 + 5, 0, 12,12)];
+        self.redbtn.backgroundColor = [UIColor redColor];
+        self.redbtn.layer.masksToBounds = YES;
+        self.redbtn.layer.cornerRadius = 6;
+        [self.tabBarController.tabBar addSubview:self.redbtn];
+        
+        //self.tabBarController.selectedIndex = 1;
+        
+    }else{
+
+        [self.redbtn removeFromSuperview];
+    }
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -246,6 +280,16 @@
     [self soaprequestwithuserSno:self.doctorSno registrationId:registID];
 //    
 //    self.isshonwlertconnection = NO;
+    
+    NSString *ishaver = [userdf objectForKey:@"ishaver"];
+    NSLog(@"ishaver---> %@",ishaver);
+    if ([ishaver isEqualToString:@"1"]) {
+//        UIButton *blackbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, -10, 20, 20)];
+//        blackbtn.backgroundColor = [UIColor redColor];
+//        blackbtn.layer.masksToBounds = YES;
+//        blackbtn.layer.cornerRadius = 10;
+//        [self.tabBarController.tabBar addSubview:blackbtn];
+    }
 
 }
 -(void)personbackbuttonclicka{
@@ -956,31 +1000,31 @@
         [self.deadimage sd_setImageWithURL:[NSURL URLWithString:[basicData objectForKey:@"PicSrc"]]];
         
         self.hospital.text = [dic objectForKey:@"hospitalName"];
-        self.hospital.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:16 str:[dic objectForKey:@"hospitalName"]]/2), 198 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:[dic objectForKey:@"hospitalName"]], 20);
+        self.hospital.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:16 str:[dic objectForKey:@"hospitalName"]]/2) + 12, 198 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:[dic objectForKey:@"hospitalName"]], 20);
         
-        self.hospitalimage.frame = CGRectMake(self.view.bounds.size.width/2 - 30 -  ([self NSStringwithsize:16 str:[dic objectForKey:@"hospitalName"]]/2), 198 + ((self.view.bounds.size.width * 0.373)/2), 20, 20);
+        self.hospitalimage.frame = CGRectMake(self.view.bounds.size.width/2 - 12 -  ([self NSStringwithsize:16 str:[dic objectForKey:@"hospitalName"]]/2), 198 + ((self.view.bounds.size.width * 0.373)/2), 20, 20);
         
         if ([dic objectForKey:@"customersum"] == nil) {
             self.kehushu.text =[NSString stringWithFormat:@"%@",@"0"];
             self.kehushu.frame = CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:self.kehushu.text] - 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20);
             
-            self.kehu.frame = CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:self.kehushu.text] - 15 - [self NSStringwithsize:16 str:@"客户:"], 228 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:@"客户:"], 20);
+            self.kehu.frame = CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:self.kehushu.text] - 15 - [self NSStringwithsize:16 str:@"患者:"], 228 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:@"患者:"], 20);
         }else{
         
             self.kehushu.text =[NSString stringWithFormat:@"%@",[dic objectForKey:@"customersum"]];
             self.kehushu.frame = CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:self.kehushu.text] - 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20);
             
-            self.kehu.frame = CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:self.kehushu.text] - 15 - [self NSStringwithsize:16 str:@"客户:"], 228 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:@"客户:"], 20);
+            self.kehu.frame = CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:self.kehushu.text] - 15 - [self NSStringwithsize:16 str:@"患者:"], 228 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:@"患者:"], 20);
         }
        
         
         
         if ([dic objectForKey:@"ordersum"] == nil) {
             self.yuyueshu.text = [NSString stringWithFormat:@"%@",@"0"];
-            self.yuyueshu.frame = CGRectMake(self.view.bounds.size.width/2 + [self NSStringwithsize:17 str:@"预约单数:"] + 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20);
+            self.yuyueshu.frame = CGRectMake(self.view.bounds.size.width/2 + [self NSStringwithsize:17 str:@"预约数:"] + 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20);
         }else{
             self.yuyueshu.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"ordersum"]];
-            self.yuyueshu.frame = CGRectMake(self.view.bounds.size.width/2 + [self NSStringwithsize:17 str:@"预约单数:"] + 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20);
+            self.yuyueshu.frame = CGRectMake(self.view.bounds.size.width/2 + [self NSStringwithsize:17 str:@"预约数:"] + 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20);
         }
 
         

@@ -40,5 +40,7 @@
 @property(nonatomic,retain)UILabel *kehu;
 @property(nonatomic,retain)UILabel *kehushu;
 @property(nonatomic,retain)UILabel *yuyueshu;
+
+@property(nonatomic,retain)UIButton *redbtn;
 @end
 

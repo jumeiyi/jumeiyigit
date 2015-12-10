@@ -119,7 +119,7 @@ static NSString * const identifier = @"cell";
 //    BottomBarView *botom = [[BottomBarView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height - botomerhight, self.view.bounds.size.width, botomerhight)];
 //    [self.view addSubview:botom];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chengeindexpage:) name:@"changeNotification" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chengeindexpage:) name:@"changeNotification" object:nil];
 
 }
 

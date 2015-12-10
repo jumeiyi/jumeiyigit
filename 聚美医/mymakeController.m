@@ -25,9 +25,7 @@
 {
     [super viewDidAppear:animated];
     
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    [def setObject:@"0" forKey:@"ishaver"];
-    [def synchronize];
+
     
      self.a = 1;
     

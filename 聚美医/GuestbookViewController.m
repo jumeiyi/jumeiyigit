@@ -35,7 +35,7 @@
     [self.view addSubview:topbar];
     
     UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-    titilelable.text = @"客户留言";
+    titilelable.text = @"消息";
     titilelable.textColor = [UIColor whiteColor];
     titilelable.font = [UIFont systemFontOfSize:22];
     titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
@@ -73,6 +73,11 @@
     self.istop = YES;
     [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
     
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    [def setObject:@"" forKey:@"ishaver"];
+    [def synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"msg" object:@""];
 
 }
 
@@ -215,7 +220,7 @@
     
     cell.bookcontents.text = cusmes.TextInfo;
     cell.bookcontents.font = [UIFont systemFontOfSize:15];
-    cell.bookcontents.frame = CGRectMake(15, 40, [self NSStringwithsize:15 str:cusmes.TextInfo], 20);
+    cell.bookcontents.frame = CGRectMake(15, 40, self.view.bounds.size.width - 95, 20);//防止文字过长所以文字长度做了限制（jra单129-2015-12-09）
     cell.bookcontents.textColor = [self colorWithRGB:0x666666 alpha:1];
     
     cell.thetiems.text = cusmes.CreateDt;

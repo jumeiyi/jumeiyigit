@@ -71,7 +71,7 @@
     [manager POST: [NSString stringWithFormat:@"%@",url] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *error = nil;
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
-        NSLog(@"AFHTTPRequestOpeartionManager医生的客户分组-%@---- %@",data ,error);
+       // NSLog(@"AFHTTPRequestOpeartionManager医生的客户分组-%@---- %@",data ,error);
         
         
         NSString *errorstring = [data objectForKey:@"ErrorMessage"];
@@ -183,37 +183,43 @@
         //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
         //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
         
-        // NSLog(@"分组：data--%@",data);
+         //NSLog(@"分组：data--%@",data);
         
         NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
         
-        NSMutableArray *headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
-        NSString *stra;
+//        NSMutableArray *headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
+        NSMutableArray *mutablehead = [[NSMutableArray alloc] initWithCapacity:0];
+//        NSString *stra;
         for (NSDictionary *mycusdiction in dataary) {
             mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-            if (![stra isEqualToString:mycustom.firstsearchword]) {
-                [headnamearray addObject:mycustom.firstsearchword];
-            }
-            stra = mycustom.firstsearchword;
+
+           // NSLog(@"mycustom.createby--%@",mycustom.createby);
+//            stra = mycustom.firstsearchword;
             [mycustomerDataarray addObject:mycustom];
         }
+        [mutablehead addObject:mycustomerDataarray];
+//        
+//        
+//        
+//       NSMutableArray *allgroup = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
+//        for (NSString *str in headnamearray) {
+//            NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
+//            for (mycustomerdata *mydata in mycustomerDataarray) {
+//                if ([mydata.firstsearchword isEqualToString:str]) {
+//                    [indexary addObject:mydata];
+//                }
+//            }
+//            [allgroup addObject:indexary];
+//        }
+//        
+//        NSLog(@"分组列表的客户列表：headnamearray%@",headnamearray);
+       // NSLog(@"客户数据%@",allgroup);
         
-        
-        
-        NSMutableArray *allgroup = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
-        for (NSString *str in headnamearray) {
-            NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
-            for (mycustomerdata *mydata in mycustomerDataarray) {
-                if ([mydata.firstsearchword isEqualToString:str]) {
-                    [indexary addObject:mydata];
-                }
-            }
-            [allgroup addObject:indexary];
+
+        for (mycustomerdata *mycustom in mycustomerDataarray) {
         }
         
-        NSLog(@"分组列表的客户列表：headnamearray%@",headnamearray);
-        
-        block(headnamearray,allgroup,nil);
+        block(nil,mycustomerDataarray,nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 

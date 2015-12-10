@@ -45,7 +45,7 @@
     titilelable.textAlignment = NSTextAlignmentCenter;
     [topbar addSubview:titilelable];
     
-    float hi = 45;
+    float hi = 45.3;
     NSArray *titleary = [[NSArray alloc] initWithObjects:@"    完善资料",@"    我的积分",@"    意见反馈",@"    优惠活动",@"    退出登录", nil];
     NSArray *buttonimagesary = [[NSArray alloc] initWithObjects:@"更多_02e",@"更多_02e",@"更多_02e",@"更多_02e",@"更多_02e", nil];
     for (int i = 0; i < 5; i++) {
@@ -116,7 +116,8 @@
         NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
         NSString *registration_id = [user objectForKey:@"registration_id"];
         NSString *customersno = [user objectForKey:@"customerSno"];
-        [self soaprequstWithuserSno:customersno registrationId:registration_id];
+        
+        [self UserLoginOutWithuserSno:customersno registrationId:registration_id usertype:@"CommomDoctor"];
         
         [user setObject:@"" forKey:@"CommomUserORCommomDoctor"];
         [user setObject:@"" forKey:@"customerSno"];
@@ -151,9 +152,9 @@
     // Pass the selected object to the new view controller.
 }
 */
-#pragma mark-----SOAP
-//获取医生登录TOKEN和审核状态
--(void)soaprequstWithuserSno:(NSString *)userSno registrationId:(NSString *)registrationId
+
+#pragma mark-------退出登录--------
+-(void)UserLoginOutWithuserSno:(NSString *)userSno registrationId:(NSString *)registrationId usertype:(NSString *)usertype
 {
     
     //封装soap请求消息
@@ -164,11 +165,12 @@
                              "<UserLoginOut xmlns=\"Doc\">\n"
                              "<uid>%@</uid>\n"
                              "<pwd>%@</pwd>\n"
+                             "<usertype>%@</usertype>\n"
                              "<userSno>%@</userSno>\n"
-                              "<registrationId>%@</registrationId>\n"
+                             "<registrationId>%@</registrationId>\n"
                              "</UserLoginOut>\n"
                              "</soap:Body>\n"
-                             "</soap:Envelope>\n",UID,PSW,userSno,registrationId];
+                             "</soap:Envelope>\n",UID,PSW,usertype,userSno,registrationId];
     
     //NSLog(@"soapMessage");
     //请求发送到的路径
@@ -199,6 +201,7 @@
         NSLog(@"theConnection is NULL");
     }
 }
+
 
 #pragma mark SOAP请求方法
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

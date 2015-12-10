@@ -26,24 +26,7 @@
 {
     [super viewDidAppear:animated];
     
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    NSString *ishaver = [def objectForKey:@"ishaver"];
 
-     float botomerhight = 0.130667 * self.view.bounds.size.width;
-    
-    NSLog(@"---个人中心ishaver-%@",ishaver);
-    
-    float x = self.view.bounds.size.width/5;
-    if (!self.redbutton) {
-        self.redbutton = [[UIButton alloc] initWithFrame:CGRectMake(3 * x + x/2 + 4,7 + self.view.bounds.size.height - botomerhight, 9, 9)];
-        [self.view addSubview:self.redbutton];
-    }
-    if ([ishaver isEqualToString:@"1"]) {
-        [self.redbutton setBackgroundImage:[UIImage imageNamed:@"个人中心44_03"] forState:UIControlStateNormal];
-        
-    }else{
-        [self.redbutton setBackgroundImage:[UIImage imageNamed:@" "] forState:UIControlStateNormal];
-    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
