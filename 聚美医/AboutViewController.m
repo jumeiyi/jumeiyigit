@@ -14,8 +14,8 @@
 #import "YouHuiViewController.h"
 #import "HuQiJingsharManage.h"
 #import "PrefixHeader.pch"
-#import "PerfectDataViewController.h"
 #import "PointViewController.h"
+#import "DetailsPersonalData.h"
 @interface AboutViewController ()
 
 @end
@@ -79,10 +79,10 @@
     
     if (butn.tag == 1) {
      
-        PerfectDataViewController *PerfectInformation = [[PerfectDataViewController alloc] init];
-        PerfectInformation.doctorSno = self.doctorSno;
-        PerfectInformation.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:PerfectInformation animated:YES];
+        DetailsPersonalData *details = [[DetailsPersonalData alloc] init];
+        details.doctorSno = self.doctorSno;
+        details.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:details animated:YES];
         
     }else if(butn.tag == 2){
         
@@ -131,7 +131,7 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"dengluye" object:nil];
         
-        [HuQiJingsharManage shareManage].sssss = @"3";
+        //[HuQiJingsharManage shareManage].sssss = @"3";
         
         self.tabBarController.selectedIndex = 0;
         // }

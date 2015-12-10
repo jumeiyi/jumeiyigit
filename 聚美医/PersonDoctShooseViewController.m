@@ -178,12 +178,12 @@
 //KVO传值
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSString *discciti = [change objectForKey:@"new"];
-    
-    self.tabBarController.selectedIndex = [discciti integerValue];
-    if (self.tabBarController.selectedIndex == 4) {
-        self.tabBarController.navigationItem.hidesBackButton = YES;
-    }
+//    NSString *discciti = [change objectForKey:@"new"];
+//    
+//    self.tabBarController.selectedIndex = [discciti integerValue];
+//    if (self.tabBarController.selectedIndex == 4) {
+//        self.tabBarController.navigationItem.hidesBackButton = YES;
+//    }
     
 //    self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.y, self.view.bounds.size.height + 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
     

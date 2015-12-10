@@ -292,7 +292,7 @@
 {
     // NSLog(@"3 DONE. Received Bytes: %ld", [webData length]);
     NSString *theXML = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-    NSLog(@"分享的数据--%@",theXML);
+   // NSLog(@"分享的数据--%@",theXML);
     
     
     //        NSString *str = [[NSString alloc] initWithData:webData encoding:NSUTF8StringEncoding];
@@ -347,7 +347,7 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-         NSLog(@"分享的数据表详情：dic%@",dic);
+         //NSLog(@"分享的数据表详情：dic%@",dic);
         
 
         NSArray *dataary = [dic objectForKey:@"basicData"];

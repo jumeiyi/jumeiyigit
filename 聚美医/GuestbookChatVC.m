@@ -132,8 +132,8 @@
         
         // self.view.transform=CGAffineTransformMakeTranslation(0, - deltaY);
         NSLog(@"deltaY = %f",deltaY);
-        _images.frame = CGRectMake(0, self.view.bounds.size.height - 50 - 252, self.view.bounds.size.width, 44);
-        _tableview.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 252 - 44 - 49);
+        _images.frame = CGRectMake(0, self.view.bounds.size.height - 44 - deltaY, self.view.bounds.size.width, 44);
+        _tableview.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - deltaY - 64 - 49);
     }];
 }
 -(void)keyboardHide:(NSNotification *)note

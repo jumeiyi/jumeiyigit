@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShouYeViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate>
+@interface ShouYeViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,NSXMLParserDelegate>
 {
 
     NSMutableData *webData;
@@ -23,8 +23,29 @@
     UIView *_tunningview;
     
     NSArray *_monaay;
-    NSMutableArray *_timeDataary ;
+    NSMutableArray *_timeDataary;
+    
+    
+    UITextField *_phonenumber;
+    UITextField *_testnumber;
+    UIButton *_testbtn;
+    NSTimer *_timer;
+    UIView *_view0;
+    UIView *_view1;
+    UIImageView *_backgroundimage;
+    UIView *_denglubackgroundimage;
+    
 }
+@property(nonatomic,assign)BOOL Isxieyi;
+@property(nonatomic,assign)BOOL  personordocter;
+@property(nonatomic,assign)BOOL yidenglu;
+@property(nonatomic,retain)NSString *isNew;
+@property(nonatomic,retain)NSString *Contents;
+@property(nonatomic,retain)NSString *Description;
+@property(nonatomic,retain)NSString *PicSrc;
+@property(nonatomic,retain)NSString *Title;
+@property(nonatomic,retain)NSString *recommendNo;
+
 @property(nonatomic,retain)UIImageView *deadimage;
 @property(nonatomic,retain)NSString *doctorSno;
 @property(nonatomic,retain)UILabel *name;
@@ -42,5 +63,6 @@
 @property(nonatomic,retain)UILabel *yuyueshu;
 
 @property(nonatomic,retain)UIButton *redbtn;
+
 @end
 

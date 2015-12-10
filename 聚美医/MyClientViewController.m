@@ -470,13 +470,15 @@
 {
      
     if (tableView.tag == 60) {
-//        if (self.IsServiced == YES) {
+        if (self.IsServiced == YES) {
 //            return _headnamearray.count + 1;
-//        }else{
-//            NSLog(@"numberOfSectionsInTableView--_headnamearray.count:%ld",_headnamearray.count);
-//        return _headnamearray.count;
-//        }
-        return 2;
+            return 2;
+        }else{
+            NSLog(@"numberOfSectionsInTableView--_headnamearray.count:%ld",_headnamearray.count);
+        //return _headnamearray.count;
+            return 1;
+        }
+        
     }else if (tableView.tag == 62){
      return 1;
     }else{
@@ -579,7 +581,7 @@
                 mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
                 
                 NSArray *proudctorary = [customer.buyproductnames componentsSeparatedByString:@","];
-               
+                NSLog(@"项目-----%@",proudctorary);
                 
                 cell.headimage.frame = CGRectMake(15, 9, 50, 50);
                 [cell.headimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HTTPREQUESTPDOMAIN,customer.picsrc]] placeholderImage:[UIImage imageNamed:@"图片4"]];
@@ -678,6 +680,7 @@
             mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
             
             NSArray *proudctorary = [customer.buyproductnames componentsSeparatedByString:@","];
+             NSLog(@"项目-----%@",proudctorary);
             
                 cell.headimage.frame = CGRectMake(15, 9, 50, 50);
                 //cell.headimage.image = [UIImage imageNamed:@"图片4"];
@@ -1034,6 +1037,7 @@
     
     [AFHTTPRequestOpeartionManagerOfme postmanberplistandurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
+        [_allgroup removeAllObjects];
         _headnamearray = array1;
         _allgroup = array2;
         

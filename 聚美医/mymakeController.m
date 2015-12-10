@@ -195,7 +195,7 @@
             [alert show];
         }
         
-        [_table reloadData];
+        [self soaprequstWithdoctorSno:self.doctorSno customerSno:@"" orderState:@"" strPageindex:@"1" strPagesize:@"15"];
         
     }];
 

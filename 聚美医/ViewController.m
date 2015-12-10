@@ -11,13 +11,14 @@
 
 #import "MainViewController.h"
 #import "BeautyExpertViewController.h"
-#import "PersonDoctShooseViewController.h"
+//#import "PersonDoctShooseViewController.h"
 #import "AboutViewController.h"
 #import "HuQiJingsharManage.h"
 #import "AppDelegate.h"
 //#import "BottomBarView.h"
 #import "beautymennutViewController.h"
 #import "GuestbookViewController.h"
+#import "ShouYeViewController.h"
 
 @interface ViewController ()
 
@@ -95,7 +96,7 @@
 //    [viewcontrollarray addObject:vc];
     
     
-    PersonDoctShooseViewController *personal = [[PersonDoctShooseViewController alloc] init];
+    ShouYeViewController *personal = [[ShouYeViewController alloc] init];
     UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:personal];//新加的UINavigationController *
     vc.tabBarItem.title = @"首页";
     vc.tabBarItem.image = [UIImage imageNamed:@"shouyese_@3x"];

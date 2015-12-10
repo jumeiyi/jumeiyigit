@@ -85,12 +85,12 @@
     [self.view addSubview:_manberview];
     
     
-    _addbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 17, 50, 50)];
+    _addbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 17, 60, 60)];
     [_addbtn setBackgroundImage:[UIImage imageNamed:@"yuanxingjia"] forState:UIControlStateNormal];
     [_addbtn addTarget:self action:@selector(addGroupmanberbtn) forControlEvents:UIControlEventTouchUpInside];
     [_manberview addSubview:_addbtn];
     
-    _subtraction = [[UIButton alloc] initWithFrame:CGRectMake(90, 17, 50, 50)];
+    _subtraction = [[UIButton alloc] initWithFrame:CGRectMake(90, 17, 60, 60)];
     [_subtraction setBackgroundImage:[UIImage imageNamed:@"yuanxingjian"] forState:UIControlStateNormal];
     [_subtraction addTarget:self action:@selector(cancelbtnclick) forControlEvents:UIControlEventTouchUpInside];
     [_manberview addSubview:_subtraction];
@@ -153,7 +153,7 @@
         [btn removeFromSuperview];
     }
     
-    float width = 50;
+    float width = 60;
     float heiht = width;
     
     NSLog(@"self.manberarray.count-:%ld",self.manberarray.count);
@@ -161,8 +161,8 @@
     for (int j = 0; j < [self.manberarray count]; j ++) {
         mycustomerdata *mydata = [self.manberarray objectAtIndex:j];
         
-        NSInteger xn = j % 5;
-        NSInteger yn = j / 5;
+        NSInteger xn = j % 4;
+        NSInteger yn = j / 4;
         
         int x = (20 + width) * xn + 20;
         int y = (20 + heiht) * yn + 17;
@@ -174,13 +174,13 @@
         button.userInteractionEnabled = NO;
         button.tag = 10 + j;
         button.layer.masksToBounds = YES;
-        button.layer.cornerRadius = 25;
+        button.layer.cornerRadius = 30;
         [_manberview addSubview:button];
     }
     
     NSInteger a1 = [self.manberarray count];
-    NSInteger xn1 = a1 % 5;
-    NSInteger yn1 = a1 / 5;
+    NSInteger xn1 = a1 % 4;
+    NSInteger yn1 = a1 / 4;
     
     int x1 = (20 + width) * xn1 + 20;
     int y1 = (20 + heiht) * yn1 + 17;
@@ -188,8 +188,8 @@
     _addbtn.frame = CGRectMake(x1, y1, width , heiht);
     
     NSInteger a2 = [self.manberarray count] + 1;
-    NSInteger xn2 = a2 % 5;
-    NSInteger yn2 = a2 / 5;
+    NSInteger xn2 = a2 % 4;
+    NSInteger yn2 = a2 / 4;
     
     int x2 = (20 + width) * xn2 + 20;
     int y2 = (20 + heiht) * yn2 + 17;
@@ -202,15 +202,15 @@
 {
     
     
-    float width = 50;
+    float width = 60;
     float heiht = width;
     
     if (self.iscancel == NO) {
         
         for (int j = 0; j < [self.manberarray count]; j ++) {
             
-            NSInteger xn = j % 5;
-            NSInteger yn = j / 5;
+            NSInteger xn = j % 4;
+            NSInteger yn = j / 4;
             
             int x = (20 + width) * xn + 20;
             int y = (20 + heiht) * yn + 17;

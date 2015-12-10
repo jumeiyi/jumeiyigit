@@ -15,9 +15,12 @@
 #import "PrefixHeader.pch"
 #import "UIImageView+WebCache.h"
 #import "YuYueShiJianBiaoShuJu.h"
+#import "sys/utsname.h"
+#import "DoctorRegistViewController.h"
 @interface ShouYeViewController ()
 
 @end
+
 
 @implementation ShouYeViewController
 
@@ -25,21 +28,29 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [self colorWithRGB:0xDEDEDE alpha:1];
+    
+}
+
+-(void)mainview{
+
+    [_backgroundimage removeFromSuperview];
+    
+    _denglubackgroundimage = [[UIView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_denglubackgroundimage];
     
     UIImageView *imagevie = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 158)];
     imagevie.image = [UIImage imageNamed:@"shouye_bg"];
-    [self.view addSubview:imagevie];
+    [_denglubackgroundimage addSubview:imagevie];
     
     UIView *whitview = [[UIView alloc] initWithFrame:CGRectMake(0, 158, self.view.bounds.size.width,182)];
     whitview.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:whitview];
+    [_denglubackgroundimage addSubview:whitview];
     
     self.deadimage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - ((self.view.bounds.size.width * 0.373)/2), 158 - ((self.view.bounds.size.width* 0.373)/2), self.view.bounds.size.width * 0.373, self.view.bounds.size.width * 0.373)];
     self.deadimage.image = [UIImage imageNamed:@"headimage_@3x"];
     self.deadimage.layer.masksToBounds = YES;
     self.deadimage.layer.cornerRadius = (self.view.bounds.size.width * 0.373)/2;
-    [self.view addSubview:self.deadimage];
+    [_denglubackgroundimage addSubview:self.deadimage];
     
     NSLog(@"屏幕的宽度：%f",self.view.bounds.size.width);
     
@@ -50,29 +61,29 @@
     self.name = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/3 + 50, 168 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:self.name.text], 20)];
     self.name.font = [UIFont systemFontOfSize:16];
     self.name.textColor = [self colorWithRGB:0x666666 alpha:1];
-    [self.view addSubview:self.name];
+    [_denglubackgroundimage addSubview:self.name];
     
     
     self.hospitalimage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/3 + 10, 198 + ((self.view.bounds.size.width * 0.373)/2), 20, 20)];
     self.hospitalimage.image = [UIImage imageNamed:@"yiyuan_@3x"];
-    [self.view addSubview:self.hospitalimage];
+    [_denglubackgroundimage addSubview:self.hospitalimage];
     
     self.hospital = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/3 + 40, 198 + ((self.view.bounds.size.width * 0.373)/2), 150, 20)];
     self.hospital.font = [UIFont systemFontOfSize:16];
     self.hospital.textColor = [self colorWithRGB:0x666666 alpha:1];
-    [self.view addSubview:self.hospital];
+    [_denglubackgroundimage addSubview:self.hospital];
     
     
-    self.kehu = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:@"3000"] - 15 - [self NSStringwithsize:16 str:@"客户:"], 228 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:@"客户:"], 20)];
+    self.kehu = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:@"0"] - 15 - [self NSStringwithsize:16 str:@"客户:"], 228 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:@"客户:"], 20)];
     self.kehu.text = @"患者:";
     self.kehu.font = [UIFont systemFontOfSize:16];
     self.kehu.textColor = [self colorWithRGB:0x666666 alpha:1];
-    [self.view addSubview:self.kehu];
+    [_denglubackgroundimage addSubview:self.kehu];
     
-    self.kehushu = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:@"3000"] - 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20)];
-    self.kehushu.text = @"3000";
+    self.kehushu = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - [self NSStringwithsize:17 str:@"0"] - 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20)];
+    self.kehushu.text = @"0";
     self.kehushu.textColor = [self colorWithRGB:0x1bc6bc alpha:1];
-    [self.view addSubview:self.kehushu];
+    [_denglubackgroundimage addSubview:self.kehushu];
     
     UIImageView *shuxian = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, 228 + ((self.view.bounds.size.width * 0.373)/2), 0.5, 25)];
     shuxian.image = [UIImage imageNamed:@"shouye_shuxian"];
@@ -85,7 +96,7 @@
     [self.view addSubview:yuyuedanshu];
     
     self.yuyueshu = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 + [self NSStringwithsize:17 str:@"预单数:"] + 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20)];
-    self.yuyueshu.text = @"5000";
+    self.yuyueshu.text = @"0";
     self.yuyueshu.textColor = [self colorWithRGB:0xf5a556 alpha:1];
     [self.view addSubview:self.yuyueshu];
     
@@ -139,8 +150,6 @@
     [self.view addSubview:button2];
     
     
-    
-    
     UIView *imagebg3 = [[UIView alloc] initWithFrame:CGRectMake(0, y + 0.5 + higth, withd, higth)];
     imagebg3.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:imagebg3];
@@ -160,8 +169,6 @@
     [button3 addTarget:self action:@selector(netcontrollerview:) forControlEvents:UIControlEventTouchUpInside];
     button3.tag = 3;
     [self.view addSubview:button3];
-    
-    
     
     
     UIView *imagebg4 = [[UIView alloc] initWithFrame:CGRectMake(withd + 0.5, y + 0.5 + higth, withd,higth)];
@@ -185,21 +192,10 @@
     [self.view addSubview:button4];
     
     
-    NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
-    self.doctorSno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
-//    NSString *ishaver = [userdf objectForKey:@"ishaver"];
-//    NSLog(@"ishaver---> %@",ishaver);
-//    
-//    if ([ishaver isEqualToString:@"1"]) {
-//            self.redbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, -10, 15, 15)];
-//            self.redbtn.backgroundColor = [UIColor redColor];
-//            self.redbtn.layer.masksToBounds = YES;
-//            self.redbtn.layer.cornerRadius = 7.5;
-//            [self.tabBarController.tabBar addSubview:self.redbtn];
-//    }
+
+
     
     self.tabBarController.tabBar.frame = CGRectMake(0, self.view.bounds.size.height - 49, self.view.bounds.size.width, 49);
-    
     
     _monaay = [[NSArray alloc] initWithObjects:@"星期一",@"星期二", @"星期三",@"星期四",@"星期五",@"星期六",@"星期日",nil];
     
@@ -222,11 +218,103 @@
         self.weekCount = 7;
     }
     
-    NSLog(@"self.doctorSno --- *** %@",self.doctorSno);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chengeindexpage:) name:@"msg" object:nil];
     
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chengeindexpage:) name:@"msg" object:nil];
     
+    NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
+    self.doctorSno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
+    
+    [self soaprequstWithdoctorSno:self.doctorSno];
+    NSString *registID =  [userdf objectForKey:@"registration_id"];
+    [self soaprequestwithuserSno:self.doctorSno registrationId:registID];
+    
+    [self getDeviceAndOSInfo];
 
+}
+
+-(void)dengluye{
+    
+    self.tabBarController.tabBar.frame = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 49);
+    
+    [_denglubackgroundimage removeFromSuperview];
+    
+    _backgroundimage = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    _backgroundimage.image = [UIImage imageNamed:@"医生登陆页面"];
+    _backgroundimage.userInteractionEnabled = YES;
+    [self.view addSubview:_backgroundimage];
+    
+    
+    _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(60, 130, 250, 30)];
+    _phonenumber.backgroundColor = [UIColor whiteColor];
+    _phonenumber.center = CGPointMake(self.view.bounds.size.width/2, 135);
+    _phonenumber.placeholder = @" 请输入手机号码";
+    _phonenumber.layer.masksToBounds = YES;
+    _phonenumber.layer.cornerRadius = 4;
+    [_backgroundimage addSubview:_phonenumber];
+    
+    _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 170, 120, 30)];
+    _testnumber.backgroundColor = [UIColor whiteColor];
+    _testnumber.placeholder = @" 请输入验证码";
+    _testnumber.layer.masksToBounds = YES;
+    _testnumber.layer.cornerRadius = 4;
+    [_backgroundimage addSubview:_testnumber];
+    
+    _testbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100 -(self.view.bounds.size.width - 250)/2, 170, 100, 30)];
+    [_testbtn addTarget:self action:@selector(testbtnclick:) forControlEvents:UIControlEventTouchUpInside];
+    [_testbtn setBackgroundImage:[UIImage imageNamed:@"小按钮s"] forState:UIControlStateNormal];
+    [_testbtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    _testbtn.layer.masksToBounds = YES;
+    _testbtn.layer.cornerRadius = 4;
+    [_backgroundimage addSubview:_testbtn];
+    
+    
+    UIButton *agreementbtn = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 225, 20, 20)];
+    [agreementbtn addTarget:self action:@selector(agreementclick:) forControlEvents:UIControlEventTouchUpInside];
+    [agreementbtn setBackgroundImage:[UIImage imageNamed:@"06"] forState:UIControlStateNormal];
+    agreementbtn.tag = 10;
+    agreementbtn.layer.masksToBounds = YES;
+    agreementbtn.layer.cornerRadius = 4;
+    [_backgroundimage addSubview:agreementbtn];
+    
+    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 220, 100, 30)];
+    lable.text = @"用户协议";
+    lable.textColor = [UIColor whiteColor];
+    [self.view addSubview:lable];
+    
+    UIButton *xieyiclick = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 220, 100, 30)];
+    [xieyiclick addTarget:self action:@selector(agreementclick:) forControlEvents:UIControlEventTouchUpInside];
+    xieyiclick.layer.masksToBounds = YES;
+    xieyiclick.layer.cornerRadius = 2;
+    [_backgroundimage addSubview:xieyiclick];
+    
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(60, 300, 200, 40)];
+    [button addTarget:self action:@selector(commitclick) forControlEvents:UIControlEventTouchUpInside];
+    [button setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
+    button.center = CGPointMake(self.view.bounds.size.width/2, 380);
+    [button setTitle:@"登录" forState:UIControlStateNormal];
+    button.layer.masksToBounds = YES;
+    button.layer.cornerRadius = 8;
+    [_backgroundimage addSubview:button];
+    
+    self.Isxieyi = YES;
+    self.personordocter = YES;
+
+
+}
+
+- (void)getDeviceAndOSInfo
+{
+    //here use sys/utsname.h
+    struct utsname systemInfo;
+    //声明结构体，包含5个char数成员:sysname,nodename,release,version,machine
+    uname(&systemInfo);
+    //c方法，填写系统结构体内容，返回值为0，表示成功。
+    
+    //get the device model and the system version
+    NSLog(@"[NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding]-------:%@", [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding]);
+    NSLog(@"[[UIDevice currentDevice] systemVersion]----:%@", [[UIDevice currentDevice] systemVersion]);
+    
 }
 
 -(void)chengeindexpage:(NSNotification *)noti
@@ -253,49 +341,47 @@
 {
     [super viewWillAppear:animated];
     
-    [self soaprequstWithdoctorSno:self.doctorSno];
     
-    NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
-//    self.doctorSno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
-    //self.loginToken = [userdf objectForKey:@"loginToken"];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *customersno = [user objectForKey:@"customerSno"];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(personbackbuttonclicka) name:@"dengluye" object:nil];
-    [self soaprequstWithdoctorSno:self.doctorSno];
-    
-    
-   // NSString *ishaver = [userdf objectForKey:@"ishaver"];
-    //    if ([ishaver isEqualToString:@"1"]) {
-    //        mymakeController *MyIncome = [[mymakeController alloc] init];
-    //        MyIncome.doctorSno = self.doctorSno;
-    //        MyIncome.hidesBottomBarWhenPushed = YES;
-    //        [self.navigationController pushViewController:MyIncome animated:YES];
-    //    }
-    //    NSLog(@"ishaver  %@--",ishaver);
-    
-    
+    if (customersno.length < 5) {
+        [self dengluye];
+        self.yidenglu = NO;
+        
+    }else{
+        
+        self.tabBarController.tabBar.frame = CGRectMake(0, self.view.bounds.size.height - 49, self.view.bounds.size.width, 49);
+        
+        self.view.backgroundColor = [self colorWithRGB:0xDEDEDE alpha:1];
+        
+        if (self.yidenglu == NO) {
+            [self mainview];
+            self.yidenglu = YES;
+            
 
-    
-    NSString *registID =  [userdf objectForKey:@"registration_id"];
-    
-    [self soaprequestwithuserSno:self.doctorSno registrationId:registID];
-//    
-//    self.isshonwlertconnection = NO;
-    
-    NSString *ishaver = [userdf objectForKey:@"ishaver"];
-    NSLog(@"ishaver---> %@",ishaver);
-    if ([ishaver isEqualToString:@"1"]) {
-//        UIButton *blackbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, -10, 20, 20)];
-//        blackbtn.backgroundColor = [UIColor redColor];
-//        blackbtn.layer.masksToBounds = YES;
-//        blackbtn.layer.cornerRadius = 10;
-//        [self.tabBarController.tabBar addSubview:blackbtn];
+        }
+        
+        
+        NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
+        //    self.doctorSno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
+        //self.loginToken = [userdf objectForKey:@"loginToken"];
+        
+        [self soaprequstWithdoctorSno:self.doctorSno];
+        
+        NSString *registID =  [userdf objectForKey:@"registration_id"];
+        
+        [self soaprequestwithuserSno:self.doctorSno registrationId:registID];
+
+        
     }
 
+    
+    
+
+
 }
--(void)personbackbuttonclicka{
-    self.tabBarController.tabBar.frame = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 49);
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 -(void)isNewLogin
 {
 //    NSLog(@"---------self.loginToken--%@----------self.requestbackloginToken--%@---------",self.loginToken,self.requestbackloginToken);
@@ -366,14 +452,11 @@
         [self.navigationController pushViewController:shareview animated:YES];
     }else{
         
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"暂时无法跳转" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-//        [alert show];
         
         [self getdate];
         
         [self soaprequstWithcustomerSno:@"" doctorSno:self.doctorSno yearCount:[NSString stringWithFormat:@"%ld",self.year] monthCount:[NSString stringWithFormat:@"%ld",self.month] dayCount:[NSString stringWithFormat:@"%ld",self.day]];
         
-
     }
 
 
@@ -883,6 +966,159 @@
     
 }
 
+#pragma mark ------- 登录界面的请求 -------
+
+//用户协议
+-(void)soaprequestwithinfoSno
+{
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+                             "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<soap:Body>\n"
+                             "<GetNewsDataBySno xmlns=\"Doc\">\n"
+                             "<uid>%@</uid>\n"
+                             "<pwd>%@</pwd>\n"
+                             "<infoSno>%@</infoSno>\n"
+                             "</GetNewsDataBySno>\n"
+                             "</soap:Body>\n"
+                             "</soap:Envelope>\n",UID,PSW,@"8f327150-144f-4da1-9498-74e7024b9a96"
+                             ];
+    //NSLog(@"soapMessage");
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:HTTPREQUESTER];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"Doc/GetNewsDataBySno" forHTTPHeaderField:@"SOAPAction"];
+    
+    
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"post"];//这个有时候可以换一下一种请求方式，不然请求方式错了返回的是HTML格式的代码而且得不到返回值
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        //webData = [[NSMutableData data] retain];
+        webData = [NSMutableData data];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
+    
+    
+}
+
+//GetAuthCode
+//发送手机号码并返回发送内容
+-(void)soaprequestwithphonenumber
+{
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+                             "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<soap:Body>\n"
+                             "<GetAuthCode xmlns=\"Doc\">\n"
+                             "<uid>%@</uid>\n"
+                             "<pwd>%@</pwd>\n"
+                             "<phoneNo>%@</phoneNo>\n"
+                             "</GetAuthCode>\n"
+                             "</soap:Body>\n"
+                             "</soap:Envelope>\n",UID,PSW,_phonenumber.text
+                             ];
+    //NSLog(@"soapMessage");
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:HTTPREQUESTER];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"Doc/GetAuthCode" forHTTPHeaderField:@"SOAPAction"];
+    
+    
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"post"];//这个有时候可以换一下一种请求方式，不然请求方式错了返回的是HTML格式的代码而且得不到返回值
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        //webData = [[NSMutableData data] retain];
+        webData = [NSMutableData data];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
+    
+    
+}
+//CheckLogin
+//手机号码+验证码+用户类型 登录验证,成功则返回客户/医生SNO     //超级验证码7698
+-(void)soaprequestwithPhoneNo:(NSString *)phoneNo AuthCode:(NSString *)authCode UserType:(NSString *)userType recommendNo:(NSString *)recommendNo registrationId:(NSString *)registrationId
+{
+    
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+                             "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<soap:Body>\n"
+                             "<CheckLogin3 xmlns=\"Doc\">\n"
+                             "<uid>%@</uid>\n"
+                             "<pwd>%@</pwd>\n"
+                             "<phoneNo>%@</phoneNo>\n"
+                             "<authCode>%@</authCode>\n"
+                             "<userType>%@</userType>\n"
+                             "<recommendNo>%@</recommendNo>\n"
+                             "<registrationId>%@</registrationId>\n"
+                             "</CheckLogin3>\n"
+                             "</soap:Body>\n"
+                             "</soap:Envelope>\n",UID,PSW,_phonenumber.text
+                             ,authCode,userType,recommendNo,registrationId];
+    //NSLog(@"soapMessage");
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:HTTPREQUESTER];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"Doc/CheckLogin3" forHTTPHeaderField:@"SOAPAction"];
+    
+    
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"post"];//这个有时候可以换一下一种请求方式，不然请求方式错了返回的是HTML格式的代码而且得不到返回值
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        //webData = [[NSMutableData data] retain];
+        webData = [NSMutableData data];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
+    
+    
+}
+
+
 #pragma mark SOAP请求方法
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -924,7 +1160,7 @@
 {
     // NSLog(@"3 DONE. Received Bytes: %ld", [webData length]);
     NSString *theXML = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-    NSLog(@"分享的数据--%@",theXML);
+   // NSLog(@"分享的数据--%@",theXML);
     
     
     //        NSString *str = [[NSString alloc] initWithData:webData encoding:NSUTF8StringEncoding];
@@ -968,6 +1204,22 @@
         [_soapResults setString:@""];//把它置空，准备接收新值。
     }
     
+    
+    if ([elementName isEqualToString:@"CheckLogin3Result"]) {
+        
+        [_soapResults setString:@""];//把它置空，准备接收新值。
+    }
+    
+    if ([elementName isEqualToString:@"GetAuthCodeResult"]) {//返回的验证码
+        
+        [_soapResults setString:@""];//把它置空，准备接收新值。
+    }
+    
+    if ([elementName isEqualToString:@"GetNewsDataBySnoResult"]) {//返回的协议
+        
+        [_soapResults setString:@""];//把它置空，准备接收新值。
+    }
+
 
     
 }
@@ -989,10 +1241,14 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-        NSLog(@"____________分享的数据表详情：dic%@",dic);
+       // NSLog(@"____________分享的数据表详情：dic%@",dic);
         
         NSArray *dataary = [dic objectForKey:@"basicData"];
-        NSDictionary *basicData = [dataary objectAtIndex:0];
+        NSDictionary *basicData;
+        if (dataary.count > 0) {
+            basicData = [dataary objectAtIndex:0];
+        }
+        
        self.name.text = [basicData objectForKey:@"TrueName"];
         self.name.frame = CGRectMake(self.view.bounds.size.width/2 - (([self NSStringwithsize:16 str:self.name.text])/2) + 20, 168 + ((self.view.bounds.size.width * 0.373)/2), [self NSStringwithsize:16 str:self.name.text], 20);
         self.personimage.frame = CGRectMake(self.view.bounds.size.width/2 -(20 + [self NSStringwithsize:16 str:self.name.text])/2, 168 + ((self.view.bounds.size.width* 0.373)/2), 20, 20);
@@ -1026,11 +1282,8 @@
             self.yuyueshu.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"ordersum"]];
             self.yuyueshu.frame = CGRectMake(self.view.bounds.size.width/2 + [self NSStringwithsize:17 str:@"预约数:"] + 10, 228 + ((self.view.bounds.size.width * 0.373)/2), 150, 20);
         }
-
-        
         
     }
-    
     
     
     if ([elementName isEqualToString:@"GetDoctorTimeSetBySnoAndWeekResult"]) {
@@ -1083,6 +1336,81 @@
     }
 
 
+    if ([elementName isEqualToString:@"CheckLogin3Result"]) {
+        
+        NSData *jsonData = [_soapResults dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&err];
+        NSLog(@"发送验证码返回的结果:%@",dic);
+        NSString *ret = [dic objectForKey:@"ret"];
+        NSString *msg = [dic objectForKey:@"msg"];
+        NSString *state = [dic objectForKey:@"state"];
+        NSString *loginToken = [dic objectForKey:@"loginToken"];
+        
+        self.isNew = [NSString stringWithFormat:@"%@",[dic objectForKey:@"isNew"]];
+        
+        self.doctorSno = ret;
+        NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
+        [userdf setObject:loginToken forKey:@"loginToken"];
+        [userdf setObject:ret forKey:@"customerSno"];
+        [userdf synchronize];
+        
+        NSLog(@"用户登录的客户索引:%@",ret);
+        
+        
+        if ([state isEqualToString:@"1"]) {
+            [self enter];
+        }else if([state isEqualToString:@"0"]){
+            UIAlertView *alerter = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alerter show];
+            [self dingshiqi];
+        }else{
+            
+        }
+        
+    }
+    
+    
+    //返回的验证码
+    if ([elementName isEqualToString:@"GetAuthCodeResult"]) {
+        
+        NSData *jsonData = [_soapResults dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&err];
+    }
+    
+    
+    
+    if ([elementName isEqualToString:@"GetNewsDataBySnoResult"]) {
+        
+        NSData *jsonData = [_soapResults dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&err];
+        NSLog(@"用户协议%@",dic);
+        NSString *ret = [dic objectForKey:@"ret"];
+        NSString *msg = [dic objectForKey:@"msg"];
+        NSString *state = [dic objectForKey:@"state"];
+        
+        NSLog(@"获取验证码的请求:ret%@-- msg%@--state%@",ret,msg,state);
+        
+        NSMutableArray *infoData = [dic objectForKey:@"infoData"];
+        for (NSDictionary *info in infoData) {
+            
+            self.Contents = [info objectForKey:@"Contents"];
+            self.Description = [info objectForKey:@"Description"];
+            self.PicSrc = [info objectForKey:@"PicSrc"];
+            self.Title = [info objectForKey:@"Title"];
+        }
+        
+        [self xieyi];
+    }
+
     
 }
 
@@ -1099,6 +1427,223 @@
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
+    
+}
+
+#pragma mark ------ 登录处理区 ---- 
+//选择协议
+-(void)agreementclick:(UIButton *)butn
+{
+    
+    static int a = 0;
+    
+    if (butn.tag == 10) {
+        if (a % 2 == 0) {
+            [butn setBackgroundImage:[UIImage imageNamed:@"05"] forState:UIControlStateNormal];
+            NSLog(@"05");
+            self.Isxieyi = NO;
+        }else{
+            [butn setBackgroundImage:[UIImage imageNamed:@"06"] forState:UIControlStateNormal];
+            NSLog(@"06");
+            self.Isxieyi = YES;
+        }
+    }else{
+        [self soaprequestwithinfoSno];
+    }
+    a++;
+}
+
+//获取验证码
+-(void)testbtnclick:(UIButton *)button
+{
+    
+    if ([_phonenumber.text isEqualToString:@""] || _phonenumber.text == nil) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请输入手机号码！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+        [alertview show];
+        return;
+    }
+    if (_phonenumber.text.length < 11 || _phonenumber.text.length > 11) {
+        
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"输入的号码有误！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+        [alertview show];
+        return;
+    }
+    if (_timer == nil) {
+        button.alpha = 0.7;
+        [button setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [button setTitle:@"获取中" forState:UIControlStateNormal];
+        button.backgroundColor = [UIColor grayColor];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(dingshiqi) userInfo:nil repeats:NO];
+        _testbtn.userInteractionEnabled = NO;
+        [self soaprequestwithphonenumber];
+        
+        NSUserDefaults *userd = [NSUserDefaults standardUserDefaults];
+        [userd setObject:_phonenumber.text forKey:@"phonenumber"];
+        [userd synchronize];
+        
+    }
+    
+}
+
+//提交
+-(void)commitclick
+{
+    
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *registration_id = [user objectForKey:@"registration_id"];
+    
+    NSLog(@"提交");
+    if ([_testnumber.text isEqualToString:@""] || _testnumber.text == nil) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"验证码不能为空！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+        [alertview show];
+        return;
+    }
+    
+    if (_testnumber.text.length < 4 || _testnumber.text.length > 4) {
+        
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"输入的验证码有误！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+        [alertview show];
+        return;
+    }
+    
+    
+    if (self.personordocter == NO) {
+        [self soaprequestwithPhoneNo:_phonenumber.text AuthCode:_testnumber.text UserType:@"CommomUser" recommendNo:self.recommendNo registrationId:registration_id];
+        
+        //[self gotoIndividualcenter];//客户中心
+    }else{
+        
+        [self soaprequestwithPhoneNo:_phonenumber.text AuthCode:_testnumber.text UserType:@"CommomDoctor" recommendNo:self.recommendNo registrationId:registration_id];
+        //[self gotodoctercenter];//医生个人中心
+    }
+    
+}
+
+-(void)dingshiqi{
+    _testbtn.alpha = 1;
+    [_testbtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [_testbtn setBackgroundImage:[UIImage imageNamed:@"小按钮s"] forState:UIControlStateNormal];
+    _testbtn.userInteractionEnabled = YES;
+    [_timer invalidate];
+    _timer = nil;
+}
+
+//进入页面
+-(void)enter
+{
+    if (self.Isxieyi == YES) {
+        
+        if (self.personordocter == NO) {
+//            [self gotoIndividualcenter];//客户中心
+            
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            [user setObject:@"CommomUser" forKey:@"CommomUserORCommomDoctor"];
+            [user setObject:_phonenumber.text forKey:@"customerphonenumber"];
+            [user synchronize];
+            
+        }else{
+            
+            [self gotodoctercenter];//医生个人中心
+            
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            [user setObject:@"CommomDoctor" forKey:@"CommomUserORCommomDoctor"];
+            [user setObject:_phonenumber.text forKey:@"customerphonenumber"];
+            [user synchronize];
+            
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请同意协议条款！" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
+    
+    
+}
+
+//显示协议窗口
+-(void)xieyi
+{
+    
+    if (_view0) {
+        return;
+    }else{
+        _view0 = [[UIView alloc] initWithFrame:self.view.bounds];
+        _view0.backgroundColor = [UIColor blackColor];
+        _view0.alpha = 0.5;
+        _view0.tag = 110;
+        [self.view addSubview:_view0];
+        
+        _view1 = [[UIView alloc] initWithFrame:CGRectMake(30, 80, self.view.bounds.size.width - 60, self.view.bounds.size.height * 0.667)];
+        _view1.backgroundColor = [UIColor whiteColor];
+        _view1.layer.masksToBounds = YES;
+        _view1.layer.cornerRadius = 8;
+        _view1.tag = 120;
+        [self.view addSubview:_view1];
+    }
+    
+    
+    
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, _view1.bounds.size.width , _view1.bounds.size.height - 40)];
+    webView.backgroundColor = [UIColor whiteColor];
+    webView.scalesPageToFit = NO;
+    [_view1 addSubview:webView];
+    NSString *html_str = self.Contents;
+    [webView loadHTMLString:html_str baseURL:nil];
+    
+    
+    UIButton *bbtt = [[UIButton alloc] initWithFrame:CGRectMake(50, _view1.bounds.size.height - 35, _view1.bounds.size.width - 100, 30)];
+    [bbtt setTitle:@"已阅读" forState:UIControlStateNormal];
+    [bbtt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    bbtt.layer.masksToBounds = YES;
+    bbtt.layer.cornerRadius = 7;
+    [bbtt setBackgroundImage:[UIImage imageNamed:@"小按钮s"] forState:UIControlStateNormal];
+    [bbtt addTarget:self action:@selector(ISAgree:) forControlEvents:UIControlEventTouchUpInside];
+    [_view1 addSubview:bbtt];
+    
+    
+}
+
+#pragma mark--- 医生个人中心
+-(void)gotodoctercenter
+{
+
+    
+    if ([self.isNew isEqualToString:@"0"]) {
+
+        [self mainview];
+        
+    }else if([self.isNew isEqualToString:@"1"]){
+        
+        self.isNew = @"0";
+        DoctorRegistViewController *regist = [[DoctorRegistViewController alloc] init];
+        regist.doctorSno = self.doctorSno;
+        regist.phone = _phonenumber.text;
+        [self.navigationController pushViewController:regist animated:YES];
+    }else{
+        ShouYeViewController *main = [[ShouYeViewController alloc] init];
+        [self.navigationController pushViewController:main animated:YES];
+    }
+    
+    
+}
+
+-(void)ISAgree:(UIButton *)button
+{
+    
+    UIButton *setbtn = (UIButton *)[self.view viewWithTag:10];
+    
+    [setbtn setBackgroundImage:[UIImage imageNamed:@"06"] forState:UIControlStateNormal];//同意
+    UIView *v1 = (UIView *)[self.view viewWithTag:110];
+    [v1 removeFromSuperview]; v1 = nil;
+    
+    UIView *v2 = (UIView *)[self.view viewWithTag:120];
+    [v2 removeFromSuperview]; v2 = nil;
+    
+    [_view0 removeFromSuperview];
+    _view0 = nil;
+    [_view1 removeFromSuperview];
+    _view1 = nil;
+    
+    self.Isxieyi = YES;
     
 }
 
