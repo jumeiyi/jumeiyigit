@@ -67,9 +67,20 @@
     
     NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
     self.doctorSno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
+    
+    NSLog(@"更多页面医生sno:%@",self.doctorSno);
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
+    self.doctorSno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
 }
 
 -(UIColor *)colorWithRGB:(int)color alpha:(float)alpha{
+    
     return [UIColor colorWithRed:((Byte)(color >> 16))/255.0 green:((Byte)(color >> 8))/255.0 blue:((Byte)color)/255.0 alpha:alpha];
 }
 

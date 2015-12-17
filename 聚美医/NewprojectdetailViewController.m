@@ -319,15 +319,10 @@
    attributes: (NSDictionary *)attributeDict
 {
     
-    
-    
-    
     if ([elementName isEqualToString:@"GetProPageDataResult"]) {
         
         [_soapResults setString:@""];//把它置空，准备接收新值。
     }
-    
-    
     
     
 }
@@ -342,7 +337,6 @@
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    
     
     
     

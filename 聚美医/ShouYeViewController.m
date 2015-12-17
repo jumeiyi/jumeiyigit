@@ -232,6 +232,11 @@
 
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
 -(void)dengluye{
     
     self.tabBarController.tabBar.frame = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 49);

@@ -75,12 +75,29 @@
 {
     [super viewWillAppear:animated];
     
+    NSLog(@"[super viewWillAppear:animated]");
      [self Getgetmedicalhistorylis];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSLog(@"[super viewDidAppear:animated]--- ");
+    
+    [self Getgetmedicalhistorylis];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(torequest) userInfo:nil repeats:NO];
+    
+}
+-(void)torequest{
+    
+    [_timer invalidate];
+    _timer = nil;
+
+    [self Getgetmedicalhistorylis];
 }
 
 -(void)Getgetmedicalhistorylis
 {
-   
     
     NSString *string = [NSString stringWithFormat:@"%@/doctor.getmedicalhistorylist.go?beautitydetailsno=%@",HTTPREQUESTPDOMAIN,self.beautifydetailsno];
     
@@ -94,17 +111,14 @@
         for (int i = 0; i < array1.count; i++) {
             
             medicalrecord *mymedical = [_medicalrecorddata objectAtIndex:i];
-            
             NSString *str = [NSString stringWithFormat:@"%f",[self contentsWithnsstring:mymedical.content]];
             [self.contentshightary addObject:str];
         }
-        
         NSLog(@"请求完毕----%ld",_medicalrecorddata.count);
 
       [self.mytableview reloadData];
         
     }];
-    
     
 }
 
@@ -120,7 +134,7 @@
    
 //    edting.orderDetailSno = self.beautifydetailsno;
 //    edting.customersno = self.customerSno;
-    //    edting.doctorsno = self.doctorsno;
+//    edting.doctorsno = self.doctorsno;
 
     
     myclientdiseaseediting *edting = [[myclientdiseaseediting alloc] init];

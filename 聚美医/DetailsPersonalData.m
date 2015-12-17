@@ -167,6 +167,8 @@
     self.resut = [[NSMutableArray alloc] initWithCapacity:0];
     self.proSnos = @"";
     
+    NSLog(@"详细资料页面索引------%@",self.doctorSno);
+    
     [self soaprequstWithdoctorSno:self.doctorSno];
 }
 

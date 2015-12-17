@@ -18,7 +18,8 @@
     
     UIView *_imagebackview;
     UIView *_imagetunningview;
-    
+
+    NSTimer *_timer;
 
 }
 @property (nonatomic,strong)RefreshControl * refreshControl;

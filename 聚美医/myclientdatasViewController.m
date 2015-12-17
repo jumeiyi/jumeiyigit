@@ -38,7 +38,7 @@
     [self.view addSubview:topbar];
     
     UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-    titilelable.text = @"客户资料";
+    titilelable.text = @"患者资料";
     titilelable.textColor = [UIColor whiteColor];
     titilelable.font = [UIFont systemFontOfSize:22];
     titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
@@ -148,11 +148,9 @@
     if (_data.count > 0) {
         data = [_data objectAtIndex:0];
     }
-   
     
     self.customerphone = data.logincellphone;
     
-
     
     if (indexPath.section == 0) {
         
@@ -188,7 +186,6 @@
 //        cell.city.font = [UIFont systemFontOfSize:14];
 //        cell.city.textColor = [self colorWithRGB:0x868686 alpha:1];
 //        cell.city.text =[NSString stringWithFormat:@"城市:%@",data.address];
-        
        
         
         cell.payattention.frame = CGRectMake(self.view.bounds.size.width - 68, 25, 50, 20);
@@ -220,12 +217,10 @@
             cell.contents.font = [UIFont systemFontOfSize:14];
             cell.contents.textColor = [self colorWithRGB:0x666666 alpha:1];
         }
-
         
         cell.right.frame = CGRectMake(self.view.bounds.size.width - 25, 14, 10, 20);
         cell.right.image = [UIImage imageNamed:@"素材12"];
         
-    
     }else{
         
         if (indexPath.row == 0) {
@@ -294,11 +289,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 1) {
-        
+        mycustomerdata *data;
+        if (_data.count > 0) {
+            data = [_data objectAtIndex:0];
+        }
+
         if (indexPath.row == 2) {
                 myclientsetgropViewController *myclient = [[myclientsetgropViewController alloc] init];
             myclient.doctorsno = self.doctorsno;
             myclient.customersno = self.customerSno;
+            myclient.shoosegroupname = data.groupname;
                 [self.navigationController pushViewController:myclient animated:YES];
         }else if (indexPath.row == 1){
             

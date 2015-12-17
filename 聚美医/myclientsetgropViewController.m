@@ -78,6 +78,7 @@
     savebutton.layer.cornerRadius = 4;
     [savebutton addTarget:self action:@selector(savegroup) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:savebutton];
+    
    
 }
 
@@ -96,7 +97,13 @@
         
         
         for (int i = 0; i < _groupname.count; i++) {
+            mycustomerdata *datastr1 = [_groupman objectAtIndex:i];
+            if ([datastr1.groupname isEqualToString:self.shoosegroupname]) {
+                [_shooseindexs addObject:@"x"];
+            }else{
             [_shooseindexs addObject:@"y"];
+            }
+            
         }
         
     }];

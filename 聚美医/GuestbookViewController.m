@@ -25,11 +25,11 @@
     
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    background.image = [UIImage imageNamed:@"huidi"];
-    background.userInteractionEnabled = YES;
-    [self.view addSubview:background];
+//    
+//    UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
+//    background.image = [UIImage imageNamed:@"huidi"];
+//    background.userInteractionEnabled = YES;
+//    [self.view addSubview:background];
     
     TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     [self.view addSubview:topbar];
@@ -73,9 +73,8 @@
     self.istop = YES;
     [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
     
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    [def setObject:@"" forKey:@"ishaver"];
-    [def synchronize];
+    [userdf setObject:@"" forKey:@"ishaver"];
+    [userdf synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"msg" object:@""];
 

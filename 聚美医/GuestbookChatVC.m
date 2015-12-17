@@ -399,7 +399,7 @@
 -(CGFloat)contentsWithnsstring:(NSString *)str
 {
     UIFont *font = [UIFont systemFontOfSize:17];
-    CGSize size = CGSizeMake(250,2000);
+    CGSize size = CGSizeMake(self.view.bounds.size.width - 110,2000);
     CGRect labelRect = [str boundingRectWithSize:size options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)  attributes:[NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName] context:nil];
     CGFloat gaodu = labelRect.size.height;
     return gaodu;

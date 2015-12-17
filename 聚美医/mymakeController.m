@@ -25,12 +25,10 @@
 {
     [super viewDidAppear:animated];
     
-
-    
      self.a = 1;
-    
     self.istop = YES;
-       [self soaprequstWithdoctorSno:self.doctorSno customerSno:@"" orderState:@"" strPageindex:@"1" strPagesize:@"15"];
+    
+   [self soaprequstWithdoctorSno:self.doctorSno customerSno:@"" orderState:@"" strPageindex:@"1" strPagesize:@"15"];
  
 }
 
@@ -63,20 +61,41 @@
     [backbtn addTarget:self action:@selector(huiqu) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:backbtn];
     
-    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
-    _table.delegate = self;
-    _table.dataSource = self;
-    [self.view addSubview:_table];
-    
-    _refreshControl=[[RefreshControl alloc] initWithScrollView:_table delegate:self];
-    _refreshControl.topEnabled=YES;
-   
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updata:) name:@"updata" object:nil];
     
 }
 
+-(void)torequest{
+    
+    [_customerOrderDataarray removeAllObjects];
+    
+    [self soaprequstWithdoctorSno:self.doctorSno customerSno:@"" orderState:@"" strPageindex:@"1" strPagesize:@"15"];
+    [_timer invalidate];
+    _timer = nil;
+    
+    
+}
+-(void)reloadInputViewsmytableview{
 
+    [_table removeFromSuperview];
+    
+        _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
+        _table.delegate = self;
+        _table.dataSource = self;
+        [self.view addSubview:_table];
+    
+    if (_refreshControl) {
+        return;
+    }else{
+        _refreshControl = nil;
+        _refreshControl=[[RefreshControl alloc] initWithScrollView:_table delegate:self];
+        _refreshControl.topEnabled=YES;
+    }
+
+    
+
+}
 - (void)refreshControl:(RefreshControl *)refreshControl didEngageRefreshDirection:(RefreshDirection)direction
 {
     if (direction==RefreshDirectionTop)
@@ -134,7 +153,6 @@
             //            self.a = 0;
             //            // 调用下拉刷新方法
             //            NSLog(@"到顶了");
-            //
             //             _timer1 = [NSTimer scheduledTimerWithTimeInterval:2.50 target:self selector:@selector(shuaxins) userInfo:nil repeats:NO];
         }
     }
@@ -160,6 +178,7 @@
         [self changenowstater:doctor.Sno];
         
     }else{
+        
         UPMedicalRecord *medicalrecord = [[UPMedicalRecord alloc] init];
         medicalrecord.productorsno = doctor.Sno;
         medicalrecord.doctorsno = self.doctorSno;
@@ -173,18 +192,17 @@
         [self.navigationController pushViewController:medicalrecord animated:YES];
     }
     
-
 }
 
 -(void)changenowstater:(NSString *)orderDetailSno{
 
+    NSString *stringurl = [NSString stringWithFormat:@"%@/doctor.savebeautitydetailnowstate.go?doctorsno=%@&orderdetailsno=%@&nowstate=%@",HTTPREQUESTPDOMAIN,self.doctorSno,orderDetailSno,@"2"];
     
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.savebeautitydetailnowstate.go?doctorsno=%@&orderdetailsno=%@&nowstate=%@",HTTPREQUESTPDOMAIN,self.doctorSno,orderDetailSno,@"2"];
-    
-    NSLog(@"病历进度nowstate-%@",string);
-    [AFHTTPRequestOpeartionManagerOfme posetchangenowstateWithurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+    NSLog(@"病历进度nowstate-%@",stringurl);
+    [AFHTTPRequestOpeartionManagerOfme posetchangenowstateWithurl:stringurl withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
         NSString *msg = [array2 objectAtIndex:0];
+        
         if ([string isEqualToString:@"1"]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             alert.tag = 72;
@@ -195,7 +213,7 @@
             [alert show];
         }
         
-        [self soaprequstWithdoctorSno:self.doctorSno customerSno:@"" orderState:@"" strPageindex:@"1" strPagesize:@"15"];
+         _timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(torequest) userInfo:nil repeats:NO];
         
     }];
 
@@ -222,9 +240,7 @@
 */
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  
     return _customerOrderDataarray.count;
-
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -447,12 +463,14 @@
             [_customerOrderDataarray addObject:doctor];
         }
         
-        [_table reloadData];
+        
         
         if ([state isEqualToString:@"0"]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
         }
+        
+        [self reloadInputViewsmytableview];
     }
     
 }

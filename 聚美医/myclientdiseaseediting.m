@@ -63,7 +63,7 @@
     _mytextview.text = @"点击编辑文字（不可空）";
     [_editingview addSubview:_mytextview];
     if (self.content.length > 2) {
-         _mytextview.text = self.content;
+    _mytextview.text = self.content;
     }
     
     float btnwidth = (self.view.bounds.size.width - (12 * 4))/3;
@@ -215,6 +215,10 @@
         }else{
         [self saverediting];
         }
+    }
+    
+    if (alertView.tag == 12) {
+        
     }
 
 }
@@ -448,6 +452,7 @@
 }
 -(void)imageshoosebtnclicks:(UIButton *)button
 {
+
     self.shoosebuttonindex = button.tag;
      [self shooseimages];
     

@@ -257,14 +257,10 @@
    attributes: (NSDictionary *)attributeDict
 {
     
-    
-    
-    
     if ([elementName isEqualToString:@"GetBeautifyProductBySnoResult"]) {
         
         [_soapResults setString:@""];//把它置空，准备接收新值。
     }
-    
     
     
 }

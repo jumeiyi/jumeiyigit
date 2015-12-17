@@ -146,16 +146,14 @@
     float width = (self.view.bounds.size.width - 60)/3;
     
     _addbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 50 + _binglitu.frame.origin.y, width, width)];
-    [_addbtn setBackgroundImage:[UIImage imageNamed:@"yuanxingjia"] forState:UIControlStateNormal];
+    [_addbtn setBackgroundImage:[UIImage imageNamed:@"fangxingjia"] forState:UIControlStateNormal];
     [_addbtn addTarget:self action:@selector(upimage) forControlEvents:UIControlEventTouchUpInside];
     [_bigscrollview addSubview:_addbtn];
     
     _subtraction = [[UIButton alloc] initWithFrame:CGRectMake(40 + width, 50 + _binglitu.frame.origin.y, width, width)];
-    [_subtraction setBackgroundImage:[UIImage imageNamed:@"yuanxingjian"] forState:UIControlStateNormal];
+    [_subtraction setBackgroundImage:[UIImage imageNamed:@"fangxingjian.jpg"] forState:UIControlStateNormal];
     [_subtraction addTarget:self action:@selector(cancelbtnclick) forControlEvents:UIControlEventTouchUpInside];
     [_bigscrollview addSubview:_subtraction];
-    
-    
     
 
         [self getbeautifydetail];
@@ -163,6 +161,7 @@
         [self getbeautifyproductlist];
     
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -197,8 +196,6 @@
         [button addTarget:self action:@selector(cancelbuttonclickl:) forControlEvents:UIControlEventTouchUpInside];
         button.userInteractionEnabled = NO;
         button.tag = 10 + j;
-        button.layer.masksToBounds = YES;
-        button.layer.cornerRadius = 25;
         [_bigscrollview addSubview:button];
     }
     

@@ -25,5 +25,5 @@
 @property(nonatomic,retain)NSString *doctorsno;
 @property(nonatomic,retain)NSString *customersno;
 @property(nonatomic,retain)NSString *groupid;
-
+@property(nonatomic,retain)NSString *shoosegroupname;
 @end

@@ -21,6 +21,7 @@
     RefreshControl *_refreshControl;
     BOOL _isLoading;
     NSTimer *_timer1;
+    NSTimer *_timer;
 }
 @property(nonatomic,retain)NSString *doctorSno;
 @property(nonatomic,retain)NSString *customerSno;
