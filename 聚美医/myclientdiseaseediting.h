@@ -40,4 +40,7 @@
 @property(nonatomic,assign)BOOL isimage2;
 @property(nonatomic,assign)BOOL isimage3;
 
+@property(nonatomic,assign)NSInteger a;
+@property(nonatomic,assign)BOOL cansaver;
+
 @end

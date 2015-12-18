@@ -126,7 +126,9 @@
         // self.view.transform=CGAffineTransformMakeTranslation(0, - deltaY);
 //        NSLog(@"deltaY = %f",deltaY);
         if (self.a == 0) {
+            self.cansaver = YES;
             _mytextview.text = @"";
+            _mytextview.textColor = [UIColor blackColor];
         }
     
     }];
@@ -148,7 +150,6 @@
     [self.imagedataary addObject:_data];
     [self addbutton];
     
-    NSLog(@"_imagearry.count=%ld-----",_imagearry.count);
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -158,7 +159,6 @@
 
 -(void)addImageToediting
 {
-
     pickerimageViewController *picker = [[pickerimageViewController alloc] init];
     picker.delegate1 = self;
     [self.navigationController pushViewController:picker animated:YES];
@@ -192,7 +192,6 @@
         button.tag = 10 + j;
 //        [button addTarget:self action:@selector(cancelimageclick:) forControlEvents:UIControlEventTouchUpInside];
         [_editingview addSubview:button];
-        
     }
     
     NSInteger a1 = [_imagearry count];
@@ -231,20 +230,31 @@
     if (self.imagedataary.count == 0) {
         NSLog(@"木有鱼丸，木有粗面");
         return;
+        
     }else{
     
-        NSString *contentstr = _mytextview.text;
-        
-        NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&customersno=%@&orderdetailsno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.customersno,self.orderDetailSno,contentstr];
-        NSLog(@"上传病历前请求----%@",string);
-        
-        [AFHTTPRequestOpeartionManagerOfme postsEditingmedical:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-            NSLog(@"新建病历返回来的-medicalhistorysnostring= %@",string);
-            self.medicalhistorysno = string;
+        if (self.cansaver == YES && _mytextview.text.length > 0) {
+            NSString *contentstr = _mytextview.text;
             
-            [self updateWithmedicaldetailTwo];
-        }];
-    }
+            NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&customersno=%@&orderdetailsno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.customersno,self.orderDetailSno,contentstr];
+            NSLog(@"上传病历前请求----%@",string);
+            
+            [AFHTTPRequestOpeartionManagerOfme postsEditingmedical:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+                NSLog(@"新建病历返回来的-medicalhistorysnostring= %@",string);
+                self.medicalhistorysno = string;
+                
+                [self updateWithmedicaldetailTwo];
+            }];
+   
+        }else{
+        
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入描述内容！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+
+            
+        }
+        
+            }
     
 
 }

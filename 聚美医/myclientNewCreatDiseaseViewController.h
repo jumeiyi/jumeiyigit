@@ -27,4 +27,5 @@
 @property(nonatomic,retain)NSString *orderDetailSno;
 @property(nonatomic,assign)NSInteger a;
 @property(nonatomic,assign)BOOL isupdata;
+@property(nonatomic,assign)BOOL cansaver;
 @end

@@ -54,7 +54,6 @@
     _editingview.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_editingview];
     
-    NSLog(@"self.content,self.imagelist=%@=%@",self.content,self.imagelist);
     
     _mytextview = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 160)];
     _mytextview.backgroundColor = [UIColor whiteColor];
@@ -91,9 +90,42 @@
     
     [self getdatawithurl];
     
-   
+    self.a = 0;
     
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+-(void)keyboardShow:(NSNotification *)note
+{
+    
+    CGRect keyBoardRect=[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat deltaY=keyBoardRect.size.height;
+    
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+        
+        // self.view.transform=CGAffineTransformMakeTranslation(0, - deltaY);
+        //        NSLog(@"deltaY = %f",deltaY);
+        if (self.a == 0) {
+            
+            if ([_mytextview.text isEqualToString:@"点击编辑文字（不可空）"]) {
+                _mytextview.text = @"";
+                
+            }
+            _mytextview.textColor = [UIColor blackColor];
+            self.cansaver = YES;
+        }
+        
+    }];
+    
+    self.a ++;
+}
+
 //获取单条病历
 -(void)getdatawithurl
 {
@@ -109,25 +141,32 @@
          [self addimageTothebutton];
     }];
 
-
 }
 
 //保存编辑
 -(void)saverediting
 {
-    self.content = _mytextview.text;
     
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&medicalhistorysno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.medicalhistorysno,self.content];
-    NSLog(@"保存编辑url=%@",string);
+    if (self.cansaver == YES) {
+        
+        self.content = _mytextview.text;
+        
+        NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&medicalhistorysno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.medicalhistorysno,self.content];
+        NSLog(@"保存编辑url=%@",string);
+        
+        [AFHTTPRequestOpeartionManagerOfme savermediclhistoryWithurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+            
+            [self upImageData];
+            [self changimage];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+    }else{
     
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入描述内容！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
 
-    
-    [AFHTTPRequestOpeartionManagerOfme savermediclhistoryWithurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-       
-        [self upImageData];
-        [self changimage];
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
 
 }
 
