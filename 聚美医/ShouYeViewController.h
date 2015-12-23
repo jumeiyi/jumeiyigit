@@ -63,6 +63,6 @@
 @property(nonatomic,retain)UILabel *yuyueshu;
 
 @property(nonatomic,retain)UIButton *redbtn;
-
+@property(nonatomic,assign)NSInteger times;
 @end
 

@@ -24,7 +24,6 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
-
     
     TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     [self.view addSubview:topbar];
@@ -50,7 +49,6 @@
     [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
     [backbtn addTarget:self action:@selector(xiangxizlbackbtn) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:backbtn];
-    
     
     
     scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64 )];
@@ -140,6 +138,7 @@
     _Introduction = [[UITextView alloc] initWithFrame:CGRectMake(5, 235, self.view.bounds.size.width - 10, 120)];
     _Introduction.font = [UIFont systemFontOfSize:17];
     _Introduction.delegate = self;
+    _Introduction.tag = 20;
     [scrollview addSubview:_Introduction];
     
     UIImageView *imagelins = [[UIImageView alloc] initWithFrame:CGRectMake(5, 360, scrollview.bounds.size.width - 10, 1)];
@@ -190,8 +189,10 @@
         
         self.endediting.frame = CGRectMake(self.view.bounds.size.width - 80, 30, 80, 20);
         self.endediting.text = @"结束编辑";
-        _Introduction.frame = CGRectMake(5, self.view.bounds.size.height - deltaY - 140, self.view.bounds.size.width - 10, 140);
-        [self.view addSubview:_Introduction];
+        
+//            _Introduction.frame = CGRectMake(5, self.view.bounds.size.height - deltaY - 140, self.view.bounds.size.width - 10, 140);
+//        [self.view addSubview:_Introduction];
+        
     }];
 }
 -(void)keyboardHide:(NSNotification *)note
@@ -201,8 +202,10 @@
 
         self.endediting.frame = CGRectMake(self.view.bounds.size.width - 80, 0, 0, 0);
         self.endediting.text = @"";
-        _Introduction.frame = CGRectMake(5, 235, self.view.bounds.size.width - 10, 120);
-        [scrollview addSubview:_Introduction];
+        
+//            _Introduction.frame = CGRectMake(5, 235, self.view.bounds.size.width - 10, 120);
+//            [scrollview addSubview:_Introduction];
+        
     }];
 }
 
@@ -211,6 +214,7 @@
 {
 
 }
+
 -(void)shoosesexbtn:(UISegmentedControl *)segmen
 {
     
@@ -580,6 +584,7 @@
     }
     
 }
+
 //提交医生详细资料界面数据
 -(void)soaprequstWithdoctorSno:(NSString *)doctorSno trueName:(NSString *)trueName postName:(NSString *)postName societyPostName:(NSString *)societyPostName qualification:(NSString *)qualification district:(NSString *)district contents:(NSString *)contents proSnos:(NSString *)proSnos sexType:(NSString *)sexType
 {

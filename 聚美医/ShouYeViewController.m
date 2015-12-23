@@ -5,6 +5,20 @@
 //  Created by fenghuang on 15/12/4.
 //  Copyright © 2015年 huqijing. All rights reserved.
 //
+
+#define isRetina ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define iPhone6p ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828, 1472), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define iPhone7 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(414, 736), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+
 #define UID @"wdc001"
 #define PSW @"dcg658"
 
@@ -17,6 +31,7 @@
 #import "YuYueShiJianBiaoShuJu.h"
 #import "sys/utsname.h"
 #import "DoctorRegistViewController.h"
+
 @interface ShouYeViewController ()
 
 @end
@@ -28,6 +43,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    NSLog(@"isRetina:%d",isRetina);
+     NSLog(@"iPhone5:%d",iPhone5);
+     NSLog(@"iPhone6:%d",iPhone6);
+    NSLog(@"iPhone6p:%d",iPhone6p);
+     NSLog(@"iPhone7:%d",iPhone7);
+    
+    NSLog(@"self.view.bounds.size.width---%f-----self.view.bounds.size.height--%f",self.view.bounds.size.width,self.view.bounds.size.height);
     
 }
 
@@ -191,8 +213,6 @@
     button4.tag = 4;
     [self.view addSubview:button4];
     
-    
-
 
     
     self.tabBarController.tabBar.frame = CGRectMake(0, self.view.bounds.size.height - 49, self.view.bounds.size.width, 49);
@@ -244,67 +264,410 @@
     [_denglubackgroundimage removeFromSuperview];
     
     _backgroundimage = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _backgroundimage.image = [UIImage imageNamed:@"医生登陆页面"];
+    _backgroundimage.image = [UIImage imageNamed:@"denglu_di"];
     _backgroundimage.userInteractionEnabled = YES;
     [self.view addSubview:_backgroundimage];
     
+    if (iPhone5) {
+        
+        UIView *phoneview = [[UIView alloc] initWithFrame:CGRectMake(40, 190, self.view.bounds.size.width - 80, 50)];
+        phoneview.backgroundColor = [UIColor whiteColor];
+        phoneview.layer.masksToBounds = YES;
+        phoneview.layer.cornerRadius = 25;
+        [_backgroundimage addSubview:phoneview];
+        
+        _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(55, 12, phoneview.bounds.size.width - 90, 30)];
+        _phonenumber.backgroundColor = [UIColor whiteColor];
+        _phonenumber.placeholder = @"输入手机号码";
+        _phonenumber.font = [UIFont systemFontOfSize:16];
+        _phonenumber.layer.masksToBounds = YES;
+        _phonenumber.layer.cornerRadius = 4;
+        [phoneview addSubview:_phonenumber];
+        
+        UIImageView *numimage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 15, 20)];
+        numimage.image = [UIImage imageNamed:@"shouji_tubiao@3x"];
+        [phoneview addSubview:numimage];
+        
+        UIImageView *shuxian = [[UIImageView alloc] initWithFrame:CGRectMake(45, 15, 2.0, 20)];
+        shuxian.image = [UIImage imageNamed:@"shouye_suxian"];
+        [phoneview addSubview:shuxian];
+        
+        UIView *recode = [[UIView alloc] initWithFrame:CGRectMake(40, 255, self.view.bounds.size.width - 80, 50)];
+        recode.backgroundColor = [UIColor whiteColor];
+        recode.layer.masksToBounds = YES;
+        recode.layer.cornerRadius = 25;
+        [_backgroundimage addSubview:recode];
+        
+        UIImageView *codeimage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 15, 20)];
+        codeimage.image = [UIImage imageNamed:@"mima_tubiao@3x"];
+        [recode addSubview:codeimage];
+        
+        UIImageView *shuxian2 = [[UIImageView alloc] initWithFrame:CGRectMake(45, 15, 2.0, 20)];
+        shuxian2.image = [UIImage imageNamed:@"shouye_suxian"];
+        [recode addSubview:shuxian2];
+        
+        
+        _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 12, 120, 30)];
+        _testnumber.backgroundColor = [UIColor whiteColor];
+        _testnumber.placeholder = @"输入验证码";
+        _testnumber.font = [UIFont systemFontOfSize:16];
+        _testnumber.layer.masksToBounds = YES;
+        _testnumber.layer.cornerRadius = 4;
+        [recode addSubview:_testnumber];
+        
+        _testbtn = [[UIButton alloc] initWithFrame:CGRectMake(recode.bounds.size.width - 100, 0, 100, 50)];
+        [_testbtn addTarget:self action:@selector(testbtnclick:) forControlEvents:UIControlEventTouchUpInside];
+        [_testbtn setBackgroundImage:[UIImage imageNamed:@"huoquyanzhengma_dengluye"] forState:UIControlStateNormal];
+        [_testbtn setBackgroundImage:[UIImage imageNamed:@"huoquyanzhengma_dengluyeH"] forState:UIControlStateHighlighted];        [_testbtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        _testbtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        _testbtn.backgroundColor = [self colorWithRGB:0xadedf1 alpha:1];
+        [_testbtn setTitleColor:[self colorWithRGB:0x127075 alpha:1] forState:UIControlStateNormal];
+        [_testbtn setTitleColor:[self colorWithRGB:0xffffff alpha:1] forState:UIControlStateHighlighted];
+        _testbtn.layer.masksToBounds = YES;
+        [recode addSubview:_testbtn];
+        
+        
+        UIImageView *tubiao = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 32, 49, 74, 100)];
+        tubiao.image = [UIImage imageNamed:@"denglu_tubiao@3x"];
+        [_backgroundimage addSubview:tubiao];
+        
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(40, 364, self.view.bounds.size.width - 80, 50)];
+        [button addTarget:self action:@selector(commitclick) forControlEvents:UIControlEventTouchUpInside];
+        //    [button setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
+        //    button.center = CGPointMake(self.view.bounds.size.width/2, 380);
+        button.backgroundColor = [self colorWithRGB:0xc6d714 alpha:1];
+        [button setTitle:@"登录" forState:UIControlStateNormal];
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 25;
+        [_backgroundimage addSubview:button];
+
+
+        
+    }else if (iPhone6){
     
-    _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(60, 130, 250, 30)];
-    _phonenumber.backgroundColor = [UIColor whiteColor];
-    _phonenumber.center = CGPointMake(self.view.bounds.size.width/2, 135);
-    _phonenumber.placeholder = @" 请输入手机号码";
-    _phonenumber.layer.masksToBounds = YES;
-    _phonenumber.layer.cornerRadius = 4;
-    [_backgroundimage addSubview:_phonenumber];
+        UIView *phoneview = [[UIView alloc] initWithFrame:CGRectMake(40, 280, self.view.bounds.size.width - 80, 50)];
+        phoneview.backgroundColor = [UIColor whiteColor];
+        phoneview.layer.masksToBounds = YES;
+        phoneview.layer.cornerRadius = 25;
+        [_backgroundimage addSubview:phoneview];
+        
+        _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(55, 12, phoneview.bounds.size.width - 90, 30)];
+        _phonenumber.backgroundColor = [UIColor whiteColor];
+        _phonenumber.placeholder = @"输入手机号码";
+        _phonenumber.font = [UIFont systemFontOfSize:16];
+        _phonenumber.layer.masksToBounds = YES;
+        _phonenumber.layer.cornerRadius = 4;
+        [phoneview addSubview:_phonenumber];
+        
+        UIImageView *numimage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 15, 20)];
+        numimage.image = [UIImage imageNamed:@"shouji_tubiao@3x"];
+        [phoneview addSubview:numimage];
+        
+        UIImageView *shuxian = [[UIImageView alloc] initWithFrame:CGRectMake(45, 15, 2.0, 20)];
+        shuxian.image = [UIImage imageNamed:@"shouye_suxian"];
+        [phoneview addSubview:shuxian];
+        
+        UIView *recode = [[UIView alloc] initWithFrame:CGRectMake(40, 345, self.view.bounds.size.width - 80, 50)];
+        recode.backgroundColor = [UIColor whiteColor];
+        recode.layer.masksToBounds = YES;
+        recode.layer.cornerRadius = 25;
+        [_backgroundimage addSubview:recode];
+        
+        UIImageView *codeimage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 15, 20)];
+        codeimage.image = [UIImage imageNamed:@"mima_tubiao@3x"];
+        [recode addSubview:codeimage];
+        
+        UIImageView *shuxian2 = [[UIImageView alloc] initWithFrame:CGRectMake(45, 15, 2.0, 20)];
+        shuxian2.image = [UIImage imageNamed:@"shouye_suxian"];
+        [recode addSubview:shuxian2];
+        
+        
+        _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 12, 120, 30)];
+        _testnumber.backgroundColor = [UIColor whiteColor];
+        _testnumber.placeholder = @"输入验证码";
+        _testnumber.font = [UIFont systemFontOfSize:16];
+        _testnumber.layer.masksToBounds = YES;
+        _testnumber.layer.cornerRadius = 4;
+        [recode addSubview:_testnumber];
+        
+        _testbtn = [[UIButton alloc] initWithFrame:CGRectMake(recode.bounds.size.width - 100, 0, 100, 50)];
+        [_testbtn addTarget:self action:@selector(testbtnclick:) forControlEvents:UIControlEventTouchUpInside];
+        [_testbtn setBackgroundImage:[UIImage imageNamed:@"huoquyanzhengma_dengluye"] forState:UIControlStateNormal];
+        [_testbtn setBackgroundImage:[UIImage imageNamed:@"huoquyanzhengma_dengluyeH"] forState:UIControlStateHighlighted];        [_testbtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        _testbtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        _testbtn.backgroundColor = [self colorWithRGB:0xadedf1 alpha:1];
+        [_testbtn setTitleColor:[self colorWithRGB:0x127075 alpha:1] forState:UIControlStateNormal];
+        [_testbtn setTitleColor:[self colorWithRGB:0xffffff alpha:1] forState:UIControlStateHighlighted];
+        _testbtn.layer.masksToBounds = YES;
+        [recode addSubview:_testbtn];
+        
+        
+        UIImageView *tubiao = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 32, 109, 74, 100)];
+        tubiao.image = [UIImage imageNamed:@"denglu_tubiao@3x"];
+        [_backgroundimage addSubview:tubiao];
+        
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(40, 454, self.view.bounds.size.width - 80, 50)];
+        [button addTarget:self action:@selector(commitclick) forControlEvents:UIControlEventTouchUpInside];
+        //    [button setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
+        //    button.center = CGPointMake(self.view.bounds.size.width/2, 380);
+        button.backgroundColor = [self colorWithRGB:0xc6d714 alpha:1];
+        [button setTitle:@"登录" forState:UIControlStateNormal];
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 25;
+        [_backgroundimage addSubview:button];
+        
+    }else if (iPhone6p){
     
-    _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 170, 120, 30)];
-    _testnumber.backgroundColor = [UIColor whiteColor];
-    _testnumber.placeholder = @" 请输入验证码";
-    _testnumber.layer.masksToBounds = YES;
-    _testnumber.layer.cornerRadius = 4;
-    [_backgroundimage addSubview:_testnumber];
+        UIView *phoneview = [[UIView alloc] initWithFrame:CGRectMake(38, 416, self.view.bounds.size.width - 76, 50)];
+        phoneview.backgroundColor = [UIColor whiteColor];
+        phoneview.layer.masksToBounds = YES;
+        phoneview.layer.cornerRadius = 37;
+        [_backgroundimage addSubview:phoneview];
+        
+        _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(55, 17, phoneview.bounds.size.width - 90, 30)];
+        _phonenumber.backgroundColor = [UIColor whiteColor];
+        _phonenumber.placeholder = @" 输入手机号码";
+        _phonenumber.font = [UIFont systemFontOfSize:14];
+        _phonenumber.layer.masksToBounds = YES;
+        _phonenumber.layer.cornerRadius = 4;
+        [phoneview addSubview:_phonenumber];
+        
+        UIImageView *numimage = [[UIImageView alloc] initWithFrame:CGRectMake(19, 16, 15, 20)];
+        numimage.image = [UIImage imageNamed:@"shouji_tubiao@3x"];
+        [phoneview addSubview:numimage];
+        
+        UIImageView *shuxian = [[UIImageView alloc] initWithFrame:CGRectMake(45, 15, 2.0, 20)];
+        shuxian.image = [UIImage imageNamed:@"shouye_suxian"];
+        [phoneview addSubview:shuxian];
+        
+        UIView *recode = [[UIView alloc] initWithFrame:CGRectMake(57, 516, self.view.bounds.size.width - 114, 75)];
+        recode.backgroundColor = [UIColor whiteColor];
+        recode.layer.masksToBounds = YES;
+        recode.layer.cornerRadius = 37;
+        [_backgroundimage addSubview:recode];
+        
+        UIImageView *codeimage = [[UIImageView alloc] initWithFrame:CGRectMake(30, 24, 25, 30)];
+        codeimage.image = [UIImage imageNamed:@"mima_tubiao@3x"];
+        [recode addSubview:codeimage];
+        
+        UIImageView *shuxian2 = [[UIImageView alloc] initWithFrame:CGRectMake(62, 22, 2.0, 30)];
+        shuxian2.image = [UIImage imageNamed:@"shouye_suxian"];
+        [recode addSubview:shuxian2];
+
+        
+        _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 25, 120, 30)];
+        _testnumber.backgroundColor = [UIColor whiteColor];
+        _testnumber.placeholder = @"输入验证码";
+        _testnumber.font = [UIFont systemFontOfSize:22];
+        _testnumber.layer.masksToBounds = YES;
+        _testnumber.layer.cornerRadius = 4;
+        [recode addSubview:_testnumber];
+        
+        _testbtn = [[UIButton alloc] initWithFrame:CGRectMake(recode.bounds.size.width - 80, 0, 80, 75)];
+        [_testbtn addTarget:self action:@selector(testbtnclick:) forControlEvents:UIControlEventTouchUpInside];
+        [_testbtn setBackgroundImage:[UIImage imageNamed:@"huoquyanzhengma_dengluye"] forState:UIControlStateNormal];
+        [_testbtn setBackgroundImage:[UIImage imageNamed:@"huoquyanzhengma_dengluyeH"] forState:UIControlStateHighlighted];        [_testbtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        _testbtn.titleLabel.font = [UIFont systemFontOfSize:20];
+        _testbtn.backgroundColor = [self colorWithRGB:0xadedf1 alpha:1];
+        _testbtn.layer.masksToBounds = YES;
+        _testbtn.layer.cornerRadius = 4;
+        [recode addSubview:_testbtn];
+        
+        
+        UIImageView *tubiao = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 38, 149, 76, 101)];
+        tubiao.image = [UIImage imageNamed:@"denglu_tubiao@3x"];
+        [_backgroundimage addSubview:tubiao];
+        
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(57, 674, self.view.bounds.size.width - 114, 75)];
+        [button addTarget:self action:@selector(commitclick) forControlEvents:UIControlEventTouchUpInside];
+        //    [button setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
+        //    button.center = CGPointMake(self.view.bounds.size.width/2, 380);
+        button.backgroundColor = [self colorWithRGB:0xc6d714 alpha:1];
+        [button setTitle:@"登录" forState:UIControlStateNormal];
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 37;
+        [_backgroundimage addSubview:button];
+
+        
+    }else if (iPhone7){
     
-    _testbtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100 -(self.view.bounds.size.width - 250)/2, 170, 100, 30)];
-    [_testbtn addTarget:self action:@selector(testbtnclick:) forControlEvents:UIControlEventTouchUpInside];
-    [_testbtn setBackgroundImage:[UIImage imageNamed:@"小按钮s"] forState:UIControlStateNormal];
-    [_testbtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-    _testbtn.layer.masksToBounds = YES;
-    _testbtn.layer.cornerRadius = 4;
-    [_backgroundimage addSubview:_testbtn];
+        UIView *phoneview = [[UIView alloc] initWithFrame:CGRectMake(57, 270, self.view.bounds.size.width - 114, 75)];
+        phoneview.backgroundColor = [UIColor whiteColor];
+        phoneview.layer.masksToBounds = YES;
+        phoneview.layer.cornerRadius = 37;
+        [_backgroundimage addSubview:phoneview];
+        
+        _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(70, 22, phoneview.bounds.size.width - 90, 30)];
+        _phonenumber.backgroundColor = [UIColor whiteColor];
+        _phonenumber.placeholder = @" 输入手机号码";
+        _phonenumber.font = [UIFont systemFontOfSize:22];
+        _phonenumber.layer.masksToBounds = YES;
+        _phonenumber.layer.cornerRadius = 4;
+        [phoneview addSubview:_phonenumber];
+        
+        UIImageView *numimage = [[UIImageView alloc] initWithFrame:CGRectMake(30, 22, 25, 30)];
+        numimage.image = [UIImage imageNamed:@"shouji_tubiao@3x"];
+        [phoneview addSubview:numimage];
+        
+        UIImageView *shuxian = [[UIImageView alloc] initWithFrame:CGRectMake(62, 22, 2.5, 30)];
+        shuxian.image = [UIImage imageNamed:@"shouye_suxian"];
+        [phoneview addSubview:shuxian];
+        
+        UIView *recode = [[UIView alloc] initWithFrame:CGRectMake(57, 369, self.view.bounds.size.width - 114, 75)];
+        recode.backgroundColor = [UIColor whiteColor];
+        recode.layer.masksToBounds = YES;
+        recode.layer.cornerRadius = 37;
+        [_backgroundimage addSubview:recode];
+        
+        UIImageView *codeimage = [[UIImageView alloc] initWithFrame:CGRectMake(30, 22, 25, 30)];
+        codeimage.image = [UIImage imageNamed:@"mima_tubiao@3x"];
+        [recode addSubview:codeimage];
+        
+        UIImageView *shuxian2 = [[UIImageView alloc] initWithFrame:CGRectMake(62, 22, 2.5, 30)];
+        shuxian2.image = [UIImage imageNamed:@"shouye_suxian"];
+        [recode addSubview:shuxian2];
+        
+        UIImageView *yanzheng = [[UIImageView alloc] initWithFrame:CGRectMake(20, 25, 30, 30)];
+        yanzheng.image = [UIImage imageNamed:@""];
+        [recode addSubview:yanzheng];
+        
+        _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 22, 120, 30)];
+        _testnumber.backgroundColor = [UIColor whiteColor];
+        _testnumber.placeholder = @"输入验证码";
+        _testnumber.font = [UIFont systemFontOfSize:22];
+        _testnumber.layer.masksToBounds = YES;
+        _testnumber.layer.cornerRadius = 4;
+        [recode addSubview:_testnumber];
+        
+        _testbtn = [[UIButton alloc] initWithFrame:CGRectMake(recode.bounds.size.width - 80, 0, 80, 75)];
+        [_testbtn addTarget:self action:@selector(testbtnclick:) forControlEvents:UIControlEventTouchUpInside];
+        [_testbtn setBackgroundImage:[UIImage imageNamed:@"huoquyanzhengma_dengluye"] forState:UIControlStateNormal];
+        [_testbtn setBackgroundImage:[UIImage imageNamed:@"huoquyanzhengma_dengluyeH"] forState:UIControlStateHighlighted];        [_testbtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        _testbtn.titleLabel.font = [UIFont systemFontOfSize:20];
+        _testbtn.backgroundColor = [self colorWithRGB:0xadedf1 alpha:1];
+        _testbtn.layer.masksToBounds = YES;
+        _testbtn.layer.cornerRadius = 4;
+        [recode addSubview:_testbtn];
+        
+        
+        UIImageView *tubiao = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 37.5, 100, 75, 100)];
+        tubiao.image = [UIImage imageNamed:@"denglu_tubiao@3x"];
+        [_backgroundimage addSubview:tubiao];
+        
+        
+        //
+        //    UIButton *agreementbtn = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 225, 20, 20)];
+        //    [agreementbtn addTarget:self action:@selector(agreementclick:) forControlEvents:UIControlEventTouchUpInside];
+        //    [agreementbtn setBackgroundImage:[UIImage imageNamed:@"06"] forState:UIControlStateNormal];
+        //    agreementbtn.tag = 10;
+        //    agreementbtn.layer.masksToBounds = YES;
+        //    agreementbtn.layer.cornerRadius = 4;
+        //    [_backgroundimage addSubview:agreementbtn];
+        //
+        //    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 220, 100, 30)];
+        //    lable.text = @"用户协议";
+        //    lable.textColor = [UIColor whiteColor];
+        //    [self.view addSubview:lable];
+        //
+        //    UIButton *xieyiclick = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 220, 100, 30)];
+        //    [xieyiclick addTarget:self action:@selector(agreementclick:) forControlEvents:UIControlEventTouchUpInside];
+        //    xieyiclick.layer.masksToBounds = YES;
+        //    xieyiclick.layer.cornerRadius = 2;
+        //    [_backgroundimage addSubview:xieyiclick];
+        
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(57, 500, self.view.bounds.size.width - 114, 75)];
+        [button addTarget:self action:@selector(commitclick) forControlEvents:UIControlEventTouchUpInside];
+        //    [button setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
+        //    button.center = CGPointMake(self.view.bounds.size.width/2, 380);
+        button.backgroundColor = [self colorWithRGB:0xc6d714 alpha:1];
+        [button setTitle:@"登录" forState:UIControlStateNormal];
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 37;
+        [_backgroundimage addSubview:button];
+
+    }else{
     
+        UIView *phoneview = [[UIView alloc] initWithFrame:CGRectMake(38, 277, self.view.bounds.size.width - 76, 50)];
+        phoneview.backgroundColor = [UIColor whiteColor];
+        phoneview.layer.masksToBounds = YES;
+        phoneview.layer.cornerRadius = 25;
+        [_backgroundimage addSubview:phoneview];
+        
+        _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(55, 12, phoneview.bounds.size.width - 90, 30)];
+        _phonenumber.backgroundColor = [UIColor whiteColor];
+        _phonenumber.placeholder = @"输入手机号码";
+        _phonenumber.font = [UIFont systemFontOfSize:14];
+        _phonenumber.layer.masksToBounds = YES;
+        _phonenumber.layer.cornerRadius = 4;
+        [phoneview addSubview:_phonenumber];
+        
+        UIImageView *numimage = [[UIImageView alloc] initWithFrame:CGRectMake(19, 16, 15, 20)];
+        numimage.image = [UIImage imageNamed:@"shouji_tubiao@3x"];
+        [phoneview addSubview:numimage];
+        
+        UIImageView *shuxian = [[UIImageView alloc] initWithFrame:CGRectMake(45, 15, 2.0, 20)];
+        shuxian.image = [UIImage imageNamed:@"shouye_suxian"];
+        [phoneview addSubview:shuxian];
+        
+        UIView *recode = [[UIView alloc] initWithFrame:CGRectMake(38, 343, self.view.bounds.size.width - 76, 50)];
+        recode.backgroundColor = [UIColor whiteColor];
+        recode.layer.masksToBounds = YES;
+        recode.layer.cornerRadius = 25;
+        [_backgroundimage addSubview:recode];
+        
+        UIImageView *codeimage = [[UIImageView alloc] initWithFrame:CGRectMake(19, 16, 15, 20)];
+        codeimage.image = [UIImage imageNamed:@"mima_tubiao@3x"];
+        [recode addSubview:codeimage];
+        
+        UIImageView *shuxian2 = [[UIImageView alloc] initWithFrame:CGRectMake(45, 15, 2.0, 20)];
+        shuxian2.image = [UIImage imageNamed:@"shouye_suxian"];
+        [recode addSubview:shuxian2];
+        
+        
+        _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 12, 120, 30)];
+        _testnumber.backgroundColor = [UIColor whiteColor];
+        _testnumber.placeholder = @"输入验证码";
+        _testnumber.font = [UIFont systemFontOfSize:14];
+        _testnumber.layer.masksToBounds = YES;
+        _testnumber.layer.cornerRadius = 4;
+        [recode addSubview:_testnumber];
+        
+        _testbtn = [[UIButton alloc] initWithFrame:CGRectMake(recode.bounds.size.width - 80, 0, 80, 50)];
+        [_testbtn addTarget:self action:@selector(testbtnclick:) forControlEvents:UIControlEventTouchUpInside];
+        [_testbtn setBackgroundImage:[UIImage imageNamed:@"huoquyanzhengma_dengluye"] forState:UIControlStateNormal];
+        [_testbtn setBackgroundImage:[UIImage imageNamed:@"huoquyanzhengma_dengluyeH"] forState:UIControlStateHighlighted];
+        [_testbtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        _testbtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        _testbtn.backgroundColor = [self colorWithRGB:0xadedf1 alpha:1];
+        [_testbtn setTitleColor:[self colorWithRGB:0x127075 alpha:1] forState:UIControlStateNormal];
+        [_testbtn setTitleColor:[self colorWithRGB:0xffffff alpha:1] forState:UIControlStateHighlighted];
+        _testbtn.layer.masksToBounds = YES;
+        [recode addSubview:_testbtn];
+        
+        
+        UIImageView *tubiao = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - 38, 98, 76, 101)];
+        tubiao.image = [UIImage imageNamed:@"denglu_tubiao@3x"];
+        [_backgroundimage addSubview:tubiao];
+        
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(38, 448, self.view.bounds.size.width - 76, 50)];
+        [button addTarget:self action:@selector(commitclick) forControlEvents:UIControlEventTouchUpInside];
+        //    [button setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
+        //    button.center = CGPointMake(self.view.bounds.size.width/2, 380);
+        button.backgroundColor = [self colorWithRGB:0xc6d714 alpha:1];
+        [button setTitle:@"登录" forState:UIControlStateNormal];
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 25;
+        [_backgroundimage addSubview:button];
+    }
     
-    UIButton *agreementbtn = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 225, 20, 20)];
-    [agreementbtn addTarget:self action:@selector(agreementclick:) forControlEvents:UIControlEventTouchUpInside];
-    [agreementbtn setBackgroundImage:[UIImage imageNamed:@"06"] forState:UIControlStateNormal];
-    agreementbtn.tag = 10;
-    agreementbtn.layer.masksToBounds = YES;
-    agreementbtn.layer.cornerRadius = 4;
-    [_backgroundimage addSubview:agreementbtn];
-    
-    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 220, 100, 30)];
-    lable.text = @"用户协议";
-    lable.textColor = [UIColor whiteColor];
-    [self.view addSubview:lable];
-    
-    UIButton *xieyiclick = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 220, 100, 30)];
-    [xieyiclick addTarget:self action:@selector(agreementclick:) forControlEvents:UIControlEventTouchUpInside];
-    xieyiclick.layer.masksToBounds = YES;
-    xieyiclick.layer.cornerRadius = 2;
-    [_backgroundimage addSubview:xieyiclick];
-    
-    
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(60, 300, 200, 40)];
-    [button addTarget:self action:@selector(commitclick) forControlEvents:UIControlEventTouchUpInside];
-    [button setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
-    button.center = CGPointMake(self.view.bounds.size.width/2, 380);
-    [button setTitle:@"登录" forState:UIControlStateNormal];
-    button.layer.masksToBounds = YES;
-    button.layer.cornerRadius = 8;
-    [_backgroundimage addSubview:button];
     
     self.Isxieyi = YES;
     self.personordocter = YES;
-
 
 }
 
@@ -363,8 +726,6 @@
         if (self.yidenglu == NO) {
             [self mainview];
             self.yidenglu = YES;
-            
-
         }
         
         
@@ -377,7 +738,6 @@
         NSString *registID =  [userdf objectForKey:@"registration_id"];
         
         [self soaprequestwithuserSno:self.doctorSno registrationId:registID];
-
         
     }
 
@@ -1474,11 +1834,10 @@
         return;
     }
     if (_timer == nil) {
+        self.times = 0;
         button.alpha = 0.7;
-        [button setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        [button setTitle:@"获取中" forState:UIControlStateNormal];
         button.backgroundColor = [UIColor grayColor];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(dingshiqi) userInfo:nil repeats:NO];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(dingshiqi) userInfo:nil repeats:YES];
         _testbtn.userInteractionEnabled = NO;
         [self soaprequestwithphonenumber];
         
@@ -1525,12 +1884,24 @@
 }
 
 -(void)dingshiqi{
-    _testbtn.alpha = 1;
-    [_testbtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-    [_testbtn setBackgroundImage:[UIImage imageNamed:@"小按钮s"] forState:UIControlStateNormal];
-    _testbtn.userInteractionEnabled = YES;
-    [_timer invalidate];
-    _timer = nil;
+    
+    NSInteger b = 10 - self.times;
+    NSString *time = [NSString stringWithFormat:@"剩余%ld秒",(long)b];
+    
+    if ([time isEqualToString:@"剩余0秒"]) {
+      
+        _testbtn.alpha = 1;
+        [_testbtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        _testbtn.userInteractionEnabled = YES;
+        [_timer invalidate];
+        _timer = nil;
+        
+    }else{
+    
+        [_testbtn setTitle:time forState:UIControlStateNormal];
+        
+    }
+    self.times++;
 }
 
 //进入页面
@@ -1556,7 +1927,9 @@
             [user synchronize];
             
         }
+        
     }else{
+        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请同意协议条款！" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [alert show];
     }

@@ -129,7 +129,7 @@
     [_queding setTitle:@"提交" forState:UIControlStateNormal];
     _queding.backgroundColor = [UIColor whiteColor];
     [_queding setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_queding addTarget:self action:@selector(updateWithmedicaldetailTwo) forControlEvents:UIControlEventTouchUpInside];
+    [_queding addTarget:self action:@selector(updateWithmedicaldetail) forControlEvents:UIControlEventTouchUpInside];
     [_queding setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
     [_bigscrollview addSubview:_queding];
 
@@ -157,7 +157,6 @@
     
 
         [self getbeautifydetail];
-        [self updateWithmedicaldetail];
         [self getbeautifyproductlist];
     
 }
@@ -664,13 +663,18 @@ NSLog(@"取消发送照片");
     NSString *contentstr = @"病历";
     
     NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&customersno=%@&orderdetailsno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.customersno,self.orderDetailSno,contentstr];
-    NSLog(@"上传病历前请求----%@",string);
+   
     
-    [AFHTTPRequestOpeartionManagerOfme postsEditingmedical:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+    if (self.imagedataary.count > 0) {
         
-        self.medicalhistorysno = string;
-        
-    }];
+        [AFHTTPRequestOpeartionManagerOfme postsEditingmedical:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+            
+            self.medicalhistorysno = string;
+            [self updateWithmedicaldetailTwo];
+            
+        }];
+    }
+
 }
 #pragma mark ----上传病历-------
 //上传病历

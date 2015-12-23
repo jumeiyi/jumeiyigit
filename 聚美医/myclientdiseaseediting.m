@@ -491,10 +491,8 @@
 }
 -(void)imageshoosebtnclicks:(UIButton *)button
 {
-
     self.shoosebuttonindex = button.tag;
      [self shooseimages];
-    
     
 }
 
