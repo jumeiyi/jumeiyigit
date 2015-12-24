@@ -609,6 +609,7 @@
 		848FF21D1C16753200B3F251 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848FF21C1C16753200B3F251 /* AdSupport.framework */; };
 		84970AF91C1A731C00C5ED8C /* gaoback.png in Resources */ = {isa = PBXBuildFile; fileRef = 84970AF81C1A731C00C5ED8C /* gaoback.png */; };
 		849B599F1C17C5BD00640E94 /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B599E1C17C5BD00640E94 /* libPushSDK-1.8.8.a */; };
+		849FC6581C2A4B61003C13E6 /* lables.m in Sources */ = {isa = PBXBuildFile; fileRef = 849FC6571C2A4B61003C13E6 /* lables.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1450,6 +1451,8 @@
 		84970AF81C1A731C00C5ED8C /* gaoback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gaoback.png; sourceTree = "<group>"; };
 		849B599D1C17C5BD00640E94 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		849B599E1C17C5BD00640E94 /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
+		849FC6561C2A4B61003C13E6 /* lables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lables.h; sourceTree = "<group>"; };
+		849FC6571C2A4B61003C13E6 /* lables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lables.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1527,6 +1530,7 @@
 			children = (
 				845FA0201C1140FD00139CA1 /* ShouYeViewController.h */,
 				845FA0211C1140FD00139CA1 /* ShouYeViewController.m */,
+				849FC6551C2A4B26003C13E6 /* lables */,
 			);
 			name = shouye;
 			sourceTree = "<group>";
@@ -2790,6 +2794,15 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		849FC6551C2A4B26003C13E6 /* lables */ = {
+			isa = PBXGroup;
+			children = (
+				849FC6561C2A4B61003C13E6 /* lables.h */,
+				849FC6571C2A4B61003C13E6 /* lables.m */,
+			);
+			name = lables;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3461,6 +3474,7 @@
 				8462C7211C0D4E690067085B /* yishengwanshanziliao.m in Sources */,
 				8462C76A1C0D50990067085B /* MaiTabieTableViewCell.m in Sources */,
 				8462C7A51C0D699A0067085B /* contentViewCell.m in Sources */,
+				849FC6581C2A4B61003C13E6 /* lables.m in Sources */,
 				8462C87B1C0D72B40067085B /* checkmedicalcell.m in Sources */,
 				8462C7711C0D50990067085B /* doctorSuccessCaseVC.m in Sources */,
 				8462C7931C0D50F20067085B /* ProjectpersentTableViewCell.m in Sources */,

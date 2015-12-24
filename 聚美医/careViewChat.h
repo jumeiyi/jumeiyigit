@@ -10,6 +10,7 @@
 
 @interface careViewChat : UIView
 
+
 @property(nonatomic,retain)UIView *myview;
 
 @property(nonatomic,retain)UIImageView *lefetimage;

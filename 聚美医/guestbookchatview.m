@@ -34,7 +34,8 @@
             }
             
             if ([filetype isEqualToString:@"20150213142908837"]) {//文字
-                self.lefetcontents = [[UILabel alloc] init];
+                self.lefetcontents = [[lables alloc] init];
+                self.lefetcontents.userInteractionEnabled = YES;
                 self.lefetcontents.numberOfLines = 0;
                 self.lefetcontents.text = contents;             NSLog(@"客户发送的信息:%@",contents);
                 self.lefetcontents.frame = CGRectMake(20, 12, self.lefetimage.bounds.size.width - 30, contentshigth);
@@ -78,7 +79,8 @@
             }
             
             if ([filetype isEqualToString:@"20150213142908837"]) {//文字
-                self.rigthcontents = [[UILabel alloc] init];
+                self.rigthcontents = [[lables alloc] init];
+                self.rigthcontents.userInteractionEnabled = YES;
                 self.rigthcontents.numberOfLines = 0;
                 self.rigthcontents.text = contents;         NSLog(@"赋值是否成功 (%@)",contents);
                 self.rigthcontents.textColor = [UIColor whiteColor];

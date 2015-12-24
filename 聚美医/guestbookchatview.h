@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "lables.h"
 
 @interface guestbookchatview : UIView
 
@@ -15,8 +16,8 @@
 @property(nonatomic,retain)UIImageView *lefetimage;
 @property(nonatomic,retain)UIImageView *rigthimage;
 
-@property(nonatomic,retain)UILabel *lefetcontents;
-@property(nonatomic,retain)UILabel *rigthcontents;
+@property(nonatomic,retain)lables *lefetcontents;
+@property(nonatomic,retain)lables *rigthcontents;
 
 @property(nonatomic,retain)UIImageView *lefetPhoto;
 @property(nonatomic,retain)UIImageView *rigthPhoto;
