@@ -14,7 +14,6 @@
 #import "myclientmenbergroupViewController.h"
 #import "myclientobservedisease.h"
 #import "myclientsetgropViewController.h"
-#import "myclientTheConditionRecordViewController.h"
 #import "AFHTTPRequestOpeartionManagerOfme.h"
 #import "mycustomerdata.h"
 #import "UIImageView+WebCache.h"
@@ -326,9 +325,7 @@
         }
 
     }
-//
-//    myclientTheConditionRecordViewController *myclient = [[myclientTheConditionRecordViewController alloc] init];
-//    [self.navigationController pushViewController:myclient animated:YES];
+
    
 }
 

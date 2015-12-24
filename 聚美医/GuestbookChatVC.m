@@ -11,7 +11,7 @@
 #import "GuestbookChatVC.h"
 #import "CustomerMessage.h"
 #import "TopBarView.h"
-#import "guestbookchatview.h"
+#import "gueschartviewCell.h"
 #import "NSString+DocumentPath.h"
 #import "PrefixHeader.pch"
 #import "UIImageView+WebCache.h"
@@ -245,142 +245,77 @@
 {
     static NSString *identifier = @"cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    gueschartviewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[gueschartviewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         
-        UIView *cellview = [[UIView alloc] initWithFrame:cell.bounds];
-        cellview.tag = 2;
-        [cell addSubview:cellview];
-        
-        UIImageView *headimage = [[UIImageView alloc] init];
-        headimage.tag = 4;
-        [cellview addSubview:headimage];
     }
+    
     CustomerMessage *cusmes = [_custommesarray objectAtIndex:_custommesarray.count - indexPath.row - 1];
-   
-    UIView *vi = (UIView *)[cell viewWithTag:2];
-    UIView *vv = (UIView *)[vi viewWithTag:3];
-    [vv removeFromSuperview];
 
     
+//    NSUserDefaults *myuser = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *diction = [myuser objectForKey:@"imagedictionarray"];
     
-    NSUserDefaults *myuser = [NSUserDefaults standardUserDefaults];
-    NSDictionary *diction = [myuser objectForKey:@"imagedictionarray"];
+//    NSData *imagedata = [diction objectForKey:cusmes.PicSrc];
     
-    NSData *imagedata = [diction objectForKey:cusmes.PicSrc];
     
-    //fromType发送类型(医生发给客 户:20150213142252612;客户发给医生20150213142231226);fileType发送文件类型(文字 20150213142908837;图片20150213142921851;音频20150213142939496;视频 20150213142950810)
     if (cusmes.DoctorPic.length > 10) {
         self.DoctorPic = cusmes.DoctorPic;
     }
- 
-    //医生发给客户
+    
+    //fromType发送类型(医生发给客 户:20150213142252612;客户发给医生20150213142231226);fileType发送文件类型(文字 20150213142908837;图片20150213142921851;音频20150213142939496;视频 20150213142950810)
+    
+    //    //医生发给客户
     if ([cusmes.FromType isEqualToString:@"20150213142252612"]) {
+        
+        cell.bgimage.frame = CGRectMake(20, 5, self.view.bounds.size.width - 80, [self contentsWithnsstring:cusmes.TextInfo] + 40);
+        UIEdgeInsets ed = {50.0f, 40.0f, 40.0f, 40.0f};
+        cell.bgimage.image = [[UIImage imageNamed:@"chatfrom_bg_ritht"] resizableImageWithCapInsets:ed];
+        
+        cell.contents.frame = CGRectMake(20, 12, cell.bgimage.bounds.size.width - 30, [self contentsWithnsstring:cusmes.TextInfo]);
+        cell.contents.textColor = [UIColor whiteColor];
+        cell.contents.text = cusmes.TextInfo;
+        
+        cell.creattimes.frame = CGRectMake(20, cell.contents.bounds.size.height + cell.contents.frame.origin.y + 2, cell.bounds.size.width, 20);
+        cell.creattimes.text = cusmes.CreateDt;
+        cell.creattimes.textColor = [self colorWithRGB:0xffffff alpha:1];
+        cell.creattimes.font = [UIFont systemFontOfSize:14];
         
         if (cusmes.DoctorPic.length > 10) {
-            UIView *view =(UIView *)[cell viewWithTag:2];
-            UIImageView *imagev = (UIImageView *)[view viewWithTag:4];
-            imagev.frame = CGRectMake(self.view.bounds.size.width - 60, 5, 50, 50);
-            [imagev sd_setImageWithURL:[NSURL URLWithString:cusmes.DoctorPic]];
-            imagev.layer.masksToBounds = YES;
-            imagev.layer.cornerRadius = 25;
-            [vi addSubview:imagev];
-        }else{
-            UIView *view =(UIView *)[cell viewWithTag:2];
-            UIImageView *imagev = (UIImageView *)[view viewWithTag:4];
-            imagev.frame = CGRectMake(self.view.bounds.size.width - 60, 5, 50, 50);
-            [imagev sd_setImageWithURL:[NSURL URLWithString:self.DoctorPic]];
-            imagev.layer.masksToBounds = YES;
-            imagev.layer.cornerRadius = 25;
-            [vi addSubview:imagev];
-        }
-        
-    }else{
-        
-        UIView *view =(UIView *)[cell viewWithTag:2];
-        UIImageView *imagev = (UIImageView *)[view viewWithTag:4];
-        imagev.frame = CGRectMake(10, 5, 50, 50);
-        [imagev sd_setImageWithURL:[NSURL URLWithString:cusmes.CustomerPic]];
-        imagev.layer.masksToBounds = YES;
-        imagev.layer.cornerRadius = 25;
-        [vi addSubview:imagev];
-        
-        
-    
-    }
-    
-   //医生发给客户
-    if ([cusmes.FromType isEqualToString:@"20150213142252612"]) {
-        
-        //图片
-        if ([cusmes.FileType isEqualToString:@"20150213142921851"]) {
+            cell.headimage.frame = CGRectMake(self.view.bounds.size.width - 60, 5, 50, 50);
+            [cell.headimage sd_setImageWithURL:[NSURL URLWithString:cusmes.DoctorPic]];
+            cell.headimage.layer.masksToBounds = YES;
+            cell.headimage.layer.cornerRadius = 25;
             
-            guestbookchatview *chatview = [[guestbookchatview alloc] initWithFrame:self.view.bounds andwidth:self.view.bounds.size.width tyfrom:@"yisheng" andcontents:cusmes.TextInfo creatdate:cusmes.CreateDt andimages:imagedata filetype:cusmes.FileType];
-            chatview.tag = 3;
-            [vi addSubview:chatview];
-        
-        }else if ([cusmes.FileType isEqualToString:@"20150213142908837"]){//文字
-            
-            guestbookchatview *chatview = [[guestbookchatview alloc] initWithFrame:self.view.bounds andwidth:self.view.bounds.size.width tyfrom:@"yisheng" andcontents:cusmes.TextInfo creatdate:cusmes.CreateDt andimages:imagedata filetype:cusmes.FileType];    NSLog(@"文字来了，赋值(%@)",cusmes.TextInfo);
-            chatview.tag = 3;
-            [vi addSubview:chatview];
-            
-            if (cusmes.CreateDt == NULL) {
-                NSLog(@"#$^%%#@*())");
+            }else{
+                
+            cell.headimage.frame = CGRectMake(self.view.bounds.size.width - 60, 5, 50, 50);
+            [cell.headimage sd_setImageWithURL:[NSURL URLWithString:self.DoctorPic]];
+            cell.headimage.layer.masksToBounds = YES;
+            cell.headimage.layer.cornerRadius = 25;
             }
-            
-        }else if ([cusmes.FileType isEqualToString:@"20150213142939496"]){//音频
-        
-        
-            guestbookchatview *chatview = [[guestbookchatview alloc] initWithFrame:self.view.bounds andwidth:self.view.bounds.size.width tyfrom:@"yisheng" andcontents:cusmes.TextInfo creatdate:cusmes.CreateDt andimages:imagedata filetype:cusmes.FileType];
-            chatview.tag = 3;
-            [vi addSubview:chatview];
-            
-            //视频
-        }else{
-        
-            guestbookchatview *chatview = [[guestbookchatview alloc] initWithFrame:self.view.bounds andwidth:self.view.bounds.size.width tyfrom:@"yisheng" andcontents:cusmes.TextInfo creatdate:cusmes.CreateDt andimages:imagedata filetype:cusmes.FileType];
-            chatview.tag = 3;
-            [vi addSubview:chatview];
-            
-        }
-
         
     }else{
+        cell.bgimage.frame = CGRectMake(60, 5, self.view.bounds.size.width - 80, [self contentsWithnsstring:cusmes.TextInfo] + 40);
+        UIEdgeInsets ed = {50.0f, 40.0f, 40.0f, 40.0f};
+        cell.bgimage.image = [[UIImage imageNamed:@"chatfrom_bg_left"] resizableImageWithCapInsets:ed];
         
-        //图片
-        if ([cusmes.FileType isEqualToString:@"20150213142921851"]) {
-            
-            guestbookchatview *chatview = [[guestbookchatview alloc] initWithFrame:self.view.bounds andwidth:self.view.bounds.size.width  tyfrom:@"kehu" andcontents:cusmes.TextInfo creatdate:cusmes.CreateDt andimages:imagedata filetype:cusmes.FileType];
-            chatview.tag = 3;
-            [vi addSubview:chatview];
-            
-            //文字
-        }else if ([cusmes.FileType isEqualToString:@"20150213142908837"]){
-         
-            guestbookchatview *chatview = [[guestbookchatview alloc] initWithFrame:self.view.bounds andwidth:self.view.bounds.size.width  tyfrom:@"kehu" andcontents:cusmes.TextInfo creatdate:cusmes.CreateDt andimages:imagedata filetype:cusmes.FileType];
-            chatview.tag = 3;
-            [vi addSubview:chatview];
-            
-            //音频
-        }else if ([cusmes.FileType isEqualToString:@"20150213142939496"]){
-            
-            guestbookchatview *chatview = [[guestbookchatview alloc] initWithFrame:self.view.bounds andwidth:self.view.bounds.size.width  tyfrom:@"kehu" andcontents:cusmes.TextInfo creatdate:cusmes.CreateDt andimages:imagedata filetype:cusmes.FileType];
-            chatview.tag = 3;
-            [vi addSubview:chatview];
-            
-            
-            //视频
-        }else{
-          
-            guestbookchatview *chatview = [[guestbookchatview alloc] initWithFrame:self.view.bounds andwidth:self.view.bounds.size.width  tyfrom:@"kehu" andcontents:cusmes.TextInfo creatdate:cusmes.CreateDt andimages:imagedata filetype:cusmes.FileType];
-            chatview.tag = 3;
-            [vi addSubview:chatview];
-            
-        }
-
+        cell.contents.frame = CGRectMake(20, 12, cell.bgimage.bounds.size.width - 30, [self contentsWithnsstring:cusmes.TextInfo]);
+        cell.contents.textColor = [UIColor blackColor];
+        cell.contents.text = cusmes.TextInfo;
+        
+        cell.creattimes.frame = CGRectMake(20, cell.contents.bounds.size.height + cell.contents.frame.origin.y + 2, cell.bounds.size.width, 20);
+        cell.creattimes.text = cusmes.CreateDt;
+        cell.creattimes.textColor = [self colorWithRGB:0x999999 alpha:1];
+        cell.creattimes.font = [UIFont systemFontOfSize:14];
+        
+        cell.headimage.frame = CGRectMake(10, 5, 50, 50);
+        [cell.headimage sd_setImageWithURL:[NSURL URLWithString:cusmes.CustomerPic]];
+        cell.headimage.layer.masksToBounds = YES;
+        cell.headimage.layer.cornerRadius = 25;
     }
+
     
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = rect.size;
@@ -855,5 +790,22 @@
     NSLog(@"-------------------end--------------");
     
 }
+
+
+//计算字体长度
+-(float)NSStringwithsize:(int )a str:(NSString *)string
+{
+    
+    UIFont *font = [UIFont systemFontOfSize:a];
+    
+    CGSize size = [string sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    // 名字的H
+    //CGFloat nameH = size.height;
+    // 名字的W
+    CGFloat strwidth = size.width;
+    
+    return strwidth;
+}
+
 
 @end

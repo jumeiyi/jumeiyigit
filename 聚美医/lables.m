@@ -64,9 +64,9 @@
 -(void)handleTap:(UIGestureRecognizer*) recognizer {
     
     [self becomeFirstResponder];
-    UIMenuItem *copyLink = [[UIMenuItem alloc] initWithTitle:@"复制"
-                                                      action:@selector(copy:)];
-    [[UIMenuController sharedMenuController] setMenuItems:[NSArray arrayWithObjects:copyLink, nil]];
+//    UIMenuItem *copyLink = [[UIMenuItem alloc] initWithTitle:@"复制"
+//                                                      action:@selector(copy:)];
+//    [[UIMenuController sharedMenuController] setMenuItems:[NSArray arrayWithObjects:copyLink, nil]];
     [[UIMenuController sharedMenuController] setTargetRect:self.frame inView:self.superview];
     [[UIMenuController sharedMenuController] setMenuVisible:YES animated: YES];
 }

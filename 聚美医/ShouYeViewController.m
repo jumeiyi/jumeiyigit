@@ -1730,7 +1730,7 @@
         }else if([state isEqualToString:@"0"]){
             UIAlertView *alerter = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alerter show];
-            [self dingshiqi];
+            
         }else{
             
         }
@@ -1885,7 +1885,7 @@
 
 -(void)dingshiqi{
     
-    NSInteger b = 10 - self.times;
+    NSInteger b = 120 - self.times;
     NSString *time = [NSString stringWithFormat:@"剩余%ld秒",(long)b];
     
     if ([time isEqualToString:@"剩余0秒"]) {

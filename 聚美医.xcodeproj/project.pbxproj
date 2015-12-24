@@ -190,7 +190,6 @@
 		8462C8481C0D72060067085B /* myclientdiseaseediting.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C8381C0D72060067085B /* myclientdiseaseediting.m */; };
 		8462C8491C0D72060067085B /* myclientsetgropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C83A1C0D72060067085B /* myclientsetgropViewController.m */; };
 		8462C84A1C0D72060067085B /* myclientsetgropCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C83C1C0D72060067085B /* myclientsetgropCell.m */; };
-		8462C8771C0D72B40067085B /* myclientTheConditionRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C84C1C0D72B30067085B /* myclientTheConditionRecordViewController.m */; };
 		8462C8781C0D72B40067085B /* myclientTheConditionRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C84E1C0D72B30067085B /* myclientTheConditionRecord.m */; };
 		8462C8791C0D72B40067085B /* GetCustomerDetailByDoctorSno.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C8501C0D72B30067085B /* GetCustomerDetailByDoctorSno.m */; };
 		8462C87A1C0D72B40067085B /* checkmedicalredcord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C8521C0D72B30067085B /* checkmedicalredcord.m */; };
@@ -201,7 +200,6 @@
 		8462C87F1C0D72B40067085B /* GuestbookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C85B1C0D72B30067085B /* GuestbookViewController.m */; };
 		8462C8801C0D72B40067085B /* GuestbookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C85D1C0D72B30067085B /* GuestbookCell.m */; };
 		8462C8811C0D72B40067085B /* GuestbookChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C85F1C0D72B40067085B /* GuestbookChatVC.m */; };
-		8462C8821C0D72B40067085B /* guestbookchatview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C8611C0D72B40067085B /* guestbookchatview.m */; };
 		8462C8831C0D72B40067085B /* NSString+DocumentPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C8631C0D72B40067085B /* NSString+DocumentPath.m */; };
 		8462C8841C0D72B40067085B /* CustomerCareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C8651C0D72B40067085B /* CustomerCareViewController.m */; };
 		8462C8851C0D72B40067085B /* CustomerCareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462C8671C0D72B40067085B /* CustomerCareCell.m */; };
@@ -608,6 +606,7 @@
 		848FF21B1C1674F300B3F251 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848FF21A1C1674F300B3F251 /* CoreText.framework */; };
 		848FF21D1C16753200B3F251 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848FF21C1C16753200B3F251 /* AdSupport.framework */; };
 		84970AF91C1A731C00C5ED8C /* gaoback.png in Resources */ = {isa = PBXBuildFile; fileRef = 84970AF81C1A731C00C5ED8C /* gaoback.png */; };
+		849960561C2B884600144568 /* gueschartviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849960551C2B884600144568 /* gueschartviewCell.m */; };
 		849B599F1C17C5BD00640E94 /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B599E1C17C5BD00640E94 /* libPushSDK-1.8.8.a */; };
 		849FC6581C2A4B61003C13E6 /* lables.m in Sources */ = {isa = PBXBuildFile; fileRef = 849FC6571C2A4B61003C13E6 /* lables.m */; };
 /* End PBXBuildFile section */
@@ -981,8 +980,6 @@
 		8462C83A1C0D72060067085B /* myclientsetgropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientsetgropViewController.m; sourceTree = "<group>"; };
 		8462C83B1C0D72060067085B /* myclientsetgropCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientsetgropCell.h; sourceTree = "<group>"; };
 		8462C83C1C0D72060067085B /* myclientsetgropCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientsetgropCell.m; sourceTree = "<group>"; };
-		8462C84B1C0D72B30067085B /* myclientTheConditionRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientTheConditionRecordViewController.h; sourceTree = "<group>"; };
-		8462C84C1C0D72B30067085B /* myclientTheConditionRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientTheConditionRecordViewController.m; sourceTree = "<group>"; };
 		8462C84D1C0D72B30067085B /* myclientTheConditionRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myclientTheConditionRecord.h; sourceTree = "<group>"; };
 		8462C84E1C0D72B30067085B /* myclientTheConditionRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myclientTheConditionRecord.m; sourceTree = "<group>"; };
 		8462C84F1C0D72B30067085B /* GetCustomerDetailByDoctorSno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCustomerDetailByDoctorSno.h; sourceTree = "<group>"; };
@@ -1002,8 +999,6 @@
 		8462C85D1C0D72B30067085B /* GuestbookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestbookCell.m; sourceTree = "<group>"; };
 		8462C85E1C0D72B30067085B /* GuestbookChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestbookChatVC.h; sourceTree = "<group>"; };
 		8462C85F1C0D72B40067085B /* GuestbookChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestbookChatVC.m; sourceTree = "<group>"; };
-		8462C8601C0D72B40067085B /* guestbookchatview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guestbookchatview.h; sourceTree = "<group>"; };
-		8462C8611C0D72B40067085B /* guestbookchatview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = guestbookchatview.m; sourceTree = "<group>"; };
 		8462C8621C0D72B40067085B /* NSString+DocumentPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DocumentPath.h"; sourceTree = "<group>"; };
 		8462C8631C0D72B40067085B /* NSString+DocumentPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DocumentPath.m"; sourceTree = "<group>"; };
 		8462C8641C0D72B40067085B /* CustomerCareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCareViewController.h; sourceTree = "<group>"; };
@@ -1449,6 +1444,8 @@
 		848FF21A1C1674F300B3F251 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		848FF21C1C16753200B3F251 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		84970AF81C1A731C00C5ED8C /* gaoback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gaoback.png; sourceTree = "<group>"; };
+		849960541C2B884600144568 /* gueschartviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gueschartviewCell.h; sourceTree = "<group>"; };
+		849960551C2B884600144568 /* gueschartviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gueschartviewCell.m; sourceTree = "<group>"; };
 		849B599D1C17C5BD00640E94 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		849B599E1C17C5BD00640E94 /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
 		849FC6561C2A4B61003C13E6 /* lables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lables.h; sourceTree = "<group>"; };
@@ -2096,8 +2093,6 @@
 				8462C83A1C0D72060067085B /* myclientsetgropViewController.m */,
 				8462C83B1C0D72060067085B /* myclientsetgropCell.h */,
 				8462C83C1C0D72060067085B /* myclientsetgropCell.m */,
-				8462C84B1C0D72B30067085B /* myclientTheConditionRecordViewController.h */,
-				8462C84C1C0D72B30067085B /* myclientTheConditionRecordViewController.m */,
 				8462C84D1C0D72B30067085B /* myclientTheConditionRecord.h */,
 				8462C84E1C0D72B30067085B /* myclientTheConditionRecord.m */,
 				8462C84F1C0D72B30067085B /* GetCustomerDetailByDoctorSno.h */,
@@ -2117,8 +2112,8 @@
 				8462C85D1C0D72B30067085B /* GuestbookCell.m */,
 				8462C85E1C0D72B30067085B /* GuestbookChatVC.h */,
 				8462C85F1C0D72B40067085B /* GuestbookChatVC.m */,
-				8462C8601C0D72B40067085B /* guestbookchatview.h */,
-				8462C8611C0D72B40067085B /* guestbookchatview.m */,
+				849960541C2B884600144568 /* gueschartviewCell.h */,
+				849960551C2B884600144568 /* gueschartviewCell.m */,
 				8462C8621C0D72B40067085B /* NSString+DocumentPath.h */,
 				8462C8631C0D72B40067085B /* NSString+DocumentPath.m */,
 				8462C8641C0D72B40067085B /* CustomerCareViewController.h */,
@@ -3298,6 +3293,7 @@
 				8462C7C21C0D6A160067085B /* PersonalViewController.m in Sources */,
 				8462C8431C0D72060067085B /* myclientdatasViewController.m in Sources */,
 				8462C7041C0D4E380067085B /* Beautyitems.m in Sources */,
+				849960561C2B884600144568 /* gueschartviewCell.m in Sources */,
 				8462C8A31C0D7B150067085B /* BeautyFootprint.m in Sources */,
 				8462C7681C0D50990067085B /* MainViewController.m in Sources */,
 				8462C6D21C0D47110067085B /* UIImage+GIF.m in Sources */,
@@ -3321,7 +3317,6 @@
 				8462C8121C0D71290067085B /* DoctorMainViewController.m in Sources */,
 				8462C8791C0D72B40067085B /* GetCustomerDetailByDoctorSno.m in Sources */,
 				8462C7381C0D4E870067085B /* daijinquan.m in Sources */,
-				8462C8771C0D72B40067085B /* myclientTheConditionRecordViewController.m in Sources */,
 				8462C7741C0D50990067085B /* MakeAppointmentcommit.m in Sources */,
 				8462C8421C0D72060067085B /* myclientManGroupCell.m in Sources */,
 				8462C7431C0D4FF90067085B /* TopBarView.m in Sources */,
@@ -3355,7 +3350,6 @@
 				8462C6EA1C0D4DDD0067085B /* wodejifen.m in Sources */,
 				8462C87F1C0D72B40067085B /* GuestbookViewController.m in Sources */,
 				8462C70B1C0D4E380067085B /* customercenter.m in Sources */,
-				8462C8821C0D72B40067085B /* guestbookchatview.m in Sources */,
 				8462C84A1C0D72060067085B /* myclientsetgropCell.m in Sources */,
 				8462C6A41C0D3C530067085B /* RefreshBottomView.m in Sources */,
 				8462C7731C0D50990067085B /* MakeAppointment.m in Sources */,
