@@ -69,5 +69,7 @@ typedef void(^dataBlcok2)(NSMutableArray *array1,NSMutableArray *array2,NSMutabl
 //获取群组的人数
 +(void)getTheGroupOfNumberWith:(NSString *)url withblock:(dataBlcok)block;
 
+//删除病历的部分图片
++(void)deleteThemadicleimaheWithURL:(NSString *)url withblock:(dataBlcok)block;
 
 @end

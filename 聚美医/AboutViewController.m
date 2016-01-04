@@ -132,6 +132,7 @@
         
         [user setObject:@"" forKey:@"CommomUserORCommomDoctor"];
         [user setObject:@"" forKey:@"customerSno"];
+        [user synchronize];
         
         //        NSUserDefaults *userDefatluts = [NSUserDefaults standardUserDefaults];
         //        NSDictionary *dictionary = [userDefatluts dictionaryRepresentation];

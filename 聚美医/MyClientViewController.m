@@ -31,10 +31,8 @@
     
     [super viewWillAppear:animated];
     
-
     
     self.group = @"serviced";
-    
     
     NSString *string = [NSString stringWithFormat:@"%@/doctor.getgrouplist.go?doctorsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
     
@@ -570,7 +568,8 @@
                 cell.headimage.image = [UIImage imageNamed:@"图片4"];
                 
                 cell.name.frame = CGRectMake(80, 25, 100, 20);
-                cell.name.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+                //cell.name.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+                cell.name.font = [UIFont systemFontOfSize:14];
                 cell.name.text = @"患者分组";
                 cell.name.textColor = [self colorWithRGB:0x00c5bb alpha:1];
                 

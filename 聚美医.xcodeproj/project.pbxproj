@@ -608,6 +608,7 @@
 		84970AF91C1A731C00C5ED8C /* gaoback.png in Resources */ = {isa = PBXBuildFile; fileRef = 84970AF81C1A731C00C5ED8C /* gaoback.png */; };
 		849960561C2B884600144568 /* gueschartviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849960551C2B884600144568 /* gueschartviewCell.m */; };
 		849B599F1C17C5BD00640E94 /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B599E1C17C5BD00640E94 /* libPushSDK-1.8.8.a */; };
+		849B5D921C353C4D00965587 /* dengluyeweixin_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 849B5D911C353C4D00965587 /* dengluyeweixin_bg.jpg */; };
 		849FC6581C2A4B61003C13E6 /* lables.m in Sources */ = {isa = PBXBuildFile; fileRef = 849FC6571C2A4B61003C13E6 /* lables.m */; };
 /* End PBXBuildFile section */
 
@@ -1448,6 +1449,7 @@
 		849960551C2B884600144568 /* gueschartviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gueschartviewCell.m; sourceTree = "<group>"; };
 		849B599D1C17C5BD00640E94 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		849B599E1C17C5BD00640E94 /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
+		849B5D911C353C4D00965587 /* dengluyeweixin_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dengluyeweixin_bg.jpg; sourceTree = "<group>"; };
 		849FC6561C2A4B61003C13E6 /* lables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lables.h; sourceTree = "<group>"; };
 		849FC6571C2A4B61003C13E6 /* lables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lables.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1527,7 +1529,6 @@
 			children = (
 				845FA0201C1140FD00139CA1 /* ShouYeViewController.h */,
 				845FA0211C1140FD00139CA1 /* ShouYeViewController.m */,
-				849FC6551C2A4B26003C13E6 /* lables */,
 			);
 			name = shouye;
 			sourceTree = "<group>";
@@ -1616,6 +1617,7 @@
 				8462C7791C0D50CA0067085B /* BeautyItemsViewController */,
 				8462C7951C0D694D0067085B /* BeautyExpertViewController */,
 				8462C7AB1C0D69B70067085B /* PersonalViewController */,
+				849FC6551C2A4B26003C13E6 /* lables */,
 				845FA01F1C11409D00139CA1 /* shouye */,
 				8462C7F41C0D70DB0067085B /* DoctorInterface */,
 				8462C88E1C0D73530067085B /* AboutViewController */,
@@ -2657,6 +2659,7 @@
 		847C85001C23FD610059BDD3 /* dengluye */ = {
 			isa = PBXGroup;
 			children = (
+				849B5D911C353C4D00965587 /* dengluyeweixin_bg.jpg */,
 				847255731C294AE30084C33D /* huoquyanzhengma_dengluye.png */,
 				847255741C294AE30084C33D /* huoquyanzhengma_dengluyeH.png */,
 				843EECF81C27DF61008838D0 /* shouye_suxian.png */,
@@ -3243,6 +3246,7 @@
 				8462CA831C0D8D670067085B /* mymakeryuandian.png in Resources */,
 				8462C8C91C0D7F1D0067085B /* anjianyou.png in Resources */,
 				8462C9AF1C0D86540067085B /* cancel.png in Resources */,
+				849B5D921C353C4D00965587 /* dengluyeweixin_bg.jpg in Resources */,
 				8462CA391C0D87D20067085B /* Icon-29@3x.png in Resources */,
 				8462C9411C0D84200067085B /* 大按钮s.png in Resources */,
 				8462C6A21C0D3C530067085B /* pull_refresh@2x.png in Resources */,
@@ -3562,8 +3566,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3585,7 +3589,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f0b45193-cb25-42ee-8416-f083b58cac0e";
+				PROVISIONING_PROFILE = "ad3d68ab-a1a7-41d7-9719-d7181b5911a2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3607,8 +3611,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3623,7 +3627,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "f0b45193-cb25-42ee-8416-f083b58cac0e";
+				PROVISIONING_PROFILE = "ad3d68ab-a1a7-41d7-9719-d7181b5911a2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3633,8 +3637,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3664,7 +3668,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fenghuang.jumeiyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ad3d68ab-a1a7-41d7-9719-d7181b5911a2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/[lib]";
 			};
 			name = Debug;
@@ -3673,8 +3677,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3704,7 +3708,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fenghuang.jumeiyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ad3d68ab-a1a7-41d7-9719-d7181b5911a2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/[lib]";
 			};
 			name = Release;

@@ -48,7 +48,7 @@
     [topbar addSubview:save];
     
     
-    _editingview = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height/2 - 44)];
+    _editingview = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height/2)];
     _editingview.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_editingview];
     

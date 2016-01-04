@@ -68,11 +68,11 @@
     float btnwidth = (self.view.bounds.size.width - (12 * 4))/3;
     
         float x = (12 + btnwidth) * 0 + 12;
-        self.addimagebtn = [[UIButton alloc] initWithFrame:CGRectMake(x, 170, btnwidth, btnwidth)];
-        [self.addimagebtn setBackgroundImage:[UIImage imageNamed:@"fangxingjia"] forState:UIControlStateNormal];
-        [self.addimagebtn addTarget:self action:@selector(imageshoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
-        self.addimagebtn.tag = 10;
-        [_editingview addSubview:self.addimagebtn];
+        _addimagebtn = [[UIButton alloc] initWithFrame:CGRectMake(x, 170, btnwidth, btnwidth)];
+        [_addimagebtn setBackgroundImage:[UIImage imageNamed:@"fangxingjia"] forState:UIControlStateNormal];
+        [_addimagebtn addTarget:self action:@selector(imageshoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
+        _addimagebtn.tag = 10;
+        [_editingview addSubview:_addimagebtn];
    
     
     _imagearry = [[NSMutableArray alloc] initWithCapacity:0];
@@ -86,11 +86,11 @@
         }
     }
 
-    [self creatimagebtn];
     
     [self getdatawithurl];
-    
     self.a = 0;
+    
+    self.cansaver = YES;
     
 }
 
@@ -123,7 +123,7 @@
         
     }];
     
-    self.a ++;
+    self.a++;
 }
 
 //获取单条病历
@@ -131,7 +131,7 @@
 {
     
     NSString *string = [NSString stringWithFormat:@"%@/doctor.getmedicalhistory.go?medicalhistorysno=%@",HTTPREQUESTPDOMAIN,self.medicalhistorysno];
-    NSLog(@"保存编辑url=%@",string);
+    NSLog(@"获取单条病历url=%@",string);
     
     [AFHTTPRequestOpeartionManagerOfme posetgetAmedicalwithurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
@@ -139,6 +139,8 @@
         _mytextview.text = string;
         
          [self addimageTothebutton];
+        
+        //[self deleteTheImage];
     }];
 
 }
@@ -157,7 +159,6 @@
         [AFHTTPRequestOpeartionManagerOfme savermediclhistoryWithurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
             
             [self upImageData];
-            [self changimage];
             [self.navigationController popViewControllerAnimated:YES];
         }];
         
@@ -186,59 +187,16 @@
     
 }
 
-//上传修改图片
--(void)changimage
-{
-    
-    NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.savemedicalhistoryimage.go",HTTPREQUESTPDOMAIN];
-    NSLog(@"保存编辑url=%@",urlstr);
-    
-    
-    if (self.isimage1 == YES) {
-       
-        NSDictionary *dic = [self.imageURLary objectAtIndex:0];
-        NSString *str = [dic objectForKey:@"sno"];
-        NSLog(@"sno=====%@",str);
-        
-        NSData *imagedata = UIImageJPEGRepresentation(self.image, 0.4f);
-        
-        NSLog(@"端口：%@ || self.medicalhistorysno= %@||self.doctorsno= %@|| sno %@",urlstr,self.medicalhistorysno,self.doctorsno,str);
-        [AFHTTPRequestOpeartionManagerOfme posetUpdatatheChangeImage:urlstr medicalhistorysno:self.medicalhistorysno doctorsno:self.doctorsno medicalhistoryimagesno:str and:imagedata Completion:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-            
-        }];
 
-    }
-    
-    if (self.isimage2 == YES) {
-       
-        NSDictionary *dic = [self.imageURLary objectAtIndex:1];
-        NSString *str = [dic objectForKey:@"sno"];
-        NSLog(@"sno=====%@",str);
-        
-        NSData *imagedata = UIImageJPEGRepresentation(self.image2, 0.4f);
-        
-        NSLog(@"端口：%@ || self.medicalhistorysno= %@||self.doctorsno= %@|| sno %@",urlstr,self.medicalhistorysno,self.doctorsno,str);
-        [AFHTTPRequestOpeartionManagerOfme posetUpdatatheChangeImage:urlstr medicalhistorysno:self.medicalhistorysno doctorsno:self.doctorsno medicalhistoryimagesno:str and:imagedata Completion:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-            
-        }];
+-(void)deleteTheImage{
 
-    }
+    NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.delmedicalhistoryimage.go?doctorsno=%@&medicalhistorysno=%@&medicalhistoryimagesno=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.medicalhistorysno,@"922dc839-1e6c-479b-a0f9-bb034bbf43ab"];
+    NSLog(@"修改编辑url=%@",urlstr);
     
-    if (self.isimage3 == YES) {
-      
-        NSDictionary *dic = [self.imageURLary objectAtIndex:2];
-        NSString *str = [dic objectForKey:@"sno"];
-        NSLog(@"sno=====%@",str);
+    [AFHTTPRequestOpeartionManagerOfme deleteThemadicleimaheWithURL:urlstr withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
-        NSData *imagedata = UIImageJPEGRepresentation(self.image3, 0.4f);
-        
-        NSLog(@"端口：%@ || self.medicalhistorysno= %@||self.doctorsno= %@|| sno %@",urlstr,self.medicalhistorysno,self.doctorsno,str);
-        [AFHTTPRequestOpeartionManagerOfme posetUpdatatheChangeImage:urlstr medicalhistorysno:self.medicalhistorysno doctorsno:self.doctorsno medicalhistoryimagesno:str and:imagedata Completion:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
-            
-        }];
-    }
-    
-    
+    }];
+
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -260,6 +218,18 @@
         
     }
 
+    if (alertView.tag == 13) {
+        
+        if (buttonIndex == 0) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [self saverediting];
+        }
+   
+     
+        NSLog(@"我选择了%ld",buttonIndex);
+    }
+    
 }
 -(void)shooseimages{
     
@@ -270,28 +240,17 @@
 
 -(void)sendimage:(UIImage *)imagess
 {
-    if (self.shoosebuttonindex == 0) {
+    
          [_imagearry addObject:imagess];
-    }
     
     
-    if (self.shoosebuttonindex == 10) {
-        self.image = imagess;
-        self.isimage1 = YES;
-    }
-    
-    if (self.shoosebuttonindex == 11) {
-        self.image2 = imagess;
-        self.isimage2 = YES;
-    }
-    
-    if (self.shoosebuttonindex == 12) {
-        self.image3 = imagess;
-        self.isimage3 = YES;
-    }
+
     
         NSData *_data = UIImageJPEGRepresentation(imagess, 0.4f);
         NSString *_encodedImageStr = [_data base64Encoding];
+    
+//    NSData* decodeData = [[NSData alloc] initWithBase64EncodedString:encodeResult options:0];
+//    NSString* _encodedImageStr = [[NSString alloc] initWithData:_data encoding:NSASCIIStringEncoding];
     
     if (_encodedImageStr.length > 10) {
         [_addimagebtn removeFromSuperview];
@@ -304,213 +263,104 @@
     NSLog(@"_imagearry.count=%ld-----",_imagearry.count);
 }
 
--(void)creatimagebtn
-{
-    
-    float width = (self.view.bounds.size.width - (12 * 4))/3;
-    float heiht = width;
-    NSInteger xn = 0 % 3;
-    NSInteger yn = 0 / 3;
-    
-    int x = (12 + width) * xn + 12;
-    int y = (12 + heiht) * yn + 170;
-    
-    self.imagebtn1 = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, heiht)];
-    self.imagebtn1.tag = 10;
-    [self.imagebtn1 addTarget:self action:@selector(imageshoosebtnclicks:) forControlEvents:UIControlEventTouchUpInside];
-    self.imagebtn1.backgroundColor = [UIColor clearColor];
-    self.imagebtn1.userInteractionEnabled = NO;
-    [_editingview addSubview:self.imagebtn1];
-    
 
-    float width2 = (self.view.bounds.size.width - (12 * 4))/3;
-    float heiht2 = width2;
-    NSInteger xn2 = 1 % 3;
-    NSInteger yn2 = 1 / 3;
-    
-    int x2 = (12 + width2) * xn2 + 12;
-    int y2 = (12 + heiht2) * yn2 + 170;
-    
-    self.imagebtn2 = [[UIButton alloc] initWithFrame:CGRectMake(x2, y2, width2, heiht2)];
-    self.imagebtn2.tag = 11;
-    [self.imagebtn2 addTarget:self action:@selector(imageshoosebtnclicks:) forControlEvents:UIControlEventTouchUpInside];
-    self.imagebtn2.backgroundColor = [UIColor clearColor];
-    self.imagebtn2.userInteractionEnabled = NO;
-    [_editingview addSubview:self.imagebtn2];
-    
-    
-    float width3 = (self.view.bounds.size.width - (12 * 4))/3;
-    float heiht3 = width3;
-    NSInteger xn3 = 2 % 3;
-    NSInteger yn3 = 2 / 3;
-    
-    int x3 = (12 + width3) * xn3 + 12;
-    int y3 = (12 + heiht3) * yn3 + 170;
-    
-    self.imagebtn3 = [[UIButton alloc] initWithFrame:CGRectMake(x3, y3, width3, heiht3)];
-    self.imagebtn3.tag = 12;
-    [self.imagebtn3 addTarget:self action:@selector(imageshoosebtnclicks:) forControlEvents:UIControlEventTouchUpInside];
-    self.imagebtn3.backgroundColor = [UIColor clearColor];
-    self.imagebtn3.userInteractionEnabled = NO;
-    [_editingview addSubview:self.imagebtn3];
-    
-    
-}
 
 -(void)addimageTothebutton
 {
-    
-    if (self.imageURLary.count > 0) {
-        NSDictionary *imageurdic = [self.imageURLary objectAtIndex:0];
-        NSString *imageurl = [imageurdic objectForKey:@"url"];
-        [self.imagebtn1 sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,imageurl]] forState:UIControlStateNormal];
-        self.imagebtn1.userInteractionEnabled = YES;
-        
-    }
-    
-    if (self.imageURLary.count > 1) {
-    
-        NSDictionary *imageurdic = [self.imageURLary objectAtIndex:1];
-        NSString *imageurl = [imageurdic objectForKey:@"url"];
-        [self.imagebtn2 sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,imageurl]] forState:UIControlStateNormal];
-        self.imagebtn2.userInteractionEnabled = YES;
-        
-    }
-    
-    if (self.imageURLary.count > 2){
-        NSDictionary *imageurdic = [self.imageURLary objectAtIndex:2];
-        NSString *imageurl = [imageurdic objectForKey:@"url"];
-        [self.imagebtn3 sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,imageurl]] forState:UIControlStateNormal];
-        self.imagebtn3.userInteractionEnabled = YES;
-    
-    }
-    
-    
-    float width0 = (self.view.bounds.size.width - (12 * 4))/3;
-    float heiht0 = width0;
-    
-    NSInteger aa = self.imageURLary.count;
-    NSInteger bb = _imagearry.count;
-    
-    if (_imagearry.count > 0) {
-        for (NSInteger i = aa; i < (aa + bb); i ++) {
-            
-            NSInteger xn1 = i % 3;
-            NSInteger yn1 = i / 3;
-            int x1 = (12 + width0) * xn1 + 12;
-            int y1 = (12 + heiht0) * yn1 + 170;
-            
-            UIButton *imagebtn = [[UIButton alloc] initWithFrame:CGRectMake(x1, y1, width0, heiht0)];
-            imagebtn.backgroundColor = [UIColor brownColor];
-            [imagebtn setBackgroundImage:[_imagearry objectAtIndex:i - aa] forState:UIControlStateNormal];
-            [_editingview addSubview:imagebtn];
 
-        }
-        
-        NSInteger xn2 = (aa + bb) % 3;
-        NSInteger yn2 = (aa + bb) / 3;
-        int x2 = (12 + width0) * xn2 + 12;
-        int y2 = (12 + heiht0) * yn2 + 170;
-        
-        if ((aa + bb) < 3) {
-            [self.addimagebtn removeFromSuperview];
-            self.addimagebtn = [[UIButton alloc] initWithFrame:CGRectMake(x2, y2, width0, heiht0)];
-            [self.addimagebtn setBackgroundImage:[UIImage imageNamed:@"fangxingjia"] forState:UIControlStateNormal];
-            [self.addimagebtn addTarget:self action:@selector(imageshoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
-            self.addimagebtn.tag = 10;
-            [_editingview addSubview:self.addimagebtn];
-        }
+    NSLog(@"创建图片按钮-----self.imageURLary.count-%ld---_imagearry.count-%ld",self.imageURLary.count,_imagearry.count);
+    
+    for (int c = 0; c < self.imageURLary.count + 1 + _imagearry.count; c++) {
+        UIButton *btn = (UIButton *)[_editingview viewWithTag:20 + c];
+        [btn removeFromSuperview];
+    }
 
-    }else{
+    float width = (self.view.bounds.size.width - (12 * 4))/3;
+    float heiht = width;
+
+   
+    for (int j = 0; j < [self.imageURLary count]; j ++) {
+        NSDictionary *imageurdic = [self.imageURLary objectAtIndex:j];
+        NSString *imageurl = [imageurdic objectForKey:@"url"];
         
-        if (self.imageURLary.count >= 3) {
-            
-        }else{
+        NSInteger xn = j % 3;
+        NSInteger yn = j / 3;
         
-            NSInteger xn = self.imageURLary.count % 3;
-            NSInteger yn = self.imageURLary.count / 3;
-            int x = (12 + width0) * xn + 12;
-            int y = (12 + heiht0) * yn + 170;
-            
-            [self.addimagebtn removeFromSuperview];
-            self.addimagebtn = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width0, heiht0)];
-            [self.addimagebtn setBackgroundImage:[UIImage imageNamed:@"fangxingjia"] forState:UIControlStateNormal];
-            [self.addimagebtn addTarget:self action:@selector(imageshoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
-            self.addimagebtn.tag = 10;
-            [_editingview addSubview:self.addimagebtn];
-        }
+        float x = (12 + width) * xn + 12;
+        float y = (12 + heiht) * yn + 170;
         
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, heiht)];
+        button.backgroundColor = [UIColor redColor];
+        [button sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,imageurl]]  forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@""]];
+        [button addTarget:self action:@selector(cancelbuttonclickl:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = 20 + j;
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 3;
+        [_editingview addSubview:button];
     }
     
-    
-    if (self.shoosebuttonindex == 10) {
-        [self.imagebtn1 setBackgroundImage:self.image forState:UIControlStateNormal];
-        self.imagebtn1.userInteractionEnabled = YES;
+    for (NSInteger j = 0; j < [_imagearry count]; j ++) {
+        
+        NSInteger a = j + [self.imageURLary count];
+        NSInteger xn = a % 3;
+        NSInteger yn = a / 3;
+        
+        float x = (12 + width) * xn + 12;
+        float y = (12 + heiht) * yn + 170;
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, heiht)];
+        [button setBackgroundImage:[_imagearry objectAtIndex:j] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(cancelbuttonclickl:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = 20 + self.imageURLary.count;
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 3;
+        [_editingview addSubview:button];
     }
     
-    if (self.shoosebuttonindex == 11) {
-        [self.imagebtn2 setBackgroundImage:self.image2 forState:UIControlStateNormal];
-        self.imagebtn2.userInteractionEnabled = YES;
-    }
+    NSInteger a1 = [self.imageURLary count] + [_imagearry count];
+    NSInteger xn1 = a1 % 4;
+    NSInteger yn1 = a1 / 4;
     
-    if (self.shoosebuttonindex == 12) {
-        [self.imagebtn3 setBackgroundImage:self.image3 forState:UIControlStateNormal];
-        self.imagebtn3.userInteractionEnabled = YES;
-    }
+    int x1 = (12 + width) * xn1 + 12;
+    int y1 = (12 + heiht) * yn1 + 170;
     
+    
+    NSLog(@"x1:%d-----y1:%d-------a1:%ld",x1,y1,a1);
+    
+    UIButton *btn = (UIButton *)[_editingview viewWithTag:10];
+    [btn removeFromSuperview];
+    
+    UIButton *btna = [[UIButton alloc] initWithFrame:CGRectMake(x1, y1, width, heiht)];
+    btna.tag = 10;
+    [btna setBackgroundImage:[UIImage imageNamed:@"fangxingjia"] forState:UIControlStateNormal];
+    [btna addTarget:self action:@selector(imageshoosebtnclick) forControlEvents:UIControlEventTouchUpInside];
+    [_editingview addSubview:btna];
+  
     
 }
 
--(void)cancelimageclick:(UIButton *)btn{
-    
-//    NSLog(@"btn.tag-: %ld",btn.tag);
-//    self.cancelbtnindex = btn.tag - 10;
+-(void)cancelbuttonclickl:(UIButton *)btn{
+  
+#pragma 有待解决
+//    self.cancelbtnindex = btn.tag - 20;
 //    
-//    _imagebackview = [[UIView alloc] initWithFrame:self.view.bounds];
-//    _imagebackview.backgroundColor = [UIColor blackColor];
-//    [self.view addSubview:_imagebackview];
-//    
-//    UIImage *images = [_imagearry objectAtIndex:btn.tag - 10];
-//    
-//    NSLog(@"_imagearry .count : %ld---",_imagearry.count);
-//    
-//    UIButton *gobackbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 30, 50, 50)];
-//    [gobackbtn addTarget:self action:@selector(gobackbtnclick) forControlEvents:UIControlEventTouchUpInside];
-//    [gobackbtn setBackgroundImage:[UIImage imageNamed:@"c"] forState:UIControlStateNormal];
-//    [_imagebackview addSubview:gobackbtn];
-//    
-//    UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 80, 40, 38, 38)];
-//    [cancel addTarget:self action:@selector(cancelclick) forControlEvents:UIControlEventTouchUpInside];
-//    [cancel setBackgroundImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
-//    [_imagebackview addSubview:cancel];
-//    
-//    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width,images.size.height/(images.size.width/self.view.bounds.size.width))];
-//    imageview.image = images;
-//    [_imagebackview addSubview:imageview];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否删除这张图片？" delegate:self cancelButtonTitle:@"删除" otherButtonTitles:@"取消", nil];
+//    alert.tag = 13;
+//    [alert show];
     
 }
+
 -(void)imageshoosebtnclicks:(UIButton *)button
 {
-    self.shoosebuttonindex = button.tag;
      [self shooseimages];
     
 }
 
--(void)gobackbtnclick{
-    
-    [_imagebackview removeFromSuperview];
-}
--(void)cancelclick{
-    
-    [_imagebackview removeFromSuperview];
-    [_imagearry removeObjectAtIndex:self.cancelbtnindex];
-    
-    [self addimageTothebutton];
-}
+
+
 
 -(void)imageshoosebtnclick
 {
-    self.shoosebuttonindex = 0;
     [self shooseimages];
 }
 

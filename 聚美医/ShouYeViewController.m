@@ -32,6 +32,7 @@
 #import "sys/utsname.h"
 #import "DoctorRegistViewController.h"
 
+
 @interface ShouYeViewController ()
 
 @end
@@ -58,6 +59,7 @@
     [_backgroundimage removeFromSuperview];
     
     _denglubackgroundimage = [[UIView alloc] initWithFrame:self.view.bounds];
+    _denglubackgroundimage.backgroundColor = [self colorWithRGB:0xaeb1b0 alpha:1];
     [self.view addSubview:_denglubackgroundimage];
     
     UIImageView *imagevie = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 158)];
@@ -249,6 +251,7 @@
     [self soaprequestwithuserSno:self.doctorSno registrationId:registID];
     
     [self getDeviceAndOSInfo];
+    
 
 }
 
@@ -262,10 +265,12 @@
     self.tabBarController.tabBar.frame = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 49);
     
     [_denglubackgroundimage removeFromSuperview];
+    [_backgroundimage removeFromSuperview];
     
     _backgroundimage = [[UIImageView alloc] initWithFrame:self.view.bounds];
     _backgroundimage.image = [UIImage imageNamed:@"denglu_di"];
     _backgroundimage.userInteractionEnabled = YES;
+    _backgroundimage.tag = 100;
     [self.view addSubview:_backgroundimage];
     
     if (iPhone5) {
@@ -279,6 +284,7 @@
         _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(55, 12, phoneview.bounds.size.width - 90, 30)];
         _phonenumber.backgroundColor = [UIColor whiteColor];
         _phonenumber.placeholder = @"输入手机号码";
+        _phonenumber.keyboardType = UIKeyboardTypeDecimalPad;
         _phonenumber.font = [UIFont systemFontOfSize:16];
         _phonenumber.layer.masksToBounds = YES;
         _phonenumber.layer.cornerRadius = 4;
@@ -310,6 +316,7 @@
         _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 12, 120, 30)];
         _testnumber.backgroundColor = [UIColor whiteColor];
         _testnumber.placeholder = @"输入验证码";
+        _testnumber.keyboardType = UIKeyboardTypeDecimalPad;
         _testnumber.font = [UIFont systemFontOfSize:16];
         _testnumber.layer.masksToBounds = YES;
         _testnumber.layer.cornerRadius = 4;
@@ -344,6 +351,24 @@
 
 
         
+        UIButton *weixin = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+        [weixin addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+        weixin.backgroundColor = [self colorWithRGB:0x2aa5a7 alpha:1];
+        weixin.tag = 30;
+        [weixin setTitleColor:[self colorWithRGB:0x2c6d6c alpha:1] forState:UIControlStateNormal];
+        [weixin setTitle:@"用户微信" forState:UIControlStateNormal];
+        weixin.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_backgroundimage addSubview:weixin];
+        
+        UIButton *yisheng = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+        [yisheng addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+        yisheng.backgroundColor = [self colorWithRGB:0x1c6078 alpha:1];
+        [yisheng setTitle:@"医生端" forState:UIControlStateNormal];
+        yisheng.tag = 31;
+        [yisheng setTitleColor:[self colorWithRGB:0xffffff alpha:1] forState:UIControlStateNormal];
+        yisheng.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_backgroundimage addSubview:yisheng];
+        
     }else if (iPhone6){
     
         UIView *phoneview = [[UIView alloc] initWithFrame:CGRectMake(40, 280, self.view.bounds.size.width - 80, 50)];
@@ -355,6 +380,7 @@
         _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(55, 12, phoneview.bounds.size.width - 90, 30)];
         _phonenumber.backgroundColor = [UIColor whiteColor];
         _phonenumber.placeholder = @"输入手机号码";
+        _phonenumber.keyboardType = UIKeyboardTypeDecimalPad;
         _phonenumber.font = [UIFont systemFontOfSize:16];
         _phonenumber.layer.masksToBounds = YES;
         _phonenumber.layer.cornerRadius = 4;
@@ -386,6 +412,7 @@
         _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 12, 120, 30)];
         _testnumber.backgroundColor = [UIColor whiteColor];
         _testnumber.placeholder = @"输入验证码";
+        _testnumber.keyboardType = UIKeyboardTypeDecimalPad;
         _testnumber.font = [UIFont systemFontOfSize:16];
         _testnumber.layer.masksToBounds = YES;
         _testnumber.layer.cornerRadius = 4;
@@ -418,6 +445,25 @@
         button.layer.cornerRadius = 25;
         [_backgroundimage addSubview:button];
         
+        
+        UIButton *weixin = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+        [weixin addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+        weixin.backgroundColor = [self colorWithRGB:0x2aa5a7 alpha:1];
+        weixin.tag = 30;
+        [weixin setTitleColor:[self colorWithRGB:0x2c6d6c alpha:1] forState:UIControlStateNormal];
+        [weixin setTitle:@"用户微信" forState:UIControlStateNormal];
+        weixin.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_backgroundimage addSubview:weixin];
+        
+        UIButton *yisheng = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+        [yisheng addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+        yisheng.backgroundColor = [self colorWithRGB:0x1c6078 alpha:1];
+        [yisheng setTitle:@"医生端" forState:UIControlStateNormal];
+        yisheng.tag = 31;
+        [yisheng setTitleColor:[self colorWithRGB:0xffffff alpha:1] forState:UIControlStateNormal];
+        yisheng.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_backgroundimage addSubview:yisheng];
+        
     }else if (iPhone6p){
     
         UIView *phoneview = [[UIView alloc] initWithFrame:CGRectMake(38, 416, self.view.bounds.size.width - 76, 50)];
@@ -429,6 +475,7 @@
         _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(55, 17, phoneview.bounds.size.width - 90, 30)];
         _phonenumber.backgroundColor = [UIColor whiteColor];
         _phonenumber.placeholder = @" 输入手机号码";
+        _phonenumber.keyboardType = UIKeyboardTypeDecimalPad;
         _phonenumber.font = [UIFont systemFontOfSize:14];
         _phonenumber.layer.masksToBounds = YES;
         _phonenumber.layer.cornerRadius = 4;
@@ -460,6 +507,7 @@
         _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 25, 120, 30)];
         _testnumber.backgroundColor = [UIColor whiteColor];
         _testnumber.placeholder = @"输入验证码";
+        _testnumber.keyboardType = UIKeyboardTypeDecimalPad;
         _testnumber.font = [UIFont systemFontOfSize:22];
         _testnumber.layer.masksToBounds = YES;
         _testnumber.layer.cornerRadius = 4;
@@ -490,6 +538,24 @@
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = 37;
         [_backgroundimage addSubview:button];
+        
+        UIButton *weixin = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+        [weixin addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+        weixin.backgroundColor = [self colorWithRGB:0x2aa5a7 alpha:1];
+        weixin.tag = 30;
+        [weixin setTitleColor:[self colorWithRGB:0x2c6d6c alpha:1] forState:UIControlStateNormal];
+        [weixin setTitle:@"用户微信" forState:UIControlStateNormal];
+        weixin.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_backgroundimage addSubview:weixin];
+        
+        UIButton *yisheng = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+        [yisheng addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+        yisheng.backgroundColor = [self colorWithRGB:0x1c6078 alpha:1];
+        [yisheng setTitle:@"医生端" forState:UIControlStateNormal];
+        yisheng.tag = 31;
+        [yisheng setTitleColor:[self colorWithRGB:0xffffff alpha:1] forState:UIControlStateNormal];
+        yisheng.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_backgroundimage addSubview:yisheng];
 
         
     }else if (iPhone7){
@@ -503,6 +569,7 @@
         _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(70, 22, phoneview.bounds.size.width - 90, 30)];
         _phonenumber.backgroundColor = [UIColor whiteColor];
         _phonenumber.placeholder = @" 输入手机号码";
+        _phonenumber.keyboardType = UIKeyboardTypeDecimalPad;
         _phonenumber.font = [UIFont systemFontOfSize:22];
         _phonenumber.layer.masksToBounds = YES;
         _phonenumber.layer.cornerRadius = 4;
@@ -537,6 +604,7 @@
         _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 22, 120, 30)];
         _testnumber.backgroundColor = [UIColor whiteColor];
         _testnumber.placeholder = @"输入验证码";
+        _testnumber.keyboardType = UIKeyboardTypeDecimalPad;
         _testnumber.font = [UIFont systemFontOfSize:22];
         _testnumber.layer.masksToBounds = YES;
         _testnumber.layer.cornerRadius = 4;
@@ -558,27 +626,6 @@
         [_backgroundimage addSubview:tubiao];
         
         
-        //
-        //    UIButton *agreementbtn = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 225, 20, 20)];
-        //    [agreementbtn addTarget:self action:@selector(agreementclick:) forControlEvents:UIControlEventTouchUpInside];
-        //    [agreementbtn setBackgroundImage:[UIImage imageNamed:@"06"] forState:UIControlStateNormal];
-        //    agreementbtn.tag = 10;
-        //    agreementbtn.layer.masksToBounds = YES;
-        //    agreementbtn.layer.cornerRadius = 4;
-        //    [_backgroundimage addSubview:agreementbtn];
-        //
-        //    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 220, 100, 30)];
-        //    lable.text = @"用户协议";
-        //    lable.textColor = [UIColor whiteColor];
-        //    [self.view addSubview:lable];
-        //
-        //    UIButton *xieyiclick = [[UIButton alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x + 30, 220, 100, 30)];
-        //    [xieyiclick addTarget:self action:@selector(agreementclick:) forControlEvents:UIControlEventTouchUpInside];
-        //    xieyiclick.layer.masksToBounds = YES;
-        //    xieyiclick.layer.cornerRadius = 2;
-        //    [_backgroundimage addSubview:xieyiclick];
-        
-        
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(57, 500, self.view.bounds.size.width - 114, 75)];
         [button addTarget:self action:@selector(commitclick) forControlEvents:UIControlEventTouchUpInside];
         //    [button setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
@@ -588,6 +635,25 @@
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = 37;
         [_backgroundimage addSubview:button];
+        
+        
+        UIButton *weixin = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+        [weixin addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+        weixin.backgroundColor = [self colorWithRGB:0x2aa5a7 alpha:1];
+        weixin.tag = 30;
+        [weixin setTitleColor:[self colorWithRGB:0x2c6d6c alpha:1] forState:UIControlStateNormal];
+        [weixin setTitle:@"用户微信" forState:UIControlStateNormal];
+        weixin.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_backgroundimage addSubview:weixin];
+        
+        UIButton *yisheng = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+        [yisheng addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+        yisheng.backgroundColor = [self colorWithRGB:0x1c6078 alpha:1];
+        yisheng.tag = 31;
+        [yisheng setTitle:@"医生端" forState:UIControlStateNormal];
+        [yisheng setTitleColor:[self colorWithRGB:0xffffff alpha:1] forState:UIControlStateNormal];
+        yisheng.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_backgroundimage addSubview:yisheng];
 
     }else{
     
@@ -600,6 +666,7 @@
         _phonenumber  =[[UITextField alloc] initWithFrame:CGRectMake(55, 12, phoneview.bounds.size.width - 90, 30)];
         _phonenumber.backgroundColor = [UIColor whiteColor];
         _phonenumber.placeholder = @"输入手机号码";
+        _phonenumber.keyboardType = UIKeyboardTypeDecimalPad;
         _phonenumber.font = [UIFont systemFontOfSize:14];
         _phonenumber.layer.masksToBounds = YES;
         _phonenumber.layer.cornerRadius = 4;
@@ -631,6 +698,7 @@
         _testnumber = [[UITextField alloc] initWithFrame:CGRectMake(_phonenumber.frame.origin.x, 12, 120, 30)];
         _testnumber.backgroundColor = [UIColor whiteColor];
         _testnumber.placeholder = @"输入验证码";
+        _testnumber.keyboardType = UIKeyboardTypeDecimalPad;
         _testnumber.font = [UIFont systemFontOfSize:14];
         _testnumber.layer.masksToBounds = YES;
         _testnumber.layer.cornerRadius = 4;
@@ -663,12 +731,76 @@
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = 25;
         [_backgroundimage addSubview:button];
+        
+        
+        UIButton *weixin = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+        [weixin addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+        weixin.backgroundColor = [self colorWithRGB:0x2aa5a7 alpha:1];
+        weixin.tag = 30;
+        [weixin setTitleColor:[self colorWithRGB:0x2c6d6c alpha:1] forState:UIControlStateNormal];
+        [weixin setTitle:@"用户微信" forState:UIControlStateNormal];
+        weixin.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_backgroundimage addSubview:weixin];
+        
+        UIButton *yisheng = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+        [yisheng addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+        yisheng.backgroundColor = [self colorWithRGB:0x1c6078 alpha:1];
+        [yisheng setTitle:@"医生端" forState:UIControlStateNormal];
+        yisheng.tag = 31;
+        [yisheng setTitleColor:[self colorWithRGB:0xffffff alpha:1] forState:UIControlStateNormal];
+        yisheng.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_backgroundimage addSubview:yisheng];
+
     }
     
     
     self.Isxieyi = YES;
     self.personordocter = YES;
 
+    
+    
+}
+
+-(void)dengluyeweixinduan{
+    
+    [_denglubackgroundimage removeFromSuperview];
+    
+    _backgroundimage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 54)];
+    _backgroundimage.image = [UIImage imageNamed:@"dengluyeweixin_bg.jpg"];
+    _backgroundimage.userInteractionEnabled = YES;
+    [self.view addSubview:_backgroundimage];
+
+
+    UIButton *weixin = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+    [weixin addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+    weixin.tag = 30;
+    weixin.backgroundColor = [self colorWithRGB:0x1c6078 alpha:1];
+    [weixin setTitleColor:[self colorWithRGB:0xffffff alpha:1] forState:UIControlStateNormal];
+    [weixin setTitle:@"用户微信" forState:UIControlStateNormal];
+    weixin.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_backgroundimage addSubview:weixin];
+    
+    UIButton *yisheng = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, self.view.bounds.size.height - 54, self.view.bounds.size.width/2, 54)];
+    [yisheng addTarget:self action:@selector(shoosegroup:) forControlEvents:UIControlEventTouchUpInside];
+    [yisheng setTitleColor:[self colorWithRGB:0x2c6d6c alpha:1] forState:UIControlStateNormal];
+    yisheng.backgroundColor = [self colorWithRGB:0x2aa5a7 alpha:1];
+    yisheng.tag = 31;
+    [yisheng setTitle:@"医生端" forState:UIControlStateNormal];
+    yisheng.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_backgroundimage addSubview:yisheng];
+    
+}
+
+-(void)shoosegroup:(UIButton *)btn{
+
+    NSLog(@"7878787878787");
+    
+    if (btn.tag == 30) {
+        [self dengluyeweixinduan];
+    }else{
+        [self dengluye];
+    }
+    
 }
 
 - (void)getDeviceAndOSInfo
