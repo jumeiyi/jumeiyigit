@@ -3566,8 +3566,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3589,7 +3589,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "ad3d68ab-a1a7-41d7-9719-d7181b5911a2";
+				PROVISIONING_PROFILE = "f0b45193-cb25-42ee-8416-f083b58cac0e";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3611,8 +3611,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3627,7 +3627,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "ad3d68ab-a1a7-41d7-9719-d7181b5911a2";
+				PROVISIONING_PROFILE = "f0b45193-cb25-42ee-8416-f083b58cac0e";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3637,8 +3637,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3668,7 +3668,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fenghuang.jumeiyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ad3d68ab-a1a7-41d7-9719-d7181b5911a2";
+				PROVISIONING_PROFILE = "f0b45193-cb25-42ee-8416-f083b58cac0e";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/[lib]";
 			};
 			name = Debug;
@@ -3677,8 +3677,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jumi technology Co.,ltd (36SNK862WB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: kai zhang (VW5UP5767K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kai zhang (VW5UP5767K)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3708,7 +3708,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fenghuang.jumeiyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ad3d68ab-a1a7-41d7-9719-d7181b5911a2";
+				PROVISIONING_PROFILE = "f0b45193-cb25-42ee-8416-f083b58cac0e";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/[lib]";
 			};
 			name = Release;

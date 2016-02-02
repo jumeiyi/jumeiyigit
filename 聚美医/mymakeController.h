@@ -29,6 +29,7 @@
 @property(nonatomic,retain)NSString *strPageindex;
 @property(nonatomic,retain)NSString *strPagesize;
 @property(nonatomic,assign)NSInteger a;
+@property(nonatomic,assign)NSInteger indextheclick;
 @property(nonatomic,assign)BOOL istop;
 @property (nonatomic,strong)RefreshControl * refreshControl;
 

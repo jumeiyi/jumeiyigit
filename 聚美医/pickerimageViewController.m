@@ -121,7 +121,7 @@
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
         //在选定图片之前，用户可以简单编辑要选的图片。包括上下移动改变图片的选取范围，用手捏合动作改变图片的大小等。
-        imagePicker.allowsEditing = YES;
+        imagePicker.allowsEditing = NO;
         
         //实现委托，委托必须实现UIImagePickerControllerDelegate协议，来对用户在图片选取器中的动作
         imagePicker.delegate = self;
@@ -172,7 +172,7 @@
         //指定源的类型
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         //在选定图片之前，用户可以简单编辑要选的图片。包括上下移动改变图片的选取范围，用手捏合动作改变图片的大小等。
-        imagePicker.allowsEditing = YES;
+        imagePicker.allowsEditing = NO;
         //实现委托，委托必须实现UIImagePickerControllerDelegate协议，来对用户在图片选取器中的动作
         imagePicker.delegate = self;
         //设置完iamgePicker后，就可以启动了。用以下方法将图像选取器的视图“推”出来

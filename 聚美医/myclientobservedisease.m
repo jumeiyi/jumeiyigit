@@ -320,6 +320,7 @@
     float hight = [contentshight floatValue];
     
     if (imageurl.count > 0) {
+        
         NSString *str1 = [imageurl objectAtIndex:0];
         NSString *imstring = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str1];
         cell.image1.frame = CGRectMake(15, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
@@ -342,6 +343,7 @@
     }
     
     if (imageurl.count > 2){
+        
         NSString *str3 = [imageurl objectAtIndex:2];
         NSString *imstring3 = [NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,str3];
         cell.image3.frame = CGRectMake(15 + ((self.view.bounds.size.width - 40)/3 * 2) + 10, 65 + hight, (self.view.bounds.size.width - 40)/3, (self.view.bounds.size.width - 40)/3);
@@ -446,12 +448,12 @@
     }
     
     if (_imagetunningview == nil) {
-        _imagetunningview = [[UIView alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width , self.view.bounds.size.width)];
-        _imagetunningview.backgroundColor = [UIColor whiteColor];
+        _imagetunningview = [[UIView alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width , self.view.bounds.size.height)];
+        _imagetunningview.backgroundColor = [UIColor blackColor];
         [self.view addSubview:_imagetunningview];
     }
     
-    UIScrollView *imagescrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 100)];
+    UIScrollView *imagescrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     imagescrollview.contentSize = CGSizeMake(imageurl.count * self.view.bounds.size.width, 0);
     imagescrollview.contentOffset = CGPointMake(self.view.bounds.size.width * ([indexpathpistr integerValue] - 120), 0);
     imagescrollview.pagingEnabled = YES;
@@ -462,7 +464,6 @@
     blackview.backgroundColor = [UIColor blackColor];
     [imagescrollview addSubview:blackview];
     
-
     
     NSLog(@"图片数量--%ld----URL：%@",imageurl.count,imageurl);
     for (int i = 0; i < imageurl.count; i++) {//[picstrarray objectAtIndex:i]
@@ -474,12 +475,54 @@
         UIImageView *scrollimagev2 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * i, 0,self.view.bounds.size.width,100)];
         [scrollimagev2 sd_setImageWithURL:[NSURL URLWithString:imstring2] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             
-            NSLog(@"scrollimagev2.image.size.height{%f",scrollimagev2.image.size.height);
+            NSLog(@"scrollimagev2.image.size.height{%f--------scrollimagev2.image.size.width{%f",scrollimagev2.image.size.height,scrollimagev2.image.size.width);
             
-            if (scrollimagev2.image.size.height > 0) {
-               scrollimagev2.frame = CGRectMake(self.view.bounds.size.width * i, 0, self.view.bounds.size.width, scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width));
+            if (scrollimagev2.image.size.height > scrollimagev2.image.size.width) {
+                
+                //显示高度小于屏幕高度
+                if (scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width) < self.view.bounds.size.height) {
+                    
+                    if (scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width) == self.view.bounds.size.width) {
+                       
+                        scrollimagev2.frame = CGRectMake(self.view.bounds.size.width * i,self.view.bounds.size.height/2 - (scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width)/2), self.view.bounds.size.width, self.view.bounds.size.width);
+                        
+                    }else{
+                        
+                        scrollimagev2.frame = CGRectMake(self.view.bounds.size.width * i,self.view.bounds.size.height/2 - (scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width)/2), self.view.bounds.size.width, scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width));
+                    
+                    }
+                    
+                }else{
+                    
+                    scrollimagev2.frame = CGRectMake(self.view.bounds.size.width * i,0, self.view.bounds.size.width, scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width));
+                
+                }
+               
+            }else if (scrollimagev2.image.size.height < scrollimagev2.image.size.width) {
+                
+                //显示高度小于屏幕高度
+                if (scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width) < self.view.bounds.size.height) {
+                    
+                    if (scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width) == self.view.bounds.size.width) {
+                        
+                        scrollimagev2.frame = CGRectMake(self.view.bounds.size.width * i,self.view.bounds.size.height/2 - (scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width)/2), self.view.bounds.size.width, self.view.bounds.size.width);
+                        
+                    }else{
+                        
+                        scrollimagev2.frame = CGRectMake(self.view.bounds.size.width * i,self.view.bounds.size.height/2 - (scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width)/2), self.view.bounds.size.width, scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width));
+                    }
+                    
+                    
+                }else{
+                    
+                    scrollimagev2.frame = CGRectMake(self.view.bounds.size.width * i,0, self.view.bounds.size.width, scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width));
+                }
+
+                
             }else{
             
+                scrollimagev2.frame = CGRectMake(self.view.bounds.size.width * i,self.view.bounds.size.height/2 - (scrollimagev2.image.size.height/(scrollimagev2.image.size.width/self.view.bounds.size.width)/2), self.view.bounds.size.width, self.view.bounds.size.width);
+
             }
             
         }];
@@ -487,7 +530,7 @@
         scrollimagev2.userInteractionEnabled = YES;
         [imagescrollview addSubview:scrollimagev2];
         
-        UIButton *scrollimagev = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * i, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
+        UIButton *scrollimagev = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * i, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
         // [scrollimagev sd_setBackgroundImageWithURL:[NSURL URLWithString:[picstrarray objectAtIndex:i]] forState:UIControlStateNormal];
         scrollimagev.backgroundColor = [UIColor clearColor];
         [scrollimagev addTarget:self action:@selector(imageoffbuttunclick:) forControlEvents:UIControlEventTouchUpInside];
@@ -495,9 +538,8 @@
         
     }
     
-    
         //关闭按钮
-    UIButton *off = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
+    UIButton *off = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     [off addTarget:self action:@selector(imageoffbuttunclick:) forControlEvents:UIControlEventTouchUpInside];
     [imagescrollview addSubview:off];
     

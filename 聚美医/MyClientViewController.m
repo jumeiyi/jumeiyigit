@@ -80,6 +80,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    
         
     TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     [self.view addSubview:topbar];
@@ -1033,6 +1034,7 @@
     NSLog(@"开始startrequest");
     NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.group];
     
+    NSLog(@"获取客户列表，及排列的名单，接口和参数-：%@",string);
     
     [AFHTTPRequestOpeartionManagerOfme postmanberplistandurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
@@ -1042,7 +1044,7 @@
         
 
 
-//        NSLog(@"_headnamearray : %@------_allgroup-%@",_headnamearray,_allgroup);
+        NSLog(@"_headnamearray : %@------_allgroup-%@",_headnamearray,_allgroup);
         
 
         self.AllowRefresh = YES;

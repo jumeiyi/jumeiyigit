@@ -5,6 +5,8 @@
 //  Created by fenghuang on 15/6/8.
 //  Copyright (c) 2015年 huqijing. All rights reserved.
 //
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
 #define UID @"wdc001"
 #define PSW @"dcg658"
 
@@ -25,33 +27,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
-    [self.view addSubview:topbar];
-    
-    UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-    titilelable.text = @"详细资料";
-    titilelable.textColor = [UIColor whiteColor];
-    titilelable.font = [UIFont systemFontOfSize:22];
-    titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
-    titilelable.textAlignment = NSTextAlignmentCenter;
-    [topbar addSubview:titilelable];
-    
-    
-    self.endediting = [[UILabel alloc] init];
-    self.endediting.text = @"结束编辑";
-    self.endediting.frame = CGRectMake(self.view.bounds.size.width - 80, 0, 0, 0);
-    self.endediting.textColor = [UIColor whiteColor];
-    self.endediting.font = [UIFont systemFontOfSize:17];
-    self.endediting.textAlignment = NSTextAlignmentCenter;
-    [topbar addSubview:self.endediting];
-    
-    UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 27, 40, 30)];
-    [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
-    [backbtn addTarget:self action:@selector(xiangxizlbackbtn) forControlEvents:UIControlEventTouchUpInside];
-    [topbar addSubview:backbtn];
-    
-    
-    scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64 )];
+
+    scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height - 44 )];
     [self.view addSubview:scrollview];
     
     background = [[UIImageView alloc] initWithFrame:scrollview.bounds];
@@ -166,6 +143,34 @@
     self.resut = [[NSMutableArray alloc] initWithCapacity:0];
     self.proSnos = @"";
     
+    
+#pragma mark--------顶部导航栏
+    TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+    [self.view addSubview:topbar];
+    
+    UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
+    titilelable.text = @"详细资料";
+    titilelable.textColor = [UIColor whiteColor];
+    titilelable.font = [UIFont systemFontOfSize:22];
+    titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
+    titilelable.textAlignment = NSTextAlignmentCenter;
+    [topbar addSubview:titilelable];
+    
+    
+    self.endediting = [[UILabel alloc] init];
+    self.endediting.text = @"结束编辑";
+    self.endediting.frame = CGRectMake(self.view.bounds.size.width - 80, 0, 0, 0);
+    self.endediting.textColor = [UIColor whiteColor];
+    self.endediting.font = [UIFont systemFontOfSize:17];
+    self.endediting.textAlignment = NSTextAlignmentCenter;
+    [topbar addSubview:self.endediting];
+    
+    UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 27, 40, 30)];
+    [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
+    [backbtn addTarget:self action:@selector(xiangxizlbackbtn) forControlEvents:UIControlEventTouchUpInside];
+    [topbar addSubview:backbtn];
+    
+    
     NSLog(@"详细资料页面索引------%@",self.doctorSno);
     
     [self soaprequstWithdoctorSno:self.doctorSno];
@@ -193,6 +198,10 @@
 //            _Introduction.frame = CGRectMake(5, self.view.bounds.size.height - deltaY - 140, self.view.bounds.size.width - 10, 140);
 //        [self.view addSubview:_Introduction];
         
+//        if (iPhone5) {
+//            scrollview.frame = CGRectMake(0, 44 - deltaY, self.view.bounds.size.width, self.view.bounds.size.height - 64 );
+//        }
+        
     }];
 }
 -(void)keyboardHide:(NSNotification *)note
@@ -205,6 +214,8 @@
         
 //            _Introduction.frame = CGRectMake(5, 235, self.view.bounds.size.width - 10, 120);
 //            [scrollview addSubview:_Introduction];
+        
+//        scrollview.frame = CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height - 44 );
         
     }];
 }

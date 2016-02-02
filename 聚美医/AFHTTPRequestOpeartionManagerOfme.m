@@ -71,7 +71,7 @@
     [manager POST: [NSString stringWithFormat:@"%@",url] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *error = nil;
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
-       // NSLog(@"AFHTTPRequestOpeartionManager医生的客户分组-%@---- %@",data ,error);
+//        NSLog(@"AFHTTPRequestOpeartionManager医生的客户分组-%@---- %@",data ,error);
         
         
         NSString *errorstring = [data objectForKey:@"ErrorMessage"];
@@ -145,11 +145,11 @@
             return ;
         }
         
-                NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
         NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
-//        NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
-//                NSString *string = [NSString stringWithFormat:@"%@",dictArray];
-//                NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
+        //NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        //NSString *string = [NSString stringWithFormat:@"%@",dictArray];
+        //NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
         
         block(nil,nil,dctArray);
         
@@ -161,13 +161,16 @@
 //获取客户列表数据
 + (void)postmanberplistandurl:(NSString *)url withblock:(dataBlcok)block
 {
+    
+    NSLog(@"报错接口---：%@",url);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST: [NSString stringWithFormat:@"%@",url] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *error = nil;
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
-        //        NSLog(@"AFHTTPRequestOpeartionManager-%@---- %@",data ,error);
+        
+                NSLog(@"获取客户列表数据-%@---- %@",data ,error);
         
        
         NSString *errorstring = [data objectForKey:@"ErrorMessage"];
@@ -177,24 +180,24 @@
             return ;
         }
         
-        //        NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
-//        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        //NSMutableArray *dictArray = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        //NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
         NSMutableArray *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
-        //        NSString *string = [NSString stringWithFormat:@"%@",dictArray];
-        //        NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
+        //NSString *string = [NSString stringWithFormat:@"%@",dictArray];
+        //NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
         
          //NSLog(@"分组：data--%@",data);
         
         NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
         
-//        NSMutableArray *headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
+        //NSMutableArray *headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
         NSMutableArray *mutablehead = [[NSMutableArray alloc] initWithCapacity:0];
-//        NSString *stra;
+        //NSString *stra;
         for (NSDictionary *mycusdiction in dataary) {
             mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
 
            // NSLog(@"mycustom.createby--%@",mycustom.createby);
-//            stra = mycustom.firstsearchword;
+            //stra = mycustom.firstsearchword;
             [mycustomerDataarray addObject:mycustom];
         }
         [mutablehead addObject:mycustomerDataarray];
@@ -471,6 +474,7 @@
         
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
         
+        NSLog(@"分组成员------%@",data);
         
         NSString *errorstring = [data objectForKey:@"ErrorMessage"];
         if (errorstring.length > 10) {

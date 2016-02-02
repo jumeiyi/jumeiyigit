@@ -151,6 +151,49 @@
     self.customerphone = data.logincellphone;
     
     
+    cell.headimage.frame = CGRectMake(0, 0, 0, 0);
+    [cell.headimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",HTTPREQUESTPDOMAIN,data.picsrc]] placeholderImage:[UIImage imageNamed:@""]];
+    
+    cell.name.frame = CGRectMake(0, 0,0, 0);
+    cell.name.text = @"";
+    
+    cell.sex.frame = CGRectMake(0, 0, 0, 0);
+    cell.sex.image = [UIImage imageNamed:@""];
+    
+    cell.age.text = [NSString stringWithFormat:@""];
+    cell.age.frame = CGRectMake(0, 0, 0, 0);
+    
+    cell.payattention.frame = CGRectMake(0, 0, 0, 0);
+    [cell.payattention setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    
+    cell.titleimage.frame = CGRectMake(0, 0, 0, 0);
+    cell.titleimage.image = [UIImage imageNamed:@""];
+    
+    cell.titles.frame = CGRectMake(0, 0, 0, 0);
+    cell.titles.text = @"";
+    
+    cell.contents.frame = CGRectMake(0, 0, 0, 0);
+    cell.contents.text = @"";
+    
+    cell.right.frame = CGRectMake(0, 0, 0, 0);
+    cell.right.image = [UIImage imageNamed:@""];
+    
+    cell.riliimage.frame = CGRectMake(0, 0, 0, 0);
+    cell.riliimage.image = [UIImage imageNamed:@""];
+    
+    cell.jilutext.frame = CGRectMake(0, 0, 0, 0);
+    cell.jilutext.text = @"";
+    
+    cell.date.frame = CGRectMake(0, 0, 0, 0);
+    cell.date.text = @"";
+    
+    cell.projectname.frame = CGRectMake(0, 0, 0, 0);
+    cell.projectname.text = @"";
+    
+    cell.inspect.frame = CGRectMake(0, 0, 0, 0);
+    [cell.inspect setTitle:@"" forState:UIControlStateNormal];
+    [cell.inspect setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    
     if (indexPath.section == 0) {
         
         cell.headimage.frame = CGRectMake(30, 25, 50, 50);
@@ -163,12 +206,21 @@
         cell.name.font = [UIFont systemFontOfSize:17];
         cell.name.textColor = [self colorWithRGB:0x666666 alpha:1];
         
-        if (data.sextype == 0) {
+        if ([data.sextype isEqualToString:@"0" ]) {
             cell.sex.frame = CGRectMake(100 + [self NSStringwithsize:17 str:data.truename] + 10, 41, 15, 15);
             cell.sex.image = [UIImage imageNamed:@"sucaisi"];
-        }else{
+            
+        }else if([data.sextype isEqualToString:@"1"]){
+            
             cell.sex.frame = CGRectMake(100 + [self NSStringwithsize:17 str:data.truename] + 10, 41, 15, 15);
             cell.sex.image = [UIImage imageNamed:@"sucaisiganger"];
+            
+        }else{
+        
+            cell.sex.frame = CGRectMake(100 + [self NSStringwithsize:17 str:data.truename] + 10, 41, 15, 15);
+            cell.sex.image = [UIImage imageNamed:@""];
+            
+
         }
 
         
@@ -307,6 +359,7 @@
             GuestbookChatVC *chat = [[GuestbookChatVC alloc] init];
             chat.doctorsno = self.doctorsno;
             chat.customerSno = self.customerSno;
+            chat.customerName = data.truename;
             [self.navigationController pushViewController:chat animated:YES];
         }
         

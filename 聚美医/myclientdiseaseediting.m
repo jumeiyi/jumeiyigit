@@ -50,7 +50,7 @@
     [save addTarget:self action:@selector(saverediting) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:save];
     
-    _editingview = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height/2 - 44)];
+    _editingview = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height/2)];
     _editingview.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_editingview];
     
@@ -140,7 +140,7 @@
         
          [self addimageTothebutton];
         
-        //[self deleteTheImage];
+        
     }];
 
 }
@@ -168,13 +168,14 @@
         [alert show];
     }
 
-
 }
 
 //新增图片
 -(void)upImageData{
     
     NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.savemedicalhistoryimage.go",HTTPREQUESTPDOMAIN];
+    
+    NSLog(@"xxxyyy%@",urlstr);
     
     for (int i = 0; i < _imagearry.count; i ++) {
         
@@ -188,10 +189,10 @@
 }
 
 
--(void)deleteTheImage{
+-(void)deleteTheImage:(NSString *)medicalhistorysno{
 
-    NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.delmedicalhistoryimage.go?doctorsno=%@&medicalhistorysno=%@&medicalhistoryimagesno=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.medicalhistorysno,@"922dc839-1e6c-479b-a0f9-bb034bbf43ab"];
-    NSLog(@"修改编辑url=%@",urlstr);
+    NSString *urlstr = [NSString stringWithFormat:@"%@/doctor.delmedicalhistoryimage.go?doctorsno=%@&medicalhistorysno=%@&medicalhistoryimagesno=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.medicalhistorysno,medicalhistorysno];
+    NSLog(@"删除单个图片-url=%@",urlstr);
     
     [AFHTTPRequestOpeartionManagerOfme deleteThemadicleimaheWithURL:urlstr withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
@@ -221,13 +222,35 @@
     if (alertView.tag == 13) {
         
         if (buttonIndex == 0) {
-            [self.navigationController popViewControllerAnimated:YES];
+            
+            [_imagearry removeObjectAtIndex:self.cancelbtnindex];
+            
+            [self addimageTothebutton];
+
         }else{
-            [self saverediting];
+            
         }
    
      
         NSLog(@"我选择了%ld",buttonIndex);
+    }
+    
+    if (alertView.tag == 14) {
+       
+        if (buttonIndex == 0) {
+            NSDictionary *imageurdic = [self.imageURLary objectAtIndex:self.cancelbtnindex];
+            NSString *imageurl = [imageurdic objectForKey:@"sno"];
+            [self deleteTheImage:imageurl];
+            [self.imageURLary removeObjectAtIndex:self.cancelbtnindex];
+            [self addimageTothebutton];
+            
+        }else{
+            
+        }
+
+        
+
+
     }
     
 }
@@ -270,14 +293,19 @@
 
     NSLog(@"创建图片按钮-----self.imageURLary.count-%ld---_imagearry.count-%ld",self.imageURLary.count,_imagearry.count);
     
-    for (int c = 0; c < self.imageURLary.count + 1 + _imagearry.count; c++) {
+    for (int c = 0; c < self.imageURLary.count + 1 ; c++) {
         UIButton *btn = (UIButton *)[_editingview viewWithTag:20 + c];
         [btn removeFromSuperview];
     }
+    
+    for (int d = 0; d < _imagearry.count + 1 ; d++) {
+        UIButton *btn = (UIButton *)[_editingview viewWithTag:30 + d];
+        [btn removeFromSuperview];
+    }
+
 
     float width = (self.view.bounds.size.width - (12 * 4))/3;
     float heiht = width;
-
    
     for (int j = 0; j < [self.imageURLary count]; j ++) {
         NSDictionary *imageurdic = [self.imageURLary objectAtIndex:j];
@@ -311,7 +339,7 @@
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, heiht)];
         [button setBackgroundImage:[_imagearry objectAtIndex:j] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(cancelbuttonclickl:) forControlEvents:UIControlEventTouchUpInside];
-        button.tag = 20 + self.imageURLary.count;
+        button.tag = 30 + _imagearry.count;
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = 3;
         [_editingview addSubview:button];
@@ -341,12 +369,27 @@
 
 -(void)cancelbuttonclickl:(UIButton *)btn{
   
-#pragma 有待解决
-//    self.cancelbtnindex = btn.tag - 20;
-//    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否删除这张图片？" delegate:self cancelButtonTitle:@"删除" otherButtonTitles:@"取消", nil];
-//    alert.tag = 13;
-//    [alert show];
+    if (btn.tag < 30) {
+      
+        self.cancelbtnindex = btn.tag - 20;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否删除这张图片？" delegate:self cancelButtonTitle:@"删除" otherButtonTitles:@"取消", nil];
+        alert.tag = 14;
+        [alert show];
+
+        
+    }else{
+        
+        self.cancelbtnindex = btn.tag - 30;
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否删除这张图片？" delegate:self cancelButtonTitle:@"删除" otherButtonTitles:@"取消", nil];
+        alert.tag = 13;
+        [alert show];
+
+    
+    }
+    
+    
+    
     
 }
 
@@ -355,9 +398,6 @@
      [self shooseimages];
     
 }
-
-
-
 
 -(void)imageshoosebtnclick
 {

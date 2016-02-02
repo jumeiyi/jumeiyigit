@@ -26,6 +26,7 @@
     
     UIButton *_addbtn;
     UIButton *_subtraction;
+    UITextView *_textview;
 }
 -(void)sendimage:(UIImage *)imagess;
 @property(nonatomic,retain)NSMutableArray *imagessary;
@@ -66,6 +67,7 @@
 @property(nonatomic,retain)NSMutableArray *proSnosaryindex;
 @property(nonatomic,assign)NSInteger cancelbtnindex;
 @property(nonatomic,retain)NSMutableArray *orderproject;
+@property(nonatomic,assign)BOOL isthefirst;
 
 @end
 

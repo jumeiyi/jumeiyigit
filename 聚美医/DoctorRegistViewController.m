@@ -131,6 +131,8 @@
 // 客户端注册医生信息补全
 -(void)soaprequestwithdoctorSno:(NSString *)doctorSno trueName:(NSString *)trueName emailNo:(NSString *)emailNo sexType:(NSString *)sexType workUnit:(NSString *)workUnit
 {
+    NSLog(@"doctorSno:%@---trueName:%@-----emailNo:%@-----sexType:%@----workUnit:%@",doctorSno,trueName,emailNo,sexType,workUnit);
+    
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
                              @"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"

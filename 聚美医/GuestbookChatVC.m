@@ -72,21 +72,23 @@
 //    [addimage addTarget:self action:@selector(doctoraddimageSendAMessage) forControlEvents:UIControlEventTouchUpInside];
 //    [_images addSubview:addimage];
     
-    _text = [[UITextField alloc] initWithFrame:CGRectMake(20, 5,self.view.bounds.size.width - 120, 34)];
+    _text = [[UITextView alloc] initWithFrame:CGRectMake(20, 5,self.view.bounds.size.width - 120, 34)];
     _text.backgroundColor = [UIColor whiteColor];
     _text.layer.masksToBounds = YES;
     _text.layer.cornerRadius = 5;
+    _text.delegate = self;
+    _text.font = [UIFont systemFontOfSize:17];
     [_images addSubview:_text];
     
-    UIButton *sendmasses = [[UIButton alloc] initWithFrame:CGRectMake(_text.frame.size.width + _text.frame.origin.x + 15, 5, 60, 34)];
-    sendmasses.backgroundColor = [UIColor whiteColor];
-    [sendmasses setTitle:@"发送" forState:UIControlStateNormal];
-    [sendmasses setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    sendmasses.layer.masksToBounds = YES;
-    sendmasses.layer.cornerRadius = 5;
+    _sendmasses = [[UIButton alloc] initWithFrame:CGRectMake(_text.frame.size.width + _text.frame.origin.x + 15, 5, 60, 34)];
+    _sendmasses.backgroundColor = [UIColor whiteColor];
+    [_sendmasses setTitle:@"发送" forState:UIControlStateNormal];
+    [_sendmasses setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _sendmasses.layer.masksToBounds = YES;
+    _sendmasses.layer.cornerRadius = 5;
     //[sendmasses setBackgroundImage:[UIImage imageNamed:@"xiaoxifasong"] forState:UIControlStateNormal];
-    [sendmasses addTarget:self action:@selector(doctorSendAMessage) forControlEvents:UIControlEventTouchUpInside];
-    [_images addSubview:sendmasses];
+    [_sendmasses addTarget:self action:@selector(doctorSendAMessage) forControlEvents:UIControlEventTouchUpInside];
+    [_images addSubview:_sendmasses];
     
     
     
@@ -132,8 +134,27 @@
         
         // self.view.transform=CGAffineTransformMakeTranslation(0, - deltaY);
         NSLog(@"deltaY = %f",deltaY);
+        self.YdeltaY = deltaY;
         _images.frame = CGRectMake(0, self.view.bounds.size.height - 44 - deltaY, self.view.bounds.size.width, 44);
         _tableview.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - deltaY - 64 - 49);
+        [self tableViewScrollCurrentIndexPath];
+        
+        float a = [self contentsWithnsstringcell:_text.text];
+        
+        if (a > 21) {
+            
+            if (a > 120) {
+                a = 120;
+            }
+            _images.frame = CGRectMake(0, self.view.bounds.size.height - 30 - deltaY - a, self.view.bounds.size.width, 30 + a);
+            _text.frame = CGRectMake(20, 10, self.view.bounds.size.width - 120, a + 10);
+            _sendmasses.frame = CGRectMake(_text.frame.size.width + _text.frame.origin.x + 10, _images.frame.size.height - 50, 60, 35);
+        }else{
+            _images.frame = CGRectMake(0, self.view.bounds.size.height - 60 - deltaY, self.view.bounds.size.width, 60);
+            _sendmasses.frame = CGRectMake(_text.frame.size.width + _text.frame.origin.x + 10, 10, 60, 35);
+            _text.frame = CGRectMake(20, 10, self.view.bounds.size.width - 120, 35);
+        }
+
     }];
 }
 -(void)keyboardHide:(NSNotification *)note
@@ -143,6 +164,8 @@
         _images.frame = CGRectMake(0, self.view.bounds.size.height - 44, self.view.bounds.size.width, 44);
         _tableview.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 44 - 60);
         
+        _text.frame = CGRectMake(20, 5,self.view.bounds.size.width - 120, 34);
+        _sendmasses.frame = CGRectMake(_text.frame.size.width + _text.frame.origin.x + 15, 5, 60, 34);
     }];
 }
 
@@ -150,6 +173,37 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)textViewDidChange:(UITextView *)textView{
+    
+    float a = [self contentsWithnsstringcell:_text.text];
+    
+    if (a > 21) {
+        
+        if (a > 120) {
+            a = 120;
+        }
+        _images.frame = CGRectMake(0, self.view.bounds.size.height - 30 - 252 - a, self.view.bounds.size.width, 30 + a);
+        _text.frame = CGRectMake(20, 10, self.view.bounds.size.width - 120, a + 10);
+        _sendmasses.frame = CGRectMake(_text.frame.size.width + _text.frame.origin.x + 10, _images.frame.size.height - 50, 60, 35);
+    }else{
+        _images.frame = CGRectMake(0, self.view.bounds.size.height - 60 - 252, self.view.bounds.size.width, 60);
+        _sendmasses.frame = CGRectMake(_text.frame.size.width + _text.frame.origin.x + 10, 10, 60, 35);
+        _text.frame = CGRectMake(20, 10, self.view.bounds.size.width - 120, 35);
+    }
+    
+    
+}
+
+-(CGFloat)contentsWithnsstringcell:(NSString *)str
+{
+    UIFont *font = [UIFont systemFontOfSize:17];
+    CGSize size = CGSizeMake(self.view.bounds.size.width - 120,6000);
+    CGRect labelRect = [str boundingRectWithSize:size options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)  attributes:[NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName] context:nil];
+    CGFloat gaodu = labelRect.size.height;
+    return gaodu;
+}
+
 -(void)doctorSendAMessage
 {
         //fromType发送类型(医生发给客 户:20150213142252612;客户发给医生20150213142231226);fileType发送文件类型(文字 20150213142908837;图片20150213142921851;音频20150213142939496;视频 20150213142950810)
@@ -184,6 +238,11 @@
         
         _text.text = @"";
         
+        
+        
+        _images.frame = CGRectMake(0, self.view.bounds.size.height - 60 - self.YdeltaY, self.view.bounds.size.width, 60);
+        _sendmasses.frame = CGRectMake(_text.frame.size.width + _text.frame.origin.x + 10, 10, 60, 35);
+        _text.frame = CGRectMake(20, 10, self.view.bounds.size.width - 120, 35);
         
     }
     
@@ -355,6 +414,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(void)tableViewScrollCurrentIndexPath
 {
     if (_custommesarray.count > 0) {
@@ -363,15 +423,18 @@
     }
     
 }
+
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     
     [self.view endEditing:YES];
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     static int a = 1;

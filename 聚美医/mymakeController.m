@@ -28,7 +28,7 @@
      self.a = 1;
     self.istop = YES;
     
-   [self soaprequstWithdoctorSno:self.doctorSno customerSno:@"" orderState:@"" strPageindex:@"1" strPagesize:@"15"];
+   [self soaprequstWithdoctorSno:self.doctorSno customerSno:@"" orderState:@"" strPageindex:@"1" strPagesize:@"150"];
  
 }
 
@@ -61,6 +61,8 @@
     [backbtn addTarget:self action:@selector(huiqu) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:backbtn];
     
+    
+    self.indextheclick = 0;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updata:) name:@"updata" object:nil];
     
@@ -130,6 +132,19 @@
     
 }
 
+-(void)tableViewScrollCurrentIndexPath
+{
+    if (_customerOrderDataarray.count > 0) {
+        
+        if (self.indextheclick < _customerOrderDataarray.count) {
+            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:self.indextheclick inSection:0];
+            [_table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        }
+
+    }
+    
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // 假设偏移表格高度的20%进行刷新
@@ -172,6 +187,8 @@
     
     
     doctorinmymaker *doctor = [_customerOrderDataarray objectAtIndex:[[Notification object] integerValue]];
+    
+    self.indextheclick = [[Notification object] integerValue];
     
     if ([doctor.NowState isEqualToString:@"1"]){
         
@@ -464,13 +481,14 @@
         }
         
         
-        
         if ([state isEqualToString:@"0"]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
         }
         
         [self reloadInputViewsmytableview];
+        
+        [self tableViewScrollCurrentIndexPath];
     }
     
 }

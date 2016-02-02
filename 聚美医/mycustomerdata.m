@@ -65,7 +65,7 @@
     mycustom.pointcount = [diction objectForKey:@"pointcount"];
     mycustom.remark = [diction objectForKey:@"remark"];
     mycustom.rownumber = [diction objectForKey:@"rownumber"];
-    mycustom.sextype = [diction objectForKey:@"sextype"];
+    mycustom.sextype = [NSString stringWithFormat:@"%@",[diction objectForKey:@"sextype"]];
     mycustom.sno = [diction objectForKey:@"sno"];
     mycustom.truename = [diction objectForKey:@"truename"];
     

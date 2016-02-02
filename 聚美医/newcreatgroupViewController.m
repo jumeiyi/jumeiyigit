@@ -99,6 +99,7 @@
     self.gentmanberarrays = [[NSMutableArray alloc] initWithCapacity:0];
     self.manberarray = [[NSMutableArray alloc] initWithCapacity:0];
     self.getmanberarrayIDs = [[NSMutableArray alloc] initWithCapacity:0];
+    self.customersnikenames = [[NSMutableArray alloc] initWithCapacity:0];
     
     if (self.manberarray.count > 0) {
         mycustomerdata *data = [self.manberarray objectAtIndex:0];
@@ -119,6 +120,7 @@
         NSLog(@"把选择到的客户ID添加%@",mydata.sno);
         [self.manberarray addObject:mydata];
         [self.getmanberarrayIDs addObject:mydata.sno];
+        [self.customersnikenames addObject:mydata.nickname];
     }
     [self.gentmanberarrays removeAllObjects];
     [self addmanbers];
@@ -153,6 +155,11 @@
         [btn removeFromSuperview];
     }
     
+    for (int c = 0; c < self.manberarray.count + 1; c++) {
+        UILabel *btn = (UILabel *)[_manberview viewWithTag:20 + c];
+        [btn removeFromSuperview];
+    }
+    
     float width = 60;
     float heiht = width;
     
@@ -176,6 +183,13 @@
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = 30;
         [_manberview addSubview:button];
+        
+        
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(x + width/2 - ([self NSStringwithsize:12 str:[self.customersnikenames objectAtIndex:j]]/2), y + heiht, [self NSStringwithsize:12 str:[self.customersnikenames objectAtIndex:j]], 20)];
+        lable.tag = 20 + j;
+        lable.font = [UIFont systemFontOfSize:12];
+        lable.text = [self.customersnikenames objectAtIndex:j];
+        [_manberview addSubview:lable];
     }
     
     NSInteger a1 = [self.manberarray count];

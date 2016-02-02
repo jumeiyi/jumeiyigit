@@ -1128,6 +1128,8 @@
         if ([str isEqualToString:btntitle]) {//标题在已预约的数组里，把它换成可预约
             [button setBackgroundImage:[UIImage imageNamed:@"专家列表_03"] forState:UIControlStateNormal];
             
+            NSLog(@"---self.doctorSno:%@ -   [NSString stringWithFormat:@"",self.weekCount]:%@ ---- [strary objectAtIndex:0]:%@---- [strary objectAtIndex:1]:%@ --- setType:0",self.doctorSno,[NSString stringWithFormat:@"%ld",self.weekCount],[strary objectAtIndex:0],[strary objectAtIndex:1]);
+            
             [self soaprequstWithdoctorSno:self.doctorSno weekCount:[NSString stringWithFormat:@"%ld",self.weekCount] hourCount:[strary objectAtIndex:0] minuteCount:[strary objectAtIndex:1] setType:@"0"];//(setType设置类型:1为忙0为闲)
             
             
@@ -1141,6 +1143,8 @@
     if (haver == NO) {
         
         [button setBackgroundImage:[UIImage imageNamed:@"doctor_time_off"] forState:UIControlStateNormal];
+        
+        NSLog(@"---self.doctorSno:%@ -   [NSString stringWithFormat:@"",self.weekCount]:%@ ---- [strary objectAtIndex:0]:%@---- [strary objectAtIndex:1]:%@ --- setType:1",self.doctorSno,[NSString stringWithFormat:@"%ld",self.weekCount],[strary objectAtIndex:0],[strary objectAtIndex:1]);
         
         [self soaprequstWithdoctorSno:self.doctorSno weekCount:[NSString stringWithFormat:@"%ld",self.weekCount] hourCount:[strary objectAtIndex:0] minuteCount:[strary objectAtIndex:1] setType:@"1"];//(setType设置类型:1为忙0为闲)
         
@@ -1264,7 +1268,7 @@
 //获取时间的表格
 -(void)soaprequstWithcustomerSno:(NSString *)customerSno doctorSno:(NSString *)doctorSno yearCount:(NSString *)yearCount monthCount:(NSString *)monthCount dayCount:(NSString *)dayCount
 {
-    NSLog(@"UID:%@-----PSW:%@------doctorSno-%@-----[NSString stringWithFormat:@"",self.weekCount;%@",UID,PSW,doctorSno,[NSString stringWithFormat:@"%ld",self.weekCount]);
+    NSLog(@"UID:%@-----PSW:%@------doctorSno：%@-----yearCount;%@--- monthCount:%@--dayCount:%@----self.weekCount:%ld",UID,PSW,doctorSno,yearCount,monthCount,dayCount,self.weekCount);
     
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
@@ -1656,14 +1660,14 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     // NSLog(@"3 DONE. Received Bytes: %ld", [webData length]);
-    NSString *theXML = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+//    NSString *theXML = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
    // NSLog(@"分享的数据--%@",theXML);
     
     
-    //        NSString *str = [[NSString alloc] initWithData:webData encoding:NSUTF8StringEncoding];
-    //
-    //
-    //             NSLog(@"请求回来的数据-2--%@",str);
+//            NSString *str = [[NSString alloc] initWithData:webData encoding:NSUTF8StringEncoding];
+//    
+//    
+//                 NSLog(@"请求回来的数据-2--%@",str);
     
     //重新加載xmlParser
     //    if( xmlParser )
@@ -1987,6 +1991,18 @@
     
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString *registration_id = [user objectForKey:@"registration_id"];
+    
+    if ([_phonenumber.text isEqualToString:@""] || _phonenumber.text == nil) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请输入手机号码！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+        [alertview show];
+        return;
+    }
+    if (_phonenumber.text.length < 11 || _phonenumber.text.length > 11) {
+        
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"输入的号码有误！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+        [alertview show];
+        return;
+    }
     
     NSLog(@"提交");
     if ([_testnumber.text isEqualToString:@""] || _testnumber.text == nil) {

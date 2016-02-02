@@ -30,6 +30,7 @@
     
     _bigscrollview = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     _bigscrollview.contentSize = CGSizeMake(0, self.view.bounds.size.height);
+    _bigscrollview.delegate = self;
     [self.view addSubview:_bigscrollview];
     
     _background = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -117,13 +118,18 @@
     _binglitu.font = [UIFont systemFontOfSize:15];
     [_bigscrollview addSubview:_binglitu];
     
-    _upimage = [[UIButton alloc] initWithFrame:CGRectMake(0, 30 + _binglitu.frame.origin.y , self.view.bounds.size.width, self.view.bounds.size.height - 195 - 110)];
+    _upimage = [[UIButton alloc] initWithFrame:CGRectMake(0, 30 + _binglitu.frame.origin.y , self.view.bounds.size.width, self.view.bounds.size.height - (30 + _binglitu.frame.origin.y))];
 //    [_upimage setTitle:@"上传病历（可选）" forState:UIControlStateNormal];
     _upimage.backgroundColor = [UIColor whiteColor];
     [_upimage setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 //    [_upimage addTarget:self action:@selector(upimage) forControlEvents:UIControlEventTouchUpInside];
     [_bigscrollview addSubview:_upimage];
     
+    _textview = [[UITextView alloc] initWithFrame:CGRectMake(20, _binglitu.frame.origin.y + 40, self.view.bounds.size.width - 40, 60)];
+    _textview.text = @"请在此处添加文字.......";
+    _textview.font = [UIFont systemFontOfSize:17];
+    _textview.alpha = 0.5;
+    [_bigscrollview addSubview:_textview];
     
     _queding = [[UIButton alloc] initWithFrame:CGRectMake(20, _bigscrollview.bounds.size.height - 70, self.view.bounds.size.width - 40, 40)];
     [_queding setTitle:@"提交" forState:UIControlStateNormal];
@@ -132,7 +138,7 @@
     [_queding addTarget:self action:@selector(updateWithmedicaldetail) forControlEvents:UIControlEventTouchUpInside];
     [_queding setBackgroundImage:[UIImage imageNamed:@"大按钮s"] forState:UIControlStateNormal];
     [_bigscrollview addSubview:_queding];
-
+    
     
     self.numberary = [[NSMutableArray alloc] initWithCapacity:0];
     self.proSnosaryindex = [[NSMutableArray alloc] initWithCapacity:0];
@@ -145,12 +151,12 @@
     
     float width = (self.view.bounds.size.width - 60)/3;
     
-    _addbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 50 + _binglitu.frame.origin.y, width, width)];
+    _addbtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 130 + _binglitu.frame.origin.y, width, width)];
     [_addbtn setBackgroundImage:[UIImage imageNamed:@"fangxingjia"] forState:UIControlStateNormal];
     [_addbtn addTarget:self action:@selector(upimage) forControlEvents:UIControlEventTouchUpInside];
     [_bigscrollview addSubview:_addbtn];
     
-    _subtraction = [[UIButton alloc] initWithFrame:CGRectMake(40 + width, 50 + _binglitu.frame.origin.y, width, width)];
+    _subtraction = [[UIButton alloc] initWithFrame:CGRectMake(40 + width, 130 + _binglitu.frame.origin.y, width, width)];
     [_subtraction setBackgroundImage:[UIImage imageNamed:@"fangxingjian.jpg"] forState:UIControlStateNormal];
     [_subtraction addTarget:self action:@selector(cancelbtnclick) forControlEvents:UIControlEventTouchUpInside];
     [_bigscrollview addSubview:_subtraction];
@@ -166,6 +172,8 @@
     [super viewWillAppear:animated];
     self.iscancel = YES;
     [self cancelbtnclick];
+    
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
 }
 #pragma mark -------显示病历图片
 
@@ -187,7 +195,7 @@
         NSInteger yn = j / 3;
         
         int x = (15 + width) * xn + 15;
-        int y = (20 + heiht) * yn + 50 + _binglitu.frame.origin.y;
+        int y = (20 + heiht) * yn + 130 + _binglitu.frame.origin.y;
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, heiht)];
         button.backgroundColor = [UIColor redColor];
@@ -204,7 +212,7 @@
         NSInteger xn1 = a1 % 4;
         NSInteger yn1 = a1 / 4;
         int x1 = (15 + width) * xn1 + 15;
-        int y1 = (20 + heiht) * yn1 + 50 + _binglitu.frame.origin.y;
+        int y1 = (20 + heiht) * yn1 + 130 + _binglitu.frame.origin.y;
         _addbtn.frame = CGRectMake(x1, y1, width , heiht);
 
 
@@ -216,20 +224,24 @@
         NSInteger xn2 = a2 % 3;
         NSInteger yn2 = a2 / 3;
         int x2 = (15 + width) * xn2 + 15;
-        int y2 = (20 + heiht) * yn2 + 50 + _binglitu.frame.origin.y;
+        int y2 = (20 + heiht) * yn2 + 130 + _binglitu.frame.origin.y;
         _subtraction.frame = CGRectMake(x2, y2, width , heiht);
     }else{
     
         NSInteger xn2 = a2 % 3;
         NSInteger yn2 = a2 / 3;
         int x2 = (15 + width) * xn2 + 15;
-        int y2 = (20 + heiht) * yn2 + 50 + _binglitu.frame.origin.y;
+        int y2 = (20 + heiht) * yn2 + 130 + _binglitu.frame.origin.y;
         _subtraction.frame = CGRectMake(x2, y2, width , heiht);
     }
     
 
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
+}
 
 -(void)cancelbuttonclickl:(UIButton *)btn
 {
@@ -302,6 +314,16 @@
     
 }
 
+-(void)keyboardShow:(NSNotification *)note
+{
+    if (self.isthefirst == 0) {
+        _textview.text = @"";
+        self.isthefirst = 1;
+        _textview.alpha = 1;
+    }
+    
+
+}
 
 #pragma mark----------获取病历详情
 //获取病历详情
@@ -463,9 +485,6 @@
     }else{
         [self fanhui];
     }
-    
-    
-   
     
 }
 
@@ -660,9 +679,9 @@ NSLog(@"取消发送照片");
 //上传病历前获取medicalhistorysno
 -(void)updateWithmedicaldetail
 {
-    NSString *contentstr = @"病历";
     
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&customersno=%@&orderdetailsno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.customersno,self.orderDetailSno,contentstr];
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.savemedicalhistory.go?doctorsno=%@&customersno=%@&orderdetailsno=%@&content=%@",HTTPREQUESTPDOMAIN,self.doctorsno,self.customersno,self.orderDetailSno,_textview.text];
    
     
     if (self.imagedataary.count > 0) {

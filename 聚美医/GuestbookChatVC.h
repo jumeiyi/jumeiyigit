@@ -11,7 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "pickerimageViewController.h"
 
-@interface GuestbookChatVC : UIViewController<NSXMLParserDelegate,UITableViewDataSource,UITableViewDelegate,AVAudioPlayerDelegate,AVAudioRecorderDelegate,sendvaluedelegate>
+@interface GuestbookChatVC : UIViewController<NSXMLParserDelegate,UITableViewDataSource,UITableViewDelegate,AVAudioPlayerDelegate,AVAudioRecorderDelegate,sendvaluedelegate,UITextViewDelegate>
 
 {
     NSMutableData *webData;
@@ -22,16 +22,20 @@
     NSMutableArray *_custommesarray;
     
     UIImageView *_images;
-    UITextField *_text;
+    UITextView *_text;
+    UIButton *_sendmasses;
     
     BOOL _isLoading;
     NSTimer *_timer;
     NSTimer *_messetimer;
+    
 }
-@property (nonatomic,strong) AVAudioRecorder *recorder;
-@property (nonatomic,strong) AVAudioPlayer *player;
-@property (nonatomic,assign) BOOL recording;
-@property (nonatomic,strong) NSString *fileName;
+
+@property(nonatomic,strong)AVAudioRecorder *recorder;
+@property(nonatomic,strong)AVAudioPlayer *player;
+@property(nonatomic,assign)BOOL recording;
+@property(nonatomic,strong)NSString *fileName;
+@property(nonatomic,assign)float YdeltaY;
 
 @property(nonatomic,retain)NSString *doctorsno;
 @property(nonatomic,retain)NSString *customerSno;
@@ -39,7 +43,6 @@
 @property(nonatomic,retain)NSString *firstWord;
 @property(nonatomic,retain)NSString *strPageindex;
 @property(nonatomic,retain)NSString *strPagesize;
-
 
 @property(nonatomic,retain)NSString *fileType;
 @property(nonatomic,retain)NSString *textInfo;
