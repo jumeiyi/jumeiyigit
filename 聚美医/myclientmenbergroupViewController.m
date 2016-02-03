@@ -106,28 +106,46 @@
     cancelbtn.layer.cornerRadius = 3;
     [self.view addSubview:cancelbtn];
     
-    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.groupid];
+//    NSString *string = [NSString stringWithFormat:@"%@/doctor.customerlist.go?docsno=%@&group=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.groupid];
+    
+    NSString *string = [NSString stringWithFormat:@"%@/doctor.getDoctorGroup.go?doctorsno=%@&groupid=%@&toPage=1&Count_per_Page=15",HTTPREQUESTPDOMAIN,self.doctorsno,self.groupid];
     
     NSLog(@"客户的分组成员--%@",string);
+    self.manberarray = [[NSMutableArray alloc] initWithCapacity:0];
     self.manberarrays = [[NSMutableArray alloc] initWithCapacity:0];
     self.gentmanberarrays = [[NSMutableArray alloc] initWithCapacity:0];
     self.customersidarray = [[NSMutableArray alloc] initWithCapacity:0];
     self.customersnikenames = [[NSMutableArray alloc] initWithCapacity:0];
     
     
-    [AFHTTPRequestOpeartionManagerOfme postsallcustomerAndurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+//    [AFHTTPRequestOpeartionManagerOfme postsallcustomerAndurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+//        
+//        self.manberarrays = array1;
+//        NSLog(@"原有的客户：%ld",array1.count);
+//        
+//        for ( mycustomerdata *data in self.manberarrays) {
+//            [self.customersidarray addObject:data.sno];
+//            [self.customersnikenames addObject:data.nickname];
+//        }
+//        
+//        [self addmanbers];
+//    }];
+    
+    [AFHTTPRequestOpeartionManagerOfme getDoctorGroupWithUrl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
-        self.manberarrays = array1;
-        NSLog(@"原有的客户：%ld",array1.count);
+        self.manberarray = array1;
         
-        for ( mycustomerdata *data in self.manberarrays) {
-            [self.customersidarray addObject:data.sno];
+        for (mycustomerdata *data in self.manberarray) {
+            NSLog(@"请求的数据：%@",data.customersno);
+            [self.customersidarray addObject:data.customersno];
             [self.customersnikenames addObject:data.nickname];
+            [self.manberarrays addObject:data];
         }
-        
+
         [self addmanbers];
     }];
-
+    
+    
     
 }
 
@@ -141,6 +159,7 @@
         [self.customersidarray addObject:mydata.sno];
         [self.customersnikenames addObject:mydata.nickname];
     }
+    
     [self.gentmanberarrays removeAllObjects];
 
     [self addmanbers];
@@ -284,6 +303,7 @@
     NSLog(@"12345");
     
     [self.manberarrays removeObjectAtIndex:btn.tag - 10];
+    [self.customersidarray removeObjectAtIndex:btn.tag - 10];
     [btn removeFromSuperview];
     
     
@@ -311,14 +331,14 @@
     self.groupname = _grouptitle.text;
     
     self.customersIDs = @"";
-    for (mycustomerdata *data in self.manberarrays) {
+    for (NSString *string in self.customersidarray) {
         if ([self.customersIDs isEqualToString:@""]) {
-           self.customersIDs = [NSString stringWithFormat:@"%@",data.sno];
+           self.customersIDs = [NSString stringWithFormat:@"%@",string];
         }else{
-        self.customersIDs = [NSString stringWithFormat:@"%@,%@",self.customersIDs,data.sno];
+        self.customersIDs = [NSString stringWithFormat:@"%@,%@",self.customersIDs,string];
         }
-        
     }
+    
     
         NSString *string = [NSString stringWithFormat:@"%@//doctor.savegroup.go?groupid=%@&groupname=%@&doctorsno=%@&customers=%@",HTTPREQUESTPDOMAIN,self.groupid,self.groupname,self.doctorsno,self.customersIDs];
     

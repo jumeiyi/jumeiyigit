@@ -72,6 +72,7 @@
 {
 
     NSString *string = [NSString stringWithFormat:@"%@/doctor.getgrouplist.go?doctorsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
+//        NSString *string = [NSString stringWithFormat:@"%@/doctor.getDoctorGroup.go?doctorsno=%@",HTTPREQUESTPDOMAIN,self.doctorsno];
     
     [AFHTTPRequestOpeartionManagerOfme postSetgroups:string withBlock:^(NSMutableArray *array1, NSMutableArray *array2, NSMutableArray *array3) {
         
@@ -80,6 +81,11 @@
         [self.mytableview reloadData];
         
     }];
+    
+//    [AFHTTPRequestOpeartionManagerOfme getDoctorGroupWithUrl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
+//        
+//        
+//    }];
 
 }
 

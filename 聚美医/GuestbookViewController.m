@@ -62,7 +62,6 @@
      _custommesarray = [[NSMutableArray alloc] initWithCapacity:0];
     
 
-
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -71,7 +70,9 @@
     self.doctorsno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
     
     self.istop = YES;
-    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
+//    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
+    
+    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"" strPageindex:@"1" strPagesize:@"40"];
     
     [userdf setObject:@"" forKey:@"ishaver"];
     [userdf synchronize];
@@ -198,6 +199,7 @@
     return _custommesarray.count;
 
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"cell";
@@ -383,7 +385,6 @@
     if ([elementName isEqualToString:@"GetDoctorCustomerTalkDataResult"]) {
         [_soapResults setString:@""];//把它置空，准备接收新值。
     }
-    
 }
 
 // 找到内容

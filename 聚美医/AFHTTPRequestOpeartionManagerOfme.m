@@ -1235,6 +1235,58 @@
 
 }
 
+//获取分组列表
++(void)getDoctorGroupWithUrl:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"AFHTTPRequestOpeartionManager客户分组列表---------%@---- %@",data ,error);
+        
+        
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+        
+        
+        NSString *dctArray = [[data objectForKey:@"Content"] objectForKey:@"msg"];
+        NSString *state = [[data objectForKey:@"Content"] objectForKey:@"state"];
+        NSDictionary *dataary = [[data objectForKey:@"Content"] objectForKey:@"data"];
+        
+       
+        NSMutableArray *manbers = [dataary objectForKey:@"userlist"];
+        NSMutableArray *myary = [[NSMutableArray alloc] initWithCapacity:0];
+        
+        for (NSDictionary *mymanber in manbers) {
+            mycustomerdata *mydata = [mycustomerdata mycustomerdataWithdiction:mymanber];
+            [myary addObject:mydata];
+        }
+        
+        
+        
+        
+        block(myary,nil,nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+
+}
+
 + (void)checkNetWorkStatus{
     
     /**
