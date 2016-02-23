@@ -34,6 +34,7 @@
 @property(nonatomic,copy)NSString *sextype;
 @property(nonatomic,copy)NSString *sno;
 @property(nonatomic,copy)NSString *truename;
+@property(nonatomic,copy)NSString *pinyin;
 
 @property(nonatomic,copy)NSString *issysreverse;
 @property(nonatomic,copy)NSString *groupid;

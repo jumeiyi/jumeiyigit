@@ -327,38 +327,42 @@
     
     [AFHTTPRequestOpeartionManagerOfme postmanberplistandurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
-        _sectionindex = array1;
-        _insectionofrow = array2;
+        _sectionindex = array2;
+        _insectionofrow = array1;
        
          _sectionary = [[NSMutableArray alloc] initWithCapacity:0];
-//        for (int i = 0; i < _insectionofrow.count; i++) {
-//            NSMutableArray *rowary = [[NSMutableArray alloc] initWithCapacity:0];
-//            NSMutableArray *romnumber = [_insectionofrow objectAtIndex:i];
-//            
-//            for (int j = 0; j <  romnumber.count;j++) {
-//                [rowary addObject:@"y"];
-//            }
-//            [_sectionary addObject:rowary];
-//        }
-        
         for (int i = 0; i < _insectionofrow.count; i++) {
-            [_sectionary addObject:@"y"];
+            NSMutableArray *rowary = [[NSMutableArray alloc] initWithCapacity:0];
+            NSMutableArray *romnumber = [_insectionofrow objectAtIndex:i];
+            
+            for (int j = 0; j <  romnumber.count;j++) {
+                [rowary addObject:@"y"];
+            }
+            [_sectionary addObject:rowary];
         }
         
         //遍历换掉相同的参数
         for (int i = 0; i < _sectionary.count; i++) {
-
-                mycustomerdata *romsno = [_insectionofrow objectAtIndex:i];
+            
+            NSMutableArray *smallary = [_sectionary objectAtIndex:i];
+            NSMutableArray *mydataallary = [_insectionofrow objectAtIndex:i];
+            
+            for (int k = 0; k < smallary.count; k++) {
+                NSMutableArray *isystr = [smallary objectAtIndex:k];
+                mycustomerdata *mydata = [mydataallary objectAtIndex:k];
+                
                 
                 for (NSString *str in self.OriginalManberary) {
-                    
-                    if ([str isEqualToString:romsno.sno]) {
-                        [_sectionary replaceObjectAtIndex:i withObject:@"xx"];
-                        NSLog(@"romsno.sno,str%@=-==%@",romsno.sno,str);
+                    if ([str isEqualToString:mydata.sno]) {
+                        [smallary replaceObjectAtIndex:k withObject:@"xx"];
+                        NSLog(@"isystr,str:(%@)=-==(%@)",isystr,str);
                     }
+                }
                 
             }
-            }
+            
+            
+        }
                 
        
         if (_insectionofrow.count > 0) {
@@ -624,31 +628,26 @@
 }
 
 #pragma mark tableview
-//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-////    if (tableView.tag == 60) {
-////        return _sectionindex.count;
-////    }else{
-////        return 1;
-////    }
-//    return 1;
-//}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (tableView.tag == 60) {
+        return _sectionindex.count;
+    }else{
+        return 1;
+    }
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 60) {
-//        NSMutableArray *rownumber = [_insectionofrow objectAtIndex:section];
-//        return  rownumber.count;
-        
-        return _insectionofrow.count;
+        NSMutableArray *rownumber = [_insectionofrow objectAtIndex:section];
+        return  rownumber.count;
         
     }else if (tableView.tag == 62){
         return _groups.count;
     }else{
         return 2;
     }
-    
-    NSLog(@"_insectionofrow.count:%ld",_insectionofrow.count);
     
 }
 
@@ -670,10 +669,8 @@
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 8;
         
-//        NSMutableArray *mycustomary = [_insectionofrow objectAtIndex:indexPath.section];
-//        mycustomerdata *mycustom = [mycustomary objectAtIndex:indexPath.row];
-        
-        mycustomerdata *mycustom = [_insectionofrow objectAtIndex:indexPath.row];
+        NSMutableArray *mycustomary = [_insectionofrow objectAtIndex:indexPath.section];
+        mycustomerdata *mycustom = [mycustomary objectAtIndex:indexPath.row];
         
         NSArray *proudctorary = [mycustom.buyproductnames componentsSeparatedByString:@","];
         
@@ -777,12 +774,15 @@
             
         }
         
-        NSString *strary = [_sectionary objectAtIndex:indexPath.row];
+        NSMutableArray *strary = [_sectionary objectAtIndex:indexPath.section];
+        NSString *indexstr = [strary objectAtIndex:indexPath.row];
         
-        if ([strary isEqualToString:@"y"]) {
+        NSLog(@"选择与否：%@",indexstr);
+        
+        if ([indexstr isEqualToString:@"y"]) {
             cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 12, 25, 25);
             cell.shooseimage.image = [UIImage imageNamed:@"huisegouxuan"];
-        }else if([strary isEqualToString:@"xx"]){
+        }else if([indexstr isEqualToString:@"xx"]){
             cell.shooseimage.frame = CGRectMake(self.view.bounds.size.width - 60, 12, 25, 25);
             cell.shooseimage.image = [UIImage imageNamed:@"sucaibaganger"];
         }else{
@@ -791,7 +791,6 @@
         }
 
 
-        
         return cell;
         
     }else if (tableView.tag == 62){
@@ -856,11 +855,11 @@
         view.backgroundColor = [self colorWithRGB:0xeeeeee alpha:1];
         [tableView addSubview:view];
         
-            UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
-            titlelable.text = [_sectionindex objectAtIndex:section];
-            titlelable.font = [UIFont systemFontOfSize:13];
-            titlelable.textColor = [self colorWithRGB:0x666666 alpha:1];
-            [view addSubview:titlelable];
+        UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
+        titlelable.text = [_sectionindex objectAtIndex:section];
+        titlelable.font = [UIFont systemFontOfSize:13];
+        titlelable.textColor = [self colorWithRGB:0x666666 alpha:1];
+        [view addSubview:titlelable];
         
         return view;
         
@@ -908,15 +907,16 @@
     }else{
         
 
-        NSString *str = [_sectionary objectAtIndex:indexPath.row];
+        NSMutableArray *indexary = [_sectionary objectAtIndex:indexPath.section];
+        NSString *str = [indexary objectAtIndex:indexPath.row];
         
         if ([str isEqualToString:@"y"]) {
-            [_sectionary replaceObjectAtIndex:indexPath.row withObject:@"x"];
+            [indexary replaceObjectAtIndex:indexPath.row withObject:@"x"];
             
         }else if([str isEqualToString:@"x"]){
-            [_sectionary replaceObjectAtIndex:indexPath.row withObject:@"y"];
+            [indexary replaceObjectAtIndex:indexPath.row withObject:@"y"];
         }else{
-        
+            
         }
         
         NSIndexPath *indexPath_1=[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
@@ -925,14 +925,20 @@
         
         [_getmanberary removeAllObjects];
         
-
+        
+        
+        for (int j = 0; j < _sectionary.count; j++) {
             
-            for (int j = 0; j < _sectionary.count; j++) {
-                 NSString *str = [_sectionary objectAtIndex:j];
-                mycustomerdata *mydt = [_insectionofrow objectAtIndex:j];
-                if ([str isEqualToString:@"x"]) {
+            NSMutableArray *shoosestr = [_insectionofrow objectAtIndex:j];
+            NSMutableArray *shooseindexstr = [_sectionary objectAtIndex:j];
+            for (int i = 0; i < shooseindexstr.count; i++) {
+                mycustomerdata *mydt = [shoosestr objectAtIndex:i];
+                NSString *shstr = [shooseindexstr objectAtIndex:i];
+                if ([shstr isEqualToString:@"x"]) {
                     [_getmanberary addObject:mydt];
                 }
+                
+            }
             
         }
         

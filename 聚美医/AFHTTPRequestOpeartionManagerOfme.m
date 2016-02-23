@@ -170,9 +170,9 @@
         NSError *error = nil;
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
         
-                NSLog(@"获取客户列表数据-%@---- %@",data ,error);
+        NSLog(@"获取客户列表数据-%@---- %@",data ,error);
         
-       
+        
         NSString *errorstring = [data objectForKey:@"ErrorMessage"];
         if (errorstring.length > 10) {
             UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -186,46 +186,55 @@
         //NSString *string = [NSString stringWithFormat:@"%@",dictArray];
         //NSString *resultMessage = [NSString stringWithFormat:@"%@",dctArray];
         
-         //NSLog(@"分组：data--%@",data);
+        //NSLog(@"分组：data--%@",data);
         
         NSMutableArray *mycustomerDataarray = [[NSMutableArray alloc] initWithCapacity:0];
         
-        //NSMutableArray *headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
-        NSMutableArray *mutablehead = [[NSMutableArray alloc] initWithCapacity:0];
-        //NSString *stra;
+        NSMutableArray *headnamearray = [[NSMutableArray alloc] initWithCapacity:0];//表格右边的索引
+        NSMutableArray *mutablehead = [[NSMutableArray alloc] initWithCapacity:0];//所有客户
+        
+        NSString *stra;
         for (NSDictionary *mycusdiction in dataary) {
             mycustomerdata *mycustom = [mycustomerdata mycustomerdataWithdiction:mycusdiction];
-
-           // NSLog(@"mycustom.createby--%@",mycustom.createby);
-            //stra = mycustom.firstsearchword;
-            [mycustomerDataarray addObject:mycustom];
-        }
-        [mutablehead addObject:mycustomerDataarray];
-//        
-//        
-//        
-//       NSMutableArray *allgroup = [[NSMutableArray alloc] initWithCapacity:0];//指定区的数据
-//        for (NSString *str in headnamearray) {
-//            NSMutableArray *indexary = [[NSMutableArray alloc] initWithCapacity:0];
-//            for (mycustomerdata *mydata in mycustomerDataarray) {
-//                if ([mydata.firstsearchword isEqualToString:str]) {
-//                    [indexary addObject:mydata];
-//                }
-//            }
-//            [allgroup addObject:indexary];
-//        }
-//        
-//        NSLog(@"分组列表的客户列表：headnamearray%@",headnamearray);
-       // NSLog(@"客户数据%@",allgroup);
-        
-
-        for (mycustomerdata *mycustom in mycustomerDataarray) {
+            if (![stra isEqualToString:mycustom.pinyin]) {
+                [headnamearray addObject:mycustom.pinyin];
+            }
+            stra = mycustom.pinyin;
+            [mutablehead addObject:mycustom];
         }
         
-        block(nil,mycustomerDataarray,nil);
+        
+        NSMutableArray *allarray = [[NSMutableArray alloc] initWithCapacity:0];//所有客户
+        for (int i = 0; i < headnamearray.count; i++) {
+            
+            NSMutableArray *smallarray = [[NSMutableArray alloc] initWithCapacity:0];
+            NSString *headstr = [headnamearray objectAtIndex:i];
+            
+            for (int k = 0; k < mutablehead.count; k++) {
+                mycustomerdata *mycustom = [mutablehead objectAtIndex:k];
+                
+                if ([mycustom.pinyin isEqualToString:headstr]) {
+                    [smallarray addObject:mycustom];
+                    NSLog(@"%@--%@",headstr,mycustom.truename);
+                }
+            }
+            [allarray addObject:smallarray];
+        }
+        
+        
+        for (NSMutableArray *xiao in allarray) {
+            
+            for (mycustomerdata *myc in xiao) {
+                NSLog(@"咿呀呀————：%@",myc.truename);
+            }
+            
+        }
+        
+        
+        block(allarray,headnamearray,nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
+        
     }];
     
 

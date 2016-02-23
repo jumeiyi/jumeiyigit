@@ -467,25 +467,21 @@
 #pragma mark tableview
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-     
+    
+   
     if (tableView.tag == 60) {
         if (self.IsServiced == YES) {
-//            return _headnamearray.count + 1;
-            return 2;
+            return _headnamearray.count + 1;
         }else{
-            NSLog(@"numberOfSectionsInTableView--_headnamearray.count:%ld",_headnamearray.count);
-        //return _headnamearray.count;
+            return _headnamearray.count;
             return 1;
         }
         
     }else if (tableView.tag == 62){
-     return 1;
+        return 1;
     }else{
         return 1;
     }
-    
-   
-    
   
 }
 
@@ -493,35 +489,30 @@
 {
     
     if (tableView.tag == 60) {
-
+        
         if (self.IsServiced == YES) {
             
             if (section == 0) {
                 return 1;
             }else{
-//                 NSMutableArray *ary1 = [_allgroup objectAtIndex:section - 1];
-//                return ary1.count;
-              return _allgroup.count;
+                NSMutableArray *ary1 = [_allgroup objectAtIndex:section - 1];
+                return ary1.count;
             }
             
-            
         }else{
-//            
-//            NSLog(@"self.IsServiced == NO B %ld",_allgroup.count);
-//            
-//              NSMutableArray *ary1 = [_allgroup objectAtIndex:section];
-//            return ary1.count;
-            return _allgroup.count;
+            
+            NSMutableArray *ary1 = [_allgroup objectAtIndex:section];
+            return ary1.count;
         }
         
         
     }else if (tableView.tag == 62){
-        NSLog(@"_groups.count------3-:%ld",_groups.count);
         return _groups.count;
     }else {
         
         return 2;
     }
+
     
 }
 
@@ -529,9 +520,7 @@
 {
     
 
-    
     if (tableView.tag == 60 && self.AllowRefresh == YES) {
-        
         
         static NSString *identifier = @"cell";
         
@@ -544,7 +533,6 @@
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 8;
 
-        
         cell.headimage.frame = CGRectMake(0, 0, 0, 0);
         cell.headimage.image = [UIImage imageNamed:@""];
         
@@ -558,8 +546,6 @@
         cell.project2.frame = CGRectMake(0, 0, 0, 0);
         cell.project2.backgroundColor = [UIColor redColor];
         cell.project2.text = @"";
-        
-
         
 
         if (self.IsServiced == YES) {
@@ -576,9 +562,8 @@
                 
             }else{
                 
-                //NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
-                //mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
-                mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
+                NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
+                mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
                 
                 NSArray *proudctorary = [customer.buyproductnames componentsSeparatedByString:@","];
                 NSLog(@"项目-----%@",proudctorary);
@@ -663,7 +648,6 @@
                     cell.project2.layer.masksToBounds = YES;
                     cell.project2.layer.cornerRadius = 3;
                     
-
                 }
 
             }
@@ -674,10 +658,8 @@
             
 
             
-//            NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
-//            mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
-
-            mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
+            NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
+            mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
             
             NSArray *proudctorary = [customer.buyproductnames componentsSeparatedByString:@","];
              NSLog(@"项目-----%@",proudctorary);
@@ -773,8 +755,7 @@
         
 
     }else if (tableView.tag == 62){
-        NSLog(@"_groups.count--- 4 ---%ld",_groups.count);
-        NSLog(@"indexPath.row-%ld-----_numberofmanber.count-%ld",indexPath.row,_numberofmanber.count);
+      
         static NSString *ident = @"cell2";
         UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:ident];
         if (!cell2) {
@@ -807,7 +788,6 @@
         if (!cell3) {
             cell3 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         }
-        NSLog(@"_shooesproject.count : %ld",_shooesproject.count);
         if (self.AllowRefresh == YES) {
             cell3.textLabel.text = [_shooesproject objectAtIndex:indexPath.row];
             cell3.textLabel.font = [UIFont systemFontOfSize:15];
@@ -833,6 +813,9 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+ 
+    
+
     if (tableView.tag == 60) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 22)];
         view.backgroundColor = [self colorWithRGB:0xeeeeee alpha:1];
@@ -849,27 +832,105 @@
                 [view addSubview:titlelable];
             }
         }else{
-            NSLog(@"--开始-viewForHeaderInSection---_headnamearray--%ld--section:-%ld",_headnamearray.count,section);
             UILabel *titlelable = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 50, 20)];
             titlelable.text = [_headnamearray objectAtIndex:section];
             titlelable.font = [UIFont systemFontOfSize:13];
             titlelable.textColor = [self colorWithRGB:0x666666 alpha:1];
             [view addSubview:titlelable];
         }
-
-         return view;
+        
+        return view;
         
     }else{
         
-    return nil;
+        return nil;
     }
-    
-
 
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    
+//    if (tableView.tag == 60) {
+//        
+//        if (self.IsServiced == YES) {
+//            if (indexPath.section == 0) {
+//                myclientmainsetgropViewController *myclient = [[myclientmainsetgropViewController alloc] init];
+//                myclient.doctorsno = self.doctorsno;
+//                [self.navigationController pushViewController:myclient animated:YES];
+//            }else{
+//               // NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
+//                mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
+//                
+//                myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+//                myclient.customerSno = customer.sno;
+//                myclient.doctorsno = self.doctorsno;
+//                [self.navigationController pushViewController:myclient animated:YES];
+//              }
+//        }else{
+//           // NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
+//            mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
+//            
+//            myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
+//            myclient.customerSno = customer.sno;
+//            myclient.doctorsno = self.doctorsno;
+//            [self.navigationController pushViewController:myclient animated:YES];
+//        }
+//        
+//        self.isproject = YES;
+//        [self shoosebtnclick];
+//
+//        }else if (tableView.tag == 62){
+//            
+//            self.AllowRefresh = NO;
+//            self.didselector = indexPath.row;
+//            
+//        if (indexPath.row != 0) {
+//            self.IsServiced = NO;
+//            [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+//            _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
+//            self.group = [_groupIDarray objectAtIndex:indexPath.row];
+//            
+//            _imagebtn.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+//            
+//            [self groupsbuttonclick];
+//            [self startrequest];
+//            
+//            _tableview.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
+//            
+//        }else{
+//           self.IsServiced = YES;
+//            
+//            [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+//            _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
+//            self.group = [_groupIDarray objectAtIndex:indexPath.row];
+//            
+//            _imagebtn.frame = CGRectMake(_groupbtn.frame.origin.x + _groupbtn.frame.size.width, 32, 15, 10);
+//            
+//            [self groupsbuttonclick];
+//            [self startrequest];
+//            
+//            
+//        }
+//        self.group = [_groupIDarray objectAtIndex:indexPath.row];
+//        
+//    }else {
+//       
+//        NSString *str = [NSString stringWithFormat:@"%ld",indexPath.row];
+//        
+//        if ([str isEqualToString:@"0"]) {
+//            self.typeInfo = @"name";
+//            [_shoosebtn setTitle:@"姓名" forState:UIControlStateNormal];
+//        }else{
+//            [_shoosebtn setTitle:@"项目" forState:UIControlStateNormal];
+//            self.typeInfo = @"product";
+//        }
+//        
+//         [self shoosebtnclick];
+//
+//    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (tableView.tag == 60) {
@@ -880,17 +941,17 @@
                 myclient.doctorsno = self.doctorsno;
                 [self.navigationController pushViewController:myclient animated:YES];
             }else{
-               // NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
-                mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
+                NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section - 1];
+                mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
                 
                 myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
                 myclient.customerSno = customer.sno;
                 myclient.doctorsno = self.doctorsno;
                 [self.navigationController pushViewController:myclient animated:YES];
-              }
+            }
         }else{
-           // NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
-            mycustomerdata *customer = [_allgroup objectAtIndex:indexPath.row];
+            NSMutableArray *mycustomary = [_allgroup objectAtIndex:indexPath.section];
+            mycustomerdata *customer = [mycustomary objectAtIndex:indexPath.row];
             
             myclientdatasViewController *myclient = [[myclientdatasViewController alloc] init];
             myclient.customerSno = customer.sno;
@@ -900,12 +961,12 @@
         
         self.isproject = YES;
         [self shoosebtnclick];
-
-        }else if (tableView.tag == 62){
-            
-            self.AllowRefresh = NO;
-            self.didselector = indexPath.row;
-            
+        
+    }else if (tableView.tag == 62){
+        
+        self.AllowRefresh = NO;
+        self.didselector = indexPath.row;
+        
         if (indexPath.row != 0) {
             self.IsServiced = NO;
             [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
@@ -920,7 +981,7 @@
             _tableview.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
             
         }else{
-           self.IsServiced = YES;
+            self.IsServiced = YES;
             
             [_groupbtn setTitle:[_groups objectAtIndex:indexPath.row] forState:UIControlStateNormal];
             _groupbtn.frame = CGRectMake(self.view.bounds.size.width/2 - ([self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]]/2 + 10), _groupbtn.frame.origin.y, [self NSStringwithsize:17 str:[_groups objectAtIndex:indexPath.row]] + 20, _groupbtn.frame.size.height);
@@ -936,7 +997,7 @@
         self.group = [_groupIDarray objectAtIndex:indexPath.row];
         
     }else {
-       
+        
         NSString *str = [NSString stringWithFormat:@"%ld",indexPath.row];
         
         if ([str isEqualToString:@"0"]) {
@@ -947,8 +1008,8 @@
             self.typeInfo = @"product";
         }
         
-         [self shoosebtnclick];
-
+        [self shoosebtnclick];
+        
     }
 
 }
@@ -989,20 +1050,20 @@
 }
 
 // UITableViewDataSource协议中的方法，该方法的返回值决定指定分区的页眉
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection
-                      :(NSInteger)section
-{
-    if (self.IsServiced == YES) {
-        if (section == 0) {
-            return nil;
-        }else{
-            return [_headnamearray objectAtIndex:section];
-        }
-    }else{
-        return [_headnamearray objectAtIndex:section - 1];
-    }
-    
-}
+//- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection
+//                      :(NSInteger)section
+//{
+//    if (self.IsServiced == YES) {
+//        if (section == 0) {
+//            return nil;
+//        }else{
+//            return [_headnamearray objectAtIndex:section];
+//        }
+//    }else{
+//        return [_headnamearray objectAtIndex:section - 1];
+//    }
+//    
+//}
 ////搜索得到的数据
 //-(void)searchdata{
 //
@@ -1039,8 +1100,8 @@
     [AFHTTPRequestOpeartionManagerOfme postmanberplistandurl:string withblock:^(NSMutableArray *array1, NSMutableArray *array2, NSString *string) {
         
         [_allgroup removeAllObjects];
-        _headnamearray = array1;
-        _allgroup = array2;
+        _headnamearray = array2;
+        _allgroup = array1;
         
 
 

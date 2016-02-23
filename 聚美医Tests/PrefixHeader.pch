@@ -15,7 +15,7 @@
 
 //#define HTTPREQUESTPDOMAIN @"http://10.5.2.2:8080"
 //#define HTTPREQUESTPDOMAIN @"http://10.5.2.100/jumeiyi/"
-//#define HTTPREQUESTPDOMAIN @"http://10.5.2.115"
+//#define HTTPREQUESTPDOMAIN @"http://10.5.3.103"
 //#define HTTPREQUESTPDOMAIN @"http://cs.jumeiyiyun.com"
 #define HTTPREQUESTPDOMAIN @"http://jk.jumeiyiyun.com"
 //#define HTTPREQUESTPDOMAIN @"http://10.5.3.125"

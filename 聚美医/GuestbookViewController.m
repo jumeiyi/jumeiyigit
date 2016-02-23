@@ -89,7 +89,7 @@
         self.a = 1;
         self.istop = YES;
         
-        [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
+        [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"" strPageindex:@"1" strPagesize:@"40"];
     }
     else if (direction==RefreshDirectionBottom)
     {
@@ -131,7 +131,7 @@
             _isLoading = YES;
             self.a++;
             _timer1 = [NSTimer scheduledTimerWithTimeInterval:2.50 target:self selector:@selector(shuaxins) userInfo:nil repeats:NO];
-            [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:[NSString stringWithFormat:@"%ld",self.a] strPagesize:@"20"];
+            [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"" strPageindex:[NSString stringWithFormat:@"%ld",self.a] strPagesize:@"20"];
             NSLog(@"a的值：%ld",self.a);
         }
         if (- scrollView.contentOffset.y / _tableview.frame.size.height > 0.2) {
