@@ -16,6 +16,9 @@
 #import "PrefixHeader.pch"
 #import "PointViewController.h"
 #import "DetailsPersonalData.h"
+
+#import "HttpMoreViewController.h"
+
 @interface AboutViewController ()
 
 @end
@@ -35,7 +38,8 @@
     
     
     TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
-    [self.view addSubview:topbar];
+    [self.view addSubview:topbar
+     ];
     
     UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, self.view.bounds.size.width, 25)];
     titilelable.text = @"更多";
@@ -46,7 +50,7 @@
     [topbar addSubview:titilelable];
     
     float hi = 45.3;
-    NSArray *titleary = [[NSArray alloc] initWithObjects:@"    完善资料",@"    我的积分",@"    意见反馈",@"    优惠活动",@"    退出登录", nil];
+    NSArray *titleary = [[NSArray alloc] initWithObjects:@"    完善资料",@"    美币商城",@"    意见反馈",@"    优惠活动",@"    退出登录", nil];
     NSArray *buttonimagesary = [[NSArray alloc] initWithObjects:@"更多_02e",@"更多_02e",@"更多_02e",@"更多_02e",@"更多_02e", nil];
     for (int i = 0; i < 5; i++) {
 
@@ -69,6 +73,9 @@
     self.doctorSno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
     
     NSLog(@"更多页面医生sno:%@",self.doctorSno);
+    
+//    HttpMoreViewController *moreview = [[HttpMoreViewController alloc] init];
+//    [self.navigationController pushViewController:moreview animated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -101,6 +108,7 @@
         point.doctorsno = self.doctorSno;
         point.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:point animated:YES];
+        
 
     }else if(butn.tag == 3){
     
@@ -132,6 +140,7 @@
         
         [user setObject:@"" forKey:@"CommomUserORCommomDoctor"];
         [user setObject:@"" forKey:@"customerSno"];
+        [user setObject:@"1" forKey:@"isnewlogin"];
         [user synchronize];
         
         //        NSUserDefaults *userDefatluts = [NSUserDefaults standardUserDefaults];
@@ -147,6 +156,8 @@
         
         self.tabBarController.selectedIndex = 0;
         // }
+        
+        NSLog(@"退出登录的sno:%@",[user objectForKey:@"customerSno"]);
     }
 
 }

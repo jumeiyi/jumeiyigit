@@ -1,0 +1,86 @@
+<div class="views">
+    <div class="view view-main">
+        <div class="pages ">
+            <!--navbar-->
+            <div class="navbar" id="historymessage" style="height:200px;">
+                <div class="navbar-inner">
+                    <div class="left">
+                        <a class="link back" onclick="GoBack()">
+                            <i class="icon icon-back"></i>
+                        </a>
+                    </div>
+                    <div class="center sliding fromname"></div>
+                    <div class="right"></div>
+                </div>
+            </div>
+            <div data-page="messages" class="page navbar-fixed toolbar-fixed">
+
+    
+                <div class="page-content" style="padding-top:25px;">
+                    <div id="page" class="messages-content">
+                        <div class="messages">
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="toolbar messagebar">
+                    <div class="toolbar-inner " style="margin-left: 44px">
+                        <input type="file" id="fileInput" multiple accept="image/*" capture="camera" class="upload" onclick="" onchange="Selbtn(this)" />
+                        <a id="message-photo" href="#" class="link icon-pic icon-only "><i class="iconfont icon-tupian  message-send"></i></a>
+                        <textarea id="chat-content" placeholder="" class="message-textarea"></textarea><a href="#" class="link send-message">发送</a>
+                    </div>
+                </div>
+
+                <div id="delivery-confirmation-background">
+                </div>
+
+                <div id="delivery-confirmation">
+                    <img id="preview">
+                    <div class="delivery-confirmation-top">
+                        <button id="send-cancel">取消</button>
+                        <button id="uploadImage">发送</button>
+                    </div>
+                </div>
+
+                <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="pswp__bg"></div>
+                    <div class="pswp__scroll-wrap">
+                        <div class="pswp__container">
+                            <div class="pswp__item"></div>
+                            <div class="pswp__item"></div>
+                            <div class="pswp__item"></div>
+                        </div>
+                        <div class="pswp__ui pswp__ui--hidden">
+                            <div class="pswp__top-bar">
+                                <div class="pswp__counter"></div>
+                                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                                <div class="pswp__preloader">
+                                    <div class="pswp__preloader__icn">
+                                        <div class="pswp__preloader__cut">
+                                            <div class="pswp__preloader__donut"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                <div class="pswp__share-tooltip"></div>
+                            </div>
+                            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                            <div class="pswp__caption">
+                                <div class="pswp__caption__center"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

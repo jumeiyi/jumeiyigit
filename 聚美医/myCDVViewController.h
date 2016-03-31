@@ -1,0 +1,13 @@
+//
+//  myCDVViewController.h
+//  聚美医
+//
+//  Created by fenghuang on 16/3/3.
+//  Copyright © 2016年 huqijing. All rights reserved.
+//
+
+#import <Cordova/CDVViewController.h>
+
+@interface myCDVViewController : CDVViewController
+
+@end

@@ -1296,6 +1296,49 @@
 
 }
 
+
++(void)getvs:(NSString *)url withblock:(dataBlcok)block{
+
+    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                     (CFStringRef)url,
+                                                                                                     NULL,
+                                                                                                     NULL,
+                                                                                                     kCFStringEncodingUTF8));
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager POST: [NSString stringWithFormat:@"%@",encodedString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = nil;
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:NSJSONReadingMutableContainers error:&error];
+        
+        NSLog(@"获取版本更新---------%@---- %@",data ,error);
+        
+        
+        NSString *errorstring = [data objectForKey:@"ErrorMessage"];
+        if (errorstring.length > 10) {
+            UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"提示" message:errorstring delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+            return ;
+        }
+        
+        
+
+        
+        
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+
+}
+
+
 + (void)checkNetWorkStatus{
     
     /**

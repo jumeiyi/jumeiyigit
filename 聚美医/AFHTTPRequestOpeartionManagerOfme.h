@@ -75,4 +75,6 @@ typedef void(^dataBlcok2)(NSMutableArray *array1,NSMutableArray *array2,NSMutabl
 //获取分组列表
 +(void)getDoctorGroupWithUrl:(NSString *)url withblock:(dataBlcok)block;
 
++(void)getvs:(NSString *)url withblock:(dataBlcok)block;
+
 @end

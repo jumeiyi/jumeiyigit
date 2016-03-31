@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RefreshControl.h"
+#import <Cordova/CDVViewController.h>
+
 @interface GuestbookViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,NSXMLParserDelegate,RefreshControlDelegate>
 
 {
@@ -22,6 +24,7 @@
     BOOL _isLoading;
     NSTimer *_timer1;
 }
+@property(nonatomic,retain) CDVViewController* viewController;
 
 @property(nonatomic,retain)NSString *doctorsno;
 @property(nonatomic,retain)NSString *customersno;
@@ -29,7 +32,10 @@
 @property(nonatomic,retain)NSString *firstWord;
 @property(nonatomic,retain)NSString *strPageindex;
 @property(nonatomic,retain)NSString *strPagesize;
-@property (nonatomic,strong)RefreshControl * refreshControl;
+@property(nonatomic,strong)RefreshControl * refreshControl;
 @property(nonatomic,assign)NSInteger a;
 @property(nonatomic,assign)BOOL istop;
+
+@property(nonatomic,assign)NSInteger webview;
+
 @end

@@ -1,0 +1,555 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Your app title -->
+    <title>就诊记录</title>
+    <!-- Path to Framework7 Library CSS, iOS Theme -->
+    <link rel="stylesheet" href="css/framework7.ios.min.css" />
+    <!-- Path to Framework7 color related styles, iOS Theme -->
+    <link rel="stylesheet" href="css/framework7.ios.colors.css" />
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+    <link rel="stylesheet" href="css/yangjie.css" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="img/android-chrome-192x192.png" sizes="192x192">
+    <meta name="msapplication-square70x70logo" content="img/smalltile.png">
+    <meta name="msapplication-square150x150logo" content="img/mediumtile.png">
+    <meta name="msapplication-wide310x150logo" content="img/widetile.png">
+    <meta name="msapplication-square310x310logo" content="img/largetile.png">
+    <link rel="stylesheet" href="css/yangjie.css" />
+
+
+
+
+    <!-- Path to your custom app styles-->
+    <!--<link rel="stylesheet" href="path/to/my-app.css">-->
+</head>
+<body>
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+    <!-- Views -->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+
+            <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-through toolbar-through">
+                <!-- Page, "data-page" contains page name -->
+                <div data-page="treat-record" class="page">
+                    <!-- Scrollable page content -->
+                    <div class="page-content" style="overflow-x:hidden;margin-top:-44px">
+
+                        <!-- Top Navbar-->
+
+                        <div class="record-header">
+                            <div class="bac" style="float: left;"> <</div><div style="
+    text-align: center;
+    /* background-color: #0089FF; */
+    font-size: 18px;
+    /* float: right; */
+    left: 40%;
+    position: absolute;
+">治疗记录详情</div><div id="save-record" style="
+    float: right;
+    margin-right:10px;
+">保存</div>
+                        </div>
+
+                        <!--美容项目  以及选择美容的页面链接-->
+                        <div class="project" style="padding:10px 10px 10px 10px;height: 40px;font-size: 18px;">
+                            <div style="position:absolute;font-weight: bolder;">治疗时间</div>
+                            <div style="position:absolute;right:10px"><span class="button button-inline btn-green treat-time">2016年6月1日</span></div>
+                        </div>
+
+                        <!--美容项目  以及选择美容的页面链接-->
+                        <div class="project" style="padding:10px 10px 10px 10px;height: 40px;font-size: 18px;">
+                            <div style="position:absolute;font-weight: bolder;">治疗项目</div>
+                            <div style="position:absolute;right:10px"><a id="select" href="goodat.html">眼部&gt;双眼皮</a></div>
+                        </div>
+
+
+                        <div>
+                            <textarea placeholder="你还没有添加就诊记录" style="width: 100%;height:200px;background-color: #f7f7f8;border: none;padding-top: 20px;font-size: 16px;"></textarea>
+                        </div>
+                        <!--治疗照片-->
+                        <!-- Link to another page -->
+                        <div style="
+    background-color: #ddd;
+    width: 100%;
+    /* height: 400px; */
+    /* position: absolute; */
+    /* bottom: 0px; */
+    float: left;
+    /* top: 400px; */
+    /* padding-top: 20px; */
+    /* position: fixed; */
+">
+                            <ul class="manyimg">
+                                <li class="imgdemo">
+                                    <div class="addImg">
+                                        <img style="width:100%;height:100%;background-image: url('img/addImage.png');background-position: 0px 0px;background-repeat: round;" id="upImage">
+                                    </div>
+                                    <div class="img-descript">
+                                        <input type="text" disabled class="" style="display:none" />
+                                    </div>
+
+                                </li>
+                            </ul>
+
+                            <!--删除记录按钮-->
+                            <div class="btn" style="
+    margin: 40px 0px 20px 0px;
+    float: left;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+    padding: 10px 0px 10px 0px;
+    font-size: large;
+    color: #666;
+">
+                                删除记录
+                            </div>
+                        </div>
+
+                        <input type="file" id="inputFile" onchange="previewImage(this)" hidden />
+                        <img id="img" />
+                    </div><!--======================Page Content End==============================-->>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Toolbar-->
+
+    </div>
+
+
+    <script type="text/x-jquery-tmpl" id="pic">
+        <li class="imgdemo">
+            <div class="minimg">
+                <img style="width:100%;height:100%" src="${url}" />
+            </div>
+            <div class="img-descript">
+                <input type="text" placeholder="治疗照片" value="${name}" class="" size="5" style="
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 14px;
+">
+            </div>
+
+        </li>
+    </script>
+
+    <script type="text/javascript" src="Scripts/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="Scripts/FrameJs/global.min.js"></script>
+    <script type="text/javascript" src="Scripts/FrameJs/frame.ajax2.js"></script>
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    
+    <script type="text/javascript" src="Scripts/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="Scripts/FrameJs/configs/constant.config.js"></script>
+    <script type="text/javascript">
+        var ordersno = GetQueryString("ordersno");
+        var medicalhistorysno = GetQueryString("medicalhistorysno");
+        var recordtype = GetQueryString("recordtype");
+        var pics = [];
+        var picObjs = [];
+
+       
+
+
+        var $$ = Dom7;
+        var myApp = new Framework7();
+        var mainView = myApp.addView('.view-main', {
+            // Because we use fixed-through navbar we can enable dynamic navbar
+            dynamicNavbar: true,
+            domCache: true
+        });
+
+        // Generate dynamic page
+        var dynamicPageIndex = 0;
+        function createContentPage() {
+            mainView.router.loadContent(
+                '<!-- Top Navbar-->' +
+                '<div class="navbar">' +
+                '  <div class="navbar-inner">' +
+                '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
+                '    <div class="center sliding">Dynamic Page ' + (++dynamicPageIndex) + '</div>' +
+                '  </div>' +
+                '</div>' +
+                '<div class="pages">' +
+                '  <!-- Page, data-page contains page name-->' +
+                '  <div data-page="dynamic-pages" class="page">' +
+                '    <!-- Scrollable page content-->' +
+                '    <div class="page-content">' +
+                '      <div class="content-block">' +
+                '        <div class="content-block-inner">' +
+                '          <p>Here is a dynamic page created on ' + new Date() + ' !</p>' +
+                '          <p>Go <a href="#" class="back">back</a> or go to <a href="services.html">Services</a>.</p>' +
+                '        </div>' +
+                '      </div>' +
+                '    </div>' +
+                '  </div>' +
+                '</div>'
+            );
+            return;
+        }
+
+        $(function () {
+            console.log("treat-record.html init successfuly \n" +
+               "ordersno:"+ordersno +"\n"+
+               "medicalhistorysno:" + medicalhistorysno + "\n"+
+               "recordtype:"+ recordtype +"\n");
+            //picker
+            //选择时间按钮添加事件
+            $.Frame.Ajax.Ajax({
+                url:$.Frame.Config.Constant.ServerUrl + "doctor.getmedicalhistory.go",
+                postdata: {
+                    ordersno: ordersno,
+                    recordtype:  "treat" ,
+                },
+                success: function (rtn) {
+                    if (rtn.issuccess) {
+                        medicalhistorysno = rtn.data.sno;
+                        //界面数据初始化,content,productname,
+                        $("textarea").val(rtn.data.content);
+                        $("#select").text(rtn.data.productname);
+                        myApp.alert(rtn.msg, "提示");
+                        getImages();
+                    } else {
+                        myApp.alert(rtn.msg, "错误");
+                    }
+                }
+            });
+
+            function getImages() {
+                //Ajax拿图片
+                $.Frame.Ajax.Ajax({
+                    url: $.Frame.Config.Constant.ServerUrl + "doctor.getmedicalhistoryimage.go",
+                    postdata: {
+                        medicalhistorysno: medicalhistorysno
+                    },
+                    success: function (rtn) {
+                        if (rtn.issuccess) {
+                            //将服务器的图片加入本地
+                            var img;
+                            var item;
+                            for (var i = 0; i < rtn.data.length; i++) {
+                                item = rtn.data[i];
+                                img = new Object();
+                                img.url = item.url;
+                                img.name = item.caption;
+                                $("#pic").tmpl(img).prependTo(".manyimg");
+                            }
+                            console.log(rtn.msg);
+                        } else {
+                           myApp.alert(rtn.msg, "错误");
+                        }
+                    }
+                });
+            }
+            //上传图片的点击
+            $("#upImage").on("click",
+                   function () {
+                       $("#inputFile").trigger("click");
+                   });
+            //后退按钮
+            $(".bac").click(function () {
+                mainView.router.back();
+            });
+            var images = "";
+
+            //保存记录,上传记录,上传图片两个模块
+            $("#save-record").click(
+                function () {
+                    //上传/保存记录
+                    $.Frame.Ajax.Ajax({
+                        url: $.Frame.Config.Constant.ServerUrl + "doctor.savemedicalhistory.go",
+                        postdata: {
+                            content: $("textarea").val(),
+                            ordersno: ordersno,
+                            doctorsno: localStorage.getItem("doctorSno"),
+                            medicalhistorysno: medicalhistorysno,//诊疗sno,为创建
+                            images: images,//注定图片要先上传
+                            recordtype: "treat",
+                            productname: $("#select").text(),
+                        },
+                        success: function (rtn) {
+                            if (rtn.issuccess) {
+                                myApp.alert(rtn.msg, "提示");//mainView.router.back()
+
+                            } else {
+                                myApp.alert(rtn.msg, "错误");
+                            }
+                        },
+                    });
+
+                    var file;
+                    for (var i = 0; i < picObjs.length; i++) {
+                        file = picObjs[i].files[0];
+                        //上传图片,若上传成功,则返回图片链接,再插入记录     
+                        $.Frame.Ajax.AjaxUpload({
+                            url: $.Frame.Config.Constant.ServerUrl+"doctor.savemedicalhistoryimage.go",
+                            postdata: {
+                                doctorsno: localStorage.getItem("doctorSno"),
+                                medicalhistorysno: medicalhistorysno,
+                                data: file,
+                                caption: "治疗图片",
+                            },
+                            contenttype: false,
+                            processdata: false,
+                            xhr: function () {
+                                myXhr = $.ajaxSettings.xhr();
+                                if (myXhr.upload) { // check if upload property exists
+                                    myXhr.upload.addEventListener('progress', progressHandlingFunction, false); // for handling the progress of the upload
+                                }
+                                return myXhr;
+                            },
+                            success: function (rtn) {
+                                if (rtn.issuccess) {
+                                    $.Frame.Message.ShowMsg(rtn.msg);
+                                    // $("#dd").dialog("close");
+                                    // loaddata();
+                                } else {
+                                    $.Frame.Message.ShowMsg(rtn.msg);
+                                }
+                            }
+                        });
+                    }
+                });
+           
+
+
+        });
+
+        $(".treat-time").click(function (){
+            var ordersno = $(this).data("ordersno");
+            var today = new Date();
+            var reserveTime = myApp.picker({
+                input: $$(this),
+                toolbarTemplate: '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left"><a href="#" class="link  destroy-picker">取消</a></div>' +
+                    '<div class="center">请选择预约时间</div>' +
+                    '<div class="right">' +
+                    '<a href="#" class="link destroy-picker save" id="save">完成</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>',
+                toolbar: true,
+                rotateEffect: true,
+                onClose: function () {
+                    $$('.modal-overlay').removeClass('modal-overlay-visible');
+                },
+                value: [today.getFullYear(), today.getMonth(), today.getDate(), '上午'],
+                onChange: function (picker, values, displayValues) {
+                    var daysInMonth = new Date(picker.value[2], picker.value[0] * 1 , 0).getDate();
+                    if (values[1] > daysInMonth) {
+                        picker.cols[1].setValue(daysInMonth);
+                    }
+                },
+                formatValue: function (p, values, displayValues) {
+                    return displayValues[0] + '.' + displayValues[1] + '.' + values[2] + ' ' + values[3];
+                }, onOpen: function (picker) {
+                    $('.destroy-picker').on('click', function () {
+                        picker.close();
+                        picker.destroy();
+                    });
+                    treatdt = reserveTime.value.toString().replaceAll(',', '-');
+                    $(".save").click(function () {
+                        $(".treat-time").text(reserveTime.value);
+                    });
+
+                },
+                cols: [
+                    // Years
+                    {
+                        values: (function () {
+                            var arr = [];
+                            for (var i = 1950; i <= 2030; i++) {
+                                arr.push(i);
+                            }
+                            return arr;
+                        })(),
+                        textAlign: 'right'
+                    },
+                    // Months
+                    {
+                        values: ('1 2 3 4 5 6 7 8 9 10 11 12').split(' '),
+                        displayValues: ('1 2 3 4 5 6 7 8 9 10 11 12').split(' '),
+                        textAlign: 'left'
+                    },
+                    // Days
+                    {
+                        values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+                        textAlign: 'left'
+                    },
+                    // Hours
+                    {
+                        values: ['上午', '下午'],
+                        textAlign: 'left'
+                    }
+                ]
+            });
+            reserveTime.open();
+        });
+
+
+
+        /* ============== 擅长项目 ============ */
+       myApp.onPageInit("goodat", function () {
+            console.log("goodat page initlize successfully");
+
+            var selectedProject;
+            var selectedItem;//选中的项目
+
+            myApp.showNavbar();
+            $(".navbar-brand").removeClass("navbar-brand").addClass("navbar-inner");
+
+
+            // 显示更多
+            $$('.goodat-list ul').each(function () {
+                $$(this).find('.view-more').nextAll().hide();
+            });
+            $$('.goodat-list ul li.view-more').click(function () {
+                $$(this).nextAll().show();
+                $$(this).remove();
+            });
+
+
+            //点击添加样式
+            $(".goodat-list ul li").on("click", function () {
+                $(".goodat-list ul li").removeClass("active");
+                $(this).toggleClass("active");
+                selectedItem = $(this);
+                selectedProject = $(this).parent().parent().find(".list-title");
+            });
+
+
+            // 点击返回，按钮提示保存
+            $$('.form-back').on('click', function () {
+                myApp.confirm('', '是否保存编辑？',
+                    function () {
+                        //会话存储
+                        sessionStorage.setItem("selected", selectedItem.text() + ">" + selectedProject.text());
+                        console.log("sessionStorage:selected" + sessionStorage.getItem("selected"));
+                        mainView.router.back();
+                    },
+                    function () {
+
+                        mainView.router.back();
+                    }
+                );
+            });
+
+            $$('.goodat-save').on('click', function () {
+                myApp.confirm('', '是否保存编辑？',
+                    function () {
+                        sessionStorage.setItem("selected", selectedProject.text() + ">" + selectedItem.text());
+                        console.log("sessionStorage:selected" + sessionStorage.getItem("selected"));
+                        mainView.router.back();
+                    },
+                    function () {
+                        //会话存储
+
+                        mainView.router.back();
+                    }
+                );
+            });
+        });
+        myApp.onPageBeforeRemove("goodat", function () {
+            var selected = sessionStorage.getItem("selected");
+            console.log(selected);
+            $("#select").text(selected);
+
+        });
+
+
+             
+
+
+            function progressHandlingFunction(e) {
+                if (e.lengthComputable) {
+                    //     $('#addImg').attr({ value: e.loaded, max: e.total });
+                }
+            }
+        
+
+
+            function previewImage(files) {
+                if (files.files && files.files[0]) {
+
+                    var reader = new FileReader();
+                    reader.onload = function (evt) {
+                        AddImgToArrayDisplay(evt.target.result);
+
+                    };
+                    reader.readAsDataURL(files.files[0]);
+
+
+                } else {
+                    console.log("File Not Found");
+                }
+            }
+
+
+            function AddImgToArrayDisplay(url) {
+
+                //limite 8 picture 
+                if (pics.length < 8) {
+                    var img = new Object();
+
+                    var oldFile1 = document.getElementById("inputFile");
+                    picObjs.push(oldFile1);
+                    var newFile1 = oldFile1.cloneNode(true);
+                    oldFile1.parentNode.replaceChild(newFile1, oldFile1);
+                    img.value = oldFile1;
+                    img.url = url;
+                    img.caption = "";//标题
+                    if (img.caption == '') {
+                        img.caption = "治疗照片";
+                    }
+                    $("#pic").tmpl(img).prependTo(".manyimg");
+                    pics.push(img);
+                    //图片数组格式转换
+
+                    //图片预览
+                    $(".minimg img").click(function () {
+                        var myPhotoBrowser = myApp.photoBrowser({
+                            zoom: true,
+                            photos: pics,
+                            theme: "dark",
+                            type: "standalone",
+                            backLinkText: "后退",
+                            ofText: "/"
+                        });
+                        myPhotoBrowser.open();
+                    });
+                }
+                console.log("当前图片总数:" + pics.length);
+
+            }
+
+            $(".bac").click(function () {
+                window.history.go(-1);
+            });
+
+    </script>
+
+</body>
+</html> 

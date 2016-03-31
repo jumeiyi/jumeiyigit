@@ -19,6 +19,8 @@
 #import "UIImageView+WebCache.h"
 #import "GuestbookChatVC.h"
 
+#import "HtmlshouyeChartView.h"
+
 @interface myclientdatasViewController ()
 
 @end
@@ -356,11 +358,19 @@
             [self callphone];
         }else{
         
-            GuestbookChatVC *chat = [[GuestbookChatVC alloc] init];
-            chat.doctorsno = self.doctorsno;
-            chat.customerSno = self.customerSno;
-            chat.customerName = data.truename;
-            [self.navigationController pushViewController:chat animated:YES];
+//            GuestbookChatVC *chat = [[GuestbookChatVC alloc] init];
+//            chat.doctorsno = self.doctorsno;
+//            chat.customerSno = self.customerSno;
+//            chat.customerName = data.truename;
+//            [self.navigationController pushViewController:chat animated:YES];
+            
+            
+            HtmlshouyeChartView *html = [[HtmlshouyeChartView alloc] init];
+            html.wwwFolderName = @"www";
+            html.startPage = [NSString stringWithFormat:@"shouyemessage.html?drsno=%@&customersno=%@",self.doctorsno,self.customerSno];
+            html.namestr = data.truename;
+            [self.navigationController pushViewController:html animated:YES];
+            
         }
         
     }else if (indexPath.section == 2){

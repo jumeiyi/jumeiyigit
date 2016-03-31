@@ -18,3 +18,5 @@
 }
 @property(nonatomic,retain)NSString *doctorSno;
 @end
+
+

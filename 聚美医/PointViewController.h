@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PointViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface PointViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate,NSURLConnectionDelegate>
 
+{
+    NSMutableData *_data;
+}
 @property(nonatomic,retain)UITableView *mytableview;
 @property(nonatomic,retain)NSString *doctorsno;
 
 @property(nonatomic,retain)NSMutableArray *mypointsary;
 @property(nonatomic,retain)NSString *points;
+
+
 @end

@@ -32,6 +32,7 @@
 #import "sys/utsname.h"
 #import "DoctorRegistViewController.h"
 
+#import "HttpShouYeViewController.h"
 
 @interface ShouYeViewController ()
 
@@ -51,6 +52,10 @@
      NSLog(@"iPhone7:%d",iPhone7);
     
     NSLog(@"self.view.bounds.size.width---%f-----self.view.bounds.size.height--%f",self.view.bounds.size.width,self.view.bounds.size.height);
+    
+//    HttpShouYeViewController *shouye = [[HttpShouYeViewController alloc] init];
+//    [self.navigationController pushViewController:shouye animated:YES];
+    
     
 }
 

@@ -67,8 +67,6 @@
     [self.view addSubview:gradimage];
     
     
-
-    
     
     self.typeInfo = @"name";  self.a = 1;
     

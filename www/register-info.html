@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>聚美医</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1450078999_1978652.css">
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="img/android-chrome-192x192.png" sizes="192x192">
+    <meta name="msapplication-square70x70logo" content="img/smalltile.png">
+    <meta name="msapplication-square150x150logo" content="img/mediumtile.png">
+    <meta name="msapplication-wide310x150logo" content="img/widetile.png">
+    <meta name="msapplication-square310x310logo" content="img/largetile.png">
+</head>
+<body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Views-->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class-->
+        <div class="view view-main">
+            <!-- Top Navbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="left"><a href="register.html" onclick="window.location.href='register.html'" class="back link"><i class="icon icon-back"></i></a></div>
+                    <div class="center sliding">请输入个人信息</div>
+                </div>
+            </div>
+            <div class="pages navbar-through">
+                <!-- Page, data-page contains page name-->
+                <div data-page="register-info" class="page forgot-password">
+                    <!-- Scrollable page content-->
+                    <div class="page-content">
+                        <div class="list-block">
+                            <div style="
+    margin-top: 55px;
+    font-size: 13px;
+    color: rgba(147,147,147,1);
+    text-align: center;
+    margin-bottom: 10px;
+    /* background-color: rgb(242,243,244); */
+    padding: 4px;
+">为了给您提供更好的服务,请您务必填写真实信息</div>
+
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">姓名</div>
+                                            <div class="item-input">
+                                                <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">医院</div>
+                                            <div class="item-input">
+                                                <input type="text" id="hospital" name="hospital" placeholder="请输入您所在的医院" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">科室</div>
+                                            <div class="item-input">
+                                                <input type="text" id="department" name="department" placeholder="请输入您所在的科室" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">职称</div>
+                                            <div class="item-input">
+                                                <input type="text" placeholder="主任医师" value="主任医师" id="workname" name="workname" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="content-block">
+                            <p><a href="#" id="register" class="button button-big active">立即体验</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JQuery -->
+    <script type="text/javascript" src="Scripts/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src='Scripts/FrameJs/global.js'></script>
+    <script type="text/javascript" src="Scripts/FrameJs/frame.ajax.min.js"></script>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script src="Scripts/FrameJs/configs/constant.config.js"></script>
+    <script>
+        const phone = GetQueryString("phone");
+        const password = GetQueryString("password");
+        var $name = $("#name");
+        var $hospital = $("#hospital");
+        var $department = $("#department");
+        var $workname = $("#workname");
+
+
+
+
+        var pickWorkname = myApp.picker({
+            input: "#workname",
+            cols: [
+        {
+            textAlign: "center",
+            values: ['主任医师', '副主任医师', '主治医师', '住院医师']
+        }
+            ],
+            toolbarCloseText: "完成"
+        });
+
+
+        $("#register").click(function () {
+            if (!checkPara()) {
+                return;
+            }
+            $.Frame.Ajax.Ajax({
+                url: $.Frame.Config.Constant.ServerUrl + "doctor.adddoctor.go",
+                postdata: {
+                    cellphone: phone,
+                    password: password,
+                    name: $name.val(),
+                    hospital: $hospital.val(),
+                    department: $department.val(),
+                    workname: $workname.text()
+                },
+                success: function (rtn) {
+                    //发送成功
+                    if (rtn.issuccess) {
+                        localStorage.setItem("messPhone", phone);
+                        localStorage.setItem("messPwd", password);
+                        localStorage.setItem("doctorSno", rtn.retsno);
+                        console.log("本地存储:\n" +
+                          +"手机号:" + localStorage.getItem("messPhone") + "\n"
+                          + "密码:" + localStorage.getItem("messPwd") + "\n"
+                          + "编号" + localStorage.getItem("doctorSno" + "\n"));
+                        myApp.alert("注册成功!", "提示", function () {
+                            window.location.href = "index.html";
+                        });
+                    } else {
+                        myApp.alert(rtn.msg, "提示");
+                    }
+                },
+                async: true
+            });
+        });
+
+        function checkPara() {
+            //是中文名称或英文名称
+            if ($name.val() != "" && $hospital.val() != "" && $workname.val() != "" && $department.val() != "") {
+
+                return true;
+            } else {
+                myApp.alert("信息不全", "提示");
+                return false;
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>

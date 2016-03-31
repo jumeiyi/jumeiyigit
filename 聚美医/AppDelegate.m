@@ -19,12 +19,38 @@
 #import "ViewController.h"
 #import "APService.h"
 
+#import "HttpShouYeViewController.h"
+
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
+
+- (id)init
+{
+    /** If you need to do any extra app-specific initialization, you can do it here
+     *  -jm
+     **/
+    NSHTTPCookieStorage* cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    
+    [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    
+    int cacheSizeMemory = 8 * 1024 * 1024; // 8MB
+    int cacheSizeDisk = 32 * 1024 * 1024; // 32MB
+#if __has_feature(objc_arc)
+    NSURLCache* sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"];
+#else
+    NSURLCache* sharedCache = [[[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"] autorelease];
+#endif
+    [NSURLCache setSharedURLCache:sharedCache];
+    
+    self = [super init];
+    return self;
+}
+
+#pragma mark UIApplicationDelegate implementation
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -65,9 +91,7 @@
                            wechatCls:[WXApi class]];
     
     
-    
-    
-    
+        
     // Required
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //可以添加自定义categories
@@ -85,11 +109,22 @@
     
     
     
-    // Required
+//    // Required
     [APService setupWithOption:launchOptions];
+//
+    
+//    HttpShouYeViewController *shouye = [[HttpShouYeViewController alloc] init];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:shouye];
+//    shouye.navigationController.navigationBarHidden = YES;
+//    shouye.wwwFolderName = @"www";
+//    shouye.startPage = @"Feedback.html";
+////  [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+//    self.window.rootViewController = nav;
     
     return YES;
+    
 }
+
 
 - (BOOL)application:(UIApplication *)application
       handleOpenURL:(NSURL *)url
@@ -103,6 +138,16 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
+    
+    if (!url) {
+        return NO;
+    }
+    
+    // all plugins will get the notification, and their handlers will be called
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CDVPluginHandleOpenURLNotification object:url]];
+    
+//    return YES;
+
     return [ShareSDK handleOpenURL:url
                  sourceApplication:sourceApplication
                         annotation:annotation
@@ -110,6 +155,7 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+    
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
@@ -160,6 +206,14 @@
     NSLog(@"--registration_id: %@",registration_id);
     NSLog(@"--AA-deviceToken: %@---AA-",deviceToken);
     
+    
+    NSString* token = [[[[deviceToken description]
+                         stringByReplacingOccurrencesOfString:@"<" withString:@""]
+                        stringByReplacingOccurrencesOfString:@">" withString:@""]
+                       stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotification object:token];
+    
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -176,15 +230,13 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
-    
     // IOS 7 Support Required
     [APService handleRemoteNotification:userInfo];
+    
     completionHandler(UIBackgroundFetchResultNewData);
     
 
-    
     NSLog(@"userInfo-2-- %@",userInfo);
-    
     NSString *_j_msgid = [userInfo objectForKey:@"_j_msgid"];
     NSLog(@"_j_msgid-- %@",_j_msgid);
     
@@ -217,7 +269,7 @@
         [def synchronize];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"msg" object:@"1"];
     }else{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"msg" object:@""];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"msg" object:@""];
     }
 
   
@@ -225,10 +277,10 @@
 
 #pragma mark---------11
 
-
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     
     NSLog(@"Regist fail%@",error);
+    [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotificationError object:error];
 }
 
 
@@ -262,6 +314,69 @@
     }
     [APService setupWithOption:self.launchOptions];
     
+}
+//
+
+
+
+#pragma mark---cordova
+//- (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation
+//{
+//    if (!url) {
+//        return NO;
+//    }
+//    
+//    // all plugins will get the notification, and their handlers will be called
+//    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CDVPluginHandleOpenURLNotification object:url]];
+//    
+//    return YES;
+//}
+
+// repost all remote and local notification using the default NSNotificationCenter so multiple plugins may respond
+- (void)application:(UIApplication*)application
+    didReceiveLocalNotification:(UILocalNotification*)notification
+{
+    // re-post ( broadcast )
+    [[NSNotificationCenter defaultCenter] postNotificationName:CDVLocalNotification object:notification];
+}
+
+#ifndef DISABLE_PUSH_NOTIFICATIONS
+
+//- (void)application:(UIApplication*)application
+//    didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+//{
+//    // re-post ( broadcast )
+//    NSString* token = [[[[deviceToken description]
+//                         stringByReplacingOccurrencesOfString:@"<" withString:@""]
+//                        stringByReplacingOccurrencesOfString:@">" withString:@""]
+//                       stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotification object:token];
+//}
+
+//- (void)application:(UIApplication*)application
+//    didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+//{
+//    // re-post ( broadcast )
+//    [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotificationError object:error];
+//}
+#endif
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
+- (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
+#else
+- (UIInterfaceOrientationMask)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
+#endif
+{
+    // iPhone doesn't support upside down by default, while the iPad does.  Override to allow all orientations always, and let the root view controller decide what's allowed (the supported orientations mask gets intersected).
+    NSUInteger supportedInterfaceOrientations = (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationLandscapeLeft) | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationPortraitUpsideDown);
+    
+    return supportedInterfaceOrientations;
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application
+{
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
 @end

@@ -15,9 +15,16 @@
 #import "NSString+DocumentPath.h"
 #import "PrefixHeader.pch"
 #import "UIImageView+WebCache.h"
+
+#import "cordova/CDVViewController.h"
+#import "HtmlChatViewController.h"
+
+
 @interface GuestbookChatVC ()
 
+
 @end
+
 
 @implementation GuestbookChatVC
 
@@ -30,7 +37,7 @@
     background.image = [UIImage imageNamed:@"huidi"];
     background.userInteractionEnabled = YES;
     [self.view addSubview:background];
-    
+
     TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     [self.view addSubview:topbar];
     
@@ -46,72 +53,87 @@
     [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
     [backbtn addTarget:self action:@selector(cometoback) forControlEvents:UIControlEventTouchUpInside];
     [topbar addSubview:backbtn];
+//
+//    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64 - 44)];
+//    _tableview.delegate = self;
+//    _tableview.dataSource = self;
+//    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    _tableview.backgroundColor = [self colorWithRGB:0xf7f7f7 alpha:1];
+//    [self.view addSubview:_tableview];
+//    
+//    
+//    _images = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 44, self.view.bounds.size.width, 44)];
+//    _images.image = [UIImage imageNamed:@"dhk_02"];
+//    _images.userInteractionEnabled = YES;
+//    _images.backgroundColor = [UIColor blackColor];
+//    [self.view addSubview:_images];
+//    
+////    UIButton *Sound = [[UIButton alloc] initWithFrame:CGRectMake(5, 12, 20, 30)];
+////    [Sound setBackgroundImage:[UIImage imageNamed:@"liaotiananniu"] forState:UIControlStateNormal];
+////    [Sound addTarget:self action:@selector(beginRecord) forControlEvents:UIControlEventTouchDown];
+////    [Sound addTarget:self action:@selector(finishRecord) forControlEvents:UIControlEventTouchUpInside];
+////    [_images addSubview:Sound];
+//    
+////    UIButton *addimage = [[UIButton alloc] initWithFrame:CGRectMake(35, 15, 25, 25)];
+////    [addimage setBackgroundImage:[UIImage imageNamed:@"liaotianjiahao"] forState:UIControlStateNormal];
+////    [addimage addTarget:self action:@selector(doctoraddimageSendAMessage) forControlEvents:UIControlEventTouchUpInside];
+////    [_images addSubview:addimage];
+//    
+//    _text = [[UITextView alloc] initWithFrame:CGRectMake(20, 5,self.view.bounds.size.width - 120, 34)];
+//    _text.backgroundColor = [UIColor whiteColor];
+//    _text.layer.masksToBounds = YES;
+//    _text.layer.cornerRadius = 5;
+//    _text.delegate = self;
+//    _text.font = [UIFont systemFontOfSize:17];
+//    [_images addSubview:_text];
+//    
+//    _sendmasses = [[UIButton alloc] initWithFrame:CGRectMake(_text.frame.size.width + _text.frame.origin.x + 15, 5, 60, 34)];
+//    _sendmasses.backgroundColor = [UIColor whiteColor];
+//    [_sendmasses setTitle:@"发送" forState:UIControlStateNormal];
+//    [_sendmasses setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    _sendmasses.layer.masksToBounds = YES;
+//    _sendmasses.layer.cornerRadius = 5;
+//    //[sendmasses setBackgroundImage:[UIImage imageNamed:@"xiaoxifasong"] forState:UIControlStateNormal];
+//    [_sendmasses addTarget:self action:@selector(doctorSendAMessage) forControlEvents:UIControlEventTouchUpInside];
+//    [_images addSubview:_sendmasses];
+//    
+//    
+//    
+//    self.fromType = @"";
+//    self.data = @"";
+//    self.fileTypeName = @"";
+//    self.lastInfoSno = @"";
+//    self.noticeDt = @"";
+//    self.orderDetailSno = @"";
+//
+//    
+//    _custommesarray = [[NSMutableArray alloc] initWithCapacity:0];
+//    
+//    NSLog(@"self.doctorsno = %@  self.customerSno = %@ ",self.doctorsno,self.customerSno);
+//    [self soaprequstWithdoctorSno:self.doctorsno customerSno:self.customerSno fromType:@"" strPageindex:@"1" strPagesize:@"40"];
+//    
+//    _messetimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(referenceViewmesse) userInfo:nil repeats:YES];
     
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64 - 44)];
-    _tableview.delegate = self;
-    _tableview.dataSource = self;
-    _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableview.backgroundColor = [self colorWithRGB:0xf7f7f7 alpha:1];
-    [self.view addSubview:_tableview];
-    
-    
-    _images = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 44, self.view.bounds.size.width, 44)];
-    _images.image = [UIImage imageNamed:@"dhk_02"];
-    _images.userInteractionEnabled = YES;
-    _images.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:_images];
-    
-//    UIButton *Sound = [[UIButton alloc] initWithFrame:CGRectMake(5, 12, 20, 30)];
-//    [Sound setBackgroundImage:[UIImage imageNamed:@"liaotiananniu"] forState:UIControlStateNormal];
-//    [Sound addTarget:self action:@selector(beginRecord) forControlEvents:UIControlEventTouchDown];
-//    [Sound addTarget:self action:@selector(finishRecord) forControlEvents:UIControlEventTouchUpInside];
-//    [_images addSubview:Sound];
-    
-//    UIButton *addimage = [[UIButton alloc] initWithFrame:CGRectMake(35, 15, 25, 25)];
-//    [addimage setBackgroundImage:[UIImage imageNamed:@"liaotianjiahao"] forState:UIControlStateNormal];
-//    [addimage addTarget:self action:@selector(doctoraddimageSendAMessage) forControlEvents:UIControlEventTouchUpInside];
-//    [_images addSubview:addimage];
-    
-    _text = [[UITextView alloc] initWithFrame:CGRectMake(20, 5,self.view.bounds.size.width - 120, 34)];
-    _text.backgroundColor = [UIColor whiteColor];
-    _text.layer.masksToBounds = YES;
-    _text.layer.cornerRadius = 5;
-    _text.delegate = self;
-    _text.font = [UIFont systemFontOfSize:17];
-    [_images addSubview:_text];
-    
-    _sendmasses = [[UIButton alloc] initWithFrame:CGRectMake(_text.frame.size.width + _text.frame.origin.x + 15, 5, 60, 34)];
-    _sendmasses.backgroundColor = [UIColor whiteColor];
-    [_sendmasses setTitle:@"发送" forState:UIControlStateNormal];
-    [_sendmasses setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    _sendmasses.layer.masksToBounds = YES;
-    _sendmasses.layer.cornerRadius = 5;
-    //[sendmasses setBackgroundImage:[UIImage imageNamed:@"xiaoxifasong"] forState:UIControlStateNormal];
-    [_sendmasses addTarget:self action:@selector(doctorSendAMessage) forControlEvents:UIControlEventTouchUpInside];
-    [_images addSubview:_sendmasses];
-    
-    
-    
-    self.fromType = @"";
-    self.data = @"";
-    self.fileTypeName = @"";
-    self.lastInfoSno = @"";
-    self.noticeDt = @"";
-    self.orderDetailSno = @"";
 
     
-    _custommesarray = [[NSMutableArray alloc] initWithCapacity:0];
+    HtmlChatViewController *html = [HtmlChatViewController new] ;
+    html.view.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
+    html.wwwFolderName=@"www";
+    html.startPage = @"message.html";
+//  self.navigationController.navigationBarHidden = NO;
+    [self.view addSubview:html.webView];
+//    html.hidesBottomBarWhenPushed = NO;
+//    [self.navigationController pushViewController:html animated:YES];
     
-    NSLog(@"self.doctorsno = %@  self.customerSno = %@ ",self.doctorsno,self.customerSno);
-    [self soaprequstWithdoctorSno:self.doctorsno customerSno:self.customerSno fromType:@"" strPageindex:@"1" strPagesize:@"40"];
-    
-    _messetimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(referenceViewmesse) userInfo:nil repeats:YES];
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [_messetimer invalidate];
     _messetimer = nil;
+    
+    
 }
 -(void)referenceViewmesse
 {

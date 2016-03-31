@@ -14,71 +14,111 @@
 #import "CustomerMessage.h"
 #import "GuestbookChatVC.h"
 #import "PrefixHeader.pch"
+
+#import "HtmlChatViewController.h"
+#import "HttpGuestbookViewController.h"
+
 @interface GuestbookViewController ()
 
 @end
 
 @implementation GuestbookViewController
 
+@synthesize viewController;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    
+////    
+////    UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
+////    background.image = [UIImage imageNamed:@"huidi"];
+////    background.userInteractionEnabled = YES;
+////    [self.view addSubview:background];
 //    
-//    UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
-//    background.image = [UIImage imageNamed:@"huidi"];
-//    background.userInteractionEnabled = YES;
-//    [self.view addSubview:background];
+//    TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+//    [self.view addSubview:topbar];
+//    
+//    UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
+//    titilelable.text = @"消息";
+//    titilelable.textColor = [UIColor whiteColor];
+//    titilelable.font = [UIFont systemFontOfSize:22];
+//    titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
+//    titilelable.textAlignment = NSTextAlignmentCenter;
+//    [topbar addSubview:titilelable];
+//   
+////    UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 27, 40, 30)];
+////    [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
+////    [backbtn addTarget:self action:@selector(comeback) forControlEvents:UIControlEventTouchUpInside];
+////    [topbar addSubview:backbtn];
+//    
+//    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
+//    _tableview.delegate = self;
+//    _tableview.dataSource = self;
+//    _tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+//    _tableview.backgroundColor = [UIColor clearColor];
+//    [self.view addSubview:_tableview];
+//    
+//    _refreshControl=[[RefreshControl alloc] initWithScrollView:_tableview delegate:self];
+//    _refreshControl.topEnabled=YES;
+//    //_refreshControl.bottomEnabled=YES;//会崩
+//    self.a = 1;
+//    
+//     _custommesarray = [[NSMutableArray alloc] initWithCapacity:0];
+//    
+////    HttpGuestbookViewController *Gusetbook = [[HttpGuestbookViewController alloc] init];
+////    [self.navigationController pushViewController:Gusetbook animated:YES];
     
-    TopBarView *topbar = [[TopBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
-    [self.view addSubview:topbar];
-    
-    UILabel *titilelable = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, 120, 25)];
-    titilelable.text = @"消息";
-    titilelable.textColor = [UIColor whiteColor];
-    titilelable.font = [UIFont systemFontOfSize:22];
-    titilelable.center = CGPointMake(self.view.bounds.size.width/2, 40);
-    titilelable.textAlignment = NSTextAlignmentCenter;
-    [topbar addSubview:titilelable];
-   
-//    UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 27, 40, 30)];
-//    [backbtn setBackgroundImage:[UIImage imageNamed:@"gaoback"] forState:UIControlStateNormal];
-//    [backbtn addTarget:self action:@selector(comeback) forControlEvents:UIControlEventTouchUpInside];
-//    [topbar addSubview:backbtn];
-    
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
-    _tableview.delegate = self;
-    _tableview.dataSource = self;
-    _tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    _tableview.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:_tableview];
-    
-    _refreshControl=[[RefreshControl alloc] initWithScrollView:_tableview delegate:self];
-    _refreshControl.topEnabled=YES;
-    //_refreshControl.bottomEnabled=YES;//会崩
-    self.a = 1;
-    
-     _custommesarray = [[NSMutableArray alloc] initWithCapacity:0];
     
 
+    NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
+    self.doctorsno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
+    HtmlChatViewController *mywebview = [HtmlChatViewController new] ;
+    mywebview.wwwFolderName = @"www";
+    mywebview.startPage = [NSString stringWithFormat:@"message-list.html?drsno=%@",self.doctorsno];
+    mywebview.view.frame = CGRectMake(0, 0, self.view.bounds.size.width,self.view.bounds.size.height);
+    [self.view addSubview:mywebview.view];
+//    [self.navigationController pushViewController:mywebview animated:YES];
+    
+    self.webview = 0;
+    
+    NSLog(@"进入聊天页面的医生索引：%@",self.doctorsno);
 }
 -(void)viewWillAppear:(BOOL)animated
 {
- 
+// 
     NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
     self.doctorsno =  [userdf objectForKey:@"customerSno"];//这个实际上医生的索引
     
-    self.istop = YES;
-//    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
+//
+//    self.istop = YES;
+////    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"20150213142231226" strPageindex:@"1" strPagesize:@"40"];
+//    
+//    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"" strPageindex:@"1" strPagesize:@"40"];
+//    
+//    [userdf setObject:@"" forKey:@"ishaver"];
+//    [userdf synchronize];
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"msg" object:@""];
     
-    [self soaprequstWithdoctorSno:self.doctorsno customerSno:@"" fromType:@"" strPageindex:@"1" strPagesize:@"40"];
-    
-    [userdf setObject:@"" forKey:@"ishaver"];
-    [userdf synchronize];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"msg" object:@""];
+    if ([[userdf objectForKey:@"isnewlogin"] isEqualToString:@"1"]) {
+        
+        HtmlChatViewController *mywebview = [HtmlChatViewController new];
+        mywebview.wwwFolderName = @"www";
+        mywebview.startPage = [NSString stringWithFormat:@"message-list.html?drsno=%@",self.doctorsno];
+        mywebview.view.frame = CGRectMake(0, 20, self.view.bounds.size.width,self.view.bounds.size.height - 70);
+        [self.view addSubview:mywebview.view];
+        
+        [userdf setObject:@"0" forKey:@"isnewlogin"];
+        [userdf synchronize];
 
+    }
+    
+
+    
+    self.webview ++;
 }
 
 - (void)refreshControl:(RefreshControl *)refreshControl didEngageRefreshDirection:(RefreshDirection)direction
@@ -246,24 +286,32 @@
     
     return cell;
     
-
-
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 70;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomerMessage *cus = [_custommesarray objectAtIndex:indexPath.row];
     self.customersno = cus.CustomerSno;
     
-    GuestbookChatVC *chat = [[GuestbookChatVC alloc] init];
-    chat.doctorsno = self.doctorsno;
-    chat.customerSno = self.customersno;
-    chat.customerName = cus.CustomerName;
-    chat.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:chat animated:YES];
+//    GuestbookChatVC *chat = [[GuestbookChatVC alloc] init];
+//    chat.doctorsno = self.doctorsno;
+//    chat.customerSno = self.customersno;
+//    chat.customerName = cus.CustomerName;
+    
+    HtmlChatViewController *html = [[HtmlChatViewController alloc] init];
+    self.navigationController.navigationBarHidden = YES;
+    html.wwwFolderName = @"www";
+    html.startPage = [NSString stringWithFormat:@"message-list.html?drsno=%@",cus.CustomerSno];
+    NSLog(@"message.html?drsno=%@",cus.CustomerSno);
+    
+    html.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:html animated:YES];
 }
 
 
@@ -441,5 +489,6 @@
     NSLog(@"-------------------end--------------");
     
 }
+
 
 @end

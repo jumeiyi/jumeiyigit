@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840959401C8E669700A40317 /* CDVMyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409593F1C8E669700A40317 /* CDVMyPlugin.m */; };
 		8421BDE71C0EFEA5006FB085 /* mymaker_btn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8421BDE61C0EFEA5006FB085 /* mymaker_btn.jpg */; };
 		843EECF91C27DF61008838D0 /* shouye_suxian.png in Resources */ = {isa = PBXBuildFile; fileRef = 843EECF81C27DF61008838D0 /* shouye_suxian.png */; };
 		8444D3A11C19A2EF00B66BC6 /* fangxingjian.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8444D3A01C19A2EF00B66BC6 /* fangxingjian.jpg */; };
+		845663A11CABC962002A703B /* ChangeLogUnzip in Resources */ = {isa = PBXBuildFile; fileRef = 8456638D1CABC962002A703B /* ChangeLogUnzip */; };
+		845663A21CABC962002A703B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 8456638F1CABC962002A703B /* ioapi.c */; };
+		845663A31CABC962002A703B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 845663911CABC962002A703B /* mztools.c */; };
+		845663A41CABC962002A703B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 845663931CABC962002A703B /* unzip.c */; };
+		845663A51CABC962002A703B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 845663951CABC962002A703B /* zip.c */; };
+		845663A71CABC962002A703B /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8456639A1CABC962002A703B /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		845663B41CAC2F5F002A703B /* NSString+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 845663B31CAC2F5F002A703B /* NSString+JSON.m */; };
 		8456991D1C182D4F007CAC36 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 8456991C1C182D4F007CAC36 /* Icon-120.png */; };
 		845FA01C1C1136C100139CA1 /* qr_fenxiang.png in Resources */ = {isa = PBXBuildFile; fileRef = 845FA01B1C1136C100139CA1 /* qr_fenxiang.png */; };
 		845FA0221C1140FD00139CA1 /* ShouYeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845FA0211C1140FD00139CA1 /* ShouYeViewController.m */; };
@@ -610,6 +618,19 @@
 		849B599F1C17C5BD00640E94 /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B599E1C17C5BD00640E94 /* libPushSDK-1.8.8.a */; };
 		849B5D921C353C4D00965587 /* dengluyeweixin_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 849B5D911C353C4D00965587 /* dengluyeweixin_bg.jpg */; };
 		849FC6581C2A4B61003C13E6 /* lables.m in Sources */ = {isa = PBXBuildFile; fileRef = 849FC6571C2A4B61003C13E6 /* lables.m */; };
+		84AB5F3C1C86D0C40058163F /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 84AB5F3B1C86D0C40058163F /* config.xml */; };
+		84AB5F451C86D1120058163F /* UIImage+CropScaleOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB5F3E1C86D1120058163F /* UIImage+CropScaleOrientation.m */; };
+		84AB5F461C86D1120058163F /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB5F3F1C86D1120058163F /* CDVCamera.m */; };
+		84AB5F471C86D1120058163F /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB5F401C86D1120058163F /* CDVJpegHeaderWriter.m */; };
+		84AB5F4A1C86D2DF0058163F /* www in Resources */ = {isa = PBXBuildFile; fileRef = 84AB5F491C86D2DF0058163F /* www */; };
+		84AB5F9C1C8844630058163F /* myCDVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB5F9B1C8844630058163F /* myCDVViewController.m */; };
+		84AC6FB91CA2E511009937D1 /* HtmlshouyeChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AC6FB81CA2E511009937D1 /* HtmlshouyeChartView.m */; };
+		84C3601B1C8060B4004C48A4 /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C360131C805D45004C48A4 /* libCordova.a */; };
+		84C3602B1C858DA8004C48A4 /* HtmlChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C3602A1C858DA8004C48A4 /* HtmlChatViewController.m */; };
+		84C3602E1C86827D004C48A4 /* HttpShouYeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C3602D1C86827D004C48A4 /* HttpShouYeViewController.m */; };
+		84C360311C868527004C48A4 /* HttpGuestbookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C360301C868527004C48A4 /* HttpGuestbookViewController.m */; };
+		84C360341C868673004C48A4 /* HttpMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C360331C868673004C48A4 /* HttpMoreViewController.m */; };
+		84E4C0F61CA13B2D0091857B /* HttpPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4C0F51CA13B2D0091857B /* HttpPointViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -627,12 +648,42 @@
 			remoteGlobalIDString = 8462C6231C0D37B00067085B;
 			remoteInfo = "聚美医";
 		};
+		84C360121C805D45004C48A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84C3600E1C805D45004C48A4 /* CordovaLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 68A32D7114102E1C006B237C;
+			remoteInfo = CordovaLib;
+		};
+		84C360191C806030004C48A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84C3600E1C805D45004C48A4 /* CordovaLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = CordovaLib;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8409593E1C8E669700A40317 /* CDVMyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVMyPlugin.h; sourceTree = "<group>"; };
+		8409593F1C8E669700A40317 /* CDVMyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVMyPlugin.m; sourceTree = "<group>"; };
 		8421BDE61C0EFEA5006FB085 /* mymaker_btn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mymaker_btn.jpg; sourceTree = "<group>"; };
 		843EECF81C27DF61008838D0 /* shouye_suxian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shouye_suxian.png; sourceTree = "<group>"; };
 		8444D3A01C19A2EF00B66BC6 /* fangxingjian.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fangxingjian.jpg; sourceTree = "<group>"; };
+		8456638D1CABC962002A703B /* ChangeLogUnzip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLogUnzip; sourceTree = "<group>"; };
+		8456638E1CABC962002A703B /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		8456638F1CABC962002A703B /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		845663901CABC962002A703B /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		845663911CABC962002A703B /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		845663921CABC962002A703B /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		845663931CABC962002A703B /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		845663941CABC962002A703B /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		845663951CABC962002A703B /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		845663961CABC962002A703B /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		845663991CABC962002A703B /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		8456639A1CABC962002A703B /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		845663B21CAC2F5F002A703B /* NSString+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JSON.h"; sourceTree = "<group>"; };
+		845663B31CAC2F5F002A703B /* NSString+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JSON.m"; sourceTree = "<group>"; };
 		8456991C1C182D4F007CAC36 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		845FA01B1C1136C100139CA1 /* qr_fenxiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr_fenxiang.png; sourceTree = "<group>"; };
 		845FA0201C1140FD00139CA1 /* ShouYeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouYeViewController.h; sourceTree = "<group>"; };
@@ -1452,6 +1503,30 @@
 		849B5D911C353C4D00965587 /* dengluyeweixin_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dengluyeweixin_bg.jpg; sourceTree = "<group>"; };
 		849FC6561C2A4B61003C13E6 /* lables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lables.h; sourceTree = "<group>"; };
 		849FC6571C2A4B61003C13E6 /* lables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lables.m; sourceTree = "<group>"; };
+		84AB5F3B1C86D0C40058163F /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		84AB5F3E1C86D1120058163F /* UIImage+CropScaleOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CropScaleOrientation.m"; sourceTree = "<group>"; };
+		84AB5F3F1C86D1120058163F /* CDVCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVCamera.m; sourceTree = "<group>"; };
+		84AB5F401C86D1120058163F /* CDVJpegHeaderWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVJpegHeaderWriter.m; sourceTree = "<group>"; };
+		84AB5F411C86D1120058163F /* UIImage+CropScaleOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CropScaleOrientation.h"; sourceTree = "<group>"; };
+		84AB5F421C86D1120058163F /* CDVCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVCamera.h; sourceTree = "<group>"; };
+		84AB5F431C86D1120058163F /* CDVJpegHeaderWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVJpegHeaderWriter.h; sourceTree = "<group>"; };
+		84AB5F441C86D1120058163F /* CDVExif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVExif.h; sourceTree = "<group>"; };
+		84AB5F491C86D2DF0058163F /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		84AB5F9A1C8844630058163F /* myCDVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myCDVViewController.h; sourceTree = "<group>"; };
+		84AB5F9B1C8844630058163F /* myCDVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myCDVViewController.m; sourceTree = "<group>"; };
+		84AC6FB71CA2E511009937D1 /* HtmlshouyeChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlshouyeChartView.h; sourceTree = "<group>"; };
+		84AC6FB81CA2E511009937D1 /* HtmlshouyeChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlshouyeChartView.m; sourceTree = "<group>"; };
+		84C3600E1C805D45004C48A4 /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
+		84C360291C858DA8004C48A4 /* HtmlChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlChatViewController.h; sourceTree = "<group>"; };
+		84C3602A1C858DA8004C48A4 /* HtmlChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlChatViewController.m; sourceTree = "<group>"; };
+		84C3602C1C86827D004C48A4 /* HttpShouYeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpShouYeViewController.h; sourceTree = "<group>"; };
+		84C3602D1C86827D004C48A4 /* HttpShouYeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpShouYeViewController.m; sourceTree = "<group>"; };
+		84C3602F1C868527004C48A4 /* HttpGuestbookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpGuestbookViewController.h; sourceTree = "<group>"; };
+		84C360301C868527004C48A4 /* HttpGuestbookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpGuestbookViewController.m; sourceTree = "<group>"; };
+		84C360321C868673004C48A4 /* HttpMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpMoreViewController.h; sourceTree = "<group>"; };
+		84C360331C868673004C48A4 /* HttpMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpMoreViewController.m; sourceTree = "<group>"; };
+		84E4C0F41CA13B2D0091857B /* HttpPointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpPointViewController.h; sourceTree = "<group>"; };
+		84E4C0F51CA13B2D0091857B /* HttpPointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpPointViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1459,6 +1534,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8462CB581C0DA2C20067085B /* AssetsLibrary.framework in Frameworks */,
+				8462CB561C0DA2A80067085B /* MobileCoreServices.framework in Frameworks */,
+				84C3601B1C8060B4004C48A4 /* libCordova.a in Frameworks */,
 				8462CB4C1C0DA20F0067085B /* libz.tbd in Frameworks */,
 				8462CB401C0DA1980067085B /* Security.framework in Frameworks */,
 				8462CB301C0D96D30067085B /* UIKit.framework in Frameworks */,
@@ -1477,8 +1555,6 @@
 				8462CB3E1C0DA1850067085B /* libz.1.2.5.tbd in Frameworks */,
 				8462CB3C1C0DA1660067085B /* libicucore.tbd in Frameworks */,
 				8462CB381C0D975F0067085B /* QuartzCore.framework in Frameworks */,
-				8462CB581C0DA2C20067085B /* AssetsLibrary.framework in Frameworks */,
-				8462CB561C0DA2A80067085B /* MobileCoreServices.framework in Frameworks */,
 				848FF2041C16712100B3F251 /* WeChatConnection.framework in Frameworks */,
 				8462CB521C0DA2830067085B /* AVFoundation.framework in Frameworks */,
 				848FF2171C16712100B3F251 /* ShareSDKShareActionSheet.framework in Frameworks */,
@@ -1524,11 +1600,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		845663841CABC962002A703B /* ZipTest */ = {
+			isa = PBXGroup;
+			children = (
+				8456638C1CABC962002A703B /* minizip */,
+				845663991CABC962002A703B /* ZipArchive.h */,
+				8456639A1CABC962002A703B /* ZipArchive.mm */,
+			);
+			path = ZipTest;
+			sourceTree = "<group>";
+		};
+		8456638C1CABC962002A703B /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				8456638D1CABC962002A703B /* ChangeLogUnzip */,
+				8456638E1CABC962002A703B /* crypt.h */,
+				8456638F1CABC962002A703B /* ioapi.c */,
+				845663901CABC962002A703B /* ioapi.h */,
+				845663911CABC962002A703B /* mztools.c */,
+				845663921CABC962002A703B /* mztools.h */,
+				845663931CABC962002A703B /* unzip.c */,
+				845663941CABC962002A703B /* unzip.h */,
+				845663951CABC962002A703B /* zip.c */,
+				845663961CABC962002A703B /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		845FA01F1C11409D00139CA1 /* shouye */ = {
 			isa = PBXGroup;
 			children = (
 				845FA0201C1140FD00139CA1 /* ShouYeViewController.h */,
 				845FA0211C1140FD00139CA1 /* ShouYeViewController.m */,
+				84C3602C1C86827D004C48A4 /* HttpShouYeViewController.h */,
+				84C3602D1C86827D004C48A4 /* HttpShouYeViewController.m */,
+				84AB5F9A1C8844630058163F /* myCDVViewController.h */,
+				84AB5F9B1C8844630058163F /* myCDVViewController.m */,
 			);
 			name = shouye;
 			sourceTree = "<group>";
@@ -1571,6 +1678,11 @@
 		8462C61B1C0D37AF0067085B = {
 			isa = PBXGroup;
 			children = (
+				84AB5F3D1C86D0E00058163F /* Plugins */,
+				84AB5F3B1C86D0C40058163F /* config.xml */,
+				84AB5F491C86D2DF0058163F /* www */,
+				84C3600E1C805D45004C48A4 /* CordovaLib.xcodeproj */,
+				845663841CABC962002A703B /* ZipTest */,
 				8462C6261C0D37B00067085B /* 聚美医 */,
 				8462C6401C0D37B00067085B /* 聚美医Tests */,
 				8462C64B1C0D37B00067085B /* 聚美医UITests */,
@@ -2081,6 +2193,8 @@
 				8462C82C1C0D72060067085B /* myclientManGroupCell.m */,
 				8462C82D1C0D72060067085B /* myclientdatasViewController.h */,
 				8462C82E1C0D72060067085B /* myclientdatasViewController.m */,
+				84AC6FB71CA2E511009937D1 /* HtmlshouyeChartView.h */,
+				84AC6FB81CA2E511009937D1 /* HtmlshouyeChartView.m */,
 				8462C82F1C0D72060067085B /* myclientdatasViewCell.h */,
 				8462C8301C0D72060067085B /* myclientdatasViewCell.m */,
 				8462C8311C0D72060067085B /* myclientobservedisease.h */,
@@ -2110,12 +2224,16 @@
 				8462C8591C0D72B30067085B /* CustomerDetailcell.xib */,
 				8462C85A1C0D72B30067085B /* GuestbookViewController.h */,
 				8462C85B1C0D72B30067085B /* GuestbookViewController.m */,
+				84C3602F1C868527004C48A4 /* HttpGuestbookViewController.h */,
+				84C360301C868527004C48A4 /* HttpGuestbookViewController.m */,
 				8462C85C1C0D72B30067085B /* GuestbookCell.h */,
 				8462C85D1C0D72B30067085B /* GuestbookCell.m */,
 				8462C85E1C0D72B30067085B /* GuestbookChatVC.h */,
 				8462C85F1C0D72B40067085B /* GuestbookChatVC.m */,
 				849960541C2B884600144568 /* gueschartviewCell.h */,
 				849960551C2B884600144568 /* gueschartviewCell.m */,
+				84C360291C858DA8004C48A4 /* HtmlChatViewController.h */,
+				84C3602A1C858DA8004C48A4 /* HtmlChatViewController.m */,
 				8462C8621C0D72B40067085B /* NSString+DocumentPath.h */,
 				8462C8631C0D72B40067085B /* NSString+DocumentPath.m */,
 				8462C8641C0D72B40067085B /* CustomerCareViewController.h */,
@@ -2135,6 +2253,8 @@
 				8462C8721C0D72B40067085B /* customerViewCell.m */,
 				8462C8731C0D72B40067085B /* PointViewController.h */,
 				8462C8741C0D72B40067085B /* PointViewController.m */,
+				84E4C0F41CA13B2D0091857B /* HttpPointViewController.h */,
+				84E4C0F51CA13B2D0091857B /* HttpPointViewController.m */,
 				8462C8751C0D72B40067085B /* PointTableViewCell.h */,
 				8462C8761C0D72B40067085B /* PointTableViewCell.m */,
 			);
@@ -2146,6 +2266,10 @@
 			children = (
 				8462C88F1C0D7AC30067085B /* AboutViewController.h */,
 				8462C8901C0D7AC30067085B /* AboutViewController.m */,
+				84C360321C868673004C48A4 /* HttpMoreViewController.h */,
+				84C360331C868673004C48A4 /* HttpMoreViewController.m */,
+				845663B21CAC2F5F002A703B /* NSString+JSON.h */,
+				845663B31CAC2F5F002A703B /* NSString+JSON.m */,
 			);
 			name = AboutViewController;
 			sourceTree = "<group>";
@@ -2801,6 +2925,30 @@
 			name = lables;
 			sourceTree = "<group>";
 		};
+		84AB5F3D1C86D0E00058163F /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				84AB5F3E1C86D1120058163F /* UIImage+CropScaleOrientation.m */,
+				84AB5F3F1C86D1120058163F /* CDVCamera.m */,
+				84AB5F401C86D1120058163F /* CDVJpegHeaderWriter.m */,
+				84AB5F411C86D1120058163F /* UIImage+CropScaleOrientation.h */,
+				84AB5F421C86D1120058163F /* CDVCamera.h */,
+				84AB5F431C86D1120058163F /* CDVJpegHeaderWriter.h */,
+				84AB5F441C86D1120058163F /* CDVExif.h */,
+				8409593E1C8E669700A40317 /* CDVMyPlugin.h */,
+				8409593F1C8E669700A40317 /* CDVMyPlugin.m */,
+			);
+			name = Plugins;
+			sourceTree = "<group>";
+		};
+		84C3600F1C805D45004C48A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84C360131C805D45004C48A4 /* libCordova.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2811,10 +2959,12 @@
 				8462C6201C0D37B00067085B /* Sources */,
 				8462C6211C0D37B00067085B /* Frameworks */,
 				8462C6221C0D37B00067085B /* Resources */,
+				84C360181C805F82004C48A4 /* copy www directory */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				84C3601A1C806030004C48A4 /* PBXTargetDependency */,
 			);
 			name = "聚美医";
 			productName = "聚美医";
@@ -2892,6 +3042,12 @@
 			mainGroup = 8462C61B1C0D37AF0067085B;
 			productRefGroup = 8462C6251C0D37B00067085B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 84C3600F1C805D45004C48A4 /* Products */;
+					ProjectRef = 84C3600E1C805D45004C48A4 /* CordovaLib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8462C6231C0D37B00067085B /* 聚美医 */,
@@ -2900,6 +3056,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		84C360131C805D45004C48A4 /* libCordova.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCordova.a;
+			remoteRef = 84C360121C805D45004C48A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8462C6221C0D37B00067085B /* Resources */ = {
@@ -2992,6 +3158,7 @@
 				8462C97A1C0D847E0067085B /* mubanbackimages.png in Resources */,
 				8462CAC71C0D8E210067085B /* shouzhi.png in Resources */,
 				8462C9451C0D84200067085B /* 专家列表_03.png in Resources */,
+				84AB5F3C1C86D0C40058163F /* config.xml in Resources */,
 				8462CAAE1C0D8DD80067085B /* 完善资料_05.png in Resources */,
 				8462CA701C0D8D670067085B /* touming.png in Resources */,
 				8484B6691C0E858B00E131FF /* chatfrom_bg_ritht.png in Resources */,
@@ -3114,6 +3281,7 @@
 				8462C9181C0D7FFA0067085B /* yishengwdkhx.png in Resources */,
 				8462CAE11C0D8E650067085B /* meirongzhuanjia_0502.png in Resources */,
 				8462CA7A1C0D8D670067085B /* huiseqiangding.png in Resources */,
+				84AB5F4A1C86D2DF0058163F /* www in Resources */,
 				8462C8FC1C0D7F840067085B /* sucaiyi.png in Resources */,
 				8462CACE1C0D8E210067085B /* 个人中心_034_03.png in Resources */,
 				8462C8F61C0D7F840067085B /* sucailiu.png in Resources */,
@@ -3250,6 +3418,7 @@
 				8462CA391C0D87D20067085B /* Icon-29@3x.png in Resources */,
 				8462C9411C0D84200067085B /* 大按钮s.png in Resources */,
 				8462C6A21C0D3C530067085B /* pull_refresh@2x.png in Resources */,
+				845663A11CABC962002A703B /* ChangeLogUnzip in Resources */,
 				8462CB021C0D8F340067085B /* duigou.png in Resources */,
 				8462CB131C0D8F340067085B /* quxiao.png in Resources */,
 				8462C9B11C0D86540067085B /* ank_05.png in Resources */,
@@ -3288,6 +3457,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		84C360181C805F82004C48A4 /* copy www directory */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "copy www directory";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8462C6201C0D37B00067085B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -3305,6 +3491,7 @@
 				8462C83D1C0D72060067085B /* myclientmainsetgropViewController.m in Sources */,
 				8462C7691C0D50990067085B /* MainWebViewController.m in Sources */,
 				8462C6771C0D3AEA0067085B /* AFHTTPRequestOperation.m in Sources */,
+				845663A41CABC962002A703B /* unzip.c in Sources */,
 				8462C7E81C0D6EAB0067085B /* MyExpertCLViewCell.m in Sources */,
 				8462C6DF1C0D4A8D0067085B /* BestSellerViewController.m in Sources */,
 				8462C87A1C0D72B40067085B /* checkmedicalredcord.m in Sources */,
@@ -3314,6 +3501,7 @@
 				8462C81F1C0D71290067085B /* MyClientViewController.m in Sources */,
 				8462C67A1C0D3AEA0067085B /* AFNetworkReachabilityManager.m in Sources */,
 				8462C67F1C0D3AEA0067085B /* AFURLSessionManager.m in Sources */,
+				84C3602E1C86827D004C48A4 /* HttpShouYeViewController.m in Sources */,
 				8462C8A81C0D7B150067085B /* gerenzujiCollectionViewCell.m in Sources */,
 				8462C6911C0D3BFE0067085B /* RefreshControl.m in Sources */,
 				8462C8A51C0D7B150067085B /* BeautyFootclViewCell.m in Sources */,
@@ -3338,6 +3526,7 @@
 				8462C7071C0D4E380067085B /* xiangmuxiangqing.m in Sources */,
 				8462C7C91C0D6A160067085B /* MyPoints.m in Sources */,
 				8462C8B71C0D7E090067085B /* youhuiwebViewController.m in Sources */,
+				84C3602B1C858DA8004C48A4 /* HtmlChatViewController.m in Sources */,
 				8462C70C1C0D4E380067085B /* MeiRongRiJi.m in Sources */,
 				8462C7CA1C0D6A160067085B /* MyPointsCell.m in Sources */,
 				8462C7941C0D50F20067085B /* ProjectbeautyTableViewCell.m in Sources */,
@@ -3385,6 +3574,8 @@
 				8462C7031C0D4E380067085B /* discount.m in Sources */,
 				8462C6601C0D3A4A0067085B /* ViewController.m in Sources */,
 				8462C7EA1C0D6EAB0067085B /* MyAppointmentViewController.m in Sources */,
+				840959401C8E669700A40317 /* CDVMyPlugin.m in Sources */,
+				84AC6FB91CA2E511009937D1 /* HtmlshouyeChartView.m in Sources */,
 				8462C7781C0D50990067085B /* AudioStreamer.m in Sources */,
 				8462C7771C0D50990067085B /* ChatWithTheDoctor.m in Sources */,
 				8462C70A1C0D4E380067085B /* yuyuexiandeqingqiu.m in Sources */,
@@ -3394,8 +3585,10 @@
 				845FA0221C1140FD00139CA1 /* ShouYeViewController.m in Sources */,
 				8462C6C91C0D47110067085B /* NSData+ImageContentType.m in Sources */,
 				8462C7A81C0D699A0067085B /* SuccesViewController.m in Sources */,
+				845663A71CABC962002A703B /* ZipArchive.mm in Sources */,
 				8462C8401C0D72060067085B /* myclientmenbergroupViewController.m in Sources */,
 				8462C6CD1C0D47110067085B /* SDWebImageDownloader.m in Sources */,
+				84AB5F471C86D1120058163F /* CDVJpegHeaderWriter.m in Sources */,
 				8462C68D1C0D3BB80067085B /* QRCameraSwitchButton.m in Sources */,
 				8462C8881C0D72B40067085B /* careViewChat.m in Sources */,
 				8462C81A1C0D71290067085B /* ShareViewController.m in Sources */,
@@ -3405,14 +3598,17 @@
 				8462C8B81C0D7E090067085B /* TableViewCell.m in Sources */,
 				8462C68C1C0D3BB80067085B /* QRCodeReader.m in Sources */,
 				8462C7ED1C0D6EAB0067085B /* MyPoIntWebViewController.m in Sources */,
+				84C360311C868527004C48A4 /* HttpGuestbookViewController.m in Sources */,
 				8462C6611C0D3A4A0067085B /* HuQiJingsharManage.m in Sources */,
 				8462C70D1C0D4E380067085B /* JiangLi.m in Sources */,
 				8462C7371C0D4E870067085B /* youhuihuodong.m in Sources */,
+				845663A51CABC962002A703B /* zip.c in Sources */,
 				8462C6A51C0D3C530067085B /* RefreshTopView.m in Sources */,
 				8462C7701C0D50990067085B /* StarBeautycell.m in Sources */,
 				8462C73D1C0D4E870067085B /* mypointsmodle.m in Sources */,
 				8462C73C1C0D4E870067085B /* medicalrecord.m in Sources */,
 				8462C68B1C0D3BB80067085B /* QRCodeReaderView.m in Sources */,
+				84AB5F461C86D1120058163F /* CDVCamera.m in Sources */,
 				8462C88A1C0D72B40067085B /* CustomerEvaluationViewController.m in Sources */,
 				8462C6D71C0D47110067085B /* UIView+WebCacheOperation.m in Sources */,
 				8462C6CB1C0D47110067085B /* SDWebImageCompat.m in Sources */,
@@ -3422,6 +3618,7 @@
 				8462C7F31C0D6EAB0067085B /* DoctorRegistViewController.m in Sources */,
 				8462C7441C0D4FF90067085B /* BottomBarView.m in Sources */,
 				8462C6C81C0D47110067085B /* MKAnnotationView+WebCache.m in Sources */,
+				84C360341C868673004C48A4 /* HttpMoreViewController.m in Sources */,
 				8462C8891C0D72B40067085B /* caremuban.m in Sources */,
 				8462C8A41C0D7B150067085B /* BeautyFootTableViewCell.m in Sources */,
 				8462C7061C0D4E380067085B /* zhuanjiashuju.m in Sources */,
@@ -3430,10 +3627,12 @@
 				8462C8801C0D72B40067085B /* GuestbookCell.m in Sources */,
 				8462C8911C0D7AC30067085B /* AboutViewController.m in Sources */,
 				8462C7F01C0D6EAB0067085B /* MeiRongZuJiCollectionLayout.m in Sources */,
+				84AB5F9C1C8844630058163F /* myCDVViewController.m in Sources */,
 				8462C8141C0D71290067085B /* moban.m in Sources */,
 				8462C7A71C0D699A0067085B /* NewExpertViewCell.m in Sources */,
 				8462C6E91C0D4DDD0067085B /* AFHTTPRequestOpeartionManagerOfme.m in Sources */,
 				8462C6781C0D3AEA0067085B /* AFHTTPRequestOperationManager.m in Sources */,
+				84E4C0F61CA13B2D0091857B /* HttpPointViewController.m in Sources */,
 				8462C7A91C0D699A0067085B /* MoreGoodAtProjectVC.m in Sources */,
 				8462C7CB1C0D6A160067085B /* MyPointsViewLayout.m in Sources */,
 				8462C67B1C0D3AEA0067085B /* AFSecurityPolicy.m in Sources */,
@@ -3446,6 +3645,7 @@
 				8462C7C71C0D6A160067085B /* CashCouponVCCell.m in Sources */,
 				8462C8181C0D71290067085B /* WEBViewController.m in Sources */,
 				8462C7EE1C0D6EAB0067085B /* MeiRongZuJiCellViewController.m in Sources */,
+				84AB5F451C86D1120058163F /* UIImage+CropScaleOrientation.m in Sources */,
 				8462C7081C0D4E380067085B /* zhuanjialiebiao.m in Sources */,
 				8462C6CE1C0D47110067085B /* SDWebImageDownloaderOperation.m in Sources */,
 				8462C7AA1C0D699A0067085B /* MoreGoodTableViewCell.m in Sources */,
@@ -3475,13 +3675,16 @@
 				849FC6581C2A4B61003C13E6 /* lables.m in Sources */,
 				8462C87B1C0D72B40067085B /* checkmedicalcell.m in Sources */,
 				8462C7711C0D50990067085B /* doctorSuccessCaseVC.m in Sources */,
+				845663A31CABC962002A703B /* mztools.c in Sources */,
 				8462C7931C0D50F20067085B /* ProjectpersentTableViewCell.m in Sources */,
+				845663A21CABC962002A703B /* ioapi.c in Sources */,
 				8462C7A61C0D699A0067085B /* NewExpertViewController.m in Sources */,
 				8462C6791C0D3AEA0067085B /* AFHTTPSessionManager.m in Sources */,
 				8462C78C1C0D50F20067085B /* CLCollectionViewCell.m in Sources */,
 				8462C8B61C0D7E090067085B /* YouHuiViewController.m in Sources */,
 				8462C87D1C0D72B40067085B /* CustomerDetailcell.m in Sources */,
 				8462C8831C0D72B40067085B /* NSString+DocumentPath.m in Sources */,
+				845663B41CAC2F5F002A703B /* NSString+JSON.m in Sources */,
 				8462C81B1C0D71290067085B /* mymakeController.m in Sources */,
 				8462C7911C0D50F20067085B /* SearchBarViewController.m in Sources */,
 				8462C8201C0D71290067085B /* myClientCell.m in Sources */,
@@ -3517,6 +3720,11 @@
 			isa = PBXTargetDependency;
 			target = 8462C6231C0D37B00067085B /* 聚美医 */;
 			targetProxy = 8462C6491C0D37B00067085B /* PBXContainerItemProxy */;
+		};
+		84C3601A1C806030004C48A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CordovaLib;
+			targetProxy = 84C360191C806030004C48A4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3589,7 +3797,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f0b45193-cb25-42ee-8416-f083b58cac0e";
+				PROVISIONING_PROFILE = "dd8b593e-d94f-48ec-ba3d-42806615a909";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3627,7 +3835,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "f0b45193-cb25-42ee-8416-f083b58cac0e";
+				PROVISIONING_PROFILE = "dd8b593e-d94f-48ec-ba3d-42806615a909";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3653,6 +3861,8 @@
 					"$(PROJECT_DIR)/聚美医/ShareSDK1",
 					"$(PROJECT_DIR)/聚美医/ShareSDK1/UI",
 				);
+				HEADER_SEARCH_PATHS = "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include";
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include";
 				INFOPLIST_FILE = "聚美医/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3665,6 +3875,10 @@
 					"$(PROJECT_DIR)/聚美医/ShareSDK1/Extend/WeChatSDK",
 					"$(PROJECT_DIR)/聚美医/lib",
 					"$(SRCROOT)/[lib]",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-Objc",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fenghuang.jumeiyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3693,6 +3907,7 @@
 					"$(PROJECT_DIR)/聚美医/ShareSDK1",
 					"$(PROJECT_DIR)/聚美医/ShareSDK1/UI",
 				);
+				HEADER_SEARCH_PATHS = "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include";
 				INFOPLIST_FILE = "聚美医/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3705,6 +3920,10 @@
 					"$(PROJECT_DIR)/聚美医/ShareSDK1/Extend/WeChatSDK",
 					"$(PROJECT_DIR)/聚美医/lib",
 					"$(SRCROOT)/[lib]",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-Objc",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fenghuang.jumeiyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";

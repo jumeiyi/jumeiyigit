@@ -20,6 +20,7 @@
 #import "GuestbookViewController.h"
 #import "ShouYeViewController.h"
 
+#import "HtmlChatViewController.h"
 @interface ViewController ()
 
 @end
@@ -113,6 +114,22 @@
 //    xiaoxi.hidesBottomBarWhenPushed = YES;
     [viewcontrollarray addObject:vc];
     
+    
+//    NSUserDefaults *userdf = [NSUserDefaults standardUserDefaults];
+//    //[userdf objectForKey:@"customerSno"];//这个实际上医生的索引
+//    
+//    HtmlChatViewController *html = [[HtmlChatViewController alloc] init];
+//    vc = [[UINavigationController alloc] initWithRootViewController:html];
+//    self.navigationController.navigationBarHidden = YES;
+//    vc.navigationBarHidden = YES;
+//    html.wwwFolderName = @"www";
+//    vc.tabBarItem.title = @"消息";
+//    html.startPage = [NSString stringWithFormat:@"message-list.html?drsno=%@",[userdf objectForKey:@"customerSno"]];
+//    vc.tabBarItem.image = [UIImage imageNamed:@"liuyanse_@3x"];
+//    [viewcontrollarray addObject:vc];
+//    NSLog(@"HtmlChatViewController-drsno:%@-------html.startPage=%@",[userdf objectForKey:@"customerSno"],html.startPage);
+    
+    
     AboutViewController *more = [[AboutViewController alloc] init];
     vc = [[UINavigationController alloc] initWithRootViewController:more];
     vc.tabBarItem.title = @"更多";
@@ -127,10 +144,8 @@
     AppDelegate *app = [UIApplication sharedApplication].delegate;
     app.window.rootViewController = tabBarcontroll;
 
-//    tabBarcontroll.tabBar.frame= CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 40);
+//  tabBarcontroll.tabBar.frame= CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 40);
    
-
-
    
 }
 

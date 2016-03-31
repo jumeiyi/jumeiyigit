@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import <Cordova/CDVViewController.h>
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 
 @property(retain,nonatomic)NSString *pageType;
 @property(retain,nonatomic)NSString *ishaver;

@@ -1,0 +1,636 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>聚美医</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1453083508_4721825.css">
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+    <link rel="stylesheet" href="css/yangjie.css" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="img/android-chrome-192x192.png" sizes="192x192">
+    <meta name="msapplication-square70x70logo" content="img/smalltile.png">
+    <meta name="msapplication-square150x150logo" content="img/mediumtile.png">
+    <meta name="msapplication-wide310x150logo" content="img/widetile.png">
+    <meta name="msapplication-square310x310logo" content="img/largetile.png">
+    <style>
+        .page-content-inner {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <div class="views tabs toolbar-through">
+        <div id="view-home" class="view view-main tab active">
+            
+                <div class="pages navbar-through">
+                    <div class="navbar">
+                <div class="navbar-inner">
+                    <!--left--> <div class=""><a href="#" class="back link"><i class="icon icon-back"></i></a></div>
+                    <!--center sliding-->   <div class="" style="left: 150px;color: white;font-size: 17px;margin-right: auto;margin-left: auto;">预约状态</div>
+                </div>
+            </div>
+                    <div data-page="reservation-status" class="page no-tabbar">
+                        <div class="page-content infinite-scroll" data-distance="100">
+                           
+                            <div class="tabs-navbar">
+                                <div class="buttons-row"><a href="#tab1" class="active tab-link">待就诊</a><a href="#tab2" class="tab-link">已就诊</a><a href="#tab3" class="tab-link">待治疗</a><a href="#tab4" class="tab-link">已治疗</a></div>
+                            </div>
+                            <div class="tabs-animated-wrap" style="height:auto;">
+                                <div class="tabs reserve-content">
+                                    <div id="tab1" class="tab active">
+                                        <!-- if nodata  display this -->
+                                        <div id="remind" class="" hidden>
+                                            <div class="" style="text-align:center">
+                                                <h2>你还没有待就诊患者</h2>
+                                                <h2>给自己打打气</h2>
+                                                <h2>入驻聚美医，咱们也是名医!</h2>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <h3>您可以:</h3>
+                                                <a href="#">完善自己的信息</a><br>
+                                                <a href="#">添加通讯录患者</a><br>
+                                                <a href="#">联系我们</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="tab2" class="tab">
+
+                                    </div>
+                                    <div id="tab3" class="tab">
+
+                                    </div>
+                                    <div id="tab4" class="tab">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <script type="text/x-jquery-tmpl" id="todiagnosis">
+                    <div class="reserve-item">
+                        <div class="reserve-time">${datetimestr}</div>
+                        <div class="box">
+                            <div class="box-content">
+                                <div class="avt"><img alt="" src="img/avatar1.png"></div>
+                                <div class="reservation-info">
+                                    <p><span>姓名：</span>${customername}</p>
+                                    <p><span>项目：</span>${productname}</p>
+                                    <p><span>待就诊时间：</span><span class="time">${afternoon}</span></p>
+                                </div>
+                            </div>
+                            <div class="box-footer" style="padding:0px 0px;">
+                                <div class="number"></div>
+                                <div class="after"><a class="button btn-default cancel-reserve" href="javascript:viod(0)" data-ordersno="${beautifysno}">因故取消</a></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </script>
+
+                <script type="text/x-jquery-tmpl" id="diagnosis">
+                    <div class="reserve-item">
+                        <div class="reserve-time">${datetimestr}</div>
+                        <div class="box">
+                            <div class="box-content">
+                                <div class="avt"><img src="img/avatar2.png" alt="" /></div>
+                                <div class="reservation-info">
+                                    <p><span>姓名：</span>${customername}</p>
+                                    <p><span>项目：</span>${productname}</p>
+                                    <p><span>就诊时间：</span>${afternoon}</p>
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <div class="number"></div>
+                                <div class="after">
+                                    <a class="button button-inline btn-orange diagnosis-record"
+                                       onclick="window.location.href = 'diagnosis-record.html?' + this.dataset.ordersno + '&recordtype=' + this.dataset.recordtype + '&medicalhistorysno=' + this.dataset.medicalhistorysno + '&ordersno=' + this.dataset.ordersno"
+                                       data-recordtype="${recordtype}" data-ordersno="${beautifysno}" data-medicalhistorysno="${medicalhistorysno}">就诊记录</a><a class="button button-inline btn-green reserve-treatment" data-ordersno="${beautifysno}">预约治疗</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+                <script type="text/x-jquery-tmpl" id="totreamt">
+                    <div class="reserve-item">
+                        <div class="reserve-time"> ${datetimestr}</div>
+                        <div class="box">
+                            <div class="box-content">
+                                <div class="avt"><img src="img/avatar1.png" alt="" /></div>
+                                <div class="reservation-info">
+                                    <p><span>姓名：</span>${customername}</p>
+                                    <p><span>项目：</span>${productname}</p>
+                                    <p><span>待治疗时间：</span>${afternoon}</p>
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <div class="number"></div>
+                                <div class="after">
+                                    <a class="button button-inline btn-orange diagnoss-record" data-ordersno="${ordersno}"
+                                       data-medicalhistorysno="${medicalhistorysno}" data-recordtype="${recordtype}"
+                                       onclick="window.location.href = 'diagnosis-record.html?ordersno=' + $(this).data('beautifysno') + '' +
+   '&recordtype=' + $(this).data('recordtype') + '&medicalhistorysno=' + $(this).data('medicalhistorysno')">就诊记录</a>
+                                    <a href="#" class="button button-inline btn-green reserve-edit" data-ordersno="${beautifysno}">修改时间</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+                <script type="text/x-jquery-tmpl" id="treamt">
+                    <div class="reserve-item">
+                        <div class="reserve-time">${datetimestr}</div>
+                        <div class="box">
+                            <div class="box-content">
+                                <div class="avt"><img src="img/avatar1.png" alt="" /></div>
+                                <div class="reservation-info">
+                                    <p><span>姓名：</span>${customername}</p>
+                                    <p><span>项目：</span>${productname}</p>
+                                    <p><span>治疗时间：</span>${afternoon}</p>
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <div class="number"></div>
+                                <div class="after">
+                                    <a class="button button-inline btn-orange treat-record" data-recordtype="${recordtype}"
+                                       data-medicalhistorysno="${medicalhistorysno}"
+                                       onclick="window.location.href='treat-record.html?ordersno='+$(this).data('ordersno')+''+
+   '&recordtype='+$(this).data('recordtype')+'&medicalhistorysno='+$(this).data('medicalhistorysno')"
+                                       data-ordersno="${beautifysno}">治疗记录</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+            </div>
+        </div>
+                <script type="text/javascript" src="Scripts/jquery-1.11.3.min.js"></script>
+                <script type="text/javascript" src="Scripts/jquery.tmpl.min.js"></script>
+                <script type="text/javascript" src="Scripts/FrameJs/global.min.js"></script>
+                <script type="text/javascript" src="Scripts/FrameJs/frame.ajax2.js"></script>
+                <script type="text/javascript" src="js/framework7.min.js"></script>
+                <script type="text/javascript" src="Scripts/FrameJs/configs/constant.config.js"></script>
+                <script type="text/javascript">
+                    const doctorsno = localStorage.getItem("doctorSno");
+           
+                    var myApp = new Framework7();
+                    var $$ = Dom7;
+
+                    var mainView = myApp.addView('.view-main', {
+                        // Because we use fixed-through navbar we can enable dynamic navbar
+                        dynamicNavbar: true,
+                        domCache: true
+                    });
+
+                    // Generate dynamic page
+                    var dynamicPageIndex = 0;
+                    function createContentPage() {
+                        mainView.router.loadContent(
+                            '<!-- Top Navbar-->' +
+                            '<div class="navbar">' +
+                            '  <div class="navbar-inner">' +
+                            '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
+                            '    <div class="center sliding">Dynamic Page ' + (++dynamicPageIndex) + '</div>' +
+                            '  </div>' +
+                            '</div>' +
+                            '<div class="pages">' +
+                            '  <!-- Page, data-page contains page name-->' +
+                            '  <div data-page="dynamic-pages" class="page">' +
+                            '    <!-- Scrollable page content-->' +
+                            '    <div class="page-content">' +
+                            '      <div class="content-block">' +
+                            '        <div class="content-block-inner">' +
+                            '          <p>Here is a dynamic page created on ' + new Date() + ' !</p>' +
+                            '          <p>Go <a href="#" class="back">back</a> or go to <a href="services.html">Services</a>.</p>' +
+                            '        </div>' +
+                            '      </div>' +
+                            '    </div>' +
+                            '  </div>' +
+                            '</div>'
+                        );
+                        return;
+                    }
+
+
+                    $.Frame.Ajax.Ajax({
+                        url: $.Frame.Config.Constant.ServerUrl + "myorder.list.go",
+                        postdata: {
+                            doctorsno: doctorsno,
+                        },
+                                //'9b503080-4649-4e5f-8a15-11007951f9b1'},
+                        success: function (rtn){
+                            //发送成功
+                            if (rtn.issuccess) {
+                                if (rtn.todiagnosis == null | rtn.todiagnosis == '' | rtn.todiagnosis == undefined) {
+                                    $$("#remind").removeAttr("hidden");
+                                    console.log($$("#remind").prop("display"));
+                                }
+                                var todiagnosis = $("#todiagnosis");
+                                var diagnosis = $("#diagnosis");
+                                var totreamt = $("#totreamt");
+                                var treamt = $("#treamt");
+                                var tab1 = $("#tab1");
+                                var tab2 = $("#tab2");
+                                var tab3 = $("#tab3");
+                                var tab4 = $("#tab4");
+                                todiagnosis.tmpl(rtn.todiagnosis).appendTo(tab1); 
+                                diagnosis.tmpl(rtn.diagnosis).appendTo(tab2);
+                                totreamt.tmpl(rtn.totreamt).appendTo(tab3);
+                                treamt.tmpl(rtn.treamt).appendTo(tab4);
+
+                                //重设页面高,否则只有一部分数据显示出来
+                                $(".tabs-animated-wrap").css("height", "auto");
+                                //固定导航栏和菜单栏
+                                $(".navbar").css("position", "fixed");
+                                $(".tabs-navbar").css({
+                                    "position": "relative",
+                                    "margin-top": "44px"
+                                });
+
+                                $(".toolbar-hidden").removeClass("toolbar-hidden");
+
+                                AddCancelReserve();//取消预约
+                                AddReserveTreatment();//预约时间
+                                                    
+
+                            } else {
+
+                                myApp.alert("错误的请求");
+                            }
+                        }
+                    });
+                    
+                    function AddReserveTreatment(){
+                        //====================================预约时间,==========================================
+                        $$('.reserve-treatment').on('click',function(){
+                            var ordersno = $(this).data("ordersno");
+                            var today = new Date();
+                            var reserveTime = myApp.picker({
+                                input: $$(this),
+                                toolbarTemplate: '<div class="toolbar">' +
+                                    '<div class="toolbar-inner">' +
+                                    '<div class="left"><a href="#" class="link  destroy-picker">取消</a></div>' +
+                                    '<div class="center">请选择预约时间</div>' +
+                                    '<div class="right">' +
+                                    '<a href="#" class="link destroy-picker save" id="save">完成</a>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>',
+                                toolbar: true,
+                                rotateEffect: true,
+                                onClose: function () {
+                                    $$('.modal-overlay').addClass('modal-overlay-visible');
+
+                                },
+                                value: [today.getFullYear(), today.getMonth(), today.getDate(), '上午'],
+                                onChange: function (picker, values, displayValues) {
+                                    var daysInMonth = new Date(picker.value[2], picker.value[0] * 1 + 1, 0).getDate();
+                                    if (values[1] > daysInMonth) {
+                                        picker.cols[1].setValue(daysInMonth);
+                                    }
+                                },
+                                formatValue: function (p, values, displayValues) {
+                                    return displayValues[0] + '.' + displayValues[1] + '.' + values[2] + ' ' + values[3];
+                                }, onOpen: function (picker) {
+                                    $('.destroy-picker').on('click', function () {
+                                        picker.close();
+                                        picker.destroy();
+                                    });
+                                    treatdt = reserveTime.value.toString().replaceAll(',', '-');
+                                    $(".save").click(function () {
+                                        $.Frame.Ajax.Ajax({
+                                            url: $.Frame.Config.Constant.ServerUrl + "myorder.settreatdt.go",
+                                            postdata: {
+                                                ordersno: ordersno,
+                                                treatdt: treatdt,
+                                            },
+                                            success: function (rtn) {
+                                                if (rtn.issuccess) {
+                                                    //完成取消,移除当前的订单信息的html代码
+                                                    myApp.alert(rtn.msg, "正确");
+                                                } else {
+                                                    myApp.alert(rtn.msg, "抱歉");
+                                                }
+                                            }
+                                        });
+                                    });
+                                },
+                                cols: [
+                                    // Years
+                                    {
+                                        values: (function () {
+                                            var arr = [];
+                                            for (var i = 1950; i <= 2030; i++) {
+                                                arr.push(i);
+                                            }
+                                            return arr;
+                                        })(),
+                                        textAlign: 'right'
+                                    },
+                                    // Months
+                                    {
+                                        values: ('0 1 2 3 4 5 6 7 8 9 10 11').split(' '),
+                                        displayValues: ('1 2 3 4 5 6 7 8 9 10 11 12').split(' '),
+                                        textAlign: 'left'
+                                    },
+                                    // Days
+                                    {
+                                        values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+                                        textAlign: 'left'
+                                    },
+                                    // Hours
+                                    {
+                                        values: ['上午', '下午'],
+                                        textAlign: 'left'
+                                    }
+                                ]
+                            });
+                            reserveTime.open();
+                        });
+        
+        
+
+
+                        // 已预约
+                        $$('.reserve-done').on('click', function () {
+                            myApp.modal({
+                                title: '您已和患者预约治疗时间',
+                                text: '<div class="reserve-done-modal"><h4>尊敬的医生您好：</h4><p>您已和患者XXX约定治疗时间为：2015年12月13日，系统已提醒您的患者，请您也按时准备手术，祝您顺利！</p></div>',
+                                afterText:
+                                '',
+                                buttons: [
+                                {
+                                    text: '知道了，谢谢',
+                                }
+                                ]
+                            })
+                        });
+
+                        // 修改时间
+                        $$('.reserve-edit').on('click', function () {
+                            console.log("修改预约治疗时间的订单ordersno:"+$(this).data("ordersno"));
+                            var popupHTML = '<div class="popup reserve-popup">' +
+                                    '<div class="view navbar-fixed">' +
+                                        '<div class="pages">' +
+                                            '<div class="page">' +
+                                                '<div class="navbar">' +
+                                                    '<div class="navbar-inner">' +
+                                                        '<div class="left"><a href="#" class="link close-popup"><i class="icon icon-back"></i></a></div>' +
+                                                       ' <div class="center">温馨提示</div>' +
+                                                    '</div>' +
+                                               ' </div>' +
+                                                '<div class="page-content">' +
+                                                    '<p class="reserve-tip" style="margin-top:60px">由于您主动对患者治疗时间进行修改，“聚美医”不承担相关法律责任，请慎重决定！我们会主动下发通知给预约用户，请填写修改时间缘由，并确定修改的治疗时间。<p>' +
+                                                    '<div class="list-block">' +
+                                                      '<div class="list-block-title">更改的原因：</div>' +
+                                                      '<ul>' +
+                                                        '<li class="align-top">' +
+                                                          '<div class="item-content">' +
+                                                            '<div class="item-inner">' +
+                                                              '<div class="item-input">' +
+                                                                '<textarea id="reason"></textarea>' +
+                                                              '</div>' +
+                                                            '</div>' +
+                                                          '</div>' +
+                                                        '</li>' +
+                                                      '</ul>' +
+                                                    '</div>' +
+                                                    '<div class="list-block">' +
+                                                      '<div class="list-block-title">更改治疗时间为：</div>' +
+                                                      '<input type="text" readonly id="change-date-picker-date" class="change-date-input">' +
+                                                      '<div id="change-date-picker"></div>' +
+                                                    '</div>' +
+                                                    '<div class="btns">' +
+                                                        '<a href="#" class="link close-popup define-btn" id="modify" data-ordersno="'+$(this).data("ordersno")+'">任性，确定修改</a>' +
+                                                    '</div>'
+
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '</div>'
+                            myApp.popup(popupHTML);
+                            $("#modify").on("click",
+                                function (){
+                                    var ordersno = $(this).data("ordersno");
+                                    var reason = $("#reason").val();
+                                    var modifyDt =pickerInline.value.toString().replaceAll(',','-');
+                                    console.log("修改时间按钮ordersno:" + ordersno + '\n'
+                                       + "原因:" + reason+'\n'
+                                       + "时间:" + modifyDt);
+                                    //Ajxa请求修改时间
+                                    $.Frame.Ajax.Ajax({
+                                        url: $.Frame.Config.Constant.ServerUrl+"myorder.settreatdt.go",
+                                        postdata: {
+                                            ordersno: ordersno,
+                                            modifytreatdtreason: reason,
+                                            treatdt:modifyDt,
+                                        },
+                                        success: function (rtn) {
+                                            if (rtn.issuccess) {
+                                                myApp.alert(rtn.msg,"正确");
+                                            } else {
+                                                myApp.alert(rtn.msg,"错误");
+                                            }
+                                        }
+                                    });
+                                });
+
+                            var today = new Date();
+                            var pickerInline = myApp.picker({
+                                input: '#change-date-picker-date',
+                                container: '#change-date-picker',
+                                rotateEffect: true,
+                                toolbar: false,
+                                onClose: function () {
+                                    $$('.modal-overlay').addClass('modal-overlay-visible')
+                                },
+                                value: [today.getFullYear(), today.getMonth(), today.getDate(), '上午'],
+                                onChange: function (picker, values, displayValues) {
+                                    var daysInMonth = new Date(picker.value[2], picker.value[0] * 1 + 1, 0).getDate();
+                                    if (values[1] > daysInMonth) {
+                                        picker.cols[1].setValue(daysInMonth);
+                                    }
+                                },
+                                formatValue: function (p, values, displayValues) {
+                                    return displayValues[0] + '.' + displayValues[1] + '.' + values[2] + ' ' + values[3];
+                                },
+                                cols: [
+                                    // Years
+                                    {
+                                        values: (function () {
+                                            var arr = [];
+                                            for (var i = 1950; i <= 2030; i++) {
+                                                arr.push(i);
+                                            }
+                                            return arr;
+                                        })(),
+                                        textAlign: 'right'
+                                    },
+                                    // Months
+                                    {
+                                        values: ('0 1 2 3 4 5 6 7 8 9 10 11').split(' '),
+                                        displayValues: ('1 2 3 4 5 6 7 8 9 10 11 12').split(' '),
+                                        textAlign: 'left'
+                                    },
+                                    // Days
+                                    {
+                                        values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+                                        textAlign: 'left'
+                                    },
+                                    // Hours
+                                    {
+                                        values: ['上午', '下午'],
+                                        textAlign: 'left'
+                                    }
+                                ]
+                            });
+                        });
+                    }
+    
+
+                    
+
+                 
+                    var item;
+                    function AddCancelReserve(){
+                        //取消预约跳转界面
+                        $('.cancel-reserve').on('click', function () {
+                            
+                            //顶端的item
+                           item = $(this).parent().parent().parent().parent();
+                            var reservedate = item.find(".reserve-time");
+                            var reservetime = item.find(".time");
+                            var ordersno = $(this).data("ordersno").toString();
+                            console.log("订单日期:" + reservedate.html() + reservetime.text());
+                            console.log("订单编号:" + ordersno);
+                            var popupHTML = '<div class="popup reserve-popup">' +
+                                    '<div class="view navbar-fixed">' +
+                                        '<div class="pages">' +
+                                            '<div class="page">' +
+                                                '<div class="navbar">' +
+                                                    '<div class="navbar-inner">' +
+                                                        '<div class="left"><a href="#" class="link close-popup"><i class="icon icon-back"></i></a></div>' +
+                                                       ' <div class="center">因故取消</div>' +
+                                                    '</div>' +
+                                               ' </div>' +
+                                                '<div class="page-content">' +
+                                                    '<p class="reserve-tip" style="margin-top:60px">立即取消预约，可能导致患者投诉，如果执行，聚美医不承担相关责任，建议推迟就诊时间和患者商议好后点击取消。<p>' +
+                                                    '<div class="list-block">' +
+                                                      '<div class="list-block-title">我需要取消的就诊时间</div>' +
+                                                      '<p class="cancle-time">' + reservedate.html() + reservetime.text() + '</p>' +
+                                                    '</div>' +
+                                                    '<div class="list-block">' +
+                                                      '<div class="list-block-title">我的取消原因：</div>' +
+                                                      '<ul>' +
+                                                        '<li class="align-top">' +
+                                                          '<div class="item-content">' +
+                                                            '<div class="item-inner">' +
+                                                              '<div class="item-input">' +
+                                                                '<textarea id="cancelreason"></textarea>' +
+                                                              '</div>' +
+                                                            '</div>' +
+                                                          '</div>' +
+                                                        '</li>' +
+                                                      '</ul>' +
+                                                    '</div>' +
+                                                    '<div class="list-block">' +
+                                                      '<div class="list-block-title">选择取消原因</div>' +
+                                                      '<ul>' +
+                                                        '<li>' +
+                                                          '<label class="label-radio item-content">' +
+                                                            '<input type="radio" name="my-radio" value="" checked="checked"/>' +
+                                                           ' <div class="item-inner">' +
+                                                              '<div class="item-title">临时就诊，改时间再约，抱歉</div>' +
+                                                            '</div>' +
+                                                          '</label>' +
+                                                        '</li>' +
+                                                        '<li>' +
+                                                          '<label class="label-radio item-content">' +
+                                                            '<input type="radio" name="my-radio" value=""/>' +
+                                                            '<div class="item-inner">' +
+                                                              '<div class="item-title">临时会议，改时间再约，抱歉</div>' +
+                                                            '</div>' +
+                                                          '</label>' +
+                                                        '</li>' +
+                                                        '<li>' +
+                                                          '<label class="label-radio item-content">' +
+                                                            '<input type="radio" name="my-radio" value=""/>' +
+                                                            '<div class="item-inner">' +
+                                                              '<div class="item-title">临时请假，改时间再约，抱歉</div>' +
+                                                            '</div>' +
+                                                          '</label>' +
+                                                        '</li>' +
+                                                      '</ul>' +
+                                                    '</div>' +
+                                                    '<a href="#" class="link close-popup cancel-btn button" data-ordersno="' + ordersno + '">立即取消</a>' +
+                                                '</div>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>'
+                            myApp.popup(popupHTML);
+                            $(".cancel-btn").click(
+                                function () {
+                                    var cancelreason = $("#cancelreason").text();
+                                    //若是没有填写原因，则选中的原因作为数据提交
+                                    if (cancelreason == '' || cancelreason == undefined || cancelreason == null) {
+                                        console.log($("input[name=my-radio]:checked").text());
+                                        cancelreason = $("input[name=my-radio]:checked").next().text();
+                                    }
+                                    var reservedate = item.find(".reserve-time");
+                                    var reservetime = item.find(".time");
+                                    var ordersno = $(this).data("ordersno");
+                         
+                                    $.Frame.Ajax.Ajax({
+                                        url: $.Frame.Config.Constant.ServerUrl + "myorder.cancelorder.go",
+                                        postdata: {
+                                            ordersno: ordersno,
+                                            cancelreason: cancelreason
+                                        },
+                                        success: function (rtn) {
+                                            if (rtn.issuccess) {
+                                                item.remove();
+                                                myApp.alert(rtn.msg, "提示");
+                                            } else {
+                                                myApp.alert(rtn.msg, "错误");
+                                            }
+                                        }
+                                    });
+                                });
+                        });
+                    }
+
+
+                </script>
+
+</body>
+</html>
